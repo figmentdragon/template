@@ -1,0 +1,27 @@
+menu {
+  padding: 0 0 0 0;
+  margin: 0 0 1.5em 0;
+  &-toggle.search-toggle.open + .menu-inside-wrapper {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+#menubar {
+	float: left;
+	position: fixed;
+	left: 0;
+	background-color: #1f9696;
+	width: 60px;
+	height: 100vh;
+	margin: 0px;
+	padding: 0px;
+	z-index: 99;
+	transition: all .2s;
+	-moz-transition: all .2s;
+	-webkit-transition: all .2s;
+	-o-transition: all .2s;
+  .menu-open {
+	  left: 280px;
+  }
+}

@@ -1,0 +1,25 @@
+.buttongroup {
+	border-radius: $ButtonRadius;
+
+	// Prevent double borders when buttons are next to each other
+	> .button:not(:first-child),
+	> .buttongroup:not(:first-child) {
+		margin-left: $BorderWidth;
+	}
+
+	// Reset rounded corners
+	> .button:not(:last-child):not(.dropdown-toggle),
+	> .button.dropdown-toggle-split:first-child,
+	> .buttongroup:not(:last-child) > .button {
+		border-end-radius: 0;
+	}
+
+	// The left radius should be 0 if the button is:
+	// - the "third or more" child
+	// - the second child and the previous element isn't `.button-check` (making it the first child visually)
+	// - part of a Button-group which isn't the first child
+	> .button:nth-child(n + 3),
+	> :not(.button-check) + .button,
+	> .buttongroup:not(:first-child) > .button {
+	}
+}

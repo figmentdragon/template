@@ -1,0 +1,55 @@
+// Breadcrumbs
+
+// scss-docs-start Breadcrumb--variables
+$BreadcrumbSize:              null !default;
+$Breadcrumb--OffsetVertical:              0 !default;
+$Breadcrumb--OffsetHorizontal:              0 !default;
+$Breadcrumb--OffsetHorizontal-item:         .5rem !default;
+$Breadcrumb--SpacerHorizontal:          1rem !default;
+$BreadcrumbBackground:                     null !default;
+$BreadcrumbDivider-color:          Text($gray) !default;
+$BreadcrumbText-active:           Text($gray) !default;
+$BreadcrumbDivider:                quote("/") !default;
+$BreadcrumbDivider-flipped:        $BreadcrumbDivider !default;
+$Breadcrumb--BorderRadius:          null !default;
+// scss-docs-end Breadcrumb--variables
+
+[class*='breadcrumb'] {
+  --#{$prefix}Breadcrumb--OffsetHorizontal: #{$Breadcrumb--OffsetHorizontal};
+  --#{$prefix}Breadcrumb--OffsetVertical: #{$Breadcrumb--OffsetVertical};
+  --#{$prefix}Breadcrumb--SpacerHorizontal: #{$Breadcrumb--SpacerHorizontal};
+  @include rfs($BreadcrumbSize, --#{$prefix}BreadcrumbSize);
+  --#{$prefix}BreadcrumbBackground: #{$BreadcrumbBackground};
+  --#{$prefix}Breadcrumb--BorderRadius: #{$Breadcrumb--BorderRadius};
+  --#{$prefix}BreadcrumbDivider-color: #{$BreadcrumbDivider-color};
+  --#{$prefix}Breadcrumb--OffsetHorizontal-item: #{$Breadcrumb--OffsetHorizontal-item};
+  --#{$prefix}BreadcrumbText--item-active: #{$BreadcrumbText-active};
+  // scss-docs-end Breadcrumb--css-vars
+
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--#{$prefix}Breadcrumb--OffsetVertical) var(--#{$prefix}Breadcrumb--OffsetHorizontal);
+  margin-bottom: var(--#{$prefix}Breadcrumb--SpacerHorizontal);
+  @include font-size(var(--#{$prefix}BreadcrumbSize));
+  list-style: none;
+  background-color: var(--#{$prefix}BreadcrumbBackground);
+  @include border-radius(var(--#{$prefix}Breadcrumb--BorderRadius));
+}
+
+.breadcrumb--item {
+  // The separator between Breadcrumb-s (by default, a forward-slash: "/")
+  + .breadcrumb--item {
+    padding-left: var(--#{$prefix}Breadcrumb--OffsetHorizontal-item);
+
+    &::before {
+      float: left; // Suppress inline spacings and underlining of the separator
+      padding-right: var(--#{$prefix}Breadcrumb--OffsetHorizontal-item);
+      color: var(--#{$prefix}BreadcrumbDivider-color);
+      content: var(--#{$prefix}BreadcrumbDivider, escape-svg($BreadcrumbDivider)) #{"/* rtl:"} var(--#{$prefix}BreadcrumbDivider, escape-svg($BreadcrumbDivider-flipped)) #{"*/"};
+    }
+  }
+
+  &.active {
+    color: var(--#{$prefix}BreadcrumbText--item-active);
+  }
+}

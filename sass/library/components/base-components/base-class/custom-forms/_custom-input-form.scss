@@ -1,0 +1,41 @@
+.c-input {
+  position: relative;
+
+  display: inline;
+
+  padding-left: 1.5rem;
+
+  cursor: pointer;
+
+  color: #555555;
+
+  > input {
+    position: absolute;
+    z-index: -1; // Put the input behind the label so it doesn't overlay text
+
+    opacity: 0;
+
+    &:checked ~ .c-indicator {
+      color: tint($gray, $ColorInterval * 4);
+      background-color: #0074D9;
+
+      @include box-shadow(none);
+    }
+
+    &:focus ~ .c-indicator {
+      // the mixin is not used here to make sure there is feedback
+      box-shadow: 0 0 0 0.075rem tint($gray, $ColorInterval * 4), 0 0 0 0.2rem #0074D9;
+    }
+
+    &:active ~ .c-indicator {
+      color: tint($gray, $ColorInterval * 4);
+      background-color: #84C6FF;
+
+      @include box-shadow(none);
+    }
+  }
+
+  + .c-input {
+    margin-left: $BaseUnit;
+  }
+}

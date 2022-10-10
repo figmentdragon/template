@@ -1,0 +1,35 @@
+/// #FUNCTIONS -------------------------------- *
+/// =All application-wide Functions.
+/// -------------------------------------------- *
+
+// Numeric
+  @import "calc/addition";
+  @import "calc/divide";
+  @import "calc/subtract";
+
+  @import "calc/strip-unit-number";
+  @import "calc/to-rem";
+  @import "calc/rem-calc";
+  @import "calc/pow";
+
+// Components & Elements
+  @import "list-remove";
+  @import "list-sort";
+  @import "varify";
+
+//Maps
+  @import "maps/map-deep-get";
+  @import "maps/map-deep-set";
+  @import "maps/map-extend";
+  @import "maps/map-get-multiple";
+  @import "maps/map-loop";
+  @import "maps/map-merge-multiple";
+  @import "maps/map-negativify";
+
+// Directory Organization
+  @import "url/font-url";
+  @import "url/image-url";
+  @import "url/wrapper-url";
+
+@import "misc/misc-escape-svg";
+@import "misc/misc-str-replace";

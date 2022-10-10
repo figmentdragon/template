@@ -1,0 +1,121 @@
+/**
+ * Comments Wrapper
+ */
+.comments-area {
+	@include media(Tablet) {
+		margin: calc(3 * $Spacer) $Spacer;
+	}
+	& > * {
+		margin-top: calc(2 * #{$SpacerHorizontal});
+		margin-bottom: calc(2 * #{$SpacerHorizontal});
+
+		@include media(Tablet) {
+			margin-top: calc(3 * $Spacer);
+			margin-bottom: calc(3 * $Spacer);
+		}
+	}
+	> * {
+		margin-top: $SpacerVertical;
+		margin-bottom: $SpacerVertical;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.comment-list {
+		list-style: none;
+    margin: 0;
+    padding: 0;
+		li {
+			.comment-meta a {
+				@include on-event;
+			}
+			.comment-reply-link {
+				overflow: hidden;
+				&:after {
+					position: absolute;
+					height: 100%;
+					width: calc(100% - calc(2 * $Spacer));
+					top: 0;
+					display: block;
+					z-index: -1;
+					left: 0;
+					background-color: $Background;
+					animation: scale-out-hor-left 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+					content: "";
+				}
+				&:hover {
+					border-color: $BorderColor;
+					color: white;
+					&:after{
+						animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+					}
+				}
+			}
+		}
+	}
+	.comment-respond .comment-form .logged-in-as a {
+		overflow: hidden;
+		&:after {
+			position: absolute;
+			height: 100%;
+			width: calc(100% - calc(2 * $Spacer));
+			top: 0;
+			display: block;
+			z-index: -1;
+			left: 0;
+			background-color: $Background;
+			animation: scale-out-hor-left 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+			content: "";
+		}
+		&:hover {
+			border-color: $BorderColor;
+			color: white;
+			&:after {
+				animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+			}
+		}
+	}
+	&.show-avatars {
+
+		.avatar {
+			border-radius: 50%;
+			position: absolute;
+			top: 10px;
+		}
+
+		.fn {
+			display: inline-block;
+			padding-left: 85px;
+		}
+
+		.comment-metadata {
+			padding: 8px 0 9px 85px;
+		}
+
+	}
+}
+
+.reply {
+	font-size: #{0.75 * $FontSize};
+	line-height: $HeadingHeight;
+}
+
+.bypostauthor { /* Gives post author comments their own style */
+  display: block;
+	position: relative;
+}
+
+.says {
+	display: none;
+}
+
+article.comment {
+	background: rgba($Background, 0.04);
+	margin-top: 18px;
+	padding: 24px;
+}

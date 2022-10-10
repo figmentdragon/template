@@ -1,0 +1,24 @@
+
+
+$prefix: core- !default;
+
+$BaseUnit: 1.05 !default; // Vertical Rhythm Multiplier
+$color-interval: 7.6%;
+// Measurements
+$xs: 0.15;
+$sm: 0.75;
+$md: 0.875;
+$lg: 1.15;
+$xl: 1.25;
+$x2l: 1.75;
+
+
+@import "global/global-stylings";
+
+@import "global/global-elements";
+
+@import "base/base-components";
+@import "base/base-stylesheet";
+
+@import "core/core-utilities";
+@import "global/root";

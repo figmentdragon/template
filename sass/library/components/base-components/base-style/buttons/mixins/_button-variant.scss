@@ -1,0 +1,59 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+// scss-docs-start Button-variant-mixin
+@mixin button-variant(
+  $Background,
+  $border,
+  $color: color-contrast($Background),
+  $hover-background: if($color == $ContrastLight, shade--TextColor($Background, $Button-hoverBackgroundColor-shade-amount), tint--TextColor($Background, $Button-hoverBackgroundColor-tint-amount)),
+  $hover-border: if($color == $ContrastLight, shade--TextColor($border, $Button-hover-Border-amount), tint--TextColor($border, $Button-hover-border-tint-amount)),
+  $LinkText-hover: color-contrast($hover-background),
+  $active-background: if($color == $ContrastLight, shade--TextColor($Background, $Button-activeBackgroundColor-shade-amount), tint--TextColor($Background, $Button-activeBackgroundColor-tint-amount)),
+  $active-border: if($color == $ContrastLight, shade--TextColor($border, $Button-active-Border-amount), tint--TextColor($border, $Button-active-border-tint-amount)),
+  $active--TextColor: color-contrast($active-background),
+  $disabled-background: $Background,
+  $disabled-border: $border,
+  $disabled--TextColor: color-contrast($disabled-background)
+) {
+  $Button-LinkColor: #{$color};
+  $ButtonBackgroundColor: #{$Background};
+  $ButtonBorder: #{$border};
+  $Button-hover--LinkColor: #{$LinkText-hover};
+  $Button-hoverBackgroundColor: #{$hover-background};
+  $Button-hover-Border: #{$hover-border};
+  $Button-focusbox-shadow-rgb: #{to-rgb(mix($color, $border, 15%))};
+  $Button-active--TextColor: #{$active--TextColor};
+  $Button-activeBackgroundColor: #{$active-background};
+  $Button-active-Border: #{$active-border};
+  $Button-active--BoxShadow: #{$Button-active--BoxShadow};
+  $Button-disabled--TextColor: #{$disabled--TextColor};
+  $Button-disabledBackgroundColor: #{$disabled-background};
+  $Button-disabled-Border: #{$disabled-border};
+}
+// scss-docs-end Button-variant-mixin
+
+// scss-docs-start Button-outline-variant-mixin
+@mixin button-outline-variant(
+  $color,
+  $hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active--TextColor: color-contrast($active-background)
+) {
+  $Button-LinkColor: #{$color};
+  $ButtonBorder: #{$color};
+  $Button-hover--LinkColor: #{$hover};
+  $Button-hoverBackgroundColor: #{$active-background};
+  $Button-hover-Border: #{$active-border};
+  $Button-focusbox-shadow-rgb: #{to-rgb($color)};
+  $Button-active--TextColor: #{$active--TextColor};
+  $Button-activeBackgroundColor: #{$active-background};
+  $Button-active-Border: #{$active-border};
+  $Button-active--BoxShadow: #{$Button-active--BoxShadow};
+  $Button-disabled--TextColor: #{$color};
+  $Button-disabledBackgroundColor: transparent;
+  $gradient: none;
+}

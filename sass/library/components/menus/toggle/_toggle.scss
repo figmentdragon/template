@@ -1,0 +1,101 @@
+/* Toggles ----------------------------------- */
+
+.toggle {
+	margin: 1.5rem 0px;
+	padding: 0px;
+	overflow: hidden;
+	color: inherit;
+	cursor: pointer;
+	font-family: inherit;
+	position: relative;
+	text-align: inherit;
+	user-select: none;
+}
+
+button.toggle {
+	background: none;
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	font-size: inherit;
+	font-weight: 400;
+	letter-spacing: inherit;
+	padding: 0;
+	text-transform: none;
+}
+
+.toggle-trigger {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	margin: 0px;
+	padding: 12px;
+	box-sizing: border-box;
+	cursor: pointer;
+	zoom: 1;
+}
+.toggle-trigger .toggle-title {
+	font-size: 1.2rem;
+	text-align: left;
+	margin: 0px;
+	padding: 0px;
+}
+.toggle-trigger .toggle-icon {
+	color: #999999;
+	font-weight: 600;
+	margin-right: 8px;
+}
+.toggle-trigger .open,
+.toggle-trigger.active .close {
+	display: inline-block;
+}
+.toggle-trigger .close,
+.toggle-trigger.active .open {
+	display: none;
+}
+.toggle-content {
+	display: none;
+	margin: 0px;
+	padding: 1.5rem;
+	border-top: 1px $BorderStyle rgba($BorderColor, 0.12);
+	overflow: hidden;
+}
+.toggle-content > :first-child {
+	margin-top: 0px;
+}
+.toggle-content > :last-child {
+	margin-bottom: 0px;
+}
+.toggle-content .alignwide,
+.toggle-content .alignfull,
+.toggle-content .wp-block[data-align="wide"],
+.toggle-content .wp-block[data-align="full"] {
+	width: calc(100% + 48px) !important;
+	max-width: calc(100% + 48px);
+	margin-left: -1.5rem !important;
+	left: auto !important;
+}
+.toggle-content > .alignwide:first-child,
+.toggle-content > .alignfull:first-child,
+.toggle-content .block-editor-block-list__layout > .wp-block[data-align="wide"]:first-child,
+.toggle-content .block-editor-block-list__layout > .wp-block[data-align="full"]:first-child {
+	margin-top: -1.5rem !important;
+}
+.toggle-content .block-editor-block-list__layout > .wp-block[data-align="wide"]:first-child .block-editor-block-list__block,
+.toggle-content .block-editor-block-list__layout > .wp-block[data-align="full"]:first-child .block-editor-block-list__block {
+	margin-top: 0px;
+}
+.toggle-content p, .editor-styles-wrapper .toggle-content p,
+.toggle-content h1, .editor-styles-wrapper .toggle-content h1,
+.toggle-content h2, .editor-styles-wrapper .toggle-content h2,
+.toggle-content h3, .editor-styles-wrapper .toggle-content h3,
+.toggle-content h4, .editor-styles-wrapper .toggle-content h4,
+.toggle-content h5, .editor-styles-wrapper .toggle-content h5,
+.toggle-content h6, .editor-styles-wrapper .toggle-content h6 {
+	margin: 1.5rem 0px;
+	padding: 0px;
+}
+.editor-styles-wrapper .toggle-content {
+	display: block;
+}

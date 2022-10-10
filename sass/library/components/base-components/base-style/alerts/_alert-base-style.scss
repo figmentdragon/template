@@ -1,0 +1,31 @@
+$Alert-BackgroundColor: transparent;
+$Alert---OffsetHorizontal: #{$Alert---OffsetHorizontal};
+$Alert---OffsetVertical: #{$Alert---OffsetVertical};
+$Alert---MarginBottom: #{$Alert---MarginBottom};
+$alert: inherit;
+$Alert--Border: transparent;
+$AlertBorder: #{$Alert---BorderWidth} $BorderStyle $Alert--Border;
+$Alert---BorderRadius: #{$Alert---BorderRadius};
+
+.alert {
+  position: relative;
+
+  margin: calc($Spacer * 1.05) $Spacer;
+  padding: $Alert---OffsetHorizontal $Alert---OffsetVertical;
+
+  color: $alert;
+  border: $AlertBorder;
+  border-radius: $Alert---BorderRadius, 0;
+  background-color: $Alert-BackgroundColor;
+}
+
+// Headings for larger alerts
+.alert--heading {
+  // Specified to prevent conflicts of changing $headings--TextColor
+  color: inherit;
+}
+
+// Provide class for links that match alerts
+.alertLink {
+  font-weight: $Alert---LinkFontWeight;
+}

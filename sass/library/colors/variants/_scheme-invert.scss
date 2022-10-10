@@ -1,0 +1,28 @@
+//
+$black-bis: #121212;
+$black-ter: #242424;
+$white-ter: #f5f5f5;
+$white-bis: #fafafa;
+
+$scheme-main: $white !default;
+$scheme-main-bis: $white-bis !default;
+$scheme-main-ter: $white-ter !default;
+$scheme-invert: $black !default;
+$scheme-invert-bis: $black-bis !default;
+$scheme-invert-ter: $black-ter !default;
+
+$blue-invert: findColorInvert($blue) !default;
+$indigo-invert: findColorInvert($indigo) !default;
+$purple-invert: findColorInvert($purple) !default;
+$pink-invert: findColorInvert($pink) !default;
+$red-invert: findColorInvert($red) !default;
+$orange-invert: findColorInvert($orange) !default;
+$yellow-invert: findColorInvert($yellow) !default;
+$green-invert: findColorInvert($green) !default;
+$teal-invert: findColorInvert($teal) !default;
+$cyan-invert: findColorInvert($cyan) !default;
+
+$primary-invert:  findColorInvert($primary) !default;
+$secondary-invert:  findColorInvert($secondary) !default;
+$tertiary-invert:  findColorInvert($tertiary) !default;
+$accent-invert:  findColorInvert($accent) !default;

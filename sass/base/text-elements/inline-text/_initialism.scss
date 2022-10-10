@@ -1,0 +1,11 @@
+// Builds on `abbr`
+
+$initialSize-sm:        .875em;
+
+.initialism {
+  font-size: $initialSize-sm;
+
+  text-transform: uppercase;
+
+  //@include font-size(90%);
+}

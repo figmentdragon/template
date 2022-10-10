@@ -1,0 +1,138 @@
+// H1, H2, H3, H4, H5 H6 - The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.
+
+
+
+
+
+// Heading CSS rules
+// By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
+// margin for easier control within type scales as it avoids margin collapsing.
+// -----------------------------------------------------------------------
+// Before editing CSS rules in this document, be sure that you have address the configurable variables
+// in the `_config.scss` file
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-feature-settings : "lnum";
+	font-variant-numeric : lining-nums;
+
+  margin-bottom : $HeadingMargin-bottom;
+  word-wrap : break-word;
+  @include clearfix;
+  text-rendering : optimizeLegibility;
+  a { @include on-event { } }
+  &:hover, &:focus {
+  > a[href^='#'][id]:empty {
+  opacity: 1;
+  }
+  }
+  + p, + details {
+  margin-top: .5rem;
+  }
+
+  > a[href^='#'][id]:empty {
+  position: absolute;
+  left: -.65rem;
+  opacity: 0;
+  text-decoration: none;
+  font-weight: 400;
+  line-height: $LineHeight;
+  }
+  &:target,
+  &:hover,
+  &:focus {
+  opacity: 1;
+  box-shadow: none;
+  color: HoverShift(Title($HeadingTitle));
+  }
+  &:target:focus { // stylelint-disable-line selector-max-specificity
+  outline: none;
+  }
+  &::before {
+  content: '\a0';
+  }
+}
+
+h1 {
+  @include font-size($SiteSize);
+  font-weight : bolder;
+  align-self : flex-start;
+  margin : 0 auto 0;
+  padding : $Offset;
+}
+
+h1:not(.site-title),
+h2 {
+	@include post-section-dash; }
+
+h2 {
+  @include font-size( $PageSize );
+
+  margin: $SpacerHorizontal 0 calc($SpacerHorizontal * 0.5);
+}
+
+h3 { @include font-size( $PostSize ); }
+
+h1,
+h2,
+h3 { /* Fix line height when title wraps */
+  line-height : $TitleHeight;
+  letter-spacing : $TitleSpacing;
+}
+
+h4 {
+	@include font-size($FontSize-h4);
+	&[class='site-description'] {
+		@extend %site-description;
+	}
+}
+
+h5 { @include font-size( $FontSize-h5 ); }
+
+h6 { @include font-size( $HeadingSize ); }
+
+h2,
+h3,
+h4 {
+  font-weight : bold;
+  text-transform : $HeadingTransform;
+}
+
+h4,
+h5,
+h6 {
+  letter-spacing: $HeadingSpacing;
+  line-height: $HeadingHeight;
+}
+
+h5,
+h6 {
+  margin-right : $SpacerVertical;
+  margin-left : $SpacerVertical;
+  font-weight : thin;
+  text-transform : $HeadingTransform;
+}
+
+/* Prevent long strings from overflowing container */
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+
+/* Reduce header size on mobile */
+@media only screen and (max-width: 720px) {
+  h1 { font-size: $FontSize-h3; }
+  h2 { font-size: $FontSize-h4; }
+  h3 { font-size: $FontSize-h5; }
+  h4 { font-size: $HeadingSize; }
+}
+
+// These declarations are kept separate from and placed after
+// the previous tag-based declarations so that the classes beat the tags in
+// the CSS cascade, and thus <h1 class="h2"> will be styled like an h2.
+[class*='h1'] { @extend h1; }
+[class*='h2'] { @extend h2; }
+[class*='h3'] { @extend h3; }
+[class*='h4'] { @extend h4; }
+[class*='h5'] { @extend h5; }
+[class*='h6'] { @extend h6; }

@@ -1,0 +1,11 @@
+$media-breakpoints: () !default;
+$media-breakpoints: (
+  'xxs': 0,
+  'xs': $mobile,
+  'sm': $touch,
+  'md': $Tablet,
+  'lg': $laptop,
+  'xl': $desktop,
+  'x2l': $widescreen,
+  'x3l': $ultrawide
+) !default;

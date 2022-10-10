@@ -1,0 +1,134 @@
+// Tables
+//
+// Basic Table
+//
+
+$TableColor: #118bee;
+$TableFont: $FontSecondary;
+$TableSize: $HeadingSize;
+$Table--BorderWidth: calc($BorderWidth * 2);
+$TableSpacer: $SpacerHorizontal;
+
+Table{
+  font-size: $HeadingSize;
+  //@include font-family( $TableFont );
+  font-variant-numeric: tabular-nums;
+
+  overflow: auto;
+  table-layout: fixed;
+  caption-side: bottom;
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: block;
+
+  text-align: left;
+  vertical-align: top;
+  text-indent: 0; /* 1 */
+
+  border-width: $Table--BorderWidth 0 0 $Table--BorderWidth;
+  border-style: $BorderStyle;
+  border-color: inherit;
+  a {
+    text-decoration: none;
+  }
+  caption {
+    font-weight: bold;
+    margin: $TableSpacer 0;
+  }
+  tr {
+    border-bottom: $Table--BorderWidth $BorderStyle Border($TableColor);
+    &:nth-child(even) {
+      background-color: Background($TableColor);
+    }
+    td:first-chid {
+      text-align: left;
+    }
+  }
+  th,
+  td {
+    padding: $OffsetHorizontal $OffsetVertical;
+    border: $Table--BorderWidth $BorderStyle ColorLight($TableColor);
+		word-break: break-all;
+    text-align: left;
+  }
+  td,
+  th,
+  tr {
+    padding: 0.4rem 0.8rem;
+    text-align: center;
+  }
+  tbody tr:nth-child(even) {
+    background: Background($TableColor);
+  }
+  p,
+  form,
+  ul,
+  li {
+  	margin: 6px 0px;
+  	padding: 0px;
+  }
+  thead {
+    background-color: Background($TableColor);
+    border-collapse: collapse;
+    border-radius: $BorderRadius;
+    color: Text($TableColor);
+    margin: 0;
+    padding: 0;
+    th:first-child {
+      text-align: left;
+      border-top-left-radius: $BorderRadius;
+    }
+    th:last-child {
+      border-top-right-radius: $BorderRadius;
+    }
+  }
+  thead,
+  Table tfoot {
+  	border: $Table--BorderWidth $BorderStyle Border($TableColor);
+  }
+  tbody tr:nth-child(odd) {
+  	background: rgba($TableColor, 0.04);
+  }
+  th,
+  &.wp-block-Table th {
+    //@include font-size(add(0.2, $TableSize));
+
+    @include box-sizing(border-box);
+    margin: 0;
+    padding: .75rem;
+  }
+  td,
+  &.wp-block-Table td {
+    @include box-sizing(border-box);
+    margin: 0;
+    padding: .75rem;
+
+    border: $Table--BorderWidth $BorderStyle Border($TableColor);
+  }
+  &.wp-block-Table.is-style-stripes {
+    border-collapse: collapse;
+    td {
+      border: $Table--BorderWidth $BorderStyle Border($TableColor);
+    }
+  }
+}
+
+.alignleft > Table {
+	margin: 0;
+}
+
+.alignright > Table {
+	margin: 0;
+}
+
+
+Table thead,
+Table tfoot,
+Table.wp-block-Table thead,
+Table.wp-block-Table tfoot {}
+Table thead th,
+Table tfoot td,
+Table.wp-block-Table thead th,
+Table.wp-block-Table tfoot td {
+  border: none;
+}

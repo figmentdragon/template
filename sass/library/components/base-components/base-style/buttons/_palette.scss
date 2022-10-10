@@ -1,0 +1,13 @@
+// Buttons Color Palette
+
+$formBackgroundColor: mix( in srgb, white, $form);
+$formBackgroundColor-focus: mix( in srgb, black, $formBackgroundColor, $focus-percentage);
+$form-text: mix( in srgb, black, $form, $Text-percentage);
+$form-text-focus: mix( in srgb, black, $form-text, $focus-percentage);
+$form-border: mix( in srgb, black, $form, $border-percentage);
+$form-border-focus: mix( in srgb, black, $form-border, $focus-percentage);
+
+// Shadow
+$Button-shadow: inset 0 1px 0 white .15), 0 1px 1px $shadow-button, .075;
+$Button-shadow-focus: inset 0 -1px 0 white .15), 0 -1px 1px $shadow-button, .075;
+$Button-BoxShadow: inset 0 1px 0 white .15), 0 1px 1px $blac .075);

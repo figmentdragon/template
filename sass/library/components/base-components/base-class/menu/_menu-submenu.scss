@@ -1,0 +1,31 @@
+.sub-menu {
+  display: none;
+  padding: 12px;
+  @include box-sizing($type:border-box);
+  transition-delay: .2s;
+  &::before { /* Widen Submenu Boundaries */
+  	position: absolute;
+  	top: calc( -1 * calc(0.5rem + $Spacer));
+    left: calc( -1 * calc(4 * $Spacer));
+  	width: calc(100% - calc(2 * $Spacer));
+    height: 100%;
+  	content: '';
+  	padding: calc(9 * $Offset);
+  }
+  li {
+    padding-right: calc(5 * $Offset);
+    padding-left: calc(5 * $Offset);
+    &:first-child { padding-top: $OffsetHorizontalNested; }
+    &:last-child { padding-bottom: $OffsetHorizontalNested; }
+    &:focus-within > ul,
+    &:focus > ul,
+    &:hover > ul {
+      visibility: visible;
+
+      opacity: 1;
+    }
+    &:focus-within > ul { display: block; }
+    > ul { display: none; }
+  }
+  a { font-size: calc($sm * $FontSize); }
+}

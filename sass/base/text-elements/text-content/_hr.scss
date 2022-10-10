@@ -1,0 +1,107 @@
+// HR - The <hr> HTML element represents a thematic break between paragraph-level elements: for example, a change of scene in a story, or a shift of topic within a section.
+
+
+$hr--SpacerVertical : calc($SpacerVertical * 0.5);
+
+$hrLight: ColorLight($hrColor);
+$hrDark: ColorDark($hrColor);
+$hrBackground: Background($hrColor) !default;
+$hr-Border    : Border($hrColor); // Allows for inherited colors
+$hr--BorderWidth    : calc($BorderWidth * 2) !default;
+
+.hr,
+hr {
+  $Height: 1px;
+  $Opacity        : 0.25;
+  $Text      : Text($hrColor);
+  display: block;
+  overflow: visible;
+  @include box-sizing(content-box);
+  height: $Height;
+  margin-top: calc($BaseUnit * 0.5);
+  margin-bottom: calc($BaseUnit * 0.5);
+  padding: 0;
+
+  opacity: $Opacity;
+  color: $Text;
+  border-top-width: $separator--Height;
+  border-top-style: $BorderStyle;
+  border-top-color: $separator-Border;
+  background-color: $hrBackground;
+  border-block-start: 1px solid Border($accent);
+	border-block-end: none;
+	border-inline-end: none;
+}
+
+hr:not([size]) {
+  height: 1px; // 2
+}
+
+hr.styled-separator {
+  background: linear-gradient(to left, currentColor calc(50% - $BaseUnit), transparent calc(50% - $BaseUnit), transparent calc(50% + $BaseUnit), currentColor calc(50% + $BaseUnit));
+  background-color: transparent !important;
+  border: none;
+  height: 0.1rem;
+  overflow: visible;
+  position: relative;
+  color: Title($tertiary);
+  &::before,
+  &::after {
+    background: currentColor;
+    content: "";
+    display: block;
+    height: 1.6rem;
+    position: absolute;
+    top: calc(50% - 0.8rem);
+    transform: rotate(22.5deg);
+    width: 0.1rem;
+  }
+  &::before {
+    left: calc(50% - 0.5rem);
+  }
+  &::after {
+    right: calc(50% - 0.5rem);
+  }
+  &:not([size]) {
+    height: 1px; // 2
+  }
+}
+
+.entry-content hr {
+	background: linear-gradient(to left, currentColor calc(50% - $BaseUnit), transparent calc(50% - $BaseUnit), transparent calc(50% + $BaseUnit), currentColor calc(50% + $BaseUnit));
+	background-color: transparent !important;
+	border: none;
+	height: 0.1rem;
+	overflow: visible;
+	position: relative;
+  &:not(.has-background){
+	  color: Title($tertiary);
+  }
+  &::before,
+  &::after {
+  	background: currentColor;
+  	content: "";
+  	display: block;
+  	height: 1.6rem;
+  	position: absolute;
+  	top: calc(50% - 0.8rem);
+  	transform: rotate(22.5deg);
+  	width: 0.1rem;
+  }
+  &::before {
+    left: calc(50% - 0.5rem);
+  }
+  &::after {
+    right: calc(50% - 0.5rem);
+  }
+}
+
+.vr {
+  $Opacity        : 0.25;
+  display: inline-block;
+  align-self: stretch;
+  width: 1px;
+  min-height: 1em;
+  background-color: currentcolor;
+  opacity: $Opacity;
+}

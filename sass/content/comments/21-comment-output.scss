@@ -1,0 +1,338 @@
+/**
+ * Default Comment Form Styles
+ * ---------------------------------------------*---------------------------- */
+// Comment Output
+.commentlist {
+	list-style: none;
+	margin: 0 0 calc(8 * $Spacer) 0;
+	padding: 0;
+	> li {
+		margin-top: $SpacerHorizontal;
+		margin-bottom: $SpacerHorizontal;
+	}
+}
+.commentlist ol {
+  margin: 0;
+  padding: 10px;
+}
+.commentlist li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+	border-top: 1px $BorderStyle #DDDDDD;
+  .avatar {
+    float: left;
+    background: rgba($Background, 0.04);
+    margin: 0 12px 0 0;
+    padding: $OffsetHorizontalNested $OffsetVerticalNested;
+    border: none;
+    border-radius: 50%;
+		box-shadow: 0px 1px 1px rgba($ShadowColor, .08);
+  }
+}
+.commentlist li li {
+  padding-left: 24px;
+  article.comment {
+    margin-top: 0;
+    border-top: 1px $BorderStyle rgba($BorderColor, 0.12);
+  }
+}
+
+.commentlist li li ul {
+  &.children {
+    li {
+      &.alt { }
+      &.byuser {  }
+      &.comment { }
+      &.bypostauthor { display: inline block; }
+      &.comment-author-admin { }
+    }
+    .alt { }
+    .odd { }
+    .even { }
+  }
+}
+.commentlist li ul li {
+	padding-left: 1.5rem;
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.commentlist li.comment { /* Individual top-level comments */ }
+.commentlist li.pingback { /* Individual top-level pingbacks */ }
+.commentlist li:last-of-type { /* Do you want to style the last comment differently, such as remove borders? */ }
+.commentlist li:last-child { border-bottom: 1px $BorderStyle #DDDDDD; }
+.commentlist li #respond { border-top: 1px $BorderStyle #DDDDDD; }
+.commentlist li { padding-left: 24px; }
+.commentlist article.comment {
+  margin-top: 0;
+  border-top: $BorderWidth solid rgba($BorderColor, 0.12);
+}
+.commentlist p {
+  margin: 12px 0;
+  padding: 0;
+}
+.commentlist ul {
+	&.children {
+		li {
+			&.alt { }
+			&.byuser {  }
+			&.comment { }
+			&.bypostauthor { display: in-block; }
+			&.comment-author-admin { }
+		}
+		.alt { }
+		.odd { }
+		.even { }
+	}
+}
+.commentlist .reply { a { } }
+.commentlist .alt {
+    margin: 0;
+    padding: 0;
+  }
+.commentlist .odd {
+    margin: 0;
+    padding: 0;
+  }
+.commentlist .even { }
+.commentlist .thread {
+    &-alt {
+      margin: 0;
+      padding: 0;
+    }
+    &-odd { }
+    &-even {
+      margin: 0;
+      padding: 0;
+    }
+  }
+.commentlist .vcard {
+    cite.fn {
+      a.url { }
+    }
+    span.says { }
+    img {
+      &.photo { }
+      &.avatar { }
+    }
+  }
+.commentlist .comment-meta { a { } }
+.commentlist .commentmetadata { a { } }
+.commentlist .parent { }
+.commentlist .comment {
+	margin: 10px 0; padding: 10px;
+  overflow: hidden;
+  #respond { padding-top: $OffsetHorizontalNested; }
+}
+.commentlist .children { /* Nested comments */
+  margin: 0;
+  padding: 0 0 0 $OffsetVerticalNested;
+  list-style: none;
+	> li {
+		margin-top: $SpacerHorizontal;
+		margin-bottom: $SpacerHorizontal;
+	}
+	> .comment:first-child {
+		margin-top: 0;
+	}
+  li { /* Contains individual nested comments */ }
+}
+
+.children {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.comment {
+	list-style: none;
+	position: relative;
+	overflow: hidden;
+	padding: calc($OffsetHorizontal * 3) 0;
+
+	@include media(Tablet) {
+		padding-left: calc(.5 * (#{$Offset} + calc(100vw / 12 )));
+
+		&.depth-1,
+		.children {
+			padding-left: 0;
+		}
+
+		&.depth-1 {
+			margin-left: calc(3.25 * $Spacer);
+		}
+	}
+	.comment-body {
+		margin: calc(2 * $Spacer) 0 0;
+	}
+
+	.comment-meta {
+		position: relative;
+	}
+	.bypostauthor {  }
+	.comment-author {
+
+		.avatar {
+			float: left;
+			margin-right: $Spacer;
+			position: relative;
+
+			@include media(Tablet) {
+				float: inherit;
+				margin-right: inherit;
+				position: absolute;
+				top: 0;
+				right: calc(100% + $Spacer);
+			}
+		}
+
+		.fn {
+			position: relative;
+			display: block;
+
+			a {
+				color: inherit;
+				@include on-event;
+			}
+		}
+
+		.post-author-badge {
+			border-radius: 100%;
+			display: block;
+			height: 18px;
+			position: absolute;
+			background: tint( $Background, $ColorInterval );
+			right: calc(100% - #{$Spacer * 2.5});
+			top: -3px;
+			width: 18px;
+
+			@include media(Tablet) {
+				right: calc(100% + #{$Spacer * .75});
+			}
+
+			svg {
+				width: inherit;
+				height: inherit;
+				display: block;
+				fill: white;
+				transform: scale(0.875);
+			}
+		}
+	}
+  .comment-author-admin {   }
+  + #respond { padding-top: 12px; }
+	.comment-metadata {
+
+		> a,
+		.comment-edit-link {
+			display: inline;
+			font-weight: $medium--FontWeight;
+			color: ColorLight($primary);
+			vertical-align: baseline;
+
+			time {
+				vertical-align: baseline;
+			}
+			@include on-event;
+		}
+
+		> * {
+			display: inline-block;
+		}
+
+		.edit-link-sep {
+			color: ColorLight($primary);
+			margin: 0 0.2em;
+			vertical-align: baseline;
+		}
+
+		.edit-link {
+			color: ColorLight($primary);
+
+			svg {
+				transform: scale(0.8);
+				vertical-align: baseline;
+				margin-right: 0.1em;
+			}
+		}
+
+		.comment-edit-link {
+			position: relative;
+			padding-left: $Offset;
+			margin-left: -$Spacer;
+			z-index: 1;
+			@include on-event;
+		}
+	}
+}
+.comment .pingback,
+.comment .trackback {
+	.comment-body {
+		color: ColorLight($primary);
+		@include font-family( $FontTertiary );
+		font-size: $smSize;
+		font-weight: $medium--FontWeight;
+		margin-top: $SpacerHorizontal;
+		margin-bottom: $SpacerHorizontal;
+
+		a:not(.comment-edit-link) {
+			font-weight: bold;
+			font-size: $FontSize / (1 * $FontInterval);
+			line-height: 1.5;
+			padding-right: #{0.5 * $Offset};
+			display: block;
+		}
+
+		.comment-edit-link {
+			color: ColorLight($primary);
+			@include font-family( $FontTertiary );
+			font-weight: $medium--FontWeight;
+		}
+	}
+	.depth-2,
+	.depth-3 {
+		@include media(mobile) {
+			padding-left: calc(4 * $SpacerHorizontal);
+		}
+	}
+}
+.comment-content { /* Actual comment text */
+	word-wrap: break-word;
+	padding-left: 42px;
+	margin: $Spacer 0;
+
+	@include media(desktop) { padding-right: $Offset; }
+
+	> *:first-child { margin-top: 0; }
+
+	> *:last-child { margin-bottom: 0; }
+
+	blockquote { margin-left: 0; }
+
+	a {
+		@include on-event {
+			word-wrap: break-word;
+		}
+	}
+}
+
+
+#cancel-comment-reply {
+  a { @include on-event; }
+  &-link {
+  	display: block;
+    float: right;
+    text-transform: none;
+    margin: 12px 0;
+  	letter-spacing: 0;
+  }
+}
+
+.comment-list .depth-2,
+.comment-list .depth-3 {
+	@include media(mobile) {
+		padding-left: calc(4 * $OffsetVertical);
+	}
+}

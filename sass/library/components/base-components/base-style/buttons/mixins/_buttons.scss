@@ -1,0 +1,113 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin button-variant(
+  $border: ColorLight($primary),
+  $hover-background: shade(ColorLight($primary), 7.5%),
+  $hover-border: shade($border, 10%),
+  $active-background: shade(lightgray, 10%),
+  $active-border: shade($border, 12.5%)
+) {
+  color: contrast(ColorLight($primary));
+  border-color: $BorderColor;
+
+  @include gradientBackgroundColor(ColorLight($primary));
+  @include box-shadow($Button-BoxShadow);
+  @include on-event {
+    color: contrast($hover-background);
+    border-color: $hover-border;
+
+    @include gradientBackgroundColor($hover-background);
+    @include box-shadow($shadow-inset);
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    color: contrast(ColorLight($primary));
+    border-color: $BorderColor;
+    background-color: ColorLight($primary);
+    // Remove CSS gradients if they're enabled
+    @if $enable-gradients {
+      background-image: none;
+    }
+  }
+
+  &:focus,
+  &.focus {
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: $Button-BoxShadow,
+        0 0 0 $Button-focus-width tint($BorderColor, 15%), 0.5;
+    } @else {
+      box-shadow: 0 0 0 $Button-focus-width mix(ColorLight($primary), $border, 15%);
+    }
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    color: contrast($active-background);
+    border-color: $active-border;
+    background-color: $active-background;
+    @if $enable-gradients {
+      background-image: none; // Remove the gradient for the pressed/active state
+    }
+
+    &:focus {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      @if $enable-shadows and $Button-active--BoxShadow != none {
+        box-shadow: $Button-active--BoxShadow,
+          0 0 0 $Button-focus-width rgba(tint($border, 15%), 0.5);
+      } @else {
+        box-shadow: 0 0 0 $Button-focus-width mix(ColorLight($primary), $border, 15%);
+      }
+    }
+  }
+}
+
+@mixin button-outline-variant(
+  $color,
+  $hover: contrast($color),
+  $active-background: $color,
+  $active-border: $color
+) {
+  color: $color;
+  border-color: $color;
+
+  @include on-event {
+    color: $hover;
+    border-color: $active-border;
+    background-color: $active-background;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 $Button-focus-width $color 0.5;
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $color;
+    background-color: transparent;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    color: contrast($active-background);
+    border-color: $active-border;
+    background-color: $active-background;
+
+    &:focus {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      @if $enable-shadows and $Button-active--BoxShadow != none {
+        box-shadow: $Button-active--BoxShadow, 0 0 0 $Button-focus-width $color 0.5;
+      } @else {
+        box-shadow: 0 0 0 $Button-focus-width $color 0.5;
+      }
+    }
+  }
+}

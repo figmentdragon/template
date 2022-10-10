@@ -1,0 +1,105 @@
+/**
+ * = Transition
+ */
+$Transition: all 0.2s ease-in-out;
+$TransitionTransform: transform 0.2s ease;
+$TransitionFade: opacity 0.15s linear;
+
+$TransitionCollapse: height 0.35s ease;
+$widthTransitionCollapse: width 0.35s ease;
+
+$TransitionTabs: all 0.2s;
+$TransitionLink: 110ms;
+$TransitionIcon: 120ms;
+$TransitionBackground: 200ms;
+
+$TransitionButton: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, shadow 0.15s ease-in-out;
+
+@mixin TransitionLink( $attr: color ) { transition: $attr $TransitionLink ease-in-out; }
+
+@mixin TransitionButton() { transition: background $TransitionButton ease-in-out; }
+
+@mixin all--ButtonTransition() { transition: all $TransitionButton ease-in-out; }
+
+@mixin TransitionBackground() { transition: background $TransitionBackground ease-in-out; }
+
+@mixin Transition($transition...) {
+  @if $enable-transitions {
+    @if length($transition) == 0 {
+      $transition: $Transition;
+    }
+
+    @if length($transition) > 1 {
+      @each $value in $transition {
+        @if $value == null or $value == none {
+          @warn 'The keyword \'none\' or \'null\' must be used as a single argument.';
+        }
+      }
+    }
+
+    @if $enable-smooth-scroll {
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    @if nth($transition, 1) != null {
+      -webkit-transition: $transition;
+      -moz-transition: $transition;
+      -o-transition: $transition;
+      transition: $transition;
+    }
+
+    @if nth($transition, 1) != null and nth($transition, 1) != none {
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    @if $enable-transitions {
+      @if nth($transition, 1) != null {
+        transition: $transition;
+      }
+    }
+
+    @if $enable-reduced-motion and
+      nth($transition, 1) !=
+      null and
+      nth($transition, 1) !=
+      none
+    {
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+  }
+  @else {
+    transition: $transition;
+  }
+}
+
+.fade {
+  @include Transition($TransitionFade);
+
+  &:not(.show) {
+    opacity: 0;
+  }
+}
+
+.collapse {
+  &:not(.show) {
+    display: none;
+  }
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  @include Transition($TransitionCollapse);
+
+  &.collapse-horizontal {
+    width: 0;
+    height: auto;
+    @include Transition($widthTransitionCollapse);
+  }
+}

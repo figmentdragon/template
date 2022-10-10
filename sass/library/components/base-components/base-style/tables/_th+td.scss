@@ -1,0 +1,31 @@
+th {
+	font-weight: bold;
+
+	text-align: inherit;
+}
+
+th,
+td {
+	font-weight: bold;
+
+	padding: 0.667em;
+
+	text-align: left;
+
+	border-width: 0 1px 1px 0;
+	border-right-style: $BorderStyle;
+	border-right-color: #e1e1e1;
+	border-bottom-style: $BorderStyle;
+	border-bottom-color: #e1e1e1;
+	:first-child {
+		padding-left: 0;
+	}
+
+	:last-child {
+		padding-right: 0;
+	}
+
+	:not(last-of-type) {
+		border-right: 1px $BorderStyle gray;
+	}
+}

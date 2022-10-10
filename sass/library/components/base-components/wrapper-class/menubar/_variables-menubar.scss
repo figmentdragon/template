@@ -1,0 +1,35 @@
+$menubar--OffsetVertical: $Offset * 0.5;
+$menubar--OffsetHorizontal: $Offset;
+
+$menubar-nav-link--OffsetHorizontal: divide($Offset, 2);
+$menubar--BorderRadius: 15px;
+$menubar-brandSize: $FontSize * $lg;
+
+$menu-link-height: add(calc(1rem * 1.2), calc($OffsetHorizontal * 2));
+$menubar-brand-height: $menubar-brandSize * 1.2;
+$menubar-brand--OffsetVertical: calc(subtract($menu-link-height, $menubar-brand-height) * 0.5);
+$menubar-brand-margin-end: $BaseUnit;
+
+$menubar-toggler--OffsetVertical: 0.25rem;
+$menubar-toggler--OffsetHorizontal: 0.75rem;
+$menubar-togglerSize: $FontSize * $lg;
+$menubar-toggler--BorderRadius: $ButtonRadius;
+$menubar-toggler-focus-width: $Button-focus-width;
+$menubar-toggler-transition: box-shadow 0.15s ease-in-out;
+
+$menubar-dark--active--TextColor: white;
+$menubar-dark--hover--LinkColor: hover-shade($menubar-dark--active--TextColor);
+$menubar-dark-inactive--TextColor: ColorLight($primary);
+$menubar-dark-toggler-iconBackgroundColor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$menubar-dark--active--TextColor}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+$menubar-dark-toggler-Border: $menubar-dark--active--TextColor;
+
+$menubar-light--active--TextColor: black;
+$menubar-light--hover--LinkColor: hover-shade($menubar-light--active--TextColor);
+$menubar-light-inactive--TextColor: ColorLight($primary);
+$menubar-light-toggler-iconBackgroundColor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$menubar-light--active--TextColor}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+
+$menubar-light-toggler-border: $menubar-light--active--TextColor;
+$menubar-light-brand--TextColor: $menubar-light--active--TextColor;
+$menubar-light-brand--hover--LinkColor: $menubar-light--hover--LinkColor;
+$menubar-dark-brand--TextColor: $menubar-dark--active--TextColor;
+$menubar-dark-brand--hover--LinkColor: $menubar-dark--hover--LinkColor;

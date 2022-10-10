@@ -1,0 +1,66 @@
+$CaretWidth:                 .3em !default;
+$Caret-Vertical-align:        $CaretWidth * .85 !default;
+$CaretSpacer:               $CaretWidth * .85 !default;
+
+@mixin caret-down {
+  border-top: $CaretWidth $BorderStyle;
+  border-right: $CaretWidth $BorderStyle transparent;
+  border-bottom: 0;
+  border-left: $CaretWidth $BorderStyle transparent;
+}
+
+@mixin caret-up {
+  border-top: 0;
+  border-right: $CaretWidth $BorderStyle transparent;
+  border-bottom: $CaretWidth $BorderStyle;
+  border-left: $CaretWidth $BorderStyle transparent;
+}
+
+@mixin caret-end {
+  border-top: $CaretWidth $BorderStyle transparent;
+  border-right: 0;
+  border-bottom: $CaretWidth $BorderStyle transparent;
+  border-left: $CaretWidth $BorderStyle;
+}
+
+@mixin caret-start {
+  border-top: $CaretWidth $BorderStyle transparent;
+  border-right: $CaretWidth $BorderStyle;
+  border-bottom: $CaretWidth $BorderStyle transparent;
+}
+
+@mixin caret($direction: down) {
+  @if $enable-caret {
+    &::after {
+      display: inline-block;
+      margin-left: $CaretSpacer;
+      vertical-align: $Caret-Vertical-align;
+      content: "";
+      @if $direction == down {
+        @include caret-down();
+      } @else if $direction == up {
+        @include caret-up();
+      } @else if $direction == end {
+        @include caret-end();
+      }
+    }
+
+    @if $direction == start {
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        display: inline-block;
+        margin-right: $CaretSpacer;
+        vertical-align: $Caret-Vertical-align;
+        content: "";
+        @include caret-start();
+      }
+    }
+
+    &:empty::after {
+      margin-left: 0;
+    }
+  }
+}

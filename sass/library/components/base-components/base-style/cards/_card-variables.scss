@@ -1,0 +1,42 @@
+// Cards
+
+$Card---SpacerVertical: 1.25rem;
+$Card---SpacerHorizontal: 1.5rem;
+
+// Title
+$Card--title--SpacerVertical: $Spacer * 0.5;
+$Card--titleSize: $FontSize * 3.25;
+$Card--title--FontWeight: bolder;
+$Card--subtitleSize: $HeadingSize;
+$Card--subtitle--TextColor: Text( mediumpurple );
+$Card---Height: null;
+$Card---TextColor: Text($CardColor);
+$Card-BackgroundColor: Background($CardColor);
+
+// Border
+$Card---BorderWidth: $BorderWidth;
+$Card--Border: rbga(ColorLight($primary), 0.05);
+$Card---BorderRadius: $BorderRadius;
+$Card--inner--BorderRadius: calc(#{$Card---BorderRadius} - #{$Card---BorderWidth});
+
+// Cap
+$CardCap---OffsetVertical: $Card---SpacerVertical * 0.5;
+$CardCap---OffsetHorizontal: $Card---SpacerHorizontal;
+$CardCap---TextColor: TextShadow( rebeccapurple );
+$CardCap-BackgroundColor: Background( rebeccapurple );
+$Card--img-overlay--Offset: 1.25rem;
+$Card--gutter: $Offset;
+$CardGroup--margin: $Card--gutter * 0.5;
+$Card---Opacity: 1;
+$transition-bezier-card: cubic-bezier(0.34, 1.45, 0.7, 1);
+
+// Column
+$Card--columns-count: 3;
+$Card--columns-gap: 1.25rem;
+$Card--columns-margin: $Card---SpacerVertical;
+
+// Shadow
+$Card---ShadowColor: $ShadowPrimary;
+$Card---ShadowColor-inset: tint--TextColor($Card---ShadowColor, 7.6% * 4);
+$Card---BoxShadow: 1.5rem 1.25rem 1.25rem $Card---ShadowColor;
+$Card---ShadowColor-inset: $Card---ShadowColor-inset -0.25rem -0.25rem -0.5rem 0 inset, $Card---ShadowColor-inset 0.25rem 0.25rem 0.5rem 0 inset;

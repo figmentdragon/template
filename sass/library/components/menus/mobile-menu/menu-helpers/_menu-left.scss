@@ -1,0 +1,12 @@
+.menu-left {
+  .header {
+    text-align: left;
+  }
+  .main-menu .sub-menu {
+    padding-left: 0;
+    padding-right: $offset * 2;
+    right: 100%;
+    left: auto;
+    text-align: right;
+  }
+}

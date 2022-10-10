@@ -1,0 +1,54 @@
+@mixin Transition($transition...) {
+  @if $enable-transitions {
+    @if length($transition) == 0 {
+      $transition: $Transition;
+    }
+
+    @if length($transition) > 1 {
+      @each $value in $transition {
+        @if $value == null or $value == none {
+          @warn 'The keyword \'none\' or \'null\' must be used as a single argument.';
+        }
+      }
+    }
+
+    @if $enable-smooth-scroll {
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    @if nth($transition, 1) != null {
+      -webkit-transition: $transition;
+      -moz-transition: $transition;
+      -o-transition: $transition;
+      transition: $transition;
+    }
+
+    @if nth($transition, 1) != null and nth($transition, 1) != none {
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    @if $enable-transitions {
+      @if nth($transition, 1) != null {
+        transition: $transition;
+      }
+    }
+
+    @if $enable-reduced-motion and
+      nth($transition, 1) !=
+      null and
+      nth($transition, 1) !=
+      none
+    {
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+  }
+  @else {
+    transition: $transition;
+  }
+}

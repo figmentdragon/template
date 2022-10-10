@@ -1,0 +1,11 @@
+// use $count as number of child elements
+
+@mixin tonal-transition($start, $end, $count) {
+  @for $i from 1 through $count {
+    > * {
+      &:nth-of-type(#{$i}) {
+        background: mix($end, $start, 100% * $i/$count);
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+// Range
+//
+// Style range inputs the same across browsers. Vendor-specific rules for pseudo
+// elements cannot be mixed. As such, there are no shared styles for focus or
+// active states on prefixed selectors.
+
+.form-range {
+  width: 100%;
+  height: add($FormRange-thumb-height, $FormRange-thumb-BoxShadow-focus-width * 2);
+  padding: 0; // Need to reset padding
+  background-color: transparent;
+  appearance: none;
+
+  &:focus {
+    outline: 0;
+
+    // Pseudo-elements must be split across multiple rulesets to have an effect.
+    // No box-shadow() mixin for focus accessibility.
+    &::-webkit-slider-thumb { box-shadow: $FormRange-thumb-BoxShadow-focus; }
+    &::-moz-range-thumb     { box-shadow: $FormRange-thumb-BoxShadow-focus; }
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-webkit-slider-thumb {
+    width: $FormRange-thumb-width;
+    height: $FormRange-thumb-height;
+    margin-top: ($FormRange-track-height - $FormRange-thumb-height) * .5; // Webkit specific
+    @include gradient-Background($FormRange-thumb-Background);
+    border: $FormRange-thumb-border;
+    @include border-radius($FormRange-thumb-BorderRadius);
+    @include box-shadow($FormRange-thumb-BoxShadow);
+    @include transition($FormRange-thumb-transition);
+    appearance: none;
+
+    &:active {
+      @include gradient-Background($FormRange-thumb-Background-active);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: $FormRange-track-width;
+    height: $FormRange-track-height;
+    color: transparent; // Why?
+    cursor: $FormRange-track-cursor;
+    background-color: $FormRange-track-Background;
+    border-color: transparent;
+    @include border-radius($FormRange-track-BorderRadius);
+    @include box-shadow($FormRange-track-BoxShadow);
+  }
+
+  &::-moz-range-thumb {
+    width: $FormRange-thumb-width;
+    height: $FormRange-thumb-height;
+    @include gradient-Background($FormRange-thumb-Background);
+    border: $FormRange-thumb-border;
+    @include border-radius($FormRange-thumb-BorderRadius);
+    @include box-shadow($FormRange-thumb-BoxShadow);
+    @include transition($FormRange-thumb-transition);
+    appearance: none;
+
+    &:active {
+      @include gradient-Background($FormRange-thumb-Background-active);
+    }
+  }
+
+  &::-moz-range-track {
+    width: $FormRange-track-width;
+    height: $FormRange-track-height;
+    color: transparent;
+    cursor: $FormRange-track-cursor;
+    background-color: $FormRange-track-Background;
+    border-color: transparent; // Firefox specific?
+    @include border-radius($FormRange-track-BorderRadius);
+    @include box-shadow($FormRange-track-BoxShadow);
+  }
+
+  &:disabled {
+    pointer-events: none;
+
+    &::-webkit-slider-thumb {
+      background-color: $FormRange-thumb-Background-disabled;
+    }
+
+    &::-moz-range-thumb {
+      background-color: $FormRange-thumb-Background-disabled;
+    }
+  }
+}

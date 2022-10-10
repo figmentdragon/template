@@ -1,0 +1,22 @@
+//
+// Border
+//
+
+$BorderWidth-xs: $BorderWidth;
+$BorderWidth-sm: calc($BorderWidth * $sm);
+$BorderWidth: calc($BorderWidth * $md);
+$BorderWidth-lg: calc($BorderWidth * $lg);
+$BorderWidth-xl: calc($BorderWidth * $xl);
+$BorderWidth-focus: $BorderWidth * $lg;
+
+/* Border Color */
+$BorderColor-white: white;
+
+// Borders
+$BorderWidths: (
+	1: calc($BorderWidth * $xs),
+	2: calc($BorderWidth * $sm),
+	3: calc($BorderWidth * $md),
+	4: calc($BorderWidth * $lg),
+	5: calc($BorderWidth * $xl)
+);

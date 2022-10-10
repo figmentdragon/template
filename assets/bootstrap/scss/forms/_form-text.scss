@@ -1,0 +1,11 @@
+//
+// Form text
+//
+
+.form-text {
+  margin-top: $FormText-Spacer-top;
+  @include font-size($FormText-FontSize);
+  font-style: $FormText-FontStyle;
+  font-weight: $FormText-FontWeight;
+  color: $Form-TextColor;
+}

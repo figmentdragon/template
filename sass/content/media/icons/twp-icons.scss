@@ -1,0 +1,758 @@
+.close-icon {
+  width: 1.875rem;
+  height: 1.875rem;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  vertical-align: middle;
+  span {
+    display: block;
+    position: absolute;
+    width: calc(100% - calc(2 * $Spacer));
+    height: 3px;
+    z-index: 5;
+    top: 50%;
+    border-radius: 5px;
+    transform: rotate(45deg);
+    background-color: $Background;
+    &:last-child {
+      transform: rotate(135deg);
+    }
+  }
+}
+
+.close-icon.close-icon-sm {
+  width: 20px;
+  span {
+    width: 20px;
+  }
+}
+.close-icon.close-icon-white span {
+    background-color: white;
+}
+
+.menu-icon {
+  cursor: pointer;
+  width: 60px;
+  &.white-menu-icon span:before,
+  &.white-menu-icon span:after {
+    background-color: black;
+  }
+  span {
+    display: block;
+    position: relative;
+    height: 4px;
+    margin-top: 4px;
+    &:before,
+    &:after {
+      position: absolute;
+      content: "";
+      background-color: black;
+      display: block;
+    }
+    &:before {
+      height: 4px;
+      width: 4px;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+    }
+    &:first-child,
+    &:last-child,
+    &:nth-child(2),
+    &:nth-child(3) {
+      transition: width 0.2s ease;
+      -webkit-transition: width 0.2s ease;
+      -moz-transition: width 0.2s ease;
+    }
+    &:first-child,
+    &:last-child {
+      width: 50px;
+    }
+    &:nth-child(2) {
+      width: 35px;
+    }
+    &:nth-child(3) {
+      width: 1.875rem;
+    }
+    &:after {
+      height: 2px;
+      width: calc(100% - calc(2 * $Spacer));
+      left: 10px;
+    }
+  }
+}
+
+.menu-icon.white-menu-icon span:before,
+.menu-icon.white-menu-icon span:after {
+    background-color: black;
+}
+.menu-icon:hover span:first-child {
+    width: 40px;
+}
+.menu-icon:hover span:nth-child(2) {
+    width: 50px;
+}
+.menu-icon:hover span:nth-child(3) {
+    width: 45px;
+}
+.menu-icon:hover span:last-child {
+    width: 40px;
+}
+
+
+ul.social-icons-rounded,
+ul.social-icons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  li a {
+    display: inline-block;
+    padding: 0 10px;
+    text-decoration: none;
+    border: 0;
+    font-size: 0;
+    &[href*="t.me"]:before {
+      content: "";
+    }
+    &:hover[href*="t.me"]:before,
+    &:focus-within[href*="t.me"]:before {
+      transform: scale(1.2);
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+    }
+    span {
+      display: none;
+    }
+    &:before {
+      display: block;
+      font-family: fontAwesome;
+      font-size: 20px;
+      transition: all 0.3s linear;
+    }
+  }
+}
+
+ul.social-icons li a[href*=twitter]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=twitter]:before,
+ul.social-icons li a:focus-within[href*=twitter]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+
+ul.social-icons li a[href*=facebook]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=facebook]:before,
+ul.social-icons li a:focus-within[href*=facebook]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+
+ul.social-icons li a[href*=dribbble]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=dribbble]:before,
+ul.social-icons li a:focus-within[href*=dribbble]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+
+ul.social-icons li a[href*=linkedin]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=linkedin]:before,
+ul.social-icons li a:focus-within[href*=linkedin]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+
+ul.social-icons li a[href*=instagram]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=instagram]:before,
+ul.social-icons li a:focus-within[href*=instagram]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+
+ul.social-icons li a[href*=youtube]:before { content: ""; }
+ul.social-icons li a:hover[href*=youtube]:before,
+ul.social-icons li a:focus-within[href*=youtube]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+
+ul.social-icons li a[href*=vimeo]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=vimeo]:before,
+ul.social-icons li a:focus-within[href*=vimeo]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a:hover[href*="t.me"]:before,
+ul.social-icons li a:focus-within[href*="t.me"]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a[href*=wordpress]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=wordpress]:before,
+ul.social-icons li a:focus-within[href*=wordpress]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a:hover[href*="t.me"]:before,
+ul.social-icons li a:focus-within[href*="t.me"]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a[href*=pinterest]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=pinterest]:before,
+ul.social-icons li a:focus-within[href*=pinterest]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a:hover[href*="t.me"]:before,
+ul.social-icons li a:focus-within[href*="t.me"]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a[href*=tumblr]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=tumblr]:before,
+ul.social-icons li a:focus-within[href*=tumblr]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a:hover[href*="t.me"]:before,
+ul.social-icons li a:focus-within[href*="t.me"]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a[href*=whatsapp]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=whatsapp]:before,
+ul.social-icons li a:focus-within[href*=whatsapp]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a:hover[href*="t.me"]:before,
+ul.social-icons li a:focus-within[href*="t.me"]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a[href*=reddit]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=reddit]:before,
+ul.social-icons li a:focus-within[href*=reddit]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a:hover[href*="t.me"]:before,
+ul.social-icons li a:focus-within[href*="t.me"]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a[href*=vk]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=vk]:before,
+ul.social-icons li a:focus-within[href*=vk]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a:hover[href*="t.me"]:before,
+ul.social-icons li a:focus-within[href*="t.me"]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a[href*=telegram]:before {
+    content: "";
+}
+ul.social-icons li a:hover[href*=telegram]:before,
+ul.social-icons li a:focus-within[href*=telegram]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons li a:hover[href*="t.me"]:before,
+ul.social-icons li a:focus-within[href*="t.me"]:before {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+ul.social-icons.social-icons-white a {
+    color: white;
+}
+ul.social-icons.social-icons-white a:visited {
+    color: white;
+}
+ul.social-icons-rounded {
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    padding-left: 5px;
+    padding-right: 5px;
+    a {
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      line-height: 36px;
+      text-align: center;
+      border-radius: 100%;
+      border-style: solid;
+      border-width: 2px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: all 0.3s linear;
+      -webkit-transition: all 0.3s linear;
+      -moz-transition: all 0.3s linear;
+      span {
+        display: none;
+      }
+      &:before {
+        display: block;
+        font-family: fontAwesome;
+        font-size: 20px;
+        transition: all 0.3s linear;
+        -webkit-transition: all 0.3s linear;
+        -moz-transition: all 0.3s linear;
+      }
+      &[href*="t.me"] {
+        color: white;
+        border-color: #0088CC;
+        background-color: #0088CC;
+        &:before {
+          content: "";
+        }
+      }
+      &:visited[href*="t.me"] {
+        color: white;
+        background-color: #0088CC;
+      }
+      &:hover[href*="t.me"],
+      &:focus-within[href*="t.me"] {
+        color: #0088CC;
+        background-color: white;
+      }
+    }
+  }
+}
+
+ul.social-icons-rounded li a[href*=twitter] {
+    border-color: #1ca0fe;
+    color: white;
+    background-color: #1ca0fe;
+}
+ul.social-icons-rounded li a[href*=twitter]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=twitter] {
+    color: white;
+    background-color: #1ca0fe;
+}
+ul.social-icons-rounded li a:hover[href*=twitter],
+ul.social-icons-rounded li a:focus-within[href*=twitter] {
+    color: #1ca0fe;
+    background-color: white;
+}
+
+ul.social-icons-rounded li a[href*=facebook] {
+    border-color: #3b5999;
+    color: white;
+    background-color: #3b5999;
+}
+ul.social-icons-rounded li a[href*=facebook]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=facebook] {
+    color: white;
+    background-color: #3b5999;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=facebook],
+ul.social-icons-rounded li a:focus-within[href*=facebook] {
+    color: #3b5999;
+    background-color: white;
+}
+
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+
+ul.social-icons-rounded li a[href*=dribbble] {
+    border-color: #ea4c89;
+    color: white;
+    background-color: #ea4c89;
+}
+ul.social-icons-rounded li a[href*=dribbble]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=dribbble] {
+    color: white;
+    background-color: #ea4c89;
+}
+ul.social-icons-rounded li a:hover[href*=dribbble],
+ul.social-icons-rounded li a:focus-within[href*=dribbble] {
+    color: #ea4c89;
+    background-color: white;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+
+ul.social-icons-rounded li a[href*=linkedin] {
+    border-color: #0177b5;
+    color: white;
+    background-color: #0177b5;
+}
+ul.social-icons-rounded li a[href*=linkedin]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=linkedin] {
+    color: white;
+    background-color: #0177b5;
+}
+ul.social-icons-rounded li a:hover[href*=linkedin],
+ul.social-icons-rounded li a:focus-within[href*=linkedin] {
+    color: #0177b5;
+    background-color: white;
+}
+
+ul.social-icons-rounded li a[href*=instagram] {
+    border-color: #E1306c;
+    color: white;
+    background-color: #E1306c;
+}
+ul.social-icons-rounded li a[href*=instagram]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=instagram] {
+    color: white;
+    background-color: #E1306c;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=instagram],
+ul.social-icons-rounded li a:focus-within[href*=instagram] {
+    color: #E1306c;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=youtube] {
+    border-color: #ff0000;
+    color: white;
+    background-color: #ff0000;
+}
+ul.social-icons-rounded li a[href*=youtube]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=youtube] {
+    color: white;
+    background-color: #ff0000;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=youtube],
+ul.social-icons-rounded li a:focus-within[href*=youtube] {
+    color: #ff0000;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=vimeo] {
+    border-color: #1ab7ea;
+    color: white;
+    background-color: #1ab7ea;
+}
+ul.social-icons-rounded li a[href*=vimeo]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=vimeo] {
+    color: white;
+    background-color: #1ab7ea;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=vimeo],
+ul.social-icons-rounded li a:focus-within[href*=vimeo] {
+    color: #1ab7ea;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=wordpress] {
+    border-color: #0074aa;
+    color: white;
+    background-color: #0074aa;
+}
+ul.social-icons-rounded li a[href*=wordpress]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=wordpress] {
+    color: white;
+    background-color: #0074aa;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=wordpress],
+ul.social-icons-rounded li a:focus-within[href*=wordpress] {
+    color: #0074aa;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=pinterest] {
+    border-color: #bd071c;
+    color: white;
+    background-color: #bd071c;
+}
+ul.social-icons-rounded li a[href*=pinterest]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=pinterest] {
+    color: white;
+    background-color: #bd071c;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=pinterest],
+ul.social-icons-rounded li a:focus-within[href*=pinterest] {
+    color: #bd071c;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=tumblr] {
+    border-color: #3e5a70;
+    color: white;
+    background-color: #3e5a70;
+}
+ul.social-icons-rounded li a[href*=tumblr]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=tumblr] {
+    color: white;
+    background-color: #3e5a70;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=tumblr],
+ul.social-icons-rounded li a:focus-within[href*=tumblr] {
+    color: #3e5a70;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=whatsapp] {
+    border-color: #00e676;
+    color: white;
+    background-color: #00e676;
+}
+ul.social-icons-rounded li a[href*=whatsapp]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=whatsapp] {
+    color: white;
+    background-color: #00e676;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=whatsapp],
+ul.social-icons-rounded li a:focus-within[href*=whatsapp] {
+    color: #00e676;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=reddit] {
+    border-color: #ff4500;
+    color: white;
+    background-color: #ff4500;
+}
+ul.social-icons-rounded li a[href*=reddit]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=reddit] {
+    color: white;
+    background-color: #ff4500;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=reddit],
+ul.social-icons-rounded li a:focus-within[href*=reddit] {
+    color: #ff4500;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=vk] {
+    border-color: #4a76a8;
+    color: white;
+    background-color: #4a76a8;
+}
+ul.social-icons-rounded li a[href*=vk]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=vk] {
+    color: white;
+    background-color: #4a76a8;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=vk],
+ul.social-icons-rounded li a:focus-within[href*=vk] {
+    color: #4a76a8;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a[href*=telegram] {
+    border-color: #0088CC;
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a[href*=telegram]:before {
+    content: "";
+}
+ul.social-icons-rounded li a:visited[href*=telegram] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:visited[href*="t.me"] {
+    color: white;
+    background-color: #0088CC;
+}
+ul.social-icons-rounded li a:hover[href*=telegram],
+ul.social-icons-rounded li a:focus-within[href*=telegram] {
+    color: #0088CC;
+    background-color: white;
+}
+ul.social-icons-rounded li a:hover[href*="t.me"],
+ul.social-icons-rounded li a:focus-within[href*="t.me"] {
+    color: #0088CC;
+    background-color: white;
+}
+
+@media (min-width: 1050px) {
+    .close-icon:hover {
+        -webkit-animation: rotate-center 0.3s linear both;
+        -o-animation: rotate-center 0.3s linear both;
+        -moz-animation: rotate-center 0.3s linear both;
+        animation: rotate-center 0.3s linear both;
+    }
+}
+@media (min-width: 1050px) {
+    .close-icon.rotate-90:hover {
+        -webkit-animation: rotate-partial 0.3s linear both;
+        -o-animation: rotate-partial 0.3s linear both;
+        -moz-animation: rotate-partial 0.3s linear both;
+        animation: rotate-partial 0.3s linear both;
+    }
+}

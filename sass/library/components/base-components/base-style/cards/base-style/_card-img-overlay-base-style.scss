@@ -1,0 +1,27 @@
+// Card image
+.Card--img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: $Card--img-overlay--Offset;
+  border-radius: $Card--inner--BorderRadius;
+}
+
+.Card--img,
+.Card--img-top,
+.Card--img-bottom {
+  width: calc(100% - calc(2 * $Spacer)); // Required because we use flexbox and this inherently applies align-self: stretch
+  border-radius: 0.25rem;
+}
+
+.Card--img,
+.Card--img-top {
+  border-top-radius: $Card--inner--BorderRadius;
+}
+
+.Card--img,
+.Card--img-bottom {
+  border-bottom-radius: $Card--inner--BorderRadius;
+}

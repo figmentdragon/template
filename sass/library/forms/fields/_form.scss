@@ -1,0 +1,140 @@
+form {
+  border: $BorderWidth solid $InputBorder;
+  border-radius: $BorderRadius;
+  box-shadow: $BoxShadow $ShadowColor;
+  display: block;
+  max-width: var(--width-card-wide);
+  min-width: var(--width-card);
+  padding: 1.5rem;
+  text-align: center;
+  &[data-format="enable"] {
+    label {
+      margin-right: 10px;
+    }
+
+    fieldset,
+    div {
+      margin: 16px 4px;
+    }
+  }
+  div {
+    display: block;
+  	margin-bottom: $InputSpacer;
+  	overflow: hidden;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5px;
+    p {
+      margin: 0px;
+    }
+  }
+  fieldset {
+    margin: calc(2 * $InputSpacer) 0s;
+    border-color: $InputBorder;
+  }
+  label {
+    margin-top: 0.375rem;
+    font-weight: $FormWeight-label;
+  }
+  legend {
+    font-weight: $legend--FontWeight;
+    padding-top: 10px;
+  }
+  header {
+    margin: 1.5rem 0;
+    padding: 1.5rem 0;
+  }
+  > header {
+    margin: -2rem -2.5rem 2rem;
+    padding: 0.25rem 1rem;
+    background-color: Background($gray);
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
+    h3 {
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+    }
+  }
+  li {
+    li > label {
+      font-weight: $FormWeight-label;
+    }
+    > label {
+      font-weight: $FormWeight-label;
+    }
+  }
+  li,
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+  p {
+    margin-bottom: $InputSpacer;
+    padding: 6px 0;
+  }
+  span {
+    margin-bottom: calc(.5rem + $InputSpacer);
+  	overflow: hidden;
+    label {
+    	font-size: 0.8em;
+    }
+    &.required {
+      display: inline;
+    }
+  }
+  input,
+  select {
+    font-size: $FontSize;
+    padding: 5px;
+    &:active,
+    &:focus {
+      outline-color: Border($primary);
+    }
+    border:1px solid Border($tertiary);
+    color: Text($secondary);
+  }
+  input,
+  input[type="url"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  textarea {
+    display: block;
+  	@include box-sizing(border-box);
+  	font-family: inherit;
+  	font-size: 1em;
+  	line-height: 1.4;
+  	padding: 8px;
+  	border: 3px $BorderStyle #dddddd;
+  }
+  input[type="url"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="text"],
+  input[type="password"],
+  input[type="number"] {
+    width: 50%;
+  }
+  textarea {
+    width: calc(100% - calc(2 * $Spacer));
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: $InputSpacer;
+    margin-left: 0;
+  }
+  input[type="submit"] {
+    margin-top: 0;
+    @include button();
+  }
+  .form-submit {
+    padding: 8px 0;
+  }
+}

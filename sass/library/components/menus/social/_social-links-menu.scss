@@ -1,0 +1,91 @@
+.mobile-social-search { clear: both; }
+.header-mobile .social-menu li a:before { border: none; }
+
+.site-header .social-menu ul { text-align: center; }
+.socials .social-menu { align-items: flex-end; }
+
+.socials > ul.social-menu {
+  @include clearfix;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.socials > menu,
+.socials > nav {
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.social-menu {
+  font-size: 16px;
+  font-size: 1rem;
+  margin: $Spacer 0 0 0;
+  padding: 0;
+  list-style: none;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+  }
+  li {
+    vertical-align: bottom;
+    vertical-align: -webkit-baseline-middle;
+    list-style: none;
+    display: inline-block;
+    padding: 0 5px;
+    margin: 0;
+    &:last-child,
+    &:last-child a {
+      margin-right: 0;
+    }
+    &:nth-child(n+2) {
+      margin-left: 0.1em;
+    }
+    a {
+      display: block;
+      margin-bottom: -1px;
+      border-bottom: $BorderWidth $BorderStyle translucentBorder($navColor);
+      @include font-size($FontSize);
+      position: relative;
+      transition: opacity $TransitionLink ease-in-out;
+      &:hover {
+        color: $LinkText-hover;
+        opacity: 0.6;
+      }
+      &:focus {
+        opacity: 1;
+        border-bottom: $BorderWidth $BorderStyle Border($navColor);
+      }
+      svg {
+        display: block;
+        width: 32px;
+        height: 32px;
+        // Prevent icons from jumping in Safari using hardware acceleration.
+        transform: translateZ(0);
+        &#ui-icon-link {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+  a {
+    @include font-size($FontSize);
+    background-color: translucentBackground($gray);
+    display: inline-block;
+    margin: $SpacerHorizontal $SpacerVertical;
+    position: relative;
+    padding: 0;
+    text-align: center;
+    height: calc(2 * $BaseUnit);
+    width: calc(2 * $BaseUnit);
+    align-items: center;
+    justify-content: center;
+  }
+  .icon {
+    height: $BaseUnit;
+    width: $BaseUnit;
+    vertical-align:  middle;
+  }
+}

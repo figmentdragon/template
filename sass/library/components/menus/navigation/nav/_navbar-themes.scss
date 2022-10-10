@@ -1,0 +1,104 @@
+// Navbar themes
+//
+// Styles for switching between navbars with light or dark background.
+
+// Dark links against a light background
+.NavBar--light {
+  .NavBar--brand {
+    color: $MenuBar--light-brand-color;
+
+    &:hover,
+    &:focus {
+      color: $MenuBar--light-brand-hover-color;
+    }
+  }
+
+  .NavBar--nav {
+    .nav-link {
+      color: $MenuBar--light-color;
+
+      &:hover,
+      &:focus {
+        color: $MenuBar--light-hover-color;
+      }
+
+      &.disabled {
+        color: $MenuBar--light-disabled-color;
+      }
+    }
+
+    .show > .nav-link,
+    .nav-link.active {
+      color: $MenuBar--light-active-color;
+    }
+  }
+
+  .NavBar--toggler {
+    color: $MenuBar--light-color;
+    border-color: $MenuBar--light-toggler-border-color;
+  }
+
+  .NavBar--toggler-icon {
+    background-image: escape-svg($MenuBar--light-toggler-icon-bg);
+  }
+
+  .NavBar--text {
+    color: $MenuBar--light-color;
+
+    a,
+    a:hover,
+    a:focus  {
+      color: $MenuBar--light-active-color;
+    }
+  }
+}
+
+// White links against a dark background
+.NavBar--dark {
+  .NavBar--brand {
+    color: $MenuBar--dark-brand-color;
+
+    &:hover,
+    &:focus {
+      color: $MenuBar--dark-brand-hover-color;
+    }
+  }
+
+  .NavBar--nav {
+    .nav-link {
+      color: $MenuBar--dark-color;
+
+      &:hover,
+      &:focus {
+        color: $MenuBar--dark-hover-color;
+      }
+
+      &.disabled {
+        color: $MenuBar--dark-disabled-color;
+      }
+    }
+
+    .show > .nav-link,
+    .nav-link.active {
+      color: $MenuBar--dark-active-color;
+    }
+  }
+
+  .NavBar--toggler {
+    color: $MenuBar--dark-color;
+    border-color: $MenuBar--dark-toggler-border-color;
+  }
+
+  .NavBar--toggler-icon {
+    background-image: escape-svg($MenuBar--dark-toggler-icon-bg);
+  }
+
+  .NavBar--text {
+    color: $MenuBar--dark-color;
+    a,
+    a:hover,
+    a:focus {
+      color: $MenuBar--dark-active-color;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@each $name, $value in $colors {
+  .#{$name},
+  .#{$name}:visited {
+    color: #{$value};
+  }
+  .#{$name}-background-color {
+    border-color: #{$value};
+    background-color: #{$value};
+  }
+}
+@each $name, $value in $theme-colors {
+  .#{$name}-color {
+    color: $value;
+  }
+  .#{$name}-color:visited {
+    color: tint($value, $ColorInterval * 4);
+  }
+  .#{$name}-background-color {
+    border-color: shade($value, $TextInterval);
+    background-color: tint($value, $TextInterval);
+  }
+}

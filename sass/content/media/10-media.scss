@@ -1,0 +1,81 @@
+/**
+ * 7.0 Media
+ * ---------------------------------------------*---------------------------- */
+ /* Styling for images and videos */
+.site-header img,
+.entry-content img,
+.comment-content img,
+.widget img {
+	width: calc(100% - calc(2 * $Spacer)); /* Fluid images for posts, comments, and widgets */
+}
+.site-header img,
+.entry-content img,
+.widget-img,
+img[class*="align"],
+img[class*="wp-image-"],
+.wp-caption img {
+	height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+}
+
+img .size-full {
+	width: auto; /* Prevent stretching of full-size images with height and width attributes in IE8 */
+}
+
+.entry-content img.wp-smiley,
+.comment-content img.wp-smiley { /* Remove borders and backgrounds from WP smileys */
+	border: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+	border: none; /* Remove borders and backgrounds from WP smileys */
+}
+
+.wp-smiley {  /* Prevent the smileys from breaking line-height */
+	border: 0;
+  max-height:12px;
+	margin:0 !important;
+	padding: 0;
+}
+
+.page-content .wp-smiley,
+.entry-content .wp-smiley,
+.comment-content .wp-smiley {
+  border: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
+}
+
+/* Make sure logo link wraps around logo image. */
+.custom-logo-link {
+	display: inline-block;
+}
+
+blockquote {
+  padding-left: $BaseUnit;
+
+  @include font-size($FontSize-lg);
+  &:before,
+  &:after { content: "";  }
+  &.left,
+  &.alignleft { margin: 0.7rem 2.8rem 0.7rem 0; }
+  &.right,
+  &.alignright { margin: 0.7rem 0 0.7rem 2.8rem; }
+  &.center,
+  &.aligncenter {
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  &.title {
+    @include font-size( $FontSize * 1.75);
+    font-weight: 400;
+    margin-bottom: 0;
+    p {
+      padding: calc($BaseUnit / 2.25) 0;
+      @include font-size(1.1);
+    }
+  }
+}
+.hide-img img {
+  margin-left: -9999px;
+}

@@ -1,0 +1,256 @@
+// Cards
+
+// scss-docs-start Card--variables
+$Card--SpacerVertical:                     $Spacer !default;
+$Card--SpacerHorizontal:                     $Spacer !default;
+$Card--SpacerVertical-title:               $Spacer * .5 !default;
+$Card--BorderWidth:                 $BorderWidth !default;
+$Card-Border:                 var(--#{$prefix}BorderColor-translucent) !default;
+$Card--BorderRadius:                $BorderRadius !default;
+$Card--BoxShadow:                   null !default;
+$Card--BorderRadius-inner:          subtract($Card--BorderRadius, $Card--BorderWidth) !default;
+$CardCap--OffsetVertical:                $Card--SpacerVertical * .5 !default;
+$CardCap--OffsetHorizontal:                $Card--SpacerHorizontal !default;
+$CardCapBackground:                       rgba($black, .03) !default;
+$CardCapText:                    null !default;
+$Card--height:                       null !default;
+$CardText:                        null !default;
+$CardBackground:                           $white !default;
+$Card--img-overlay--Offset:          $Spacer !default;
+$CardGroup--Spacer:                 $grid-gutter-width * .5 !default;
+// scss-docs-end
+
+//
+// Card styles
+//
+
+[class*='card'] {
+  // scss-docs-start Card--css-vars
+  --#{$prefix}Card--SpacerVertical: #{$Card--SpacerVertical};
+  --#{$prefix}Card--SpacerHorizontal: #{$Card--SpacerHorizontal};
+  --#{$prefix}Card--SpacerVertical-title: #{$Card--SpacerVertical-title};
+  --#{$prefix}Card--BorderWidth: #{$Card--BorderWidth};
+  --#{$prefix}Card-Border: #{$Card-Border};
+  --#{$prefix}Card--BorderRadius: #{$Card--BorderRadius};
+  --#{$prefix}Card--BoxShadow: #{$Card--BoxShadow};
+  --#{$prefix}Card--BorderRadius-inner: #{$Card--BorderRadius-inner};
+  --#{$prefix}CardCap--OffsetVertical: #{$CardCap--OffsetVertical};
+  --#{$prefix}CardCap--OffsetHorizontal: #{$CardCap--OffsetHorizontal};
+  --#{$prefix}CardCapBackground: #{$CardCapBackground};
+  --#{$prefix}CardCapText: #{$CardCapText};
+  --#{$prefix}Card--height: #{$Card--height};
+  --#{$prefix}CardText: #{$CardText};
+  --#{$prefix}CardBackground: #{$CardBackground};
+  --#{$prefix}Card--img-overlay--Offset: #{$Card--img-overlay--Offset};
+  --#{$prefix}CardGroup--Spacer: #{$CardGroup--Spacer};
+  // scss-docs-end Card--css-vars
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
+  height: var(--#{$prefix}Card--height);
+  word-wrap: break-word;
+  background-color: var(--#{$prefix}CardBackground);
+  background-clip: border-box;
+  border: var(--#{$prefix}Card--BorderWidth) solid var(--#{$prefix}Card-Border);
+  @include border-radius(var(--#{$prefix}Card--BorderRadius));
+  @include box-shadow(var(--#{$prefix}Card--BoxShadow));
+
+  > hr {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  > .list-group {
+    border-top: inherit;
+    border-bottom: inherit;
+
+    &:first-child {
+      border-top-width: 0;
+      @include border-top-radius(var(--#{$prefix}Card--BorderRadius-inner));
+    }
+
+    &:last-child  {
+      border-bottom-width: 0;
+      @include border-bottom-radius(var(--#{$prefix}Card--BorderRadius-inner));
+    }
+  }
+
+  // Due to specificity of the above selector (`.card > .list-group`), we must
+  // use a child selector here to prevent double borders.
+  > .Card--header + .list-group,
+  > .list-group + .Card--footer {
+    border-top: 0;
+  }
+}
+
+.Card--body {
+  // Enable `flex-grow: 1` for decks and groups so that card blocks take up
+  // as much space as possible, ensuring footers are aligned to the bottom.
+  flex: 1 1 auto;
+  padding: var(--#{$prefix}Card--SpacerVertical) var(--#{$prefix}Card--SpacerHorizontal);
+  color: var(--#{$prefix}CardText);
+}
+
+.Card--title {
+  margin-bottom: var(--#{$prefix}Card--SpacerVertical-title);
+}
+
+.Card--subtitle {
+  margin-top: calc(-.5 * var(--#{$prefix}Card--SpacerVertical-title)); // stylelint-disable-line function-disallowed-list
+  margin-bottom: 0;
+}
+
+.Card--text:last-child {
+  margin-bottom: 0;
+}
+
+.Card--link {
+  &:hover {
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+  }
+
+  + .Card--link {
+    margin-left: var(--#{$prefix}Card--SpacerHorizontal);
+  }
+}
+
+//
+// Optional textual caps
+//
+
+.Card--header {
+  padding: var(--#{$prefix}CardCap--OffsetVertical) var(--#{$prefix}CardCap--OffsetHorizontal);
+  margin-bottom: 0; // Removes the default margin-bottom of <hN>
+  color: var(--#{$prefix}CardCapText);
+  background-color: var(--#{$prefix}CardCapBackground);
+  border-bottom: var(--#{$prefix}Card--BorderWidth) solid var(--#{$prefix}Card-Border);
+
+  &:first-child {
+    @include border-radius(var(--#{$prefix}Card--BorderRadius-inner) var(--#{$prefix}Card--BorderRadius-inner) 0 0);
+  }
+}
+
+.Card--footer {
+  padding: var(--#{$prefix}CardCap--OffsetVertical) var(--#{$prefix}CardCap--OffsetHorizontal);
+  color: var(--#{$prefix}CardCapText);
+  background-color: var(--#{$prefix}CardCapBackground);
+  border-top: var(--#{$prefix}Card--BorderWidth) solid var(--#{$prefix}Card-Border);
+
+  &:last-child {
+    @include border-radius(0 0 var(--#{$prefix}Card--BorderRadius-inner) var(--#{$prefix}Card--BorderRadius-inner));
+  }
+}
+
+
+//
+// Header navs
+//
+
+.Card--header-tabs {
+  margin-right: calc(-.5 * var(--#{$prefix}CardCap--OffsetHorizontal)); // stylelint-disable-line function-disallowed-list
+  margin-bottom: calc(-1 * var(--#{$prefix}CardCap--OffsetVertical)); // stylelint-disable-line function-disallowed-list
+  margin-left: calc(-.5 * var(--#{$prefix}CardCap--OffsetHorizontal)); // stylelint-disable-line function-disallowed-list
+  border-bottom: 0;
+
+  .nav-link.active {
+    background-color: var(--#{$prefix}CardBackground);
+    border-bottom-color: var(--#{$prefix}CardBackground);
+  }
+}
+
+.Card--header-pills {
+  margin-right: calc(-.5 * var(--#{$prefix}CardCap--OffsetHorizontal)); // stylelint-disable-line function-disallowed-list
+  margin-left: calc(-.5 * var(--#{$prefix}CardCap--OffsetHorizontal)); // stylelint-disable-line function-disallowed-list
+}
+
+// Card image
+.Card--img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: var(--#{$prefix}Card--img-overlay--Offset);
+  @include border-radius(var(--#{$prefix}Card--BorderRadius-inner));
+}
+
+.Card--img,
+.Card--img-top,
+.Card--img-bottom {
+  width: calc(100% - calc(2 * $Spacer)); // Required because we use flexbox and this inherently applies align-self: stretch
+}
+
+.Card--img,
+.Card--img-top {
+  @include border-top-radius(var(--#{$prefix}Card--BorderRadius-inner));
+}
+
+.Card--img,
+.Card--img-bottom {
+  @include border-bottom-radius(var(--#{$prefix}Card--BorderRadius-inner));
+}
+
+
+//
+// Card groups
+//
+
+.CardGroup {
+  // The child selector allows nested `.card` within `.CardGroup`
+  // to display properly.
+  > .card {
+    margin-bottom: var(--#{$prefix}CardGroup--Spacer);
+  }
+
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    flex-flow: row wrap;
+    // The child selector allows nested `.card` within `.CardGroup`
+    // to display properly.
+    > .card {
+      // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+      flex: 1 0 0%;
+      margin-bottom: 0;
+
+      + .card {
+        margin-left: 0;
+        border-left: 0;
+      }
+
+      // Handle rounded corners
+      @if $enable-rounded {
+        &:not(:last-child) {
+          @include border-end-radius(0);
+
+          .Card--img-top,
+          .Card--header {
+            // stylelint-disable-next-line property-disallowed-list
+            border-top-right-radius: 0;
+          }
+          .Card--img-bottom,
+          .Card--footer {
+            // stylelint-disable-next-line property-disallowed-list
+            border-bottom-right-radius: 0;
+          }
+        }
+
+        &:not(:first-child) {
+          @include border-start-radius(0);
+
+          .Card--img-top,
+          .Card--header {
+            // stylelint-disable-next-line property-disallowed-list
+            border-top-left-radius: 0;
+          }
+          .Card--img-bottom,
+          .Card--footer {
+            // stylelint-disable-next-line property-disallowed-list
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
+    }
+  }
+}

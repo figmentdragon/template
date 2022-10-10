@@ -1,0 +1,59 @@
+/*****************
+* Short Animations
+*******************/
+
+/*********************
+* fadeInUpShort
+*********************/
+@keyframes fadeInUpShort {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*********************
+* fadeInDownShort
+*********************/
+@keyframes fadeInDownShort {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*********************
+* fadeInRightShort
+*********************/
+@keyframes fadeInRightShort {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*********************
+* fadeInLeftShort
+*********************/
+@keyframes fadeInLeftShort {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

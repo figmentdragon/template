@@ -1,0 +1,58 @@
+/******************
+* Bounce in right *
+*******************/
+.animated {
+    Animation-duration: 1s;
+    Animation-fill-mode: both;
+}
+.slow{
+    Animation-duration: 1.5s;
+    Animation-fill-mode: both;
+}
+.slower{
+    Animation-duration: 2s;
+    Animation-fill-mode: both;
+}
+.slowest{
+    Animation-duration: 3s;
+    Animation-fill-mode: both;
+}
+
+.bounceInRight, .bounceInLeft, .bounceInUp, .bounceInDown{
+    opacity:0;
+    transform: translateX(400px);
+}
+.fadeInRight, .fadeInLeft, .fadeInUp, .fadeInDown{
+    opacity:0;
+    transform: translateX(400px);
+}
+
+.flipInX, .flipInY, .rotateIn, .rotateInUpLeft, .rotateInUpRight, .rotateInDownLeft, .rotateDownUpRight, .rollIn{
+    opacity:0;
+}
+
+.lightSpeedInRight, .lightSpeedInLeft{
+    opacity:0;
+    -webkit-transform: translateX(400px);
+    transform: translateX(400px);
+}
+
+.bounceIn.go {
+    Animation-name: bounceIn;
+}
+
+.bounceInRight.go {
+  Animation-name: bounceInRight;
+}
+
+.bounceInLeft.go {
+	Animation-name: bounceInLeft;
+}
+
+.bounceInUp.go {
+	Animation-name: bounceInUp;
+}
+
+.bounceInDown.go {
+	Animation-name: bounceInDown;
+}

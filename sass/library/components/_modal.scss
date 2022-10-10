@@ -1,0 +1,279 @@
+// Modals
+
+// .Modal--open      - body class for killing the scroll
+// .modal           - container to scroll within
+// .Modal--dialog    - positioning shell for the actual modal
+// .Modal--content   - actual modal w/ bg and corners and stuff
+
+$Modal--Offset-inner:               $Spacer !default;
+
+$ModalFooter--Spacer-between:       .5rem !default;
+
+$ModalDialog-Spacer:               .5rem !default;
+$ModalDialog-SpacerVertical-sm-up:       1.75rem !default;
+
+$Modal--LineHeight-title:           $LineHeight !default;
+
+$ModalContentText:               null !default;
+$ModalContentBackground:                  $white !default;
+$ModalContent-Border:        var(--#{$prefix}BorderColor-translucent) !default;
+$ModalContent--BorderWidth:        $BorderWidth !default;
+$ModalContent--BorderRadius:       $BorderRadius-lg !default;
+$ModalContent--BorderRadius-inner: subtract($ModalContent--BorderRadius, $ModalContent--BorderWidth) !default;
+$ModalContent--BoxShadow-xs:       $BoxShadow-sm !default;
+$ModalContent--BoxShadow-sm-up:    $BoxShadow !default;
+
+$Modal--BackdropBackground:                 $black !default;
+$Modal--BackdropOpacity:            .5 !default;
+
+$ModalHeader-Border:         var(--#{$prefix}BorderColor) !default;
+$ModalHeader--BorderWidth:         $ModalContent--BorderWidth !default;
+$ModalHeader--OffsetVertical:            $Modal--Offset-inner !default;
+$ModalHeader--OffsetHorizontal:            $Modal--Offset-inner !default;
+$ModalHeader--Offset:              $ModalHeader--OffsetVertical $ModalHeader--OffsetHorizontal !default; // Keep this for backwards compatibility
+
+$ModalFooterBackground:                   null !default;
+$ModalFooter-Border:         $ModalHeader-Border !default;
+$ModalFooter--BorderWidth:         $ModalHeader--BorderWidth !default;
+
+$Modal--sm:                          300px !default;
+$Modal--md:                          500px !default;
+$Modal--lg:                          800px !default;
+$Modal--xl:                          1140px !default;
+
+$Modal--fade-transform:              translate(0, -50px) !default;
+$Modal--show-transform:              none !default;
+$ModalTransition:                  transform .3s ease-out !default;
+$Modal--scale-transform:             scale(1.02) !default;
+// scss-docs-end Modal--variables
+
+
+// Container that the modal scrolls within
+.modal {
+  // scss-docs-start Modal--css-vars
+  --#{$prefix}Modal--zindex: #{$zindex-modal};
+  --#{$prefix}Modal--width: #{$Modal--md};
+  --#{$prefix}Modal--Offset: #{$Modal--Offset-inner};
+  --#{$prefix}Modal--Spacer: #{$ModalDialog-Spacer};
+  --#{$prefix}ModalText: #{$ModalContentText};
+  --#{$prefix}ModalBackground: #{$ModalContentBackground};
+  --#{$prefix}Modal-Border: #{$ModalContent-Border};
+  --#{$prefix}Modal--BorderWidth: #{$ModalContent--BorderWidth};
+  --#{$prefix}Modal--BorderRadius: #{$ModalContent--BorderRadius};
+  --#{$prefix}Modal--BoxShadow: #{$ModalContent--BoxShadow-xs};
+  --#{$prefix}Modal--BorderRadius-inner: #{$ModalContent--BorderRadius-inner};
+  --#{$prefix}Modal--header--OffsetHorizontal: #{$ModalHeader--OffsetHorizontal};
+  --#{$prefix}Modal--header--OffsetVertical: #{$ModalHeader--OffsetVertical};
+  --#{$prefix}Modal--header--Offset: #{$ModalHeader--Offset}; // Todo in v6: Split this padding into x and y
+  --#{$prefix}Modal--headerBorder: #{$ModalHeader-Border};
+  --#{$prefix}Modal--header-BorderWidth: #{$ModalHeader--BorderWidth};
+  --#{$prefix}Modal--LineHeight-title: #{$Modal--LineHeight-title};
+  --#{$prefix}Modal--footer-gap: #{$ModalFooter--Spacer-between};
+  --#{$prefix}Modal--footer-Background: #{$ModalFooterBackground};
+  --#{$prefix}Modal--footerBorder: #{$ModalFooter-Border};
+  --#{$prefix}Modal--footer-BorderWidth: #{$ModalFooter--BorderWidth};
+  // scss-docs-end Modal--css-vars
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--#{$prefix}Modal--zindex);
+  display: none;
+  width: calc(100% - calc(2 * $Spacer));
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  // Prevent Chrome on Windows from adding a focus outline. For details, see
+  // https://github.com/twbs/bootstrap/pull/10951.
+  outline: 0;
+  // We deliberately don't use `-webkit-overflow-scrolling: touch;` due to a
+  // gnarly iOS Safari bug: https://bugs.webkit.org/show_bug.cgi?id=158342
+  // See also https://github.com/twbs/bootstrap/issues/17695
+}
+
+// Shell div to position the modal with bottom padding
+.Modal--dialog {
+  position: relative;
+  width: auto;
+  margin: var(--#{$prefix}Modal--Spacer);
+  // allow clicks to pass through for custom click handling to close modal
+  pointer-events: none;
+
+  // When fading in the modal, animate it to slide down
+  .modal.fade & {
+    @include Transition($ModalTransition);
+    transform: $Modal--fade-transform;
+  }
+  .modal.show & {
+    transform: $Modal--show-transform;
+  }
+
+  // When trying to close, animate focus to scale
+  .modal.Modal--static & {
+    transform: $Modal--scale-transform;
+  }
+}
+
+.Modal--dialog-scrollable {
+  height: calc(100% - var(--#{$prefix}Modal--Spacer) * 2);
+
+  .Modal--content {
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  .Modal--body {
+    overflow-y: auto;
+  }
+}
+
+.Modal--dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - var(--#{$prefix}Modal--Spacer) * 2);
+}
+
+// Actual modal
+.Modal--content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - calc(2 * $Spacer)); // Ensure `.Modal--content` extends the full width of the parent `.Modal--dialog`
+  // counteract the pointer-events: none; in the .Modal--dialog
+  color: var(--#{$prefix}ModalText);
+  pointer-events: auto;
+  background-color: var(--#{$prefix}ModalBackground);
+  background-clip: padding-box;
+  border: var(--#{$prefix}Modal--BorderWidth) solid var(--#{$prefix}Modal-Border);
+  @include border-radius(var(--#{$prefix}Modal--BorderRadius));
+  @include box-shadow(var(--#{$prefix}Modal--BoxShadow));
+  // Remove focus outline from opened modal
+  outline: 0;
+}
+
+// Modal background
+.Modal--backdrop {
+  // scss-docs-start Modal--Backdrop-css-vars
+  --#{$prefix}Backdrop-zindex: #{$zindex-Modal--backdrop};
+  --#{$prefix}Backdrop-Background: #{$Modal--BackdropBackground};
+  --#{$prefix}BackdropOpacity: #{$Modal--BackdropOpacity};
+  // scss-docs-end Modal--Backdrop-css-vars
+
+  @include overlay-backdrop(var(--#{$prefix}Backdrop-zindex), var(--#{$prefix}Backdrop-Background), var(--#{$prefix}Backdrop-opacity));
+}
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.Modal--header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between; // Put modal header elements (title and dismiss) on opposite ends
+  padding: var(--#{$prefix}Modal--header--Offset);
+  border-bottom: var(--#{$prefix}Modal--header-BorderWidth) solid var(--#{$prefix}Modal--headerBorder);
+  @include border-top-radius(var(--#{$prefix}Modal--BorderRadius-inner));
+
+  .button-close {
+    padding: calc(var(--#{$prefix}Modal--header--OffsetVertical) * .5) calc(var(--#{$prefix}Modal--header--OffsetHorizontal) * .5);
+    margin: calc(-.5 * var(--#{$prefix}Modal--header--OffsetVertical)) calc(-.5 * var(--#{$prefix}Modal--header--OffsetHorizontal)) calc(-.5 * var(--#{$prefix}Modal--header--OffsetVertical)) auto;
+  }
+}
+
+// Title text within header
+.Modal--title {
+  margin-bottom: 0;
+  line-height: var(--#{$prefix}Modal--LineHeight-title);
+}
+
+// Modal body
+// Where all modal content resides (sibling of .Modal--header and .Modal--footer)
+.Modal--body {
+  position: relative;
+  // Enable `flex-grow: 1` so that the body take up as much space as possible
+  // when there should be a fixed height on `.Modal--dialog`.
+  flex: 1 1 auto;
+  padding: var(--#{$prefix}Modal--Offset);
+}
+
+// Footer (for actions)
+.Modal--footer {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center; // vertically center
+  justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
+  padding: calc(var(--#{$prefix}Modal--Offset) - var(--#{$prefix}Modal--footer-gap) * .5);
+  background-color: var(--#{$prefix}Modal--footer-Background);
+  border-top: var(--#{$prefix}Modal--footer-BorderWidth) solid var(--#{$prefix}Modal--footerBorder);
+  @include border-bottom-radius(var(--#{$prefix}Modal--BorderRadius-inner));
+
+  // Place margin between footer elements
+  // This solution is far from ideal because of the universal selector usage,
+  // but is needed to fix https://github.com/twbs/bootstrap/issues/24800
+  > * {
+    margin: calc(var(--#{$prefix}Modal--footer-gap) * .5); // Todo in v6: replace with gap on parent class
+  }
+}
+
+// Scale up the modal
+@include media-breakpoint-up(sm) {
+  .modal {
+    --#{$prefix}Modal--Spacer: #{$ModalDialog-SpacerVertical-sm-up};
+    --#{$prefix}Modal--BoxShadow: #{$ModalContent--BoxShadow-sm-up};
+  }
+
+  // Automatically set modal's width for larger viewports
+  .Modal--dialog {
+    max-width: var(--#{$prefix}Modal--width);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .Modal--sm {
+    --#{$prefix}Modal--width: #{$Modal--sm};
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .Modal--lg,
+  .Modal--xl {
+    --#{$prefix}Modal--width: #{$Modal--lg};
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .Modal--xl {
+    --#{$prefix}Modal--width: #{$Modal--xl};
+  }
+}
+
+// scss-docs-start Modal--fullscreen-loop
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+  $postfix: if($infix != "", $infix + "-down", "");
+
+  @include media-breakpoint-down($breakpoint) {
+    .Modal--fullscreen#{$postfix} {
+      width: 100vw;
+      max-width: none;
+      height: 100%;
+      margin: 0;
+
+      .Modal--content {
+        height: 100%;
+        border: 0;
+        @include border-radius(0);
+      }
+
+      .Modal--header,
+      .Modal--footer {
+        @include border-radius(0);
+      }
+
+      .Modal--body {
+        overflow-y: auto;
+      }
+    }
+  }
+}
+// scss-docs-end Modal--fullscreen-loop

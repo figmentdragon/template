@@ -1,0 +1,82 @@
+.social-icons li a[href*="facebook.com"]:before,
+.social-icons li a[href*="facebook.com"]::before { content: '\f09a'; }
+
+.social-icons li a[href*="twitter.com"]:before,
+.social-icons li a[href*="twitter.com"]::before  { content: '\f099'; }
+
+.social-icons li a[href*="linkedin.com"]:before,
+.social-icons li a[href*="linkedin.com"]::before { content: '\f0e1'; }
+
+.social-icons li a[href*="plus.google.com"]:before,
+.social-icons li a[href*="plus.google.com"]::before { content: '\f0d5'; }
+
+.social-icons li a[href*="youtube.com"]:before,
+.social-icons li a[href*="youtube.com"]::before { content: '\f16a'; }
+
+.social-icons li a[href*="dribbble.com"]:before,
+.social-icons li a[href*="dribbble.com"]::before { content: '\f17d'; }
+
+.social-icons li a[href*="pinterest.com"]:before,
+.social-icons li a[href*="pinterest.com"]::before { content: '\f0d2'; }
+
+.social-icons li a[href*="bitbucket.org"]:before { content: "\f171";}
+
+.social-icons li a[href*="github.com"]:before,
+.social-icons li a[href*="github.com"]::before { content: '\f113'; }
+
+.social-icons li a[href*="codepen.io"]:before { content: "\f1cb";}
+
+.social-icons li a[href*="flickr.com"]:before,
+.social-icons li a[href*="flickr.com"]::before { content: '\f16e'; }
+
+.social-icons li a[href$="/feed/"]:before,
+.social-icons li a[href$="/feed/"]::before { content: '\f09e'; }
+
+.social-icons li a[href*="foursquare.com"]:before,
+.social-icons li a[href*="foursquare.com"]::before { content: '\f180'; }
+
+.social-icons li a[href*="instagram.com"]:before,
+.social-icons li a[href*="instagram.com"]::before { content: '\f16d'; }
+
+.social-icons li a[href*="tumblr.com"]:before { content: "\f173";}
+
+.social-icons li a[href*="reddit.com"]:before { content: "\f1a1";}
+
+.social-icons li a[href*="vimeo.com"]:before { content: "\f194";}
+.social-icons li a[href*="vimeo.com"]::before { content: '\f27d'; }
+
+.social-icons li a[href*="digg.com"]:before { content: "\f1a6";}
+
+.social-icons li a[href*="twitch.tv"]:before { content: "\f1e8";}
+
+.social-icons li a[href*="stumbleupon.com"]:before { content: "\f1a4";}
+
+.social-icons li a[href*="delicious.com"]:before { content: "\f1a5";}
+
+.social-icons li a[href*="mailto:"]:before,
+.social-icons li a[href*="mailto:"]::before { content: '\f0e0'; }
+
+.social-icons li a[href*="skype.com"]:before { content: "\f17e";}
+
+.social-icons li a[href*="deviantart.com"]::before { content: '\f1bd'; }
+
+.social-icons li a[href*="behance.com"]::before { content: '\f1b4'; }
+
+.social-icons li a[href*="medium.com"]::before { content: '\f23a'; }
+
+.social-icons li a[href*="snapchat.com"]::before { content: '\f2ac'; }
+
+.social-icons li a[href*="wordpress.com"]::before { content: '\f19a'; }
+
+.social-icons li a[href*="vine.co"]::before { content: '\f1ca'; }
+
+.social-icons li a[href*="stackexchange.com"]::before	{ content: '\f18d'; }
+
+.social-icons li a[href*="spotify.com"]::before { content: '\f1bc'; }
+
+.social-icons li a[href*="amazon.com"]::before { content: '\f270'; }
+
+.social-icons li a[href*="yelp.com"]::before { content: '\f1e9'; }
+
+
+.socials .fa-search { color: #000000; }

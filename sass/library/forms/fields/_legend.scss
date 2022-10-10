@@ -1,0 +1,30 @@
+$legend--MarginBottom: calc($Spacer * 0.5);
+$legendSize: calc($FontSize * $md);
+$legend--FontWeight: normal;
+$LegendText: color-invert($Text, $TextInterval);
+
+legend {
+
+  line-height: $LineHeight;
+  font-weight: $legend--FontWeight;
+
+  display: table;
+
+  float: left;
+
+  width: calc(100% - calc(2 * $Spacer));
+  max-width: calc(100% - calc(2 * $Spacer));
+  margin-bottom: $legend--MarginBottom;
+  padding: 0;
+
+  white-space: normal;
+
+  color: $LegendText;
+  border: 0;
+
+  @include box-sizing($type: border-box);
+  //@include font-size($legendSize);
+  + * {
+    clear: left;
+  }
+}

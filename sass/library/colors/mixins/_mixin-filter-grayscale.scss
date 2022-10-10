@@ -1,0 +1,13 @@
+@mixin filter-grayscale {
+
+	position: relative;
+	filter: grayscale(100%);
+	z-index: 1;
+
+	&:after {
+		display: block;
+		width: calc(100% - calc(2 * $Spacer));
+		height: 100%;
+		z-index: 10;
+	}
+}

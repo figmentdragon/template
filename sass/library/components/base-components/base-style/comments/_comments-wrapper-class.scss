@@ -1,0 +1,96 @@
+/* Comments Wrapper */
+.comments-area {
+	hyphens: auto;
+
+	word-wrap: break-word;
+  display: block;
+
+  clear: both;
+
+  width: calc(100% - calc( $Spacer / 2));
+  @include postContentMaxWidth();
+  margin: $Spacer auto;
+  padding: 0 $Offset;
+
+  > * {
+    margin-top: calc(4 * $Spacer);
+    margin-bottom: calc(4 * $Spacer);
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &.show-avatars {
+    .avatar {
+      position: absolute;
+      top: .625rem;
+      border-radius: 50%;
+    }
+
+    .fn {
+      display: inline-block;
+
+      padding-left: 5.3125rem;
+    }
+
+    .comment-metadata {
+      padding: $Offset 0 0.5625rem 3125rem;
+    }
+  }
+
+  .comment-list {
+    > .comment {
+      &:first-of-type {
+        border-top: 0;
+      }
+
+      &:last-of-type {
+        border-bottom: $BorderWidth $BorderStyle #E9E9E9;
+      }
+    }
+
+    > li {
+      &.pingback:first-child,
+      &.trackback:first-child,
+      &:first-child > article {
+        border-top: none;
+      }
+    }
+  }
+  /* Add extra margin when the comments section is located immediately after the
+   * post itself (this happens on pages).
+   */
+  .entry + & {
+    margin-top: calc(3 * $Spacer);
+  }
+
+  .comments-title-wrap {
+
+    @include media(Tablet) {
+      align-items: baseline;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .comments-title {
+      @include post-section-dash;
+      margin: 0;
+
+      @include media(Tablet) {
+        flex: 1 0 calc(3 * calc( 100vw / $grid-columns));
+      }
+    }
+
+    .discussion-meta {
+      @include media(Tablet) {
+        flex: 0 0 calc(2 * (100vw / 12));
+        margin-left: $Spacer;
+      }
+    }
+  }
+}

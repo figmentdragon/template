@@ -1,0 +1,61 @@
+/**
+ * Comment Meta
+ */
+.comment-meta {
+	font-size: 90%;
+	.comment-author {
+		line-height: $HeadingHeight;
+		margin-bottom: calc(0.25 * $Spacers);
+
+		@include media(mobile) {
+			margin-bottom: 0;
+			padding-right: 0;
+		}
+
+		.fn {
+			font-family: var(--global--font-secondary);
+			font-weight: normal;
+			font-size: var(--globalSize-lg);
+			hyphens: auto;
+			word-wrap: break-word;
+			word-break: break-word;
+		}
+
+	}
+
+	.comment-metadata {
+		color: $Text;
+		font-size: $FontSize-xs;
+		padding: 8px 0 9px 0;
+
+		.edit-link {
+			margin-left: $OffsetVertical;
+		}
+
+	}
+
+	@include media(mobile) {
+		margin-right: inherit;
+
+		.comment-author {
+			max-width: inherit;
+		}
+	}
+}
+
+.commentmetadata {
+	font-size: 10px;
+	line-height: 14px;
+	margin: 0px;
+	display: block;
+}
+.comment-name,
+.comment-time {
+	display: block;
+}
+.comment-name {
+	font-weight: $medium--FontWeight;
+}
+.comment-time {
+	font-size: 0.8em;
+}

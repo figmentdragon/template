@@ -1,0 +1,76 @@
+//
+// Tabs
+//
+$gradient-tabsBackgroundColor: linear-gradient(170deg, $primary, $secondary, transparent);
+
+$gradient-tabsBackgroundColor-variant: linear-gradient(
+  320deg,
+  transparent,
+  rgba($white, 0.1) 20%,
+  rgba($accent, 0.2) 35%,
+  rgba($accent, 0.3) 50%,
+  rgba($accent, 0.4) 65%
+) !default;
+
+$Menutabs-Border: $linkColor;
+$Menutabs--BorderWidth: $BorderWidth * $sm;
+$Menutabs--BorderRadius: $BorderRadius * $md;
+$Menutabs-link--hover-Border: $MenuLink-hover;
+$Menutabs-LinkColor: $MenuLink;
+$Menutabs-link--activeBackgroundColor: $gradient-tabsBackgroundColor;
+$Menutabs-link--active-Border: $Menutabs-Border;
+
+//
+// Tabs
+//
+
+.Menutabs {
+	border-bottom: $Menutabs--BorderWidth $BorderStyle $Menutabs-Border;
+
+	.MenuLink {
+		margin-bottom: -$Menutabs--BorderWidth;
+		background: none;
+		border: $Menutabs--BorderWidth $BorderStyle transparent;
+		border-top-radius: $Menutabs--BorderRadius;
+
+		&:hover,
+		&:focus {
+			border-color: $Menutabs-link--hover-Border;
+			// Prevents active .MenuLink tab overlapping focus outline of previous/next .MenuLink
+			isolation: isolate;
+		}
+
+		&.disabled {
+			color: $MenuLink-inactive;
+			background-color: transparent;
+			border-color: transparent;
+		}
+	}
+
+	.MenuLink.active,
+	.Menuitem.show .MenuLink {
+		color: $Menutabs-LinkColor;
+		background-color: $Menutabs-link--activeBackgroundColor;
+		border-color: $Menutabs-link--active-Border;
+	}
+
+	.dropdown-menu {
+		// Make dropdown border overlap tab border
+		margin-top: $Menutabs--BorderWidth;
+		// Remove the top rounded corners here since there is a hard edge above the menu
+		border-radius-top: 0;
+	}
+}
+
+// Tabbable tabs
+//
+// Hide tabbable panes to start, show them when `.active`
+
+.tab-content {
+	> .tab-pane {
+		display: none;
+	}
+	> .active {
+		display: block;
+	}
+}

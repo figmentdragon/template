@@ -1,0 +1,14 @@
+/* Ensure all font family declarations come with non-latin fallbacks */
+@mixin font-family( $font_family: $font__body ) {
+	font-family: $font_family;
+	@extend %non-latin-fonts;
+}
+
+/* Build our non-latin font styles */
+%non-latin-fonts {
+	@each $lang, $font-fallback in $font-fallbacks {
+		&:lang(#{$lang}) {
+			font-family: unquote( $font-fallback );
+		}
+	}
+}

@@ -1,0 +1,238 @@
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all Table variations.
+
+$TableCell--OffsetVertical     : .5rem !default;
+$TableCell--OffsetHorizontal   : .5rem !default;
+$TableCell--OffsetVertical-sm  : .25rem !default;
+$TableCell--OffsetHorizontal-sm: .25rem !default;
+
+$TableCell-Vertical-align      : top !default;
+
+$TableText                     : $Text !default;
+$TableBackground               : translucentBackground($white) !default;
+$TableBackground-accent        : translucentBackground($accent) !default;
+
+$TableWeight-th           : null !default;
+
+$TableStripedText              : $TableText !default;
+$TableStripedBackground-factor : .05 !default;
+$TableStripedBackground        : rgba($black, $TableStripedBackground-factor) !default;
+
+$TableText-active              : ColorDark($TableText) !default;
+$TableBackground-active        : ColorDark(TableBackground) !default;
+
+$TableText-hover               : HoverShift($TableText) !default;
+$TableBackground-hover         : HoverShift($TableBackground) !default;
+
+$TableBorderFactor             : .1 !default;
+$Table-BorderWidth             : $BorderWidth !default;
+$TableBorder             : var(--#{$prefix}BorderColor) !default;
+
+$TableStriped-order            : odd !default;
+$TableStriped-columns-order    : even !default;
+
+$Table-group-separator-color   : currentcolor !default;
+
+$TableCaptionTextle            : Muted($TableText) !default;
+
+$TableBackground-scale         : -80% !default;
+
+$TableVariants: (
+  "primary":    shift-color($primary, $TableBackground-scale),
+  "secondary":  shift-color($secondary, $TableBackground-scale),
+  "success":    shift-color($success, $TableBackground-scale),
+  "info":       shift-color($info, $TableBackground-scale),
+  "warning":    shift-color($warning, $TableBackground-scale),
+  "danger":     shift-color($danger, $TableBackground-scale),
+  "light":      $gray,
+  "dark":       $darkgray,
+) !default;
+// scss-docs-end Table-loop
+
+
+@mixin TableVariant($state, $color) {
+  .table-#{$state} {
+    $Text: Text($color);
+    $Background: Background($color);
+    $BorderColor: Border($color);
+    $Background-hover: HoverShift($Background);
+    $stripedBackgroundColor: ColorLight($color);
+
+    $TableText: #{$Text};
+    $TableBackground: #{$Background};
+    $Table-Border: #{$BorderColor};
+    $TableStripedBackgroundColor: #{$stripedBackgroundColor};
+    $TableStriped--TextColor: #{color-contrast($stripedBackgroundColor)};
+    $TableBackground: #{$Background};
+    $Table--active--TextColor: #{color-contrast($Background)};
+    $TableBackground-hover: #{$Background-hover};
+    $Table--hover--LinkColor: #{color-contrast($Background-hover)};
+
+    color: var($TableText);
+    border-color: var($Table-Border);
+  }
+}
+
+
+
+.table {
+  --#{$prefix}TableText: #{$TableText};
+  --#{$prefix}TableBackground: #{$TableBackground};
+  --#{$prefix}TableBorder: #{$TableBorder};
+  --#{$prefix}TableBackground-accent: #{$TableBackground-accent};
+  --#{$prefix}TableStripedText: #{$TableStripedText};
+  --#{$prefix}TableStripedBackground: #{$TableStripedBackground};
+  --#{$prefix}TableText-active: #{$TableText-active};
+  --#{$prefix}TableBackground-active: #{$TableBackground-active};
+  --#{$prefix}TableText-hover: #{$TableText-hover};
+  --#{$prefix}TableBackground-hover: #{$TableBackground-hover};
+
+  width: calc(100% - calc(2 * $Spacer));
+  margin-bottom: $Spacer;
+  color: var(--#{$prefix}TableText);
+  vertical-align: $TableCell-Vertical-align;
+  border-color: var(--#{$prefix}TableBorder);
+
+  // Target th & td
+  // We need the child combinator to prevent styles leaking to nested Tables which doesn't have a `.table` class.
+  // We use the universal selectors here to simplify the selector (else we would need 6 different selectors).
+  // Another advantage is that this generates less code and makes the selector less specific making it easier to override.
+  // stylelint-disable-next-line selector-max-universal
+  > :not(caption) > * > * {
+    padding: $TableCell--OffsetVertical $TableCell--OffsetHorizontal;
+    background-color: var(--#{$prefix}TableBackground);
+    border-bottom-width: $Table-BorderWidth;
+    box-shadow: inset 0 0 0 9999px var(--#{$prefix}TableBackground-accent);
+  }
+
+  > tbody {
+    vertical-align: inherit;
+  }
+
+  > thead {
+    vertical-align: bottom;
+  }
+}
+
+.table-group-divider {
+  border-top: calc($Table-BorderWidth * 2) solid $Table-group-separator-color;
+}
+
+//
+// Change placement of captions with a class
+//
+
+.caption-top {
+  caption-side: top;
+}
+
+
+//
+// Condensed Table w/ half padding
+//
+
+.table-sm {
+  // stylelint-disable-next-line selector-max-universal
+  > :not(caption) > * > * {
+    padding: $TableCell--OffsetVertical-sm $TableCell--OffsetHorizontal-sm;
+  }
+}
+
+
+// Border versions
+//
+// Add or remove borders all around the Table and between all the columns.
+//
+// When borders are added on all sides of the cells, the corners can render odd when
+// these borders do not have the same color or if they are semi-transparent.
+// Therefor we add top and border bottoms to the `tr`s and left and right borders
+// to the `td`s or `th`s
+
+.table-bordered {
+  > :not(caption) > * {
+    border-width: $Table-BorderWidth 0;
+
+    // stylelint-disable-next-line selector-max-universal
+    > * {
+      border-width: 0 $Table-BorderWidth;
+    }
+  }
+}
+
+.table-borderless {
+  // stylelint-disable-next-line selector-max-universal
+  > :not(caption) > * > * {
+    border-bottom-width: 0;
+  }
+
+  > :not(:first-child) {
+    border-top-width: 0;
+  }
+}
+
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+// For rows
+.table-striped {
+  > tbody > tr:nth-of-type(#{$TableStriped-order}) > * {
+    --#{$prefix}TableBackground-accent: var(--#{$prefix}TableStripedBackground);
+    color: var(--#{$prefix}TableStripedText);
+  }
+}
+
+// For columns
+.table-striped-columns {
+  > :not(caption) > tr > :nth-child(#{$TableStriped-columns-order}) {
+    --#{$prefix}TableBackground-accent: var(--#{$prefix}TableStripedBackground);
+    color: var(--#{$prefix}TableStripedText);
+  }
+}
+
+// Active Table
+//
+// The `.table-active` class can be added to highlight rows or cells
+
+.table-active {
+  --#{$prefix}TableBackground-accent: var(--#{$prefix}TableBackground-active);
+  color: var(--#{$prefix}TableText-active);
+}
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.table-hover {
+  > tbody > tr:hover > * {
+    --#{$prefix}TableBackground-accent: var(--#{$prefix}TableBackground-hover);
+    color: var(--#{$prefix}TableText-hover);
+  }
+}
+
+
+// Table variants
+//
+// Table variants set the Table cell backgrounds, border colors
+// and the colors of the striped, hovered & active Tables
+
+@each $color, $value in $TableVariants {
+  @include TableVariant($color, $value);
+}
+
+// Responsive Tables
+//
+// Generate series of `.table-responsive-*` classes for configuring the screen
+// size of where your Table will overflow.
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+  @include media-breakpoint-down($breakpoint) {
+    .table-responsive#{$infix} {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}

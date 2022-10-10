@@ -1,0 +1,40 @@
+/**
+ * = Backgrounds
+ */
+
+@import './../../tools/lists+maps/map-colors';
+
+// Inverse
+// TODO: redo this as a proper class
+@each $name, $value in $theme-colors {
+  .bg-#{$name}-inverse {
+    color: ColorLight($primary);
+    background-color: BackgroundTint($value);
+  }
+
+  .bg-#{$name}-faded {
+    background-color: lighten($value, $ColorInterval * 4);
+  }
+}
+
+.section-image {
+  @include background-image(no-repeat, cover);
+}
+
+.bg-img-holder {
+  position: absolute;
+  z-index: -1;
+
+  height: 100%;
+  min-height: 20rem;
+
+  background-repeat: no-repeat;
+}
+
+.bg-white {
+  background-color: $white !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}

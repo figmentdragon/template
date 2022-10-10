@@ -1,0 +1,21 @@
+// Active Table
+//
+// The `.table-active` class can be added to highlight rows or cells
+
+.table-active {
+  color: $Table--active--TextColor;
+
+  $Table-accentBackgroundColor: $Table--activeBackgroundColor;
+}
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.table-hover {
+  > tbody > tr:hover > * {
+    color: $Table--hover--LinkColor;
+
+    $Table-accentBackgroundColor: $Table--hoverBackgroundColor;
+  }
+}

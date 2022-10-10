@@ -1,0 +1,36 @@
+//
+// Labels
+//
+
+.form-label {
+  margin-bottom: $FormLabel-Spacer-bottom;
+  @include font-size($FormLabel-FontSize);
+  font-style: $FormLabel-FontStyle;
+  font-weight: $FormLabel-FontWeight;
+  color: $FormLabel-color;
+}
+
+// For use with horizontal and inline forms, when you need the label (or legend)
+// text to align with the form controls.
+.col-form-label {
+  padding-top: add($InputOffsetVertical, $InputBorderWidth);
+  padding-bottom: add($InputOffsetVertical, $InputBorderWidth);
+  margin-bottom: 0; // Override the `<legend>` default
+  @include font-size(inherit); // Override the `<legend>` default
+  font-style: $FormLabel-FontStyle;
+  font-weight: $FormLabel-FontWeight;
+  line-height: $InputLineHeight;
+  color: $FormLabel-color;
+}
+
+.col-form-label-lg {
+  padding-top: add($InputOffsetVertical-lg, $InputBorderWidth);
+  padding-bottom: add($InputOffsetVertical-lg, $InputBorderWidth);
+  @include font-size($InputSize-lg);
+}
+
+.col-form-label-sm {
+  padding-top: add($InputOffsetVertical-sm, $InputBorderWidth);
+  padding-bottom: add($InputOffsetVertical-sm, $InputBorderWidth);
+  @include font-size($InputSize-sm);
+}

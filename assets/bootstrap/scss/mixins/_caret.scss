@@ -1,0 +1,64 @@
+// scss-docs-start caret-mixins
+@mixin caret-down {
+  border-top: $CaretWidth solid;
+  border-right: $CaretWidth solid transparent;
+  border-bottom: 0;
+  border-left: $CaretWidth solid transparent;
+}
+
+@mixin caret-up {
+  border-top: 0;
+  border-right: $CaretWidth solid transparent;
+  border-bottom: $CaretWidth solid;
+  border-left: $CaretWidth solid transparent;
+}
+
+@mixin caret-end {
+  border-top: $CaretWidth solid transparent;
+  border-right: 0;
+  border-bottom: $CaretWidth solid transparent;
+  border-left: $CaretWidth solid;
+}
+
+@mixin caret-start {
+  border-top: $CaretWidth solid transparent;
+  border-right: $CaretWidth solid;
+  border-bottom: $CaretWidth solid transparent;
+}
+
+@mixin caret($direction: down) {
+  @if $enable-caret {
+    &::after {
+      display: inline-block;
+      margin-left: $Caret-Spacer;
+      vertical-align: $Caret-Vertical-align;
+      content: "";
+      @if $direction == down {
+        @include caret-down();
+      } @else if $direction == up {
+        @include caret-up();
+      } @else if $direction == end {
+        @include caret-end();
+      }
+    }
+
+    @if $direction == start {
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        display: inline-block;
+        margin-right: $Caret-Spacer;
+        vertical-align: $Caret-Vertical-align;
+        content: "";
+        @include caret-start();
+      }
+    }
+
+    &:empty::after {
+      margin-left: 0;
+    }
+  }
+}
+// scss-docs-end caret-mixins

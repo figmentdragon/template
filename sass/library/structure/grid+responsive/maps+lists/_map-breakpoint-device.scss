@@ -1,0 +1,9 @@
+$display-breakingpoint : (
+  x3l : screen and (min-width: $widescreen),
+  x2l : calc($desktop - calc(1 * 1rem)),
+  xl  : calc($laptop - calc(1 * 1rem)),
+  md  : calc($Tablet - calc(1 * 1rem)),
+  sm  : calc($touch - calc(1 * 1rem)),
+  xs  : calc($mobile - calc(1 * 1rem)),
+  xxs : 0
+) !default;

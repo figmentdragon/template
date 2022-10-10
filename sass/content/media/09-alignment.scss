@@ -1,0 +1,69 @@
+/**
+ * 3.0 Default WISIWYG Editor Styles
+ * ---------------------------------------------*---------------------------- */
+/* Alignment - WordPress uses these classes to align images and other elements inside the editor. */
+
+.alignleft,
+.align-left,
+.float-left,
+img.alignleft,
+.wp-block-image.alignleft {
+  display: inline;  /*rtl:ignore*/
+
+  float: left;
+  margin-left: 0;
+  margin-right: $BaseUnit;
+  margin-bottom: 1.5rem;
+  /*rtl:ignore*/
+  padding: 0;
+	@include media(Tablet) { margin-right: calc(2 * $Spacer); }
+}
+
+.alignright,
+.align-right,
+.float-right,
+img.alignright,
+.wp-block-image.alignright {
+  display: inline;
+  /*rtl:ignore*/
+
+  float: right;
+
+  margin-bottom: $BaseUnit;
+  /*rtl:ignore*/
+  margin-left: 1.4rem;
+	margin-right: 0;
+  padding: 0;
+  img & { margin-left: 0.875rem; }
+	@include media(Tablet) { margin-left: calc(2 * $Spacer); }
+}
+
+.aligncenter,
+.align-center,
+.float-center,
+img.aligncenter,
+.wp-block-image.aligncenter {
+  @include center-block;
+  display: block;
+
+  float: none;
+  clear: both;
+
+  margin-right: auto;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  padding: 0;
+
+  text-align: center;
+
+  img & { margin-bottom: 1.2rem; }
+}
+
+.alignnone,
+img.alignnone,
+.wp-block-image.alignnone {
+  display: inline;
+
+  margin: $BaseUnit 1.5rem 1.5rem 0;
+  padding: 0;
+}

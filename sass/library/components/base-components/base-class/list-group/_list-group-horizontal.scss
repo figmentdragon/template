@@ -1,0 +1,39 @@
+// Horizontal
+//
+// Change the layout of list group items from vertical (default) to horizontal.
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .listgroup-horizontal#{$infix} {
+      flex-direction: row;
+
+      > .listgroup-item {
+        &:first-child {
+          @include border-bottom-start-radius($ListGroup--BorderRadius);
+          @include border-top-end-radius(0);
+        }
+
+        &:last-child {
+          @include border-top-end-radius($ListGroup--BorderRadius);
+          @include border-bottom-start-radius(0);
+        }
+
+        &.active {
+          margin-top: 0;
+        }
+
+        + .listgroup-item {
+          border-top-width: $ListGroup--BorderWidth);
+          border-left-width: 0;
+
+          &.active {
+            margin-left: calc($ListGroup--BorderWidth) * -1); // stylelint-disable-line function-disallowed-list
+            border-left-width: $ListGroup--BorderWidth);
+          }
+        }
+      }
+    }
+  }
+}

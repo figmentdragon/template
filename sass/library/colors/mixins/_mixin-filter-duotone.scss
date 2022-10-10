@@ -1,0 +1,21 @@
+@mixin filter-duotone {
+
+	&:before {
+		background: $LinkColor;
+		mix-blend-mode: screen;
+		opacity: 0.1;
+		z-index: 2;
+	}
+
+	&:after {
+		background: $LinkColor;
+		mix-blend-mode: multiply;
+		opacity: .8;
+		z-index: 3;
+
+		/* Browsers supporting mix-blend-mode don't need opacity < 1 */
+		@supports (mix-blend-mode: multiply) {
+			opacity: 1;
+		}
+	}
+}

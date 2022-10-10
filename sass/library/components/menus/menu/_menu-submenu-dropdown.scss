@@ -1,0 +1,45 @@
+.menu ul > *,
+.submenu > *,
+* ul ul { /* Submenu drop-down "box" */
+	display: none;
+	float: left;
+	position: absolute;
+		top: 1.2em;
+		left: 0;
+	z-index: 99999;
+  &:hover > a {}
+  a { /* Menu links inside the drop-down "box" */
+  	padding: 0 1.5em;
+  	width: 200px;
+		@include on-event { /* Hover styles for menu items */
+			display: block;
+		}
+  }
+  &::before {
+  	bottom: 0;
+  	height: auto;
+  	left: auto;
+  	right: -2rem;
+  	top: 0;
+  	width: 2rem;
+  }
+  &::after {
+  	border-bottom-color: transparent;
+
+  	/*rtl:ignore*/
+  	border-left-color: #000;
+  	bottom: auto;
+  	right: -1.6rem;
+  	top: 2rem;
+  }
+
+  li { /* List items inside the drop-down box */
+    &.menu-item-has-children {
+      &:hover > ul,
+      &:focus > ul,
+      &.focus > ul {
+        right: calc(100% + 2rem);
+      }
+    }
+  }
+}

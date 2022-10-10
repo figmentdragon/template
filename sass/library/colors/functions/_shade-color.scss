@@ -1,0 +1,35 @@
+@use "sass:color";
+
+// Shade a color: mix a color with black
+@function darken($color, $weight) {
+  @return mix(black, $color, $weight);
+}
+
+
+
+@function Link($color) {
+  $weight: $LinkInterval;
+    @return mix(black, $color, $weight);
+      @return $color;
+}
+
+@function Title($color) { @return darken($color, $TitleInterval); }
+
+@function FocusShade($color) {
+  @if (
+  $color == 'currentColor' and property == 'bg' ) {
+    @return color.scale(rgba($color, $TranslucentOpacity), -#{$HoverInterval});
+  }
+  @if (
+  $color == 'currentColor' and property == 'text') {
+    @return color.scale($color, -#{$HoverInterval});
+  }
+  @if (
+  $color == 'currentColor' and property == 'border') {
+    @return color.scale($color, -#{$HoverInterval});
+  }
+  @return $color;
+}
+
+@function Shadow($color){
+  @return color.scale(ColorDark($color), $lightness: -$ShadowInterval); }

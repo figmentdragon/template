@@ -1,0 +1,26 @@
+.comment-respond {
+	margin-top: $SpacerVertical;
+	> * {
+		margin-top: $Spacer;
+		margin-bottom: $Spacer;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+
+			&.comment-form {
+				margin-bottom: $SpacerVertical;
+			}
+		}
+	}
+}
+
+.comment-reply-link,
+#cancel-comment-reply-link {
+	font-family: $FontAccent;
+	@include font-size($FontSize);
+	font-weight: bold;
+}

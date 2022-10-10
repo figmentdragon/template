@@ -1,0 +1,103 @@
+// Article - The <article> HTML element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distribuTable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content.
+
+$article-OffsetHorizontal: $OffsetHorizontal;
+$article-OffsetVertical: calc($OffsetVertical * $xs);
+$articleSize: calc($FontSize-sm);
+$article--SpacerHorizontal: $SpacerHorizontal;
+$article--SpacerVertical: $SpacerVertical;
+
+article {
+	font-size: $articleSize;
+
+	display: block;
+
+	vertical-align: baseline;
+
+	border: 1px solid $BorderColor;
+  border-radius: 5px;
+	outline: 0;
+	background: transparent;
+	aside {
+		background: Background($secondary);
+		border-left: 4px solid Border($accent);
+		padding: 0.01rem 0.8rem;
+		a {
+			color: $LinkText;
+		}
+	}
+	header{
+		text-align: center;
+		p {
+      font-size: .6em;
+      + h1, + h2 {
+        margin-top: -.25em;
+      }
+    }
+		h1, h2 {
+      + p {
+        margin-top: .25em;
+      }
+
+      a {
+        @include on-event {
+					&:visited {
+						color: Visited($LinkText);
+						&:hover {
+							color: HoverShift(Visited($LinkText));
+						}
+					}
+				}
+			}
+		}
+	}
+	> footer {
+		margin-top: 1.5em;
+		font-size: .85em;
+	}
+	+ article {
+		margin-top: 4rem;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: add(1.15, $article--SpacerHorizontal) 0 add(1.15, $article--SpacerHorizontal) 0;
+	}
+	h2:first-child{
+		margin-top: $BaseUnit
+	}
+
+	p,
+	blockquote {
+		font-size: $articleSize;
+
+		margin-bottom: add(1.75, $article--SpacerHorizontal);
+	}
+
+	ul li,
+	ol li {
+		font-size: $articleSize;
+
+		margin-bottom: $article--SpacerHorizontal;
+	}
+
+	ul,
+	ol {
+		margin-bottom: add(1.5, $article--SpacerHorizontal);
+	}
+
+	a {
+		@include on-event{ &:hover { } }
+	}
+	& > figure,
+	& > img {
+		max-width: calc(100% - calc(2 * $Spacer));
+	}
+	&.comment {
+		background: rgba($Background, 0.04);
+		margin-top: $article--SpacerHorizontal;
+		padding: $article-OffsetHorizontal $article-OffsetVertical;
+	}
+}

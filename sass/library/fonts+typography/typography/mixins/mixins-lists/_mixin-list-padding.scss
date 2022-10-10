@@ -1,0 +1,9 @@
+@mixin list-padding($padding: $OffsetVertical, $padding-nested: $OffsetVerticalNested) {
+	ul {
+		padding-left: $padding;
+
+		& > li > ul {
+			padding-left: $padding-nested;
+		}
+	}
+}

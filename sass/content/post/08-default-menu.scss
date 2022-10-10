@@ -1,0 +1,34 @@
+/**
+ * 7.0 Default Menu Styles
+ * ---------------------------------------------*---------------------------- */
+.current {
+  &_page_item { /* DC'd for backwards compatibility */  }
+  &-cat { /* DC'd for backwards compatibility */  }
+  &-menu-item { /* Class for Current Page */  }
+  &-menu-parent { /* Class for parent of the currently rendered page */ }
+  &-%object-parent { /* Class for parent of the currently rendered object, for .menu-item-object-{object}*/ }
+  &-%type-parent { /* Class or parent of the currently rendered type, .menu-item-type-{type} */ }
+  &-menu-ancestor { /* CLass or ancestor of currently rendered page */ }
+  &-%object-ancestor { /* Class for ancestor of the currently rendered object, for .menu-item-object-{object}*/ }
+  &-%type-ancestor { /* Class for ancestor of the currently rendered type, .menu-item-type-{type} */ }
+}
+
+.menu-item { /* This class is added to every menu item. */
+  &-has-children { /* class is added to menu item which has sub-items */ }
+  &-object-%object { /* class is added to every menu item, where {object} is either a post type or a taxonomy. */ }
+  &-object-category { /* class is added to menu items that correspond to a category. */ }
+  &-object-tag { /* class is added to menu items that correspond to a tag */ }
+  &-object-page { /* class is added to menu items that correspond to static pages */ }
+  &-object-%custom { /* class is added to menu items that correspond to a custom post type or a custom taxonomy. */ }
+  &-type-%type { /* class is added to every menu item, where {type} is either “post_type” or “taxonomy”.*/ }
+  &-type-taxonomy { /* Class for a Category */ }
+  &-type-post_type { /* Class for Pages */ }
+  &-type-custom { /* Class for any custom item that you added */ }
+  &-home { /* Class for the Home Link */ }
+}
+
+li.current { &-cat { &-parent { } } }
+
+.linkcat { }
+.blogroll { }
+.more-link { }

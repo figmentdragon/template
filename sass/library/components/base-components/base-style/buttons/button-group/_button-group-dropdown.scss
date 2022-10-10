@@ -1,0 +1,40 @@
+//
+// Split button dropdowns
+//
+
+.dropdown-toggle-split {
+  padding-right: calc($Button-OffsetHorizontal * .75);
+  padding-left: calc($Button-OffsetHorizontal * .75);
+
+  &::after,
+  .dropup &::after,
+  .dropend &::after {
+    margin-left: 0;
+  }
+
+  .dropstart &::before {
+    margin-right: 0;
+  }
+}
+
+.button-sm + .dropdown-toggle-split {
+  padding-right: calc($Button-OffsetHorizontal-sm * .75);
+  padding-left: calc($Button-OffsetHorizontal-sm * .75);
+}
+
+.button-lg + .dropdown-toggle-split {
+  padding-right: calc($Button-OffsetHorizontal-lg * .75);
+  padding-left: calc($Button-OffsetHorizontal-lg * .75);
+}
+
+
+// The clickable button for toggling the menu
+// Set the same inset shadow as the :active state
+.buttongroup.show .dropdown-toggle {
+  @include box-shadow($Button-active--BoxShadow);
+
+  // Show no shadow for `.button-link` since it has no other button styles.
+  &.button-link {
+    @include box-shadow(none);
+  }
+}

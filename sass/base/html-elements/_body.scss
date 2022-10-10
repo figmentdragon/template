@@ -1,0 +1,110 @@
+// Body The <body> HTML element represents the content of an HTML document. There can be only one <body> element in a document.
+
+body { /* Make the body a nice central block */
+	font-family: $FontMain;
+	@include font-size($FontSize);
+	font-weight: $FontWeight;
+	color: $Text;
+	background-color: translucentBackground($tertiary);
+	scrollbar-width: none;
+	caret-color: ColorDark($darkgray);
+	word-wrap: break-word;
+	cursor: default;
+	-ms-overflow-style: none;
+	counter-reset: sidenote-counter;
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+  &.home .wp-post-image {
+    max-width: none;
+  }
+  &.wp-autoresize {
+    display: block;
+
+    padding: .75rem 1.5rem !important;
+
+    @include box-sizing(border-box);
+		&.content,
+		.content {
+			display: block;
+		}
+  }
+  button.dropdown-toggle:hover,
+  button.dropdown-toggle:focus {
+    background: transparent;
+    background-image: none;
+  }
+	> header { /* Make the header bg full width, but the content inline with body */
+		background-color: translucentBackground($Background);
+		backdrop-filter: blur(2px);
+	  border-bottom: $BorderWidth solid $BorderColor;
+	  text-align: center;
+	  padding: 0 calc(2 * $Offset) calc(2 * $BaseUnit) calc(2 * $Offset);
+		height: calc( 100% - calc($BaseUnit + calc(2 * $Spacer)));
+	}
+	> footer {
+		position: relative;
+		bottom: 0;
+		width: calc( 100% - calc(2 * $Spacer));
+	  margin-top: 4rem;
+	  padding: calc(8 * $Offset) calc(4 * $Offset) calc(6 * $Offset) calc(4 * $Offset);
+	  color: ColorLight($FooterText);
+	  font-size: calc($sm * $FontSize);
+	  text-align: center;
+	  border-top: $BorderWidth solid $FooterBorder;
+	}
+	@media screen and (min-width: 720px) {
+		header,
+		main,
+		footer,
+		article {
+		  position: relative;
+		  min-width: 15rem;
+		  margin: $Spacer auto;
+		}
+	}
+}
+
+@supports ( font-variation-settings: normal ) {
+	body {
+		font-family: system-ui, sans-serif;
+	}
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+		--#{$primary}: 51, 151, 207;
+		--#{$Text}: 0, 0, 0;
+		--#{$Background}: 255, 255, 255;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+		--#{$primary}: 51, 151, 207;
+		--#{$Text}: 255, 255, 255;
+		--#{$Background}: 0, 0, 0;
+  }
+}
+
+body {
+	&[data-theme="light"] {
+		$primary: 51, 151, 207;
+		$Text: 0, 0, 0;
+		$Background: 255, 255, 255;
+		input::-webkit-calendar-picker-indicator {
+			filter: invert(0.2);
+		}
+	}
+
+	&[data-theme="dark"] {
+		$primary: 51, 151, 207;
+		$Text: 255, 255, 255;
+		$Background: 0, 0, 0;
+		input::-webkit-calendar-picker-indicator {
+			filter: invert(0.9);
+		}
+	}
+}

@@ -1,0 +1,29 @@
+// Menubar brand
+//
+// Used for brand, project, or site names.
+
+$menubar-brandSize: $FontSize * $lg;
+// Compute the menubar-brand OffsetVertical so the menubar-brand will have the same height as menubar-text and nav-link
+$menu-link-height: $BaseUnit * 1.2 + $menu-link--OffsetVertical * 2;
+$menubar-brand-height: $menubar-brandSize * 1.2;
+$menubar-brand--OffsetVertical: ($Offset - $menubar-brand-height) * 0.5;
+$menubar-brand--Spacer-end: $BaseUnit;
+
+.menubar-brand {
+	float: left;
+	padding-top: $menubar-brand--OffsetVertical;
+	padding-bottom: $menubar-brand--OffsetVertical;
+	margin-right: $menubar-brand-margin-end;
+	font-size: $menubar-brandSize;
+	color: $menubar-brand--TextColor;
+	text-decoration: $LinkDecoration;
+	white-space: nowrap;
+
+	@include on-event {
+		color: $menubar-brand--hover--LinkColor;
+		text-decoration: if($LinkDecoration-hover == underline, none, null);
+	}
+	> img {
+		display: block;
+	}
+}

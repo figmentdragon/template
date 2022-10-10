@@ -1,0 +1,52 @@
+#primary {
+	float: right;
+	width: calc(100% - calc(2 * $Spacer));
+	height: calc(100% - $BaseUnit);
+}
+
+#content {
+	margin: 0 0 0 0;
+	height: 100%;
+	width: calc(100% - calc(2 * $Spacer));
+	padding: $Offset $Offset $Offset calc(2 * $BaseUnit);
+}
+
+#main {
+	float: right;
+	overflow: hidden;
+	width: calc(100% - calc( 2 * $BaseUnit));
+	height: calc(100% - $BaseUnit);
+}
+
+#masthead { /* Sidebar 1 */
+	margin: 0 80vw 0 $BaseUnit;
+	width: 45vw;
+	height: 100vh;
+	padding: $Offset;
+	> img {
+		width: auto;
+		height: calc(100% - calc(2 * $Spacer));
+	}
+}
+
+#secondary { /* Sidebar 2 */
+	padding: $responsive--Spacer $Offset;
+	margin: 0 0 0 0;
+	float: left;
+	width: 14vw;
+	height: 100%;
+}
+
+#colophon {
+	clear: both;
+	margin: calc($Spacer / 2);
+	padding: calc( $Offset / 2 );
+	height: 100%;
+  width: calc(100% - calc( 2 * $Spacer));
+}
+
+#site-navigation {
+	position: relative;
+	z-index: 1300;
+	width: 12%;
+}

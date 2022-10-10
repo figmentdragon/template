@@ -1,0 +1,23 @@
+$footer--HeadingSize  : $HeadingSize;
+
+
+$pullquoteSize             : $FontSize-h4;
+$pullquote--FontStyle            : normal;
+$pullquote--LetterSpacing        : $LetterSpacing;
+$pullquote--LineHeight           : $LineHeight;
+$pullquote--BorderWidth          : calc( 3 * $BorderWidth );
+$pullquote-Border          : shade($primary, $ColorInterval * 3);
+$pullquote--ForegroundColor      : $primary;
+$pullquoteBackgroundColor      : $Background;
+
+$menuSize                  : $FontSize-lg;
+$MenuSize--submenu         : calc($md * $FontSize);
+$menu--mobileSize          : $smSize;
+$menu--mobile--submenuSize : $FontSize-xs;
+
+$menu--button--FontWeight        : $medium--FontWeight;
+
+$QuoteSize                 : $FontSize-lg;s
+$QuoteWeight               : $bolder--FontWeight;
+$quote--lgSize             : $HeadingSize;
+$quote--lg--LineHeight           : $HeadingHeight;

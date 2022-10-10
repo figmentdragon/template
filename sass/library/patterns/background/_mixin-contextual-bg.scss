@@ -1,0 +1,10 @@
+// Contextual backgrounds
+
+@mixin contextualBackgroundColor($color) {
+  color: $color !important;
+  background-color: BackgroundTint($color) !important;
+  &:hover,
+  &:focus {
+    background-color: shade($color, 10%);
+  }
+}

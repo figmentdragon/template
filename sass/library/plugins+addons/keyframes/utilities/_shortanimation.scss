@@ -1,0 +1,43 @@
+/*****************
+* Short Animations
+*******************/
+
+.fadeInUpShort{
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+}
+.fadeInUpShort.go {
+    -webkit-Animation-name: fadeInUpShort;
+    Animation-name: fadeInUpShort;
+}
+
+.fadeInDownShort{
+    opacity: 0;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+}
+.fadeInDownShort.go {
+    -webkit-Animation-name: fadeInDownShort;
+    Animation-name: fadeInDownShort;
+}
+
+.fadeInRightShort {
+    opacity: 0;
+    -webkit-transform: translateX(20px);
+    transform: translateX(20px);
+}
+.fadeInRightShort.go {
+    -webkit-Animation-name: fadeInRightShort;
+    Animation-name: fadeInRightShort;
+}
+
+.fadeInLeftShort {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+    transform: translateX(-20px);
+}
+.fadeInLeftShort.go {
+    -webkit-Animation-name: fadeInLeftShort;
+    Animation-name: fadeInLeftShort;
+}

@@ -1,0 +1,162 @@
+// * Default Comment Form Styles
+.comment {
+  overflow: hidden;
+
+  padding: 18px 0;
+  &-navigation {
+    font-size: .75rem;
+    line-height: 2;
+
+    margin-bottom: 3rem;
+
+    text-transform: uppercase;
+    .menu-next,
+    .menu-previous {
+      display: inline-block;
+    }
+    .menu-previous a {
+      margin-right: 10px;
+    }
+  }
+  &-container {
+    overflow: hidden;
+  }
+  &-edit-link {
+    margin-left: 10px;
+    &:before {
+      content: "\f411";
+    }
+  }
+  .avatar {
+    /* Comment author's gravatar image */
+  }
+  &-author {
+  }
+  &-meta {
+  }
+  &-content {
+  }
+  .comment-respond {
+    margin-top: 1.5rem;
+  }
+  .reply {
+    /* The "Reply" link under each comment */
+    text-align: right;
+  }
+}
+
+h3#comments {
+  font-size: $FontSize;
+
+  margin-bottom: 80px;
+}
+
+#comments {
+  /* Container for the comments section */
+  @include box-sizing($type:border-box);
+  display: block;
+
+  clear: both;
+  font-size: $FontSize;
+  color: $DarkColor;
+  line-height: $HeadingHeight;
+  margin-top: 3.25rem;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+
+  border-top: calc(2 * $BorderWidth) $BorderStyle $translucent-Border;
+	box-shadow: inset 1px 1px 1px $LightColor;
+  .comment-list,
+  .children {
+    list-style: none;
+  }
+  .comments-inner {
+    margin-top: 30px;
+  }
+  .comments-inner + #respond {
+    margin-top: 50px;
+  }
+  .comment-list {
+    margin: 0;
+    padding-left: 0;
+  }
+  .children {
+    padding-left: 30px;
+  }
+  .comment-avatar {
+    float: left;
+    overflow: hidden;
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  .comment-context {
+    margin-left: 60px;
+    padding-left: 20px;
+  }
+  .comment-context .title {
+    font-size: $FontSize;
+
+    display: inline-block;
+  }
+  .comment-content p:last-child {
+    margin-bottom: 0;
+  }
+  .comment-date {
+    font-size: $FontSize;
+    font-style: italic;
+
+    color: #ABABAB;
+
+    :before {
+      margin-right: 5px;
+      margin-left: 5px;
+
+      content: "-";
+    }
+  }
+  .comment-body {
+    margin-top: 30px;
+  }
+  .reply {
+    font-syle: italic;
+  }
+}
+
+.comment-subscription-form {
+  font-size: 14px;
+
+  margin-bottom: 0;
+}
+
+.comments-pagination {
+  margin: 2em 0 3em;
+}
+
+ol .children {
+  margin-left: 90px !important;
+}
+
+.comment-navigation + .no-comments {
+  padding-top: 0;
+
+  border-top: 0;
+}
+
+.navigation {
+  display: block;
+
+  text-align: center;
+}
+
+.thread-alt,
+.thread-even {
+  margin: 0;
+  padding: 0;
+}
+.even,
+.alt {
+  margin: 0;
+  padding: 0;
+}

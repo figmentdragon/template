@@ -1,0 +1,300 @@
+// Comment Form
+#respond {
+	background: #fbfbfb;
+	position: relative;
+  padding:0 10px 0 10px;
+	> small {
+		display: block;
+		font-size: $FontSize;
+		position: absolute;
+		left: calc($Spacer + 100%);
+		top: calc(-3.5 * $Spacer);
+		width: calc(100vw / 12 );
+	}
+	&:after {
+		content: ".";
+		display: block;
+		height: 0px;
+		clear: both;
+		visibility: hidden;
+	}
+	.comment-user-avatar {
+		margin: $Spacer 0 -$Spacer;
+	}
+
+	.comment .comment-form {
+		padding-left: 0;
+	}
+}
+#respond input[type=text],
+textarea { /* Highlight active form field */
+  transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: $BorderWidth solid $BorderColor;
+}
+
+#respond input[type=text]:focus,
+input[type=email]:focus,
+input[type=url]:focus,
+textarea:focus {
+  box-shadow: 0 0 5px rgba($formColor--ShadowColor, 1);
+  margin: 5px 1px 3px 0px;
+  border: 2px solid rgba($formColor-Border, 1);
+}
+
+.comments-title,
+#reply-title {
+	margin: 0px;
+	padding: 0px;
+}
+#cancel-comment-reply-link { }
+#commentform {
+	margin: 5px 0 0 0;
+  label {  /* The text next to each comment form field */
+		padding: 1em 0;
+	}
+	textarea {
+		width: 96% !important;
+		padding: 1.8%;
+	}
+	input[type="text"] { }
+	.form-allowed-tags,
+	.form-allowed-tags code { }
+  #comment { /* The comment form textarea */ }
+  #submit { font-size: 1em; }
+}
+
+#author,
+#email,
+#url {
+  background-color: $Background;
+  color: $Text;
+  @include font-size($FontSize);
+  margin: 0;
+  padding: $OffsetHorizontal $OffsetVertical;
+  border: $BorderWidth solid $BorderColor;
+  @include border-radius(calc($lg * $BorderRadius));
+  @include box-shadow($box-shadow-inset);
+}
+
+#author {}
+#email {}
+#author,
+#email {
+  @include font-family($FontMain);
+  font-style: italic;
+  color:#1d1d1d;
+  letter-spacing: .1em;
+}
+#url {
+  color: $CodeText;
+  font-family: $code--TextFont;
+}
+#comment,
+#comments { /* Container for the comments section */
+	clear: both;
+  margin-top: 1.5rem;
+	padding: 1.5rem;
+	background: $formColorBackgroundColor;
+	color: $formColor--TextColor;
+	font-size: 1em;
+	font-family: 'Raleway';
+	line-height: 1.6;
+
+	max-width: calc(100% - calc(2 * $Spacer));
+	border-radius: calc($BorderRadius / 2.5);;
+
+	> .comments-title:last-child {
+		display: none;
+	}
+}
+
+#submit {
+  background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+  background-color:#44c767;
+  border-radius:28px;
+  border: $BorderWidth solid #18ab29;
+  display:inline-block;
+  cursor:pointer;
+  color: Text($gray);
+  font-family:Arial;
+  font-size:17px;
+  padding:$BaseUnit 31px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #2f6627;
+  &:hover {
+    background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+    background-color:#5cbf2a;
+  }
+  &:active {
+    position:relative;
+    top:1px;
+  }
+}
+.comment-notes { font-size: 90%; }
+.required { /* The little asterisk next to a required comment field */
+	color: #cc0000;
+}
+.comment-form {
+  display: flex;
+	flex-wrap: wrap;
+	> * { flex-basis: 100%; }
+	.comment-notes {
+		font-size: #{0.75 * $FontSize};
+		font-weight: normal;
+		margin: 20px 0;
+	}
+	.comment-notes,
+	label {
+		@include font-family( $FontTertiary );
+		font-size: $smSize;
+		color: ColorLight($primary);
+	}
+  &-url,
+  &-comment { width: calc(100% - calc(2 * $Spacer)); }
+  &-author,
+	&-email {
+    flex-basis: 0;
+    flex-grow: 1;
+    @include media(mobile-only) { flex-basis: 100%; }
+  }
+	&-author {
+		padding-top: 3px;
+		.url {
+			color: currentColor;
+		}
+	}
+	&-email {  }
+	&-url {  }
+	&-comment {  }
+	&-cookies-consent {
+		> label {
+
+		}
+	}
+	&-cookies-consent > label,
+	.comment-notes  {
+		font-size: $FontSize * .25;
+		font-weight: normal;
+	}
+	#wp-comment-cookies-consent {
+		margin: 0 10px 0 0;
+	}
+
+	p { margin: 10px 0; }
+  > p {
+  	margin-bottom: $SpacerBlock;
+
+  	&:first-of-type {	margin-top: 0; }
+
+  	&:last-of-type {	margin-bottom: 0; }
+	}
+	label,
+	input[type="email"],
+	input[type="text"],
+	input[type="url"],
+	textarea {
+		display: block;
+		font-size: #{0.75 * $FontSize};
+		margin-bottom: calc(.5 * $SpacerBlock);
+		width: calc(100% - calc(2 * $Spacer));
+		font-weight: $FormWeight-label;
+	}
+	input,
+	textarea { padding: 5px; }
+	textarea { width: 90%; }
+	label { margin: 0 0 2px 0; }
+	&.comment-form-cookies-consent {display: flex;}
+	.depth-2 {
+		.comment-respond { margin: 0 0 20px 0; }
+	}
+	.comment-form-author,
+	.comment-form-email {
+		@include media(Tablet) {
+			width: calc(50% - #{$Spacer / 2});
+			float: left;
+		}
+	}
+
+	.comment-form-email {
+		@include media(Tablet) {
+			margin-left: $Spacer;
+		}
+	}
+
+	@include media(mobile) {
+
+		&.comment-form-author { margin-right: calc(1.5 * $SpacerVertical); }
+    &.comment-notes,
+		&.logged-in-as { display: block; }
+	}
+}
+
+
+
+.form-allowed-tags { display: none; }
+.form-submit {
+  #submit {
+    margin-top: 0 !important;
+  }
+  code { }
+}
+
+.comments {
+	box-sizing: border-box;
+	padding: 10px;
+	margin: 40px 0 0 0; }
+
+.comment-text ul,
+.comment-text ol { width: auto; overflow: hidden; }
+
+.avatar {
+	float: left;
+	width: 72px;
+	height: 72px;
+	margin: 0 20px 20px 0;
+	box-shadow: 0 3px 5px rgba($ShadowColor,0.3);
+}
+
+.discussion-avatar-list {
+	@include clearfix;
+
+	margin: 0;
+	padding: 0;
+
+	li {
+		position: relative;
+		list-style: none;
+		margin: 0 -8px 0 0;
+		padding: 0;
+		float: left;
+	}
+
+	.comment-user-avatar {
+
+		img {
+			height: calc(1.5 * $Spacer);
+			width: calc(1.5 * $Spacer);
+		}
+	}
+}
+
+.discussion-meta {
+
+	.discussion-meta-info {
+		margin: 0;
+
+		.svg-icon {
+			vertical-align: middle;
+			fill: currentColor;
+			transform: scale( 0.6 ) scaleX(-1) translateY(-0.1em);
+			margin-left: -#{.25 * $Spacer}; // Align icon with avatars above.
+		}
+	}
+}
+
+.comment-subscription-form {
+	padding: 6px 0px;
+}

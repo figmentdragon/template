@@ -1,0 +1,38 @@
+/**
+ * 6.0 Styling In-Post Tables
+ * ---------------------------------------------*---------------------------- */
+.entry-content Table {
+  font-size: 14px;
+  line-height: 1.2857142857;
+
+  width: calc(100% - calc(2 * $Spacer));
+  margin: 0 -0.083rem 2.083rem 0;
+
+  text-align: left;
+
+  border: $BorderWidth solid #000000;
+  border-left-width: 0;
+  th {
+    font-weight: 700;
+    padding: 8px;
+    text-transform: uppercase;
+  }
+  td { padding: 8px; }
+}
+.entry-content tr th,
+.entry-content thead th {
+  font-weight: bold;
+
+  padding: 0.5rem 	1.25rem;
+
+  border-left: 1px solid #000000;
+}
+.entry-content tr td { /* If you want to apply alternate styles to even/odd Table rows */
+  padding: 0.5rem 1.25rem;
+
+  border-width: 1px 0 0 1px;
+  border-style: solid;
+  border-color: $BorderColor;
+}
+.entry-content tr.odd td { /* If you want to apply alternate styles to even/odd Table rows */
+}

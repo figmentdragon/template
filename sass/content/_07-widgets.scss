@@ -1,0 +1,14 @@
+$WidgetHeight: .9;
+$WidgetHeight-list: 1.9;
+$WidgetHeight-title: 1.4;
+$WidgetWeight-title: 700;
+$WidgetSpacer-menu: calc(0.66 * $Spacer);
+
+.widget {
+	margin: 0 0 1.5em;
+
+	// Make sure select elements fit in widgets.
+	select {
+		max-width: calc(100% - calc(2 * $Spacer));
+	}
+}

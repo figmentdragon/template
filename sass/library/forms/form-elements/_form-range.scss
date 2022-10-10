@@ -1,0 +1,133 @@
+// Range
+//
+// Style range inputs the same across browsers. Vendor-specific rules for pseudo elements cannot be mixed. As such, there are no shared styles for focus or active states on themeed selectors.
+
+$form--RangeTrack-width: calc(100% - calc(2 * $Spacer));
+$form--RangeTrack-height: 0.5rem;
+$form--RangeTrack-cursor: pointer;
+$form--RangeTrack: $FormText;
+$form--RangeTrack-bg: $FormBackground;
+$form--RangeTrack-border-radius: 1rem;
+$form--RangeTrack-box-shadow: $BoxShadow;
+$form--range-thumb-width: 1rem;
+$form--range-thumb-height: $form--range-thumb-width;
+$form--range-thumb-bg: $FormBackground-focus;
+$form--range-thumb-border: $BorderWidth;
+$form--range-thumb-border-radius: $BorderRadius;
+$form--range-thumb-box-shadow: 0 0.1rem 0.25rem rgba($light--FormShadow, 0.1);
+$form--range-thumb-BoxShadow-focus: 0 0 0 1px $Background, $FormShadow-focus;
+$form--range-thumb-BoxShadow-focus-width: $BorderWidth-focus; // For focus box shadow issue in Edge
+$form--range-thumb-active-bg: $form--range-thumb-bg;
+$form--range-thumb-disabled-bg: Disabled($FormBackground-focus);
+$form--range-thumb-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+.form-range {
+
+  padding: 0; // Need to reset padding
+
+  background-color: transparent;
+  appearance: none;
+  &::-moz-focus-outer {
+    border: 0;
+  }
+}
+
+@supports (appearance: none) {
+  [type='range'] {
+    appearance: none;
+    width: calc(100% - calc(2 * $Spacer));
+    height: add($form--range-thumb-height, calc($form--range-thumb-BoxShadow-focus-width * 2));
+  }
+
+  [type='range']::-webkit-slider-thumb {
+    appearance: none;
+
+    width: $form--range-thumb-width;
+    height: $form--range-thumb-height;
+    margin-top: calc($form--RangeTrack-height - $form--range-thumb-height) * 0.5; // Webkit specific
+
+    border: $form--range-thumb-border;
+    @include gradientThemeColor($gradient:radial, $deg:180degs, $startcolor:$primary, $endcolor:$accent);
+    @include border-radius($form--range-thumb-border-radius);
+    @include Transition($form--range-thumb-transition);
+    @include box-shadow($form--range-thumb-box-shadow);
+
+    &:active {
+      @include gradientThemeColor($gradient:radial, $deg:180degs, $startcolor:$primary, $endcolor:$accent);
+    }
+  }
+
+  [type='range']::-moz-range-thumb {
+    border: $form--range-thumb-border;
+    appearance: none;
+
+    width: $form--range-thumb-width;
+    height: $form--range-thumb-height;
+    @include gradientThemeColor($gradient:radial, $deg:180degs, $startcolor:$primary, $endcolor:$accent);
+    @include border-radius($form--range-thumb-border-radius);
+    @include Transition($form--range-thumb-transition);
+
+    &:active {
+      @include gradientThemeColor($gradient:radial, $deg:180degs, $startcolor:$primary, $endcolor:$accent);
+    }
+  }
+
+  [type='range']::-webkit-slider-runnable-track {
+    color: transparent;
+    border-color: transparent;
+
+    width: calc(100% - calc(2 * $Spacer));
+    height: $form--RangeTrack-height;
+    cursor: $form--RangeTrack-cursor;
+    background-color: $form--RangeTrack-bg;
+    @include border-radius($form--RangeTrack-border-radius);
+    @include box-shadow($form--RangeTrack-box-shadow);
+  }
+
+  [type='range']::-moz-range-track {
+    color: transparent;
+    border-color: transparent;
+
+    width: calc(100% - calc(2 * $Spacer));
+    height: $form--RangeTrack-height;
+    cursor: $form--RangeTrack-cursor;
+    background-color: $form--RangeTrack-bg;
+    @include border-radius($form--RangeTrack-border-radius);
+    @include box-shadow($form--RangeTrack-box-shadow);
+  }
+
+  [type='range']:focus {
+    outline: 0;
+    box-shadow: none;
+
+    &::-webkit-slider-thumb {
+      box-shadow: $form--range-thumb-BoxShadow-focus;
+    }
+
+    &::-moz-slider-thumb {
+      box-shadow: 0 0 0 0.1rem $ShadowColor-light, 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  [type='range']::-moz-focus-outer {
+    border: 0;
+  }
+
+  [type='range']:focus::-moz-range-thumb {
+    box-shadow: $form--range-thumb-BoxShadow-focus;
+  }
+
+  // disabled
+
+  [type='range']:disabled {
+    pointer-events: none;
+
+    &::-webkit-slider-thumb {
+      background-color: $form--range-thumb-disabled-bg;
+    }
+
+    &::-moz-slider-thumb {
+      background-color: $form--range-thumb-disabled-bg;
+    }
+  }
+}

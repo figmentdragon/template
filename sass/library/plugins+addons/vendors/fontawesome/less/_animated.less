@@ -1,0 +1,152 @@
+// animating icons
+// --------------------------
+
+.@{fa-css-prefix}-beat {
+  Animation-name: ~'@{fa-css-prefix}-beat';
+  Animation-delay: ~'var(--@{fa-css-prefix}-Animation-delay, 0s)';
+  Animation-direction: ~'var(--@{fa-css-prefix}-Animation-direction, normal)';
+  Animation-duration: ~'var(--@{fa-css-prefix}-Animation-duration, 1s)';
+  Animation-iteration-count: ~'var(--@{fa-css-prefix}-Animation-iteration-count, infinite)';
+  animationTiming-function: ~'var(--@{fa-css-prefix}--AnimationTiming, ease-in-out)';
+}
+
+.@{fa-css-prefix}-bounce {
+  Animation-name: ~'@{fa-css-prefix}-beat';
+  Animation-delay: ~'var(--@{fa-css-prefix}-Animation-delay, 0s)';
+  Animation-direction: ~'var(--@{fa-css-prefix}-Animation-direction, normal)';
+  Animation-duration: ~'var(--@{fa-css-prefix}-Animation-duration, 1s)';
+  Animation-iteration-count: ~'var(--@{fa-css-prefix}-Animation-iteration-count, infinite)';
+  animationTiming-function: ~'var(--@{fa-css-prefix}--AnimationTiming, cubic-bezier(0.280, 0.840, 0.420, 1))';
+}
+
+.@{fa-css-prefix}-fade {
+  Animation-name: ~'@{fa-css-prefix}-fade';
+  Animation-delay: ~'var(--@{fa-css-prefix}-Animation-delay, 0s)';
+  Animation-direction: ~'var(--@{fa-css-prefix}-Animation-direction, normal)';
+  Animation-duration: ~'var(--@{fa-css-prefix}-Animation-duration, 1s)';
+  Animation-iteration-count: ~'var(--@{fa-css-prefix}-Animation-iteration-count, infinite)';
+  animationTiming-function: ~'var(--@{fa-css-prefix}--AnimationTiming, cubic-bezier(.4,0,.6,1))';
+}
+
+.@{fa-css-prefix}-beat-fade {
+  Animation-name: ~'@{fa-css-prefix}-beat-fade';
+  Animation-delay: ~'var(--@{fa-css-prefix}-Animation-delay, 0s)';
+  Animation-direction: ~'var(--@{fa-css-prefix}-Animation-direction, normal)';
+  Animation-duration: ~'var(--@{fa-css-prefix}-Animation-duration, 1s)';
+  Animation-iteration-count: ~'var(--@{fa-css-prefix}-Animation-iteration-count, infinite)';
+  animationTiming-function: ~'var(--@{fa-css-prefix}--AnimationTiming, cubic-bezier(.4,0,.6,1))';
+}
+
+.@{fa-css-prefix}-flip {
+  Animation-name: ~'@{fa-css-prefix}-flip';
+  Animation-delay: ~'var(--@{fa-css-prefix}-Animation-delay, 0s)';
+  Animation-direction: ~'var(--@{fa-css-prefix}-Animation-direction, normal)';
+  Animation-duration: ~'var(--@{fa-css-prefix}-Animation-duration, 1s)';
+  Animation-iteration-count: ~'var(--@{fa-css-prefix}-Animation-iteration-count, infinite)';
+  animationTiming-function: ~'var(--@{fa-css-prefix}--AnimationTiming, ease-in-out)';
+}
+
+.@{fa-css-prefix}-shake {
+  Animation-name: ~'@{fa-css-prefix}-shake';
+  Animation-delay: ~'var(--@{fa-css-prefix}-Animation-delay, 0s)';
+  Animation-direction: ~'var(--@{fa-css-prefix}-Animation-direction, normal)';
+  Animation-duration: ~'var(--@{fa-css-prefix}-Animation-duration, 1s)';
+  Animation-iteration-count: ~'var(--@{fa-css-prefix}-Animation-iteration-count, infinite)';
+  animationTiming-function: ~'var(--@{fa-css-prefix}--AnimationTiming, ease-in-out)';
+}
+
+.@{fa-css-prefix}-spin {
+  Animation-name: ~'@{fa-css-prefix}-spin';
+  Animation-delay: ~'var(--@{fa-css-prefix}-Animation-delay, 0s)';
+  Animation-direction: ~'var(--@{fa-css-prefix}-Animation-direction, normal)';
+  Animation-duration: ~'var(--@{fa-css-prefix}-Animation-duration, 2s)';
+  Animation-iteration-count: ~'var(--@{fa-css-prefix}-Animation-iteration-count, infinite)';
+  animationTiming-function: ~'var(--@{fa-css-prefix}--AnimationTiming, linear)';
+}
+
+.@{fa-css-prefix}-spin-reverse {
+  --@{fa-css-prefix}-Animation-direction: reverse;
+}
+
+.@{fa-css-prefix}-pulse,
+.@{fa-css-prefix}-spin-pulse {
+  Animation-name: ~'@{fa-css-prefix}-spin';
+  Animation-direction:  ~'var(--@{fa-css-prefix}-Animation-direction, normal)';
+  Animation-duration: ~'var(--@{fa-css-prefix}-Animation-duration, 1s)';
+  Animation-iteration-count: ~'var(--@{fa-css-prefix}-Animation-iteration-count, infinite)';
+  animationTiming-function:  ~'var(--@{fa-css-prefix}--AnimationTiming, steps(8));';
+}
+
+// if agent or operating system prefers reduced motion, disable Animations
+// see: https://www.smashingmagazine.com/2020/09/design-reduced-motion-sensitivities/
+// see: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  .@{fa-css-prefix}-beat,
+  .@{fa-css-prefix}-bounce,
+  .@{fa-css-prefix}-fade,
+  .@{fa-css-prefix}-beat-fade,
+  .@{fa-css-prefix}-flip,
+  .@{fa-css-prefix}-pulse,
+  .@{fa-css-prefix}-shake,
+  .@{fa-css-prefix}-spin,
+  .@{fa-css-prefix}-spin-pulse {
+    Animation-delay: -1ms;
+    Animation-duration: 1ms;
+    Animation-iteration-count: 1;
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+
+@keyframes ~'@{fa-css-prefix}-beat' {
+  0%, 90% { transform: scale(1); }
+  45% { transform: ~'scale(var(--@{fa-css-prefix}-beat-scale, 1.25))'; }
+}
+
+@keyframes  ~'@{fa-css-prefix}-bounce' {
+  0%   { transform: scale(1,1) translateY(0); }
+  10%  { transform: ~'scale(var(--#{$fa-css-prefix}-bounce-start-scale-x, 1.1),var(--#{$fa-css-prefix}-bounce-start-scale-y, 0.9))' translateY(0); }
+  30%  { transform: ~'scale(var(--#{$fa-css-prefix}-bounce-jump-scale-x, 0.9),var(--#{$fa-css-prefix}-bounce-jump-scale-y, 1.1))' ~'translateY(var(--#{$fa-css-prefix}-bounce-height, -0.5em))'; }
+  50%  { transform: ~'scale(var(--#{$fa-css-prefix}-bounce-land-scale-x, 1.05),var(--#{$fa-css-prefix}-bounce-land-scale-y, 0.95))' translateY(0); }
+  57%  { transform: ~'scale(1,1) translateY(var(--#{$fa-css-prefix}-bounce-rebound, -0.125em))'; }
+  64%  { transform: scale(1,1) translateY(0); }
+  100% { transform: scale(1,1) translateY(0); }
+}
+
+@keyframes ~'@{fa-css-prefix}-fade' {
+  50% { opacity: ~'var(--@{fa-css-prefix}-fade-opacity, 0.4)'; }
+}
+
+@keyframes ~'@{fa-css-prefix}-beat-fade' {
+  0%, 100% {
+    opacity: ~'var(--@{fa-css-prefix}-beat-fade-opacity, 0.4)';
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: ~'scale(var(--@{fa-css-prefix}-beat-fade-scale, 1.125))';
+  }
+}
+
+@keyframes ~'@{fa-css-prefix}-flip' {
+  50% {
+    transform: ~'rotate3d(var(--@{fa-css-prefix}-flip-x, 0), var(--@{fa-css-prefix}-flip-y, 1), var(--@{fa-css-prefix}-flip-z, 0), var(--@{fa-css-prefix}-flip-angle, -180deg))';
+  }
+}
+
+@keyframes ~'@{fa-css-prefix}-shake' {
+  0% { transform: rotate(-15deg); }
+  4% { transform: rotate(15deg); }
+  8%, 24% { transform: rotate(-18deg); }
+  12%, 28% { transform: rotate(18deg); }
+  16% { transform: rotate(-22deg); }
+  20% { transform: rotate(22deg); }
+  32% { transform: rotate(-12deg); }
+  36% { transform: rotate(12deg); }
+  40%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes ~'@{fa-css-prefix}-spin' {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

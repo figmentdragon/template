@@ -1,0 +1,12 @@
+// Font Families
+$FontFamilies: () !default;
+$FontFamilies: map-merge(
+	(
+		"sans-serif": $FontSansSerif,
+		"serif": $FontSerif,
+		"monospace": $FontMonospace,
+		"cursive": $FontCursive,
+		"fantasy": $FontFantasy
+	),
+	$FontFamilies
+);

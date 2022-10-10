@@ -1,0 +1,9 @@
+.site-content span + .entry-date:before,
+.full-size-link:before,
+.parent-post-link:before,
+span + .byline:before,
+span + .comments-link:before,
+span + .edit-link:before,
+.widget_themename_ephemera .entry-title:after {
+  content: "\0020\007c\0020";
+}

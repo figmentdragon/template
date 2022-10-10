@@ -1,0 +1,104 @@
+// Header - The <header> HTML element represents introductory content, typically a group of introductory or navigational aids. It may contain some heading elements but also a logo, a search form, an author name, and other elements.
+
+header {
+  display: block;
+  //justify-self: center;
+  //align-self: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  @include box-sizing(border-box);
+  > img {
+    vertical-align: top;
+    justify-self: center;
+  }
+  > h1 {
+    max-width: 1200px;
+    margin: $BaseUnit auto;
+    font-size: $TitleSize;
+    font-family: $primary--BrandFont;
+  }
+  > h4 {
+    font-family: $secondary--BrandFont;
+  }
+  p {
+    max-width: 40rem;
+    margin: $BaseUnit auto;
+    font-size: $FontSize;
+  }
+  /* Format navigation */
+  > nav {
+    font-size: $MenuSize;
+    line-height: $HeadingHeight;
+    padding: $BaseUnit 0 0 0;
+
+    ul,
+    ol { /* Use flexbox to allow items to wrap, as needed */
+      align-content: space-around;
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li { /* List items are inline elements, make them behave more like blocks */
+        display: inline-block;
+      }
+      img {
+        margin: $BaseUnit 0;
+      }
+    }
+    a {
+      &:visited {
+        margin: 0 0.5rem $BaseUnit 0.5rem;
+        border: 1px solid $LinkBorder-visited;
+        border-radius: 5px;
+        color: $LinkText-visited;
+        display: inline-block;
+        padding: 0.1rem $BaseUnit;
+        text-decoration: none;
+      }
+      &:hover {
+        filter: $HoverBrightness;
+        cursor: pointer;
+      }
+      b,
+      em,
+      i,
+      strong {
+        margin-left: calc(2 * $Spacer);
+        margin-right: calc( 2 * $Spacer);
+      }
+    }
+  }
+
+  &.position-fixed {
+  	position: fixed;
+  	top: 0;
+  }
+  &.position-absolute {
+  	position: absolute;
+  	top: 0;
+  }
+  .heading-section {
+    font-family: $HeadingFont;
+    font-size: $HeadingSize;
+    font-weight: $HeadingWeight;
+    font-style: $HeadingStyle;
+    letter-spacing: $LetterSpacing;
+    text-transform: $HeadingTransform;
+  }
+}
+
+/* Reduce nav side on mobile */
+@media only screen and (max-width: 720px) {
+  header > nav a {
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    line-height: 1;
+  }
+}

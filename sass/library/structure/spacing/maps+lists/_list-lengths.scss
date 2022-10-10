@@ -1,0 +1,10 @@
+// Units to multiply size changes
+$lengths: () !default;
+$lengths: (
+  $xs: 0.15,
+  $sm: 0.75,
+  $md: 0.875,
+  $lg: 1.15,
+  $xl: 1.25,
+  $x2l: 1.75
+);

@@ -1,0 +1,32 @@
+//
+// Optional textual caps
+//
+.Card--header {
+  padding: $CardCap---OffsetVertical $CardCap---OffsetHorizontal;
+  margin-bottom: 0; // Removes the default margin-bottom of <hN>
+  color: $CardCap---TextColor;
+  background-color: $CardCap-BackgroundColor;
+  border-bottom: $Card---BorderWidth $BorderStyle $Card--Border;
+
+  &:first-child {
+    border-radius: $Card--inner--BorderRadius $Card--inner--BorderRadius 0 0;
+  }
+}
+
+.Card--footer {
+  padding: $CardCap---OffsetVertical $CardCap---OffsetHorizontal;
+  color: $CardCap---TextColor;
+  background-color: $CardCap-BackgroundColor;
+  border-top: $Card---BorderWidth $BorderStyle $Card--Border;
+
+  &:last-child {
+    border-radius: 0 0 $Card--inner--BorderRadius $Card--inner--BorderRadius;
+  }
+}
+
+//
+// Optional textual caps
+//
+.Card--header {
+  z-index: 2;
+}

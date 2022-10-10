@@ -1,0 +1,17 @@
+// Dismissible alerts
+//
+// Expand the right padding and account for the close button's positioning.
+
+.alert--dismissible {
+  padding-right: $Alert--dismissible--Offset-r;
+
+  // Adjust close link position
+  .button-close {
+    position: absolute;
+    z-index: 660 + 1;
+    top: 0;
+    right: 0;
+
+    padding: calc($Alert---OffsetVertical * 1.25) $Alert---OffsetHorizontal;
+  }
+}

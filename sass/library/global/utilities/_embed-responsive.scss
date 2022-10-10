@@ -1,0 +1,75 @@
+// Credit: Nicolas Gallagher and SUIT CSS.
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  width: calc(100% - calc(2 * $Spacer));
+  padding: 0;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    content: '';
+    padding-top: 56.25%; // 16:9 by default
+  }
+  .embed-responsive--4-3::before {
+    padding-top: 75%;
+  }
+
+  .embed-responsive-item,
+  &.embed-responsive-item,
+  & iframe,
+  & embed,
+  & object,
+  & video,
+  iframe,
+  embed,
+  object,
+  video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - calc(2 * $Spacer));
+    height: 100%;
+    border: 0;
+  }
+}
+
+.embed-responsive-21by9 {
+  padding-bottom: percentage(9 / 21);
+}
+
+.embed-responsive-16by9 {
+  padding-bottom: percentage(9 / 16);
+}
+
+.embed-responsive-4by3 {
+  padding-bottom: percentage(3 / 4);
+}
+
+.embed-responsive-1by1 {
+  padding-bottom: percentage(1 / 1);
+}
+
+// Modifier class for 16:9 aspect ratio
+.embed-responsive-16by9 {
+  padding-bottom: 56.25%;
+}
+
+// Modifier class for 4:3 aspect ratio
+.embed-responsive-4by3 {
+  padding-bottom: 75%;
+}
+
+
+@each $embed-responsive-aspect-ratio in $embed-responsive-aspect-ratios {
+  $embed-responsive-aspect-ratio-x: nth($embed-responsive-aspect-ratio, 1);
+  $embed-responsive-aspect-ratio-y: nth($embed-responsive-aspect-ratio, 2);
+
+  .embed-responsive-#{$embed-responsive-aspect-ratio-x}by#{$embed-responsive-aspect-ratio-y} {
+    &::before {
+      padding-top: percentage(divide($embed-responsive-aspect-ratio-y, $embed-responsive-aspect-ratio-x));
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@mixin make-grid() {
+  display: grid;
+  grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
+  grid-template-rows: repeat($grid-row-columns, minmax(0, 1fr));
+  grid-gap: #{$grid-gutter-width};
+  grid-auto-rows: divide(100, $grid-row-columns);
+  grid-auto-columns: divide(100, $grid-columns);
+  grid-auto-flow: row dense;
+  align-content: stretch;
+  justify-content: flex-start;
+  align-items: stretch;
+  @include resp-min($breakpoint-sm) {
+    grid-gap: divide($grid-gutter-width, 2);
+  }
+  @include resp-max($breakpoint-x2l);
+}

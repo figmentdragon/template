@@ -1,0 +1,75 @@
+/* CONTAINERS -------------------------------- \\
+ * Mixins
+ * Media Queries
+ * Styles
+ * Container Widths
+ --------------------------------------------- */
+
+// #MIXINS //
+@mixin make-container($gutter: $grid-gutter-width) {
+  width: calc(100% - calc(2 * $Spacer));
+  display: block;
+  margin: 0 auto;
+  padding: $OffsetHorizontal $OffsetVertical;
+  @include clearfix;
+}
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-width ($container-max-width: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      max-width: $container-max-widths;
+    }
+  }
+}
+
+// #MaxWidth //
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: () !default;
+$container-max-widths: map-merge(
+  $grid-breakpoints (
+  xs: subtract(map-get($grid-breakpoints, xs), $grid-gutter-width),
+  sm: subtract(map-get($grid-breakpoints, sm), $grid-gutter-width),
+  md: subtract(map-get($grid-breakpoints, md), $grid-gutter-width),
+  lg: subtract(map-get($grid-breakpoints, lg), $grid-gutter-width),
+  xl: subtract(map-get($grid-breakpoints, xl), $grid-gutter-width),
+  x2l: subtract(map-get($grid-breakpoints, x2l), $grid-gutter-width)
+  ), $container-max-widths
+) !default;
+
+
+//# CONTAINER WIDTH
+//
+// Set the container width, and override it for fixed menubars in media queries.
+.container,
+.container-fluid {
+  @if $enable-container-classes { @include make-container($gutter: $grid-gutter-width); }
+  @include make-container-max-width ($container-max-width: $container-max-widths, $breakpoints: $grid-breakpoints);
+
+  // Responsive containers that are 100% wide until a breakpoint
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    .container-#{$breakpoint} {
+      @extend .container-fluid;
+    }
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      %responsive-container-#{$breakpoint} {
+        max-width: $container-max-width;
+      }
+      // Extend each breakpoint which is smaller or equal to the current breakpoint
+      $extend-breakpoint: true;
+
+      @each $name, $width in $grid-breakpoints {
+        @if ($extend-breakpoint) {
+          .container#{breakpoint-infix($name, $grid-breakpoints)} {
+            @extend %responsive-container-#{$breakpoint};
+          }
+
+          // Once the current breakpoint is reached, stop extending
+          @if ($breakpoint == $name) {
+            $extend-breakpoint: false;
+          }
+        }
+      }
+    }
+  }
+}

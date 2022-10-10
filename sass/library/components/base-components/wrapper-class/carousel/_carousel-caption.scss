@@ -1,0 +1,27 @@
+// Optional captions
+//
+// Hidden by default for smaller viewports.
+$carousel-caption-width: 70%;
+$carousel-caption--TextColor: white;
+$carousel-caption--OffsetVertical: 1.25rem;
+$carousel-caption--Spacer: 1.25rem;
+
+.carousel-caption {
+  position: absolute;
+  z-index: 10;
+  right: (100% - $carousel-caption-width) * 0.5;
+  bottom: $carousel-caption--Spacer;
+  left: (100% - $carousel-caption-width) * 0.5;
+
+  padding-top: $carousel-caption--OffsetVertical;
+  padding-bottom: $carousel-caption--OffsetVertical;
+
+  text-align: center;
+
+  color: $carousel-caption--TextColor;
+  text-shadow: $carousel-text-shadow;
+
+  .button {
+    text-shadow: none; // No shadow for button elements in carousel-caption
+  }
+}

@@ -1,0 +1,54 @@
+/* - #Infinite scroll-------------------------------------------------------- *\
+ * -> Jetpack
+\* -------------------------------------------------------------------------- */
+
+.home #infinite-footer {
+  display: none;
+}
+#infinite-handle,
+.infinite-loader {
+  display: block;
+  text-align: center;
+  padding: 12px 24px;
+  -webkit-column-span: all;
+  -moz-column-span: all;
+  column-span: all;
+}
+#infinite-handle span {
+  background: none;
+  font-size: 100%;
+  padding: 0px;
+}
+
+#infinite-footer .container {
+  width: auto;
+}
+.blog.infinite-scroll .pagination,
+.infinite-scroll.neverending .pagination,
+.infinite-scroll.neverending .footer {
+  display: none;
+}
+.infinity-end.neverending .footer {
+  display: block;
+}
+.infinite-loader .spinner {
+  margin: 0 auto 0;
+}
+.infinite-scroll.neverending .footer {
+  display: none;
+}
+.infinity-end.neverending .footer {
+  display: block;
+}
+.grofile-thumbnail,
+.widgets-grid-layout {
+  float: left;
+
+  width: 28% !important;
+  margin: .75rem 1.5rem 6px 0;
+
+  border-radius: 50%;
+}
+.widget-grofile .grofile-meta h4 {
+  margin: 0;
+}

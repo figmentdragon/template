@@ -1,0 +1,102 @@
+/**
+ * 7.0 Caption
+ * ---------------------------------------------*---------------------------- */
+.wp-caption { /* The container for image captions */
+  font-size: inherit;
+  margin-bottom: 1.5em;
+	max-width: calc(100% - calc(2 * $Spacer));
+
+  color: $Text;
+  border: thin $BorderStyle $BorderColor;
+  background-color: TranslucentBackground($Background);
+
+  text-align: center;
+  a {  }
+  img { /* The image inside the caption container */
+
+    &[class*="wp-image-"] {
+      display: block;
+
+      margin: 0 auto;
+
+      @include center-block;
+    }
+  }
+  &-text { text-align: center;   }
+  &-text,
+  figcaption {
+    line-height: 1.5;
+    font-style: italic;
+
+    opacity: 0.7;
+    border-left: $BorderWidth solid $BorderColor;
+  }
+  p.wp-caption-text { }
+  .wp-caption-text {
+    font-size: $FontSize;
+    line-height: $LineHeight;
+  }
+  .wp-caption-text,
+  &-dd,
+  p.wp-caption-text,
+  .gallery-caption {
+    font-size: 75%;
+    line-height: $LineHeight;
+    color: DarkColor(rgba($primary, 0.4));
+    border-left: $BorderWidth-focus solid rgba($BorderColor, 0.12);
+  }
+  &.aligncenter,
+  &.alignleft,
+  &.alignright,
+  &.alignnone { /* Add spacing around captions and post text */}
+  &.alignleft { }
+  &.alignright { }
+  &.aligncenter {
+    @include media(Tablet) {
+      position: relative;
+      left: calc( $Tablet--ContentWidth / 2 );
+      transform: translateX( -50% );
+    }
+    @include media(desktop) {
+    	left: calc( $desktop--ContentWidth / 2 );
+    }
+  }
+}
+
+.wp-caption-text {
+  color: $FigureCaptionText;
+  @include font-family( $FontAccent );
+ 	line-height: $EntryHeight;
+	text-align: center;
+  > p {
+    line-height: $LineHeight;
+    font-style: italic;
+  }
+}
+
+p.wp-caption-text {
+  display: block;
+	font-style: italic;
+  @include font-size($FontSize);
+}
+
+.wp-caption.aligncenter,
+.wp-caption.alignleft,
+.wp-caption.alignright,
+.wp-caption.alignnone { /* Add spacing around captions and post text */ }
+
+.wp-caption-text,
+.wp-caption figcaption,
+.wp-block-image figcaption,
+[class*="wp-block"] figcaption,
+.blocks-gallery-caption {
+  font-size: 85%;
+  line-height: 1.5;
+  font-style: italic;
+  opacity: 0.7;
+  border-left: $BorderWidth-focus solid $BorderColor;
+
+  @include box-sizing(border-box);
+}
+
+.wp-block-image figcaption { margin-top: 12px; }

@@ -1,0 +1,160 @@
+/* # COMPONENTS ---------------- * ------------------------------------ */
+
+@use "./../fonts+typography/config.Typography";
+
+// - #TOGGLE -------------------------------- //
+  $enable-toggle: true;
+  $enable-caret: true !default;
+  $enable-rounded: true !default;
+  $enable-shadows: true !default;
+  $enable-gradients: true !default;
+  $enable-button-pointers: true !default;
+  $enable-transitions: true !default;
+
+// - #DEFINITIONS ------------------------------ //
+
+  $overflows    : auto, hidden, scroll, visible;
+  $positions    : absolute, fixed, relative, static, sticky;
+  $user-selects : all, auto, contain, none, text;
+  $displayProp  : block, grid, flex, inline, inline-block, inline-flex, none, Table, Table-row, Table-cell;
+  $displays     : mobile, Tablet, touch, laptop, desktop, largescreen, widescreen, ultrawide;
+
+// - #VARIABLES ------------------------------ //
+// -- =Borders
+  $BorderWidth               : medium !default;
+    $BorderWidth-disabled    : thin !default;
+    $BorderWidth-focus       : thick !default;
+  $BorderColor               : Border($borderColor);
+    $BorderColor-translucent : translucentBorder($BorderColor);
+    $BorderColor-disabled    : Disabled($BorderColor);
+  $BorderRadius              : calc(2 * $BaseUnit) !default; // 7.25px
+  $BorderStyle               : solid !default;
+      $separator--Height     : 0.0625 !default;
+      $separator-Border: $BorderColor-translucent;
+
+// -- =Links
+  $LinkText            : Link($linkColor) !default;
+    $LinkText-visited  : Visited($LinkText) !default;
+    $LinkText-hover    : HoverShift($LinkText) !default;
+    $LinkText-disabled : Disabled($LinkText) !default;
+  $LinkBorder : Border($linkColor) !default;
+    $LinkBorder-visited : Visited($LinkBorder) !default;
+  $LinkDecoration            : none !default;
+    $LinkDecoration-disabled : line-through !default;
+    $LinkDecoration-visited  : underline !default;
+    $LinkDecoration-focus    : underline bold !default;
+    $LinkDecoration-hover    : underline bold !default;
+
+// -- =MENU
+  $MenuFont--mobile   : $FontAccent;
+
+  $MenuStyle                : normal;
+  $MenuStyle--mobile-submenu: normal;
+  $MenuWeight               : medium;
+  $MenuWeight--button       : bold;
+  $MenuLink                 : Link($navColor);
+  $MenuLink-hover           : HoverShift($MenuLink);
+  $MenuText                 : Text($navColor);
+  $MenuOffset               : calc(0.66 * $Offset);
+  $menu-Border        : $BorderColor;
+
+// -- =Links
+  $CodeText: Text($codeColor);
+    $muted--CodeText            : Muted($CodeText);
+  $CodeBorder                   : Border($codeColor);
+    $translucent--CodeBorder  : translucentBorder($CodeBorder);
+  $CodeBackground: findInvertColor(Background($codeColor));
+  $CodeBackground               : CodeBackground(#{$codeColor});
+    $translucent--CodeBackground: translucentBackground($CodeBackground);
+  $CodeShadow                   : Shadow($codeColor);
+    $soft--CodeShadow           : ColorSoft($CodeShadow);
+    $strong--CodeShadow         : ColorDark($CodeShadow);
+    $light--CodeShadow          : ColorLight($CodeShadow);
+
+
+// -- =Links
+  $FormBorder: Border($info);
+  $FormLink: Link($info);
+  $FormText : Text($info);
+    $FormText-focus: ColorDark($FormText);
+  $FormBackground: Background($info);
+
+  $ButtonBackground: Background($buttonColor);
+  $ButtonText: Text($buttonColor);
+  $ButtonBorder-color: Border($buttonColor);
+    $ButtonBorder-color-hover: HoverShift($ButtonBorder-color);
+    $ButtonBorder-focus: HoverShift($ButtonBorder-color);
+
+//  @import "library/./../source/progress";
+//  @import "library/./../source/tooltip";
+
+// - #FUNCTIONS ------------------------------ //
+// - #VARIABLES ------------------------------ //
+@import "./../patterns/shadows";
+@import "./../patterns/gradients";
+@import "./../patterns/transition";
+
+
+// - #MIXINS ------------------------------ //
+//  @import "library/./../source/library/library/mixins/components/mixin-caret";
+  @import "./../global/mixins/mixin-on-event";
+
+
+/* - #HELPERS -------------------------------- */
+//  @import "library/./../source/library/helpers/components/transition";
+
+// - #MAPS ------------------------------ //
+
+/* - #COMPONENTS ----------------------------- */
+  @import "./../patterns/borders";
+  @import "type";
+  @import "images";
+  @import "tables";
+  @import "buttons";
+  @import "transitions";
+  @import "dropdown";
+  @import "button-group";
+  @import "nav";
+  @import "navbar";
+  @import "card";
+  @import "accordion";
+  @import "breadcrumb";
+  @import "pagination";
+  @import "badge";
+  @import "alert";
+  @import "progress";
+  @import "list-group";
+  @import "close";
+  @import "toasts";
+  @import "modal";
+  @import "tooltip";
+  @import "popover";
+  @import "carousel";
+  @import "spinners";
+  @import "offcanvas";
+  @import "placeholders";
+
+
+// -- MENU
+  @import "menus/variables.navigation";
+  @import "menus/template.main-navigation";
+  @import "menus/social/social-menu";
+
+/* - #UTILITIES ------------------------------ */
+//  @import "library/./../source/variations";
+//  @import "library/./../source/library/utilities/components/utils";
+
+// - #VENDORS ------------------------------ //
+
+.figure {
+  // Ensures the caption's text aligns with the image.
+  display: inline-block;
+  &-img {
+    margin-bottom: $Spacer * .5;
+    line-height: 1;
+  }
+  &-caption {
+    @include font-size($FigureCaptionSize);
+    color: $FigureCaptionText;
+  }
+}

@@ -1,0 +1,270 @@
+// Form validation
+//
+// Provide feedback to users when form field values are valid or invalid. Works primarily for client-side validation via scoped `:invalid` and `:valid` pseudo-classes but also includes `.is-invalid` and `.is-valid` classes for server-side validation.
+
+$FormFeedback-margin-top: $form--text-margin-top;
+$FormFeedbackSize: $FontSize * $lg;
+$FormStyle-feedback: cursive;
+$FormFeedback-valid-color: $success;
+$FormFeedback-invalid-color: $danger;
+
+$FormFeedback-icon-valid-color: $FormFeedback-valid-color;
+$FormFeedback-icon-valid: url('data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'><path fill=\'#{$FormFeedback-icon-valid-color}\' d=\'M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z\'/></svg>');
+$FormFeedback-icon-invalid-color: $FormFeedback-invalid-color;
+$FormFeedback-icon-invalid: url('data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 12 12\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'#{$FormFeedback-icon-invalid-color}\'><circle cx=\'6\' cy=\'6\' r=\'4.5\'/><path stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/><circle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'#{$FormFeedback-icon-invalid-color}\' stroke=\'none\'/></svg>');
+
+// Form validation
+//
+// Provide feedback to users when form field values are valid or invalid. Works
+// primarily for client-side validation via scoped `:invalid` and `:valid`
+// pseudo-classes but also includes `.is-invalid` and `.is-valid` classes for
+// server-side validation.
+// scss-docs-start form-validation-states
+$form--validation-states: (
+  'valid': (
+    'color': $FormFeedback-valid-color,
+    'icon': $FormFeedback-icon-valid
+    ),
+  'invalid': (
+    'color': $FormFeedback-invalid-color,
+    'icon': $FormFeedback-icon-invalid
+    )
+);
+
+
+@each $state, $data in $form--validation-states {
+  @include form-validation-state($state, $data...);
+}
+
+@mixin form-validation-state-selector($state) {
+  @if ($state == 'valid' or $state == 'invalid') {
+    @if (&, '&', '' == $state) {
+      .was-validated {
+        @if(&, '&', '' == '.is-$state') {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @if(&, '&', '' == '.is-$state') {
+      @content;
+    }
+  }
+}
+
+@mixin form-validation-state(
+  $state,
+  $color,
+  $TooltipText: color-contrast($color),
+  $Tooltip--bg-color: rgba($color, $FormFeedback-TooltipOpacity),
+  $focus-box-shadow: 0 0 0 rgba($BorderWidth-focus $color, $InputBtnText-opacity)
+) {
+  .feedback-#{$state} {
+    position: absolute;
+    display: none;
+    width: auto;
+    margin-top: $FormFeedback-margin-top;
+    font-size: 0.875rem;
+    font-style: $FormStyle-feedback;
+    color: $color;
+    margin-top: -0.75rem;
+  }
+
+  .Tooltip--#{$state} {
+    position: absolute;
+    top: 100%;
+    z-index: 5;
+    display: none;
+    max-width: calc(100% - calc(2 * $Spacer)); // Contain to parent when possible
+    padding: $FormFeedback-Tooltip-OffsetVertical $FormFeedback-Tooltip-OffsetHorizontal;
+    margin-top: 0.1rem;
+    font-size: 0.875rem;
+    line-height: $FormFeedback-Tooltip-Height;
+    background-color: $Tooltip--bg-color;
+    border-radius: 0.25rem !important;
+    color: $FormFeedback-valid-TooltipText;
+  }
+
+  @include form-validation-state-selector($state) {
+    ~ .feedback-#{$state},
+    ~ .Tooltip--#{$state} {
+      display: block;
+    }
+  }
+
+  .form-control {
+    @include form-validation-state-selector($state) {
+      margin-bottom: 1rem;
+      background-image: none;
+      border-color: $color;
+
+      &:focus {
+        border-color: $color;
+        box-shadow: $focusbox-shadow;
+      }
+    }
+  }
+
+  .form-outline {
+    .form-control {
+      @include form-validation-state-selector($state) {
+        ~ .form-label {
+          color: $color;
+        }
+
+        ~ .form-notch .form-notch-leading,
+        ~ .form-notch .form-notch-middle,
+        ~ .form-notch .form-notch-trailing {
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+  .form-select {
+    @include form-validation-state-selector($state) {
+      border-color: $color;
+
+      &:focus {
+        border-color: $color;
+        box-shadow: $focusbox-shadow;
+      }
+
+      ~ .feedback-#{$state} {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .input-group {
+    .form-control {
+      @include form-validation-state-selector($state) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  input[type='file'].form-control {
+    @include form-validation-state-selector($state) {
+      .feedback-#{$state} {
+        margin-top: 0;
+      }
+
+      &:focus {
+        box-shadow: inset 0 0 0 1px $color;
+        border-color: $color;
+
+        ~ .form-file-label {
+          box-shadow: none;
+        }
+      }
+
+      &:focus-within {
+        ~ .form-file-label {
+          .form-file-text,
+          .form-file-button {
+            border-color: $color;
+          }
+        }
+      }
+    }
+  }
+
+  .form-check-input {
+    @include form-validation-state-selector($state) {
+      border-color: $color;
+
+      &:checked {
+        background-color: $color;
+      }
+
+      &:checked {
+        &:focus {
+          &:before {
+            box-shadow: 0px 0px 0px 13px $color;
+          }
+        }
+      }
+
+      &:focus {
+        box-shadow: none;
+
+        &:before {
+          box-shadow: 0px 0px 0px 13px $color;
+        }
+      }
+
+      ~ .form-check-label {
+        color: $color;
+        margin-bottom: 1rem;
+      }
+
+      &[type='checkbox'] {
+        &:checked {
+          &:focus {
+            background-color: $color;
+            border-color: $color;
+          }
+        }
+      }
+
+      &[type='radio'] {
+        &:checked {
+          border-color: $color;
+          background-color: white;
+
+          &:focus {
+            &:before {
+              box-shadow: 0px 0px 0px 13px $color;
+            }
+          }
+
+          &:after {
+            border-color: $color;
+            background-color: $color;
+          }
+        }
+      }
+    }
+  }
+  .form-check-inline .form-check-input {
+    ~ .feedback-#{$state} {
+      margin-left: 0.5em;
+    }
+  }
+
+  .FormSwitch-- {
+    .form-check-input {
+      @include form-validation-state-selector($state) {
+        &:focus {
+          &:before {
+            box-shadow: $form--switch-form-check-input-focus-beforebox-shadow;
+          }
+        }
+        &:checked {
+          &[type='checkbox'] {
+            &:after {
+              background-color: $color;
+              box-shadow: $form--switch-form-check-input-checked-checkbox-afterbox-shadow;
+            }
+          }
+          &:focus {
+            &:before {
+              box-shadow: 3px -1px 0px 13px $color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.was-validated .input-group .invalid-feedback,
+.was-validated .input-group .valid-feedback {
+  margin-top: 2.5rem;
+}
+
+.input-group .invalid-feedback,
+.input-group .valid-feedback {
+  margin-top: 2.5rem;
+}

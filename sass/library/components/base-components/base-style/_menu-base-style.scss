@@ -1,0 +1,32 @@
+// * Default Menu Styles
+.main-menu {}
+.main-menu ul {}
+.main-menu ul ul { /*unordered list within an unordered list */ }
+.main-menu li {}
+.main-menu li a { /* each navigation item anchor */ }
+.main-menu li ul { /* unordered list if there is drop down items */ }
+.main-menu li li { /* each drop down navigation item */ }
+.main-menu li li a { /* each drap down navigation item anchor */ }
+
+.current {
+  &_page_item { /* Class for Current Page */ }
+  &-cat { /* Class for Current Category */ }
+  &-menu-item { /* Class for any other current Menu Item */ }
+}
+
+.menu-item {
+  &-type-taxonomy { /* Class for a Category */ }
+  &-type-post_type { /* Class for Pages */ }
+  &-type-custom { /* Class for any custom item that you added */ }
+  &-home { /* Class for the Home Link */ }
+}
+
+li.current {
+  &-cat {
+    &-parent { }
+  }
+}
+
+.linkcat {}
+.blogroll {}
+.more-link {}

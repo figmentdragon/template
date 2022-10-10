@@ -1,0 +1,42 @@
+$parents : 'header', 'footer', 'nav', 'main', 'aside', 'article';
+
+@mixin bg-gradient-variant($parent, $color) {
+  @each $parent from key-map($parents) {
+    @each $value in $theme-colors {
+      .#{$parent} {
+        background-image: linear-gradient(
+        87deg,
+        $color 0,
+        saturate($color, 10%) 100%
+        ) !important;
+      }
+    }
+  }
+}
+
+@mixin bg-gradient-variant($color, $value) {
+  @each $key, $color in $colors {
+    .bg-#{$key}-gradient-variant {
+      background-image: linear-gradient(
+        180deg,
+        DarkColor($color),
+        LightColor($color),
+        SoftColor($color),
+        transparent
+      ) !important;
+    }
+  }
+}
+
+@mixin gradient-background($color, $deg) {
+  background-image: linear-gradient($deg, $color, white);
+  background-size: cover;
+}
+
+@mixin gradient-background($color: null) {
+  background-color: $color;
+
+  @if $enable-gradients {
+    background-image: $gradient;
+  }
+}

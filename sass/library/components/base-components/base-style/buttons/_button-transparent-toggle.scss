@@ -1,0 +1,9 @@
+button.button-transparent-toggle {
+  background: transparent;
+  border: none;
+  float: right;
+  &:focus {
+    background: transparent;
+    border: none;
+  }
+}

@@ -1,0 +1,71 @@
+/* - #GRADIENTS ------------------------------ *\
+ *
+\* ------------------------------------------- */
+
+// -- =Theme Colors
+// -> Variables
+// ->-> The gradient which is added to components if `$enable-gradients` is `true`
+// ->-> This gradient is also added to elements with `.bg-gradient`
+$gradient: linear-gradient(
+  180deg,
+  rgba(white, 0.15),
+  rgba(white, 0)
+) !default;
+
+$gradient-triad-theme: linear-gradient(
+  -120deg,
+  rgba($primary, 0.95),
+  rgba($secondary, 0.65),
+  rgba($accent, 0.45),
+  transparent,
+  95%
+);
+
+// -> Mixins
+@mixin gradient-theme($deg, $theme-color) {
+  background-image: linear-gradient($deg, $theme-color, white, transparent);
+  background-size: cover;
+}
+
+@mixin gradientThemeColor($gradient, $deg, $startcolor, $endcolor) {
+  background-image: $gradient(
+  $deg,
+  $startcolor,
+  $endcolor,
+  transparent
+  );
+}
+
+@mixin gradientRadial($deg, $color1, $color2, $color3) {
+  background-image: radial-gradient(
+    circle at top left,
+    transparent 5%,
+    rgba($accent, 0.2) 15%,
+    rgba($accent, 0.3) 25%,
+    rgba($secondary, 0.4) 35%,
+    rgba($secondary, 0.5) 45%,
+    rgba($secondary, 0.6) 55%,
+    rgba($primary, 0.7) 65%,
+    rgba($primary, 0.8) 75%,
+    rgba($primary, 0.9) 85%,
+    rgba($primary, 1) 95%,
+    rgba($black, 0.85) 100%
+  );
+}
+
+@mixin gradientElement($gradient, $deg, $color) {
+  background-image:$gradient (
+  $deg
+  transparent,
+    rgba(white, 0.1) 5%,
+    rgba(white, 0.2) 15%,
+    rgba(white, 0.3) 25%,
+    rgba($color, 0.4) 35%,
+    rgba($color, 0.5) 45%,
+    rgba($color, 0.6) 55%,
+    rgba($color, 0.7) 65%,
+    rgba($color, 0.8) 75%,
+    rgba($color, 0.9) 85%,
+    rgba(black, 0.85) 100%
+  );
+}

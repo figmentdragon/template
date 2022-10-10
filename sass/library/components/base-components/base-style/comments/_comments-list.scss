@@ -1,0 +1,134 @@
+/**
+ * Comment Lists
+ */
+.commentlist {
+  margin: 0 0 3rem 0;
+  padding-left: 0;
+
+  list-style: none;
+  ol {
+    margin: 0 0 0 20px;
+    padding: 0;
+  }
+  li {
+    list-style: none;
+    &.comment {
+      /* Individual top-level comments */
+    }
+    &.pingback {
+      /* Individual top-level pingbacks */
+    }
+    &:last-of-type {
+      /* Do you want to style the last comment differently, such as remove borders? */
+    }
+    :before {
+      display: none;
+    }
+
+    p {
+    }
+
+    ul {
+      &.children {
+        li {
+          &.alt {
+          }
+
+          &.byuser {
+          }
+
+          &.comment {
+          }
+
+          &.bypostauthor {
+          }
+
+          &.comment-author-admin {
+          }
+        }
+      }
+    }
+  }
+  > li {
+    margin-top: $BaseUnit;
+    margin-bottom: $BaseUnit;
+  }
+  article {
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+
+    border-top: 1px $BorderStyle rgba($BorderColor, 0.1);
+  }
+  .vcard {
+    cite.fn {
+      a.url {
+      }
+    }
+    span.says {
+    }
+    img {
+      &.photo {
+      }
+      &.avatar {
+      }
+    }
+  }
+  .comment-meta {
+    a {
+    }
+  }
+  .commentmetadata {
+    a {
+      color: #767676;
+      &:hover {
+        color: #41A62A;
+      }
+    }
+  }
+  .comment-respond {
+    margin-bottom: 50px;
+  }
+  .comment-author {
+  }
+  .comment-author-admin {
+  }
+  .children {
+    /* Contains individual nested comments */
+    padding-left: 0;
+
+    list-style: none;
+    > li {
+      margin-top: 1.05rem;
+      margin-bottom: 1.05rem;
+    }
+  }
+  > li:first-child > article {
+    border-top: 0;
+  }
+  .trackback a {
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+
+    color: #767676;
+    border-top: 1px $BorderStyle rgba($BorderColor, 0.1);
+    &:hover {
+      color: #41A62A;
+    }
+  }
+  > .trackback:first-child {
+    border-top: 0;
+  }
+  .depth-2,
+  .depth-3 {
+  }
+}
+
+.children {
+  margin: 0;
+  padding: 0;
+  article.comment,
+  li.pingback {
+    /* Nexted comments and pingbacks */
+    padding-top: $BaseUnit;
+  }
+}

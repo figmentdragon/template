@@ -1,0 +1,22 @@
+$media-breakpoints: () !default;
+$media-breakpoints: (
+  'xxs': 0,
+  'xs': $mobile,
+  'sm': $touch,
+  'md': $Tablet,
+  'lg': $laptop,
+  'xl': $desktop,
+  'x2l': $widescreen
+);
+
+
+@mixin resp-min($res) {
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
+@mixin resp-max($res) {
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}

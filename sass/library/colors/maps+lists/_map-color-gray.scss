@@ -1,0 +1,32 @@
+// Map
+$grays: () !default;
+$grays: map-merge(
+  (
+    'gray-100': tint($gray, $ColorInterval * 4),
+    'gray': $gray,
+    'gray-300': $gray-300,
+    'gray-400': $gray-400,
+    'gray-500': $gray,
+    'gray-600': Text($gray),
+    'gray-700': $gray-700,
+    'gray-800': $gray-800,
+    'gray': $gray
+  ),
+  $grays
+);
+
+$gradient-grays: () !default;
+$gradient-grays: map-merge(
+  (
+    'soft-gray': $darkgray-100,
+    'lightest-gray': $darkgray,
+    'lighter-gray': $darkgray-300,
+    'light-gray': $darkgray-400,
+    'gray-500': $darkgray-500,
+    'dark-gray': $darkgray-600,
+    'darke-gray': $darkgray-700,
+    'darkest-gray': $darkgray-800,
+    'heavy-gray': $darkgray
+  ),
+  $gradient-grays
+);

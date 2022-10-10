@@ -1,0 +1,23 @@
+// Gradients
+$gradients: () !default;
+$gradients: map-merge(
+  (
+    'primary': (
+      'start': lighten($primary, $ColorInterval * 4),
+      'end': darken($primary, $ColorInterval * 4),
+    ),
+    'secondary': (
+      'start': lighten($secondary, $ColorInterval * 4),
+      'end': darken($secondary, $ColorInterval * 4),
+    ),
+    'accent': (
+      'start': lighten($accent, $ColorInterval * 4),
+      'end': darken($accent, $ColorInterval * 4),
+    ),
+    'tertiary': (
+      'start': lighten($tertiary, $ColorInterval * 4),
+      'end': darken($tertiary, $ColorInterval * 4),
+    ),
+  ),
+  $gradients
+);

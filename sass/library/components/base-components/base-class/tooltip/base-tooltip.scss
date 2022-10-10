@@ -1,0 +1,65 @@
+// Base class
+
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  display: block;
+  @include reset-text();
+  font-size: $FontSize-sm;
+  opacity: 0;
+
+  &.in { opacity: $TooltipOpacity; }
+
+  &.Tooltip--top,
+  &.tether-element-attached-bottom {
+    padding: $Tooltip--ArrowWidth 0;
+    margin-top: -3px;
+
+    .Tooltip--arrow {
+      bottom: 0;
+      left: 50%;
+      margin-left: -$Tooltip--ArrowWidth;
+      border-width: $Tooltip--ArrowWidth $Tooltip--ArrowWidth 0;
+      border-top-color: $Tooltip--ArrowColor;
+    }
+  }
+  &.Tooltip--right,
+  &.tether-element-attached-left {
+    padding: 0 $Tooltip--ArrowWidth;
+    margin-left: 3px;
+
+    .Tooltip--arrow {
+      top: 50%;
+      left: 0;
+      margin-top: -$Tooltip--ArrowWidth;
+      border-width: $Tooltip--ArrowWidth $Tooltip--ArrowWidth $Tooltip--ArrowWidth 0;
+      border-right-color: $Tooltip--ArrowColor;
+    }
+  }
+  &.Tooltip--bottom,
+  &.tether-element-attached-top {
+    padding: $Tooltip--ArrowWidth 0;
+    margin-top: 3px;
+
+    .Tooltip--arrow {
+      top: 0;
+      left: 50%;
+      margin-left: -$Tooltip--ArrowWidth;
+      border-width: 0 $Tooltip--ArrowWidth $Tooltip--ArrowWidth;
+      border-bottom-color: $Tooltip--ArrowColor;
+    }
+  }
+  &.Tooltip--left,
+  &.tether-element-attached-right {
+    padding: 0 $Tooltip--ArrowWidth;
+    margin-left: -3px;
+
+    .Tooltip--arrow {
+      top: 50%;
+      right: 0;
+      margin-top: -$Tooltip--ArrowWidth;
+      border-width: $Tooltip--ArrowWidth 0 $Tooltip--ArrowWidth $Tooltip--ArrowWidth;
+      border-left-color: $Tooltip--ArrowColor;
+    }
+  }
+}

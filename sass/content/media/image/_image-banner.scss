@@ -1,0 +1,40 @@
+.banner-img {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: calc(100% - calc(2 * $Spacer));
+  min-width: 48%;
+  height: 100vh;
+
+  background-position: center center;
+  -webkit-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+}
+.banner-img .post-intro {
+  line-height: 1.8;
+}
+.banner-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  line-height: 0;
+
+  height: 0;
+  margin-left: -9999px;
+}
+.banner-img .img-title {
+  z-index: 7;
+
+  padding: 0 6%;
+}
+.avatar {
+  margin: 10px 20px 10px 0;
+  padding: 6px;
+
+  background: tint($gray, $ColorInterval * 4);
+}

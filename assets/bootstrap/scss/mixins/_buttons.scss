@@ -1,0 +1,70 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+// scss-docs-start btn-variant-mixin
+@mixin button-variant(
+  $background,
+  $border,
+  $color: color-contrast($background),
+  $hover-background: if($color == $color-contrast-light, shade-color($background, $Button-Background-hovershade-amount), tint-color($background, $Button-Background-hovertint-amount)),
+  $hover-border: if($color == $color-contrast-light, shade-color($border, $Button-Border-hovershade-amount), tint-color($border, $Button-Border-hovertint-amount)),
+  $hover-color: color-contrast($hover-background),
+  $active-background: if($color == $color-contrast-light, shade-color($background, $Button-Background-activeshade-amount), tint-color($background, $Button-Background-activetint-amount)),
+  $active-border: if($color == $color-contrast-light, shade-color($border, $Button-Border-activeshade-amount), tint-color($border, $Button-Border-activetint-amount)),
+  $active-color: color-contrast($active-background),
+  $disabled-background: $background,
+  $disabled-border: $border,
+  $disabled-color: color-contrast($disabled-background)
+) {
+  --#{$prefix}btn-color: #{$color};
+  --#{$prefix}btn-Background: #{$background};
+  --#{$prefix}btn-BorderColor: #{$border};
+  --#{$prefix}btn-Color-hover: #{$hover-color};
+  --#{$prefix}btn-Background-hover: #{$hover-background};
+  --#{$prefix}btn-BorderColor-hover: #{$hover-border};
+  --#{$prefix}btn-focus-shadow-rgb: #{to-rgb(mix($color, $border, 15%))};
+  --#{$prefix}btn-Color-active: #{$active-color};
+  --#{$prefix}btn-Background-active: #{$active-background};
+  --#{$prefix}btn-BorderColor-active: #{$active-border};
+  --#{$prefix}btn-active-shadow: #{$Button-active-BoxShadow};
+  --#{$prefix}btn-Color-disabled: #{$disabled-color};
+  --#{$prefix}btn-Background-disabled: #{$disabled-background};
+  --#{$prefix}btn-BorderColor-disabled: #{$disabled-border};
+}
+// scss-docs-end btn-variant-mixin
+
+// scss-docs-start btn-outline-variant-mixin
+@mixin button-outline-variant(
+  $color,
+  $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  --#{$prefix}btn-color: #{$color};
+  --#{$prefix}btn-BorderColor: #{$color};
+  --#{$prefix}btn-Color-hover: #{$color-hover};
+  --#{$prefix}btn-Background-hover: #{$active-background};
+  --#{$prefix}btn-BorderColor-hover: #{$active-border};
+  --#{$prefix}btn-focus-shadow-rgb: #{to-rgb($color)};
+  --#{$prefix}btn-Color-active: #{$active-color};
+  --#{$prefix}btn-Background-active: #{$active-background};
+  --#{$prefix}btn-BorderColor-active: #{$active-border};
+  --#{$prefix}btn-active-shadow: #{$Button-active-BoxShadow};
+  --#{$prefix}btn-Color-disabled: #{$color};
+  --#{$prefix}btn-Background-disabled: transparent;
+  --#{$prefix}btn-BorderColor-disabled: #{$color};
+  --#{$prefix}gradient: none;
+}
+// scss-docs-end btn-outline-variant-mixin
+
+// scss-docs-start btn-size-mixin
+@mixin button-size($padding-y, $padding-x, $FontSize, $BorderRadius) {
+  --#{$prefix}btn-OffsetVertical: #{$padding-y};
+  --#{$prefix}btn-OffsetHorizontal: #{$padding-x};
+  @include rfs($FontSize, --#{$prefix}btn-FontSize);
+  --#{$prefix}btn-BorderRadius: #{$BorderRadius};
+}
+// scss-docs-end btn-size-mixin

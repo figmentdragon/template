@@ -1,0 +1,75 @@
+// PRE - The <pre> HTML element represents preformatted text which is to be presented exactly as written in the HTML file. The text is typically rendered using a non-proportional, or 'monospaced, font. Whitespace inside this element is displayed as written.
+
+$preText: $CodeText;
+$CodeBorder: $CodeBorder;
+$CodeBackground: $CodeBackground;
+$pre-scrollable--MaxHeight: 340px;
+
+pre {
+  font-family: $CodeFont;
+  @include font-size($CodeSize);
+  line-height: 1.5;
+  font-style: italic;
+
+  display: block;
+
+  overflow: auto;
+
+  max-width: calc(100% - calc(2 * $Spacer));
+  margin: $BaseUnit 0 $BaseUnit 0;
+  padding-top: $OffsetHorizontal;
+  padding-right: $OffsetVertical;
+  padding-bottom: $OffsetHorizontal;
+  padding-left: $OffsetVertical;
+	scrollbar-width: thin;
+	scrollbar-color: translucentBackground($accent);
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+
+  color: $preText;
+  background-color: $CodeBackground;
+  border: $BorderWidth solid $CodeBorder;
+  border-radius: 5px;
+  // Account for some code outputs that place code tags in pre tags
+  code { /* Fix embedded code within pre */
+    font-size: inherit;
+
+    padding: 0;
+
+    color: $CodeText;
+    border-radius: 0;
+    background-color: $CodeBackground;
+    backdrop-filter: opacity(.45);
+  }
+
+  > code {
+    font-size: 1rem * 0.75;
+
+    display: block;
+
+    padding: 1rem 1.5rem;
+
+    white-space: pre;
+    word-break: normal;
+
+    color: $preText;
+  }
+  code,
+  samp {
+    display: block;
+    max-width: 33%;
+    padding: 0.5rem 2rem;
+    white-space: pre-wrap;
+  }
+  &::after {
+    content: "";
+  }
+}
+
+// Enable scrollable blocks of code
+.pre-scrollable {
+  overflow-y: scroll;
+
+  max-height: $pre-scrollable--MaxHeight;
+}

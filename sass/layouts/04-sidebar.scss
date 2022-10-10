@@ -1,0 +1,22 @@
+.widget-area {
+	.widget_search {
+		background: none;
+		overflow: hidden;
+	}
+	#searchsubmit {
+		float: right;
+		background: #242424;
+		color: #666666;
+		width: 20%;
+		font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		font-size: 0.9em;
+		line-height: 30px;
+		height: 30px;
+		margin: 0px 0px 0px 2.8%;
+		padding: 0px 12px;
+		cursor: pointer;
+		&:hover {
+			color: $LinkText-hover;
+		}
+	}
+}

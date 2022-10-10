@@ -1,0 +1,77 @@
+
+@if $enable-production {
+  body {
+    outline: $BorderWidth-focus solid Border(black);
+  }
+
+  #page {
+    background-color: translucentBackground(maroon);
+  }
+  .site {
+    outline: $BorderWidth solid red;
+    > #content{
+      outline: 2px solid Border(purple);
+    }
+    .site-content {
+      background-color: Background(darkmagenta);
+    }
+  }
+
+
+  /* -> Header */
+//  header {
+//    background: translucentBackground(red);
+//  }
+//  #masthead {
+//    outline: 2px solid maroon;
+//  }
+
+//  .site-header {
+//    outline: 4px solid Border(crimson);
+//    > #nameplate {
+//      background-color: translucentBackground(darkred);
+//    }
+//    > #navigation {
+//      background-color: translucentBackground(darkblue);
+//    }
+//  }
+  footer {
+    background: translucentBackground(orange);
+  }
+  #colophon {
+    outline: 2px solid darkorange;
+  }
+  main {
+    background-color: translucentBackground(yellow);
+  }
+  #main {
+    outline: $BorderWidth solid Border(gold);
+  }
+  #primary {
+    outline: $BorderWidth solid goldenrod;
+  }
+  aside {
+    background-color: translucentBackground(green);
+  }
+  #secondary {
+    outline: $BorderWidth solid forestgreen;
+  }
+  #tertiary {
+    outline: $BorderWidth solid darkgreen;
+  }
+  nav {
+    background-color: translucentBackground(blue);
+  }
+  article {
+    background-color: translucentBackground(teal);
+  }
+  .entry-header {
+    background-color: Background(darkturquoise);
+  }
+  .entry-content {
+    outline: 3px solid Border(teal);
+  }
+  .entry-footer {
+    outline: 3px solid Borde(mediumaquamarine);
+  }
+}

@@ -1,0 +1,6 @@
+// Dropdown text
+.dropdown-item-text {
+	display: block;
+	padding: $Dropdown--item--OffsetVertical $Dropdown--item--OffsetHorizontal;
+	color: $Dropdown--link--TextColor;
+}

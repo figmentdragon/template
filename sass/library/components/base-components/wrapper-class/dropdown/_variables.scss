@@ -1,0 +1,47 @@
+// Dropdowns
+//
+// Dropdown menu container and contents.
+
+$Dropdown--MinWidth: 10rem;
+$Dropdown--OffsetHorizontal: 0;
+$Dropdown--OffsetVertical: 0.5rem;
+$Dropdown--Spacer: calc( $Spacer / 3.33 );
+$dropdownSize: $FontSize;
+$Dropdown--TextColor: $Text;
+$dropdownBackgroundColor: white;
+$Dropdown-Border: $translucent-Border;
+$Dropdown--BorderRadius: $BorderRadius;
+$Dropdown--BorderWidth: $BorderWidth;
+$Dropdown--inner--BorderRadius: subtract(
+  $Dropdown--BorderRadius,
+  $Dropdown--BorderWidth
+);
+$Dropdown--dividerBackgroundColor: $Dropdown-Border;
+$Dropdown--divider-margin-y: calc(0.5 * $SpacerVertical);
+$Dropdown--BoxShadow: $box-shadow;
+$Dropdown--link--TextColor: ColorDark($primary);
+$Dropdown--link--hover--LinkColor: shade--TextColor($Dropdown--link--TextColor, 10%);
+$Dropdown--link--hoverBackgroundColor: ColorLight($primary);
+$Dropdown--LinkColor: Background($primary);
+$Dropdown--link--activeBackgroundColor: Background($primary);
+$Dropdown--link-disabled--TextColor: gray;
+$Dropdown--item--OffsetVertical: calc(0.25 * $OffsetVertical);
+$Dropdown--item--OffsetHorizontal: $OffsetHorizontal;
+$Dropdown--header--TextColor: gray;
+$Dropdown--header--OffsetHorizontal: $Dropdown--item--OffsetHorizontal;
+$Dropdown--header--OffsetVertical: $Dropdown--OffsetVertical;
+$Dropdown--header-padding: $Dropdown--header--OffsetVertical $Dropdown--header--OffsetHorizontal; // Deprecated in v5.2.0
+
+$Dropdown--dark--TextColor: $gray;
+$Dropdown--darkBackgroundColor: Border(gray);
+$Dropdown--dark-Border: $Dropdown-Border;
+$Dropdown--dark-dividerBackgroundColor: $Dropdown--dividerBackgroundColor;
+$Dropdown--dark--BoxShadow: null;
+$Dropdown--dark-link--TextColor: $Dropdown--dark--TextColor;
+$Dropdown--dark-link--hover--LinkColor: white;
+$Dropdown--dark-link--hoverBackgroundColor: rgba($white, 0.15);
+$Dropdown--dark-LinkColor: $Dropdown--LinkColor;
+$Dropdown--dark-link--activeBackgroundColor: $Dropdown--link--activeBackgroundColor;
+$Dropdown--dark-link-disabled--TextColor: gray;
+$Dropdown--dark-header--TextColor: gray;
+$cursor-disabled: not-allowed;

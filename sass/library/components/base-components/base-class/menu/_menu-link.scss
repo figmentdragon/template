@@ -1,0 +1,42 @@
+$MenuLink--OffsetVertical: 0.5rem;
+$MenuLink--OffsetHorizontal: $BaseUnit;
+$MenuLinkSize: $MenuSize;
+$MenuLinkWeight: $MenuWeight;
+$MenuLinkWeight-hover: $MenuWeight-hover;
+$MenuLink                : $MenuText;
+$MenuLink-hover          : $MenuText-hover;
+$MenuLink-transition: null;
+$MenuLink-focus: $LinkText-hover;
+$MenuLink-inactive: $muteColor;
+
+
+.MenuLink {
+  font-weight: $MenuLinkWeight;
+
+  display: block;
+
+  padding: $MenuLink--OffsetVertical $MenuLink--OffsetHorizontal;
+
+  text-decoration: $LinkDecoration;
+
+  color: $MenuLink;
+
+  //@include font-size($MenuLinkSize);
+  @include Transition($MenuLink-transition);
+
+  &:hover,
+  &:focus {
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+
+    color: $MenuLink-hover;
+  }
+
+  // Disabled state lightens text
+  &.disabled {
+    cursor: default;
+
+    pointer-events: none;
+
+    color: $MenuLink-inactive;
+  }
+}

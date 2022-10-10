@@ -1,0 +1,32 @@
+.bg-img {
+	display: block;
+	width: calc(100% - calc(2 * $Spacer));
+	height: 100%;
+	align-self: stretch;
+	position: relative;
+	background-position: center center;
+
+	background-size: cover;
+	transition: transform 1s;
+	.img-title {
+		width: 88%;
+		padding: 0px 6%;
+	}
+	.title {
+		color: tint($gray, $ColorInterval * 4);
+		text-align: center;
+		margin: 0px;
+	}
+	img {
+		opacity: 0;
+	}
+}
+
+.bg-overlay {
+	position: absolute;
+	top: 0; left: 0;
+	pointer-events: none;
+	width: calc(100% - calc(2 * $Spacer));
+	height: 100%;
+	z-index: 1;
+}

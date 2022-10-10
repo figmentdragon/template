@@ -1,0 +1,198 @@
+/**
+ * 0.0.0 Social Media Icons
+ */
+
+li.social-icons {
+  display: inline-block;
+  align-self: center;
+
+  padding: 0;
+
+  list-style: none;
+
+  vertical-align: center;
+
+  @include border-radius(50%);
+
+  a {
+    font-size: $FontSize;
+    line-height: $LineHeight;
+
+    display: inline-block;
+
+    transition: opacity $TransitionLink ease-in-out;
+
+    color: $Text;
+    border-bottom: $BorderWidth $BorderStyle $BorderColor;
+
+    &:before {
+      font-family: 'Font Awesome 6 Brands';
+      font-size: 14px;
+
+      padding-top: $BaseUnit;
+
+      content: "";
+      transition: color 0.3s ease-in-out 0s;
+
+      vertical-align: middle;
+
+      color: $Text;
+    }
+
+    svg { // Prevent icons from jumping in Safari using hardware acceleration.
+      display: block;
+
+      width: calc(2 * $BaseUnit);
+      height: calc(2 * $BaseUnit);
+
+      transform: translateZ(0);
+
+      &#ui-icon-link { transform: rotate(-45deg);      }
+    }
+  }
+  &:last-child { margin-right: 0;  }
+}
+
+.social-icons {
+  margin: 6px 0;
+  padding: 0;
+  list-style: none;
+
+  text-align: center;
+  li & {
+    display: inline-block;
+
+    float: left;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+
+    a {
+      line-height: 2.25rem;
+      font-weight: 200;
+      display: block;
+
+      min-width: 2.25rem;
+      margin: 0;
+      padding: 6px;
+
+      text-align: center;
+      text-decoration: none;
+
+      color: $LinkText;
+      border-top: $BorderWidth $BorderStyle rgba($BorderColor, 0.12);
+      border-right: $BorderWidth $BorderStyle rgba($BorderColor, 0.12);
+      border-bottom: $BorderWidth-disabled $BorderStyle rgba($BorderColor, 0.12);
+      border-radius: $BorderRadius;
+      background: $LinkBackground;
+      &:hover {
+        color: $LinkText-hover;
+        background: $LinkBackground-hover;
+      }
+      &:before {
+        @include border-radius(50%);
+      }
+      &::before {
+        font-family: "FontAwesome";
+        font-size: $FontSize;
+        font-weight: normal;
+
+        content: "\f0c1";
+      }
+      span {display: none;}
+    }
+    &:first-child a {
+       border-left: $BorderWidth-disabled $BorderStyle $translucent-Border;
+      border-radius: $BorderRadius 0 0 $BorderRadius;
+    }
+    &:last-child a { border-radius: 0 $BorderRadius $BorderRadius 0; }
+  }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: calc(4 * $BaseUnit);
+    height: calc(4 * $BaseUnit);
+    padding: $BaseUnit;
+
+    color: $Text;
+    border-width: $BorderWidth-focus;
+    background-image: linear-gradient( 120deg, translucentBackground($gray), transparent);
+
+    @include border-radius(50%);
+    -webkit-text-stroke: 1px $tertiary;
+  }
+}
+
+.social-icons,
+#side-navigation .social-icons,
+#menubar .social-icons {
+  margin: 8px;
+  padding: 0;
+
+  list-style: none;
+  li {
+    display: inline-block;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    border: none;
+    background: none;
+    a {
+      line-height: 36px;
+      display: block;
+
+      min-width: 36px;
+      margin: 2px;
+      padding: 0;
+
+      text-align: center;
+      text-decoration: none;
+
+      color: $LinkText;
+      border: $BorderWidth $BorderStyle $LinkBorder;
+      border-radius: $BorderRadius;
+      background: translucentBackground($Background);
+      &:hover {
+        color: HoverShift($LinkText);
+        border: $BorderWidth $BorderStyle HoverShift($LinkBorder);
+        background: HoverShift($LinkBackground);
+      }
+      &::before {
+        font-family: "FontAwesome";
+        font-size: $FontSize;
+        font-weight: normal;
+
+        content: "\f0c1";
+      }
+      span { display: none; }
+    }
+  }
+}
+
+#full-width-social .social-icons li a:hover {
+  color: $LinkText-hover;
+  border: $BorderWidth $BorderStyle $LinkBorder-hover;
+  background: #444444;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.bg-img-light .social-icons li a,
+#side-navigation.light .social-icons li a,
+#full-width-social.light .social-icons li a,
+#menubar.bg-img-light .social-icons li a {
+  color: $LinkText;
+  border: $BorderWidth $BorderStyle $LinkBorder;
+  &:hover {
+    color: ColorDark($LinkText-hover);
+    border: $BorderWidth $BorderStyle ColorDark($LinkBorder);
+    background: ColorDark($LinkBackground);
+  }
+}

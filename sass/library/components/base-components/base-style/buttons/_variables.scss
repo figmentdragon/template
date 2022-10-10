@@ -1,0 +1,80 @@
+
+
+// Colors
+$Button-LinkColor: $linkColor;
+$Button-hover--LinkColor: HoverShift($Button-LinkColor);
+$ButtonBackgroundColor: Background($secondary);
+
+// Fonts
+$ButtonFont: $FontAccent;
+$ButtonSize: $FontSize;
+$ButtonWeight: medium;
+$Button-LineHeight: calc($LineHeight + $md);
+// Borders
+$BorderWidth: calc( 3 * $BorderWidth );
+$ButtonRadius: 0;
+// Spacing
+$Button-OffsetVertical: 15px;
+$Button-OffsetHorizontal: calc(2 * $Button-OffsetVertical);
+
+$Button-OffsetVertical: calc($OffsetVertical * 1.5);
+$Button-OffsetHorizontal: calc($OffsetHorizontal * 0.625);
+$ButtonFont: fantasy;
+$ButtonSize: calc($FontSize * $md);
+$ButtonWeight: normal;
+$Button-TextTransform: uppercase;
+$Button-LetterSpacing: 0.025em;
+$Button-LineHeight: 1.5;
+$Button-white-space: null;
+
+// Set to `nowrap` to prevent text wrapping
+/* Padding - Sm */
+$Button-OffsetVertical-sm: calc($OffsetVertical * 0.25);
+$Button-OffsetHorizontal-sm: calc($OffsetHorizontal * 0.5);
+$ButtonSize-sm: $BaseUnit * 0.75;
+$Button-LineHeight-sm: 1.2 * 0.75;
+
+/* Padding - Lg */
+$Button-OffsetVertical-lg: calc($OffsetVertical * 0.5);
+$Button-OffsetHorizontal-lg: calc($OffsetHorizontal * 1);
+$ButtonSize-lg: $FontSize * $lg;
+$Button-LineHeight--lg: 1.2 * $lg;
+$ButtonBackgroundColor: ColorLight($primary);
+$BorderWidth: 0;
+$ButtonBorder: transparent;
+$ButtonWeight: normal;
+
+/* Shadow */
+$Button-BoxShadow: 0 2px 5px 0 $ShadowPrimary 0.2, 0 2px 10px 0 ColorDark($primary) 0.1;
+$Button-active--BoxShadow: inset 0 3px 5px ColorDark($primary) 0.125;
+$Button-focus-width: $BorderWidth * $lg;
+$Button-BoxShadow-focus: inset 2px 2px 5px $ShadowPrimary 0.075,
+  inset -3px -3px 7px ColorDark($primary);
+
+/* Inactive */
+$DisabledOpacity: 0.65;
+$Button-link--TextColor: $linkColor;
+$Button-link--hover--LinkColor: shade--TextColor(black, $Button-link--TextColor, $ColorInterval);
+$Button-disabled--TextColor: $muteColor;
+$Button-block-spacing-y: 0.5rem;
+
+/* Radius */
+// Allows for customizing button radius independently from global border radius
+$ButtonRadius: $BorderRadius;
+$ButtonRadius-sm: $ButtonRadius * $sm;
+$ButtonRadius-lg: $ButtonRadius * $lg;
+$ButtonRadius-xl: $ButtonRadius * $lg;
+
+/* Transition */
+$ButtonTransition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, shadow 0.15s ease-in-out;
+
+/* Percentage Change */
+$Button-hoverBackgroundColor-shade-amount: 15%;
+$Button-hoverBackgroundColor-tint-amount: 15%;
+$Button-hover-Border-amount: 20%;
+$Button-hover-border-tint-amount: 10%;
+$Button-activeBackgroundColor-shade-amount: 20%;
+$Button-activeBackgroundColor-tint-amount: 20%;
+$Button-active-Border-amount: 25%;
+$Button-active-border-tint-amount: 10%;

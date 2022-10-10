@@ -1,0 +1,222 @@
+/**
+ * X.3.0 Entry Content
+ * ---------------------------------------------*---------------------------- */
+.site-content,
+.page-content,
+.entry-content,
+.entry-summary { /* Container for the post body/excerpt text */
+	$entry-content--text--TextFont: $FontTertiary;
+  position: relative;
+  font-family: $entry-content--text--TextFont;
+  display: inline-block;
+  width: 67.391304348%;
+  margin: $Spacer auto $Spacer auto;
+  padding: 2.25rem; {
+		right: $BaseUnit;
+	}
+
+  transition: all 0.25s ease-in-out;
+
+  text-align: right;
+  vertical-align: top;
+  white-space: normal;
+  word-wrap: break-word;
+  hyphens: auto;
+
+  @include box-sizing(border-box);
+  img {
+    width: auto;
+    height: auto;
+    &.wp-smiley {/* Remove borders and backgrounds from WP smileys */
+    	border: none;
+    	margin-bottom: 0;
+    	margin-top: 0;
+    	padding: 0;
+    }
+  }
+  a {
+			@include on-event {
+	    text-decoration: underline;
+	    &:hover,
+	    &.button {
+	      text-decoration: none;
+	    }
+	  }
+	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  p,
+  > p {
+    word-wrap: break-word;
+    &:first-child {
+      &:first-letter {
+        float: left;
+
+        margin: 0;
+        padding-top: 6px;
+        padding-right: 4px;
+      }
+    }
+    &:last-child { margin-bottom: 0;
+    }
+  }
+  hr {
+    background: linear-gradient(to left, currentColor calc(50% - $BaseUnit), transparent calc(50% - $BaseUnit), transparent calc(50% + $BaseUnit), currentColor calc(50% + $BaseUnit));
+    background-color: transparent !important;
+    border: none;
+    height: 0.1rem;
+    overflow: visible;
+    position: relative;
+    &:not(.has-background) {
+      color: $Text;
+    }
+    &::before,
+    &::after {
+      background: currentColor;
+    	content: "";
+    	display: block;
+    	height: 1.6rem;
+    	position: absolute;
+    	top: calc(50% - 0.8rem);
+    	transform: rotate(22.5deg);
+    	width: 0.1rem;
+    }
+    &::before {
+    	left: calc(50% - 0.5rem);
+    }
+    &::after {
+    	right: calc(50% - 0.5rem);
+    }
+  }
+
+  // Overwrite iframe embeds that have inline styles.
+  > iframe[style] {
+    max-width: 100% !important;
+    margin: $BaseUnit 0 !important;
+  }
+  .excerpt {
+    margin-top: 12px;
+    &-padding {
+      padding: 1.5rem;
+
+      border: $BorderWidth solid rgba($BorderColor, 0.12);
+
+      @include box-sizing(border-box);
+    }
+  }
+  .headline { margin-bottom: 0;  }
+  .edit-link {
+    font-size: 0.75rem;
+    line-height: 1.3333333333;
+    font-weight: 400;
+
+    display: block;
+
+    clear: both;
+
+    text-transform: uppercase;
+    a {
+      text-decoration: none;
+
+      color: #767676;
+      &:hover { color: #41A62A;  }
+    }
+  }
+  .more-link { white-space: nowrap; }
+  .wp-audio-shortcode { /* Classic editor audio embeds. */
+    margin: 12px 0;
+    @extend %responsive--width--AlignDefault;
+  }
+  .wp-smiley {
+     margin-top: 0;
+     margin-bottom: 0;
+     padding: 0;
+
+     border: none;
+     a {
+       &:hover,
+       &.button { }
+     }
+   }
+}
+
+.entry-footer {
+	display: block;
+  clear: both;
+	float: none;
+  color: $FooterTextColor;
+  > span { display: inline-block; }
+  a { @include on-event {
+			color: currentColor;
+	    &:hover,
+	    &:focus { color: hover-shade($LinkText); }
+	    &:active { color: currentColor; }
+		}
+	}
+}
+
+.site-content {
+	.entry-header {
+		background-color: translucentBackground($white);
+		padding: 0 10px .75rem;
+	}
+	.has-post-thumbnail .entry-header {
+		padding-top: 1.5rem;
+	}
+  .entry-meta {
+    margin-bottom: 8px;
+  }
+  footer.entry-meta {
+    margin: 1.5rem auto 0;
+    padding: 0 10px;
+  }
+}
+
+
+// Extra specificity to override rules in _vertical-margins.scss
+.site-main > article > .entry-footer {
+  margin-top: $BaseUnit;
+	padding-top: $Offset;
+	padding-bottom: calc(3 * $OffsetHorizontal);
+  border-bottom: $separator--Height solid $separator-Border; }
+
+body:not(.single) .site-main > article:last-of-type .entry-footer { border-bottom: $separator--Height solid $translucent-Border; }
+
+.single .site-main > article > .entry-footer {
+ 	margin-top: calc(3.4 * $SpacerHorizontal);
+ 	margin-bottom: calc(3.4 * $SpacerHorizontal);
+ 	padding-bottom: 0;
+ 	padding-top: calc(0.8 * $OffsetHorizontal);
+  border-top: $separator--Height $BorderStyle $separator-Border;
+  border-bottom: $BorderWidth solid $translucent-Border;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: calc(2 * $OffsetHorizontal);
+
+  .post-taxonomies,
+  .full-size-link {
+		justify-content: flex-end;
+		text-align: right;
+  }
+
+  .full-size-link:first-child:last-child { grid-column: span 2 }
+
+  .posted-on,
+  .byline,
+  .cat-links,
+  .tags-links { display: block; }
+  @include media(mobile-only) {
+		display: block;
+		.full-size-link { display: block; }
+		.post-taxonomies,
+		.full-size-link { text-align: left; }
+  }
+}

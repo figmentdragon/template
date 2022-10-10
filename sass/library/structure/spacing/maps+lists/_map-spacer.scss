@@ -1,0 +1,18 @@
+/* Spacer Variable */
+
+/* Spacer Map */
+$Spacers: () !default;
+$Spacers: (
+    0: 0,
+    1: $Spacer,
+    2: $SpacerBlock,
+    3: $SpacerVertical,
+    4: $SpacerHorizontal,
+    5: $SpacerVerticalNested,
+    6: $SpacerHorizontalNested //added
+);
+
+
+//@if $enable-negative-margins {
+  //$negative--Spacers: (negativify-map($Spacers),null ) !default;
+//}

@@ -1,0 +1,100 @@
+// Q - The <q> HTML element indicates that the enclosed text is a short inline quotation. Most modern browsers implement this by surrounding the text in quotation marks. This element is intended for short quotations that don't require paragraph breaks; for long quotations use the blockquote element.
+
+$QuoteFont: "Life Savers";
+$QuoteText: Text($quoteColor);
+  $mute--QuoteText: Muted($QuoteText);
+$QuoteBackground: Background($quoteColor);
+  $translucent--QuoteBackground: translucentBackground($QuoteBackground);
+
+$QuoteStyle: italic;
+
+// LineHeight
+$QuoteHeight: $LineHeight;
+$quote--lg--LineHeight: $HeadingHeight;
+
+// FontWeight
+$QuoteWeight: $bold-FontWeight;
+$QuoteWeight-strong: $bolder--FontWeight;
+
+// Margin + Padding
+$quote-OffsetVertical: calc($BaseUnit / 2.25);
+$quote-OffsetHorizontal: $BaseUnit;
+$quote--SpacerVertical: calc($BaseUnit / 2 );
+
+// FontSize
+$QuoteSize: $FontSize-lg;
+$quote--lgSize: $HeadingSize;
+
+// FontStyle
+$QuoteStyle: italic;
+$quote--lg--FontStyle: italic 40deg;
+$QuoteStyle-cite: oblique;
+
+// Border
+$QuoteBorderWidth: calc(2 * $BorderWidth);
+$QuoteBorder: Border($quoteColor);
+  $translucent--QuoteBorder: translucentBorder($QuoteBorder);
+
+// Blockquote Footer //
+$quote--footer--TextColor: Text($footerColor);
+$quote--footerSize: calc($FontSize-lg * 1rem);
+$quote--footer--LineHeight: calc($LineHeight - 0.2);
+
+// Blockquote Copy
+$quote--p-OffsetVertical: $quote-OffsetVertical;
+$quote--p-OffsetHorizontal: calc($BaseUnit * 2);
+$QuoteSize-p: 1.1rem;
+
+$QuoteShadow: Shadow($quoteColor);
+  $soft--QuoteShadow: ColorSoft($QuoteShadow);
+  $strong--QuoteShadow: ColorDark($QuoteShadow);
+  $light--QuoteShadow: ColorLight($QuoteShadow);
+
+q {
+  position: relative;
+
+  font-family: $QuoteFont;
+  font-size: $QuoteSize;
+  font-weight: $QuoteWeight;
+  font-style: $QuoteStyle;
+
+  overflow: hidden;
+
+  quotes: none;
+
+  hyphens: none;
+
+  color: $QuoteText;
+
+  &:before,
+  &:after {
+    content: "";
+  }
+  small {
+    font-size: calc($sm * $FontSize);;
+    line-height: 1.7em;
+
+    display: block;
+  }
+  footer,
+  cite {
+    color: $quote--footer--TextColor;
+    //@include font-size( calc($sm * $FontSize) * 0.25rem );
+    &:before {
+      content: "\2014 \0020";
+
+      color: #333333;
+    }
+    &:after {
+      content: " ";
+
+      color: #333333;
+    }
+    a {
+      color: $info;
+    }
+    a:visited {
+      color: orange;
+    }
+  }
+}

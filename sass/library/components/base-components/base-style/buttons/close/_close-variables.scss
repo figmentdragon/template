@@ -1,0 +1,23 @@
+// Close
+
+// Transparent background and border properties included for button version.
+// iOS requires the button element instead of an anchor tag.
+// If you want the anchor version, it requires `href="#"`.
+// See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+
+$Button-close--Width: $BaseUnit;
+$Button-close--Height: $Button-close--Width;
+$Button-close--OffsetHorizontal: 0.25em;
+$Button-close--OffsetVertical: $Button-close--OffsetHorizontal;
+$Button-close--TextColor: black;
+$Button-closeBackgroundColor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$Button-close--TextColor}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>");
+
+$Button-FocusBlur: 0;
+$Button-FocusWidth: $BorderWidth & $xl;
+$Button-close-focus--TextColor: hover-shade($Button-close--TextColor);
+$Button-close--focus--BoxShadow: 0 0 $Button-FocusBlur $Button-FocusWidth $primary;
+$Button-close--Opacity: 0.5;
+$Button-close--hover--Opacity: 0.75;
+$Button-close--focus--Opacity: 1;
+$Button-close--disabled--Opacity: 0.25;
+$Button-close-white-filter: invert(1) grayscale(100%) brightness(200%);

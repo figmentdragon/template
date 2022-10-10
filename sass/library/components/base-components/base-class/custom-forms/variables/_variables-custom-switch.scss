@@ -1,0 +1,6 @@
+$custom-switch-indicator-size:                  calc(#{$custom-control-indicator-size} - #{$custom-control-indicator--BorderWidth * 4});
+
+//Switches
+$custom-switch-width:                           $custom-control-indicator-size * 2;
+$custom-switch-indicator--BorderRadius:         divid($custom-control-indicator-size, 2);
+$custom-switch-indicator-size:                  calc(#{$custom-control-indicator-size} - #{$custom-control-indicator--BorderWidth * 4});

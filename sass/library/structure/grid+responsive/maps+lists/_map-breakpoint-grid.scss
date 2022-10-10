@@ -1,0 +1,10 @@
+// GRID BREAKPOINTS
+$grid-breakpoints : (
+  'x3l' : $grid-breakpoint-x3l,
+  'x2l' : $grid-breakpoint-x2l,
+  'xl'  : $grid-breakpoint-xl,
+  'md'  : $grid-breakpoint-md,
+  'sm'  : $grid-breakpoint-sm,
+  'xs'  : $grid-breakpoint-xs,
+  'xxs' : 0
+) !default;

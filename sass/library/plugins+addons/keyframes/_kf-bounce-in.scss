@@ -1,0 +1,119 @@
+/* ********* bounceIn * ********** */
+@-webkit-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(.3);
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.05);
+  }
+
+  70% {
+    -webkit-transform: scale(.9);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(.3);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+/* ************** bounceInRight * ************** */
+@keyframes bounceInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+
+  60% {
+    transform: translateX(-30px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* **************** Bounce in left * ***************** */
+@keyframes bounceInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+
+  60% {
+    transform: translateX(30px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* **************** Bounce in up * ***************** */
+@keyframes bounceInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(400px);
+  }
+
+  60% {
+    transform: translateY(-30px);
+  }
+
+  80% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* **************** Bounce in down * ***************** */
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-400px);
+  }
+
+  60% {
+    transform: translateY(30px);
+  }
+
+  80% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

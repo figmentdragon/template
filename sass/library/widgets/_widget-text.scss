@@ -1,0 +1,36 @@
+/* Text Widgets */
+.textwidget {
+  p {
+    margin-bottom: 18px;
+    a { @include on-event; }
+  }
+  a { @include on-event; }
+  }
+}
+
+.widget_text {
+  li {
+    padding: 8px 0 9px;
+
+    border-top: 1px $BorderStyle rgba(silver, 0.2);
+    &:first-child {
+      border-top: 0;
+    }
+    li:last-child {
+      padding-bottom: 0;
+    }
+  }
+  ul,
+  ol {
+    margin: 0 0 12px 10px;
+  }
+  ul {
+    list-style: disc inside;
+  }
+  ol {
+    list-style: decimal inside;
+  }
+  > div > :last-child {
+    margin-bottom: 0;
+  }
+}

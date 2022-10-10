@@ -1,0 +1,17 @@
+/* Map: danger */
+$dangers: () !default;
+$dangers: map-merge(
+	(
+		'danger-100': $danger-100,
+		'danger': $danger,
+		'danger-300': $danger-300,
+		'danger-400': $danger-400,
+		'danger-500': TextShade($danger),
+		'danger-600': $danger-600,
+		'danger-700': $danger-700,
+		'danger-800': $danger-800,
+		'danger': $danger,
+		'danger': $danger
+	),
+	$dangers
+);

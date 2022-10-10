@@ -1,0 +1,53 @@
+$TableStriped--TextColor:         $Table--TextColor !default;
+$TableStripedBackgroundColor-factor:     .05 !default;
+$TableStripedBackgroundColor:            rgba($black, $TableStripedBackgroundColor-factor) !default;
+
+$Table--active--TextColor:          $Table--TextColor !default;
+$Table--activeBackgroundColor-factor:      10% !default;
+$Table--activeBackgroundColor:             rgba($black, $Table--activeBackgroundColor-factor) !default;
+
+$Table--hover--LinkColor:           $Table--TextColor !default;
+$Table--hoverBackgroundColor-factor:       7.5% !default;
+$Table--hoverBackgroundColor:              rgba($black, $Table--hoverBackgroundColor-factor) !default;
+
+$TableBorderFactor:         10% !default;
+$Table--BorderWidth:          $BorderWidth !default;
+$Table-Border:          var($border-color) !default;
+
+$TableStriped-order:         odd !default;
+$TableStriped-columns-order: even !default;
+$TableBackgroundColor-scale:              -80% !default;
+
+$TableVariants: (
+  "primary":    HoverShift($primary, $TableBackgroundColor-scale),
+  "secondary":  HoverShift($secondary, $TableBackgroundColor-scale),
+  "success":    HoverShift($success, $TableBackgroundColor-scale),
+  "info":       HoverShift($info, $TableBackgroundColor-scale),
+  "warning":    HoverShift($warning, $TableBackgroundColor-scale),
+  "danger":     HoverShift($danger, $TableBackgroundColor-scale),
+  "light":      ColorLight($primary),
+  "dark":       ColorDark(inherit)
+) !default;
+
+@mixin Table-variant($state, $Background) {
+  .table-#{$state} {
+    $color: color-contrast($Background, $Background);
+    $hoverBackgroundColor: shade($color, percentage($Table--hoverBackgroundColor-factor));
+    $stripedBackgroundColor: tint($color, percentage($TableStripedBackgroundColor-factor));
+    $activeBackgroundColor: shade($color, percentage($Table--activeBackgroundColor-factor));
+    $BorderColor: shade($color, percentage($TableBorderFactor));
+
+    $Table--TextColor: #{$color};
+    $TableBackgroundColor: #{$Background};
+    $Table-Border: #{$BorderColor};
+    $TableStripedBackgroundColor: #{$stripedBackgroundColor};
+    $TableStriped--TextColor: #{color-contrast($stripedBackgroundColor)};
+    $Table--activeBackgroundColor: #{$activeBackgroundColor};
+    $Table--active--TextColor: #{color-contrast($activeBackgroundColor)};
+    $Table--hoverBackgroundColor: #{$hoverBackgroundColor};
+    $Table--hover--LinkColor: #{color-contrast($hoverBackgroundColor)};
+
+    color: var($Table--TextColor);
+    border-color: var($Table-Border);
+  }
+}

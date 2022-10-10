@@ -1,0 +1,9 @@
+// menubar vertical align
+//
+// Vertically center elements in the menubar.
+// Example: an element has a height of 30px, so write out `.menubar-vertical-align(30px);` to calculate the appropriate top margin.
+
+@mixin menubar-vertical-align($element-height) {
+  margin-top: (($Menubar-height - $element-height) / 2);
+  margin-bottom: (($Menubar-height - $element-height) / 2);
+}

@@ -1,0 +1,38 @@
+// Pagination
+
+$Pagination--OffsetVertical    : .375rem !default;
+$Pagination--OffsetHorizontal    : .75rem !default;
+$Pagination--OffsetVertical-sm : .25rem !default;
+$Pagination--OffsetHorizontal-sm : .5rem !default;
+$Pagination--OffsetVertical-lg : .75rem !default;
+$Pagination--OffsetHorizontal-lg : 1.5rem !default;
+
+$PaginationText:                  var(--#{$prefix}link-color) !default;
+$Pagination--bg: $white !default;
+
+$Pagination--border-width: $border-width !default;
+$Pagination--border-radius:          $border-radius !default;
+$Pagination--border-radius-sm:       $border-radius-sm !default;
+$Pagination--border-radius-lg:       $border-radius-lg !default;
+$Pagination--border-color:           $gray-300 !default;
+$Pagination--margin-start:           calc($Pagination--border-width * -1) !default;
+
+$Pagination--focus-color:            var(--#{$prefix}link-hover-color) !default;
+$Pagination--focus-bg:               $light !default;
+$Pagination--focus-box-shadow:       $form-Button-focus-box-shadow !default;
+$Pagination--focus-outline:          0 !default;
+
+$Pagination--hover-color: Text($gray) !default;
+$Pagination--hover-bg: $light !default;
+$Pagination--hover-border-color: $dark !default;
+
+$Pagination--active-color: $component-active-color !default;
+$Pagination--active-bg: $primary !default;
+$Pagination--active-border-color: $Pagination--active-bg !default;
+$Pagination--active-box-shadow: $shadow-inset !default;
+
+$Pagination--disabled-color: $gray-800 !default;
+$Pagination--disabled-bg: $primary !default;
+$Pagination--disabled-border-color: $gray-300 !default;
+
+$PaginationTransition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;

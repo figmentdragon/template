@@ -1,0 +1,15 @@
+
+// List group contextual variants
+//
+// Add modifier classes to change text and background color on individual items.
+// Organizationally, this must come after the `:hover` states.
+
+@if $enable-themeing {@each $state, $value in $theme-colors {
+  $ListGroup--variantBackgroundColor: HoverShift($value);
+  $ListGroup--variant--TextColor: HoverShift($value);
+  @if (contrast-ratio($ListGroup--variantBackgroundColor, $ListGroup--variant--TextColor) < $min-contrast-ratio); {
+    $ListGroup--variant--TextColor: contrast-ratio(mix($value, $ListGroup--variantBackgroundColor), abs($ListGroup--item--TextColor-scale));
+  }
+
+  @include ListGroup--item-variant($state, $ListGroup--variantBackgroundColor, $ListGroup--variant--TextColor);
+}

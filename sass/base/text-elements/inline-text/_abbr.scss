@@ -1,0 +1,13 @@
+abbr, acronym { /* Set the cursor to '?' while hovering over an abbreviation */
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	cursor: help;
+	text-decoration: none;
+}
+
+abbr[title],
+abbr[data-bs-original-title]  {
+  border-bottom: 1px dotted;
+  cursor: help;
+	text-decoration: underline dotted;
+}

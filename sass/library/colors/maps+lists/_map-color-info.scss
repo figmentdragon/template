@@ -1,0 +1,17 @@
+/* Map: info */
+$infos: () !default;
+$infos: map-merge(
+	(
+		'info-100': $info-100,
+		'info': FocusTint($InputColor),
+		'info-300': BackgroundTint($InputColor),
+		'info-400': $info-400,
+		'info-500': $info-500,
+		'info-600': $info-600,
+		'info-700': BorderShade($InputColor),
+		'info-800': FocusShade($InputColor),
+		'info': ShadowShade($InputColor),
+		'info': $info
+	),
+	$infos
+);

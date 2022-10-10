@@ -1,0 +1,65 @@
+.widget ul.menu {
+	float: none;
+	width: calc(100% - calc(2 * $Spacer));
+	text-align: left;
+}
+.widget ul.menu .current_page_item a,
+.widget ul.menu .current-menu-item a {
+	color: #89608f;
+	background: none;
+}
+.widget ul.menu li a {
+	display: block;
+	background: none;
+	color: #a57dab;
+	width: auto;
+	height: auto;
+	font-size: 1em;
+	text-transform: none;
+	text-shadow: none;
+	line-height: 1.8;
+	margin: 6px 0px;
+	padding: 0px;
+	border-left: none;
+}
+.widget ul.menu li a:hover {
+	color: #89608f;
+	background: none;
+	text-decoration: underline;
+}
+.widget ul.menu li {
+	float: none;
+	display: block;
+	background: none !important;
+	margin: 0px;
+	padding: 0px;
+	width: calc(100% - calc(2 * $Spacer));
+}
+.widget ul.menu li li {
+	border-top: none;
+}
+.widget ul.menu li:last-child {
+	border-bottom: none;
+}
+.widget ul.menu li span {
+	top: 1px;
+	right: 0px;
+}
+.widget ul.menu li ul.sub-menu {
+	background: none !important;
+	width: calc(100% - calc(2 * $Spacer));
+	margin: 0px;
+	padding: 0px;
+	position: static;
+	z-index: 9;
+	box-shadow: none;
+}
+.widget ul.menu li ul.sub-menu span {
+	display: none;
+}
+.widget ul.menu li ul.sub-menu li a {
+	padding-left: 12px;
+}
+.widget ul.menu li ul.sub-menu li ul.sub-menu li {
+	display: none;
+}

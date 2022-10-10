@@ -1,0 +1,53 @@
+// #SPACING -------------------------- * ------------------------------------ //
+
+// #FEATURES -------------------------------- //
+// ->-> Used in conjunction with global variables to enable certain theme features.
+    $enable-negative-margins       : true !default;
+
+// #DEFINITIONS ------------------------------ //
+  @-ms-viewport { width : device-width; }
+  @viewport { width : device-width; }
+
+  $BaseUnit                : 1rem !default;
+  $Spacer                  : calc($BaseUnit / 4) !default;
+  $SpacerBlock             : calc($BaseUnit / 8) !default;
+  $Offset                  : calc($BaseUnit / 4) !default;
+
+// - #FUNCTIONS ------------------------------ //
+// - #VARIABLES ------------------------------ //
+  $SpacerVertical         : calc(#{$SpacerBlock} * 3.15);
+  $SpacerHorizontal       : calc(#{$SpacerBlock} * 0.75);
+  $SpacerHorizontalNested : calc(#{$SpacerVertical} * 0.50);
+  $SpacerVerticalNested   : calc(#{$SpacerHorizontal} * 1.50);
+
+  $OffsetNested           : calc(#{$Offset} * 2.33); // 9.32
+  $OffsetHorizontal       : calc(#{$Offset} + calc(2 * 1rem)); // 8 = #{$BaseUnit};
+  $OffsetVertical         : calc(#{$Offset} + calc(2.75 * 1rem)); // 8.75
+  $OffsetHorizontalNested : calc(#{$OffsetNested} * calc(2 * 1rem)); // 18.64
+  $OffsetVerticalNested   : calc(#{$OffsetNested} * 1.75); //16.32
+
+  $width--Default   : screen - calc(2 * $BaseUnit); //960px
+  $width--Max       : screen - calc(2 * $Spacer); //1240px;
+  $width--MaxContent: calc(100% - calc(2 * $Spacer)); //1180px;
+
+  $Tablet--ContentWidth: calc($Tablet - calc(calc(2 * $Spacer) + calc(2 * $Offset)));
+  $desktop--ContentWidth: calc($desktop - (calc(2 * $Spacer) + calc(2 * $Offset)));
+
+// ---- Responsive Spacing
+// - #MAPS ----------------------------------- //
+  @import "library/structure/spacing/maps+lists/list-lengths";
+  @import "library/structure/spacing/maps+lists/map-aspect-ratio";
+  @import "library/structure/spacing/maps+lists/map-sizes";
+  @import "library/structure/spacing/maps+lists/map-spacer";
+
+// - #MIXINS --------------------------------- //
+  @import "library/structure/spacing/mixins/mixin-center-block";
+  @import "library/structure/spacing/mixins/mixin-innerblock-margin-clear";
+  @import "library/structure/spacing/mixins/mixin-reset-box";
+
+/* - #UTILITIES ------------------------------ */
+/* - #COMPONENTS ----------------------------- */
+// - #SHEETS --------------------------------- //
+// - #MEDIA QUERIES -------------------------- //
+/* - #HELPERS -------------------------------- */
+// - #VENDORS -------------------------------- //

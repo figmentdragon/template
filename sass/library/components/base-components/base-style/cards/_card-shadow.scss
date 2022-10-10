@@ -1,0 +1,9 @@
+$CardColor: purple;
+
+$Card---TextColor: Text($CardColor);
+$Card-BackgroundColor: Background($CardColor);
+$Card---ShadowColor: ShadowShade( $CardColor );
+$Card---ShadowInsetColor: findInvertColor( $CardColor );
+$Card---BoxShadow: 1.5rem 1.25rem 1.25rem $Card---ShadowColor;
+$Card---ShadowColor-inset: $Card---ShadowInsetColor -0.25rem -0.25rem -0.5rem 0 inset,
+  $Card---ShadowInsetColor 0.25rem 0.25rem 0.5rem 0 inset;

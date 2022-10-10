@@ -1,0 +1,73 @@
+
+.footer-navigation {
+	margin-top: calc(2 * $spacing-vertical));
+	margin-bottom: $spacing-vertical);
+	color: var(--footerText-text);
+	font-size: $xs);
+	font-family: var(--footerFont);
+}
+
+.footer-navigation-wrapper {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	list-style: none;
+	padding-left: 0;
+
+	li {
+		display: inline;
+		// This is to prevent hover styles from overlapping when the menu wraps.
+		line-height: 3;
+
+		a {
+			padding: calc(1.25 * var(--Nav--Offset)) var(--Nav--Offset);
+			transition: transform 0.1s ease;
+			color: var(--footerText-link);
+
+			&:link,
+			&:visited,
+			&:active {
+				color: var(--footerText-link);
+			}
+
+			&:hover {
+				text-decoration: underline;
+				text-decoration-style: dotted;
+				text-decoration-skip-ink: none;
+				color: var(--footerText-link-hover);
+			}
+
+			&:focus {
+
+				.is-dark-theme & {
+
+					.svg-icon {
+						fill: var(--wp--styleText--link, $color-background));
+					}
+				}
+
+				// Change colors when the body background is white.
+				.has-background-white & {
+
+					.svg-icon {
+						fill: var(--wp--styleText--link, $color-white));
+					}
+				}
+			}
+		}
+
+		.svg-icon {
+			vertical-align: middle;
+			fill: var(--footerText-link);
+
+			&:hover {
+				transform: scale(1.1);
+			}
+		}
+	}
+
+	.sub-menu-toggle,
+	.menu-item-description {
+		display: none;
+	}
+}

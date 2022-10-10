@@ -1,0 +1,88 @@
+// P
+//The <p> HTML element represents a paragraph. Paragraphs are usually represented in visual media as blocks of text separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any structural grouping of related content, such as images or form fields.
+
+$paragraph-bg: translucentBackground($secondary);
+$paragraph-color: shade-color(black, $primary, $ColorInterval);
+$paragraph-text-align: null;
+$paragraphSize: $FontSize;
+$pararaphHeight: 1.2;
+$paragraph-font-weight: 400;
+$paragraph-margin-bottom: 1rem !default;
+$paragraph-text-font: $FontMain;
+
+p {
+  font-family: $paragraph-text-font;
+  font-size: $paragraphSize;
+  font-size: $FontSize;
+  font-size: $globalSize;
+  line-height: $pararaphHeight;
+  font-weight: $paragraph-font-weight;
+
+  margin-top: 0 0 $paragraph-margin-bottom 0;
+  padding: 1rem 3rem;
+
+  text-align: $paragraph-text-align;
+  word-spacing: 1px;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+
+  color: $paragraph-color;
+  background-color: $paragraph-bg;
+  font-feature-settings: "liga", "dlig";
+  hyphenate-lines: 3;
+  -webkit-tap-highlight-color: rgba(black, 0);
+  + p {
+    margin: 0;
+    text-indent: $OffsetHorizontal;
+  }
+  a {
+    color: $LinkText;
+    @include on-event {
+      &:visited {
+        color: $LinkText-visited;
+      }
+      &:hover {
+        color: $LinkText-hover;
+      }
+    }
+  }
+  > code {
+    padding: 0.25em;
+    background: #EEEEEE;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  + ul,
+  + ol,
+  + dl { margin-bottom: 1.5em; }
+  &:empty { display: none; }
+  .site-name {  }
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  img,
+  picture {
+    float: right;
+    margin-bottom: .5rem;
+    margin-left: .5rem;
+  }
+  picture {
+    img {
+      float: none;
+      margin: 0;
+    }
+  }
+}
+
+p,
+li {
+  line-height: 1.8;
+  a {
+    color: #4a8bfc;
+  }
+}

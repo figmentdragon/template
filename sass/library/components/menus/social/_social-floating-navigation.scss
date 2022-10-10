@@ -1,0 +1,45 @@
+.social-navigation-floating,
+.social-menu-floating {
+  position: absolute;
+  z-index: 999;
+  top: 70vh;
+  left: 10px;
+
+  display: none;
+  transform: rotate(-90deg) translateX(0);
+  transform-origin: 0 0;
+  &:not(.hide-label) .social-navigation a {
+    position: relative;
+
+    font-size: 12px;
+    font-size: 0.75rem;
+
+    width: auto;
+    height: auto;
+    margin: 0 14px;
+  }
+  &:not(.hide-label) .social-navigation .icon {
+    top: 4px;
+
+    width: 12px;
+    height: 12px;
+    margin-right: 7px;
+  }
+  &:not(.hide-label) .social-navigation li + li a:after {
+    position: absolute;
+    top: 50%;
+    left: -21px;
+
+    width: 5px;
+    height: 5px;
+    margin-top: -2px;
+
+    content: "";
+
+    border-radius: 50%;
+  }
+  &.hide-label .social-navigation a > span,
+  &.hide-label .social-navigation li + li a:after {
+    display: none;
+  }
+}

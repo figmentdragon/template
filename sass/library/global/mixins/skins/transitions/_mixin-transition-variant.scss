@@ -1,0 +1,15 @@
+@mixin TransitionLink( $attr: color ) {
+	transition: $attr $TransitionLink ease-in-out;
+}
+
+@mixin TransitionButton() {
+	transition: background $button_transition ease-in-out;
+}
+
+@mixin all--ButtonTransition() {
+	transition: all $TransitionButton ease-in-out;
+}
+
+@mixin TransitionBackground() {
+	transition: background $TransitionBackground ease-in-out;
+}

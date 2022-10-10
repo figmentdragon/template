@@ -1,0 +1,66 @@
+.button-close {
+  @include box-sizing($type: content-box);
+  position: relative;
+  z-index: 900;
+  width: $Button-close--Width;
+  height: $Button-close--Height;
+  padding: $Button-close--OffsetVertical $Button-close--OffsetHorizontal;
+  color: $Button-close--TextColor;
+  background: transparent escape-svg($Button-closeBackgroundColor) center / $Button-close--Width auto no-repeat; // include transparent for button elements
+  border: 0; // for button elements
+
+  opacity: $Button-close--Opacity;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  text-align: center;
+
+  // Override <a>'s hover style
+  &:hover {
+    color: $Button-close--TextColor;
+    text-decoration: none;
+    opacity: $Button-close--hover--Opacity;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: $Button-close--focus--BoxShadow;
+    opacity: $Button-close--focus--Opacity;
+  }
+
+  &:disabled,
+  &.disabled {
+    pointer-events: none;
+    user-select: none;
+    opacity: $Button-close--disabled--Opacity;
+  }
+  &:before {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background-color: tint($gray, $ColorInterval * 4);
+    display: block;
+    -webkit-transform: rotate(44deg) translate(26px, 10px);
+    -moz-transform: rotate(44deg) translate(26px, 10px);
+    transform: rotate(44deg) translate(26px, 10px);
+  }
+  &:after {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background-color: tint($gray, $ColorInterval * 4);
+    display: block;
+    -webkit-transform: rotate(-46deg) translate(-10px, 1.5rem);
+    -moz-transform: rotate(-46deg) translate(-10px, 1.5rem);
+    transform: rotate(-46deg) translate(-10px, 1.5rem);
+  }
+}
+
+.button-close-white {
+  filter: $Button-close-white-filter;
+}
+
+.active .button-close{
+  display: inline-block;
+}

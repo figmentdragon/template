@@ -1,0 +1,109 @@
+// Singular navigation
+.post-navigation {
+  background-color: translucentBackground($white);
+  border-top: 1px $BorderStyle rgba($BorderColor, 0.12);
+	@extend %responsive--WidthWide;
+
+  a {
+      font-size: 1.5rem;
+      line-height: 32px;
+    &:link,
+    &:visited {
+      color: rgba($BorderColor, 0.4);
+    }
+    &:active,
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      color: #000000;
+    }
+  }
+
+  .meta-nav {
+    line-height: $LineHeight;
+    color: Text($primary);
+    font-family: 'poppins',sans-serif;
+    letter-spacing: 0.083em;
+    text-transform: uppercase;
+    transition: all .5s;
+  }
+
+  .post-title {
+    font-family: $PostFont;
+    font-size: calc($lg * $FontSize);
+    font-weight: $PaginationWeight-strong;
+    line-height: $HeadingHeight;
+    @include media(desktop) {
+      margin: 5px calc(24px + (0.25 * $BaseUnit)) 0;
+    }
+  }
+
+  .nav-label {
+    background: #df2c45;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: "Open Sans Condensed", sans-serif;
+    font-weight: bold;
+    line-height: 20px;
+    &:hover {
+      background: #111;
+    }
+  }
+  .nav-links { }
+
+	.nav-next,
+	.nav-previous {
+		margin-top: $SpacerHorizontal;
+		margin-bottom: $SpacerHorizontal;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+  .nav-previous .nav-label:after {
+    content: "\f104";
+    font-family: "Fontawesome";
+  }
+  .nav-previous .nav-title { }
+  .nav-previous a:hover .nav-title { }
+  .nav-next .nav-label:after {
+    float: right;
+    margin: 0 -7px 0 0;
+    padding: 0 0 0 7px;
+    content: "\f105";
+    font-family: "Fontawesome";
+  }
+  .nav-next .nav-title {
+    right: 80%;
+    text-align: right;
+  }
+  .nav-next a:hover .nav-title {
+    right: 100%;
+    opacity: 1;
+  }
+  .nav-title {
+    line-height: 20px;
+    background: #df2c45;
+    color: #fff;
+    text-decoration: none;
+    overflow: hidden;
+    opacity: 0;
+
+  }
+}
+
+
+.posts-navigation a {
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.4;
+  border: none;
+  border-radius: 0;
+  text-transform: uppercase;
+}

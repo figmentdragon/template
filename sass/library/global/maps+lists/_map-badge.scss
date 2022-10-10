@@ -1,0 +1,46 @@
+$badges                 : () !default;
+$badges                 : map-merge(
+  (
+    'primary'           : (
+      'background-color': Background($primary),
+      'text-color'      : Text($primary),
+      'icon-color'      : color.invert($primary),
+    ),
+    'secondary'         : (
+      'background-color': Background($secondary),
+      'text-color'      : Text($secondary),
+      'icon-color'      : color.invert($secondary),
+    ),
+    'success'           : (
+      'background-color': Background($success),
+      'text-color'      : Text($success),
+      'icon-color'      : color.invert($success),
+    ),
+    'danger'            : (
+      'background-color': Background($danger),
+      'text-color'      : Text($danger),
+      'icon-color'      : color.invert($danger),
+    ),
+    'warning'           : (
+      'background-color': Background($warning),
+      'text-color'      : Text($warning),
+      'icon-color'      : color.invert($warning),
+    ),
+    'info'              : (
+      'background-color': Background($info),
+      'text-color'      : Text($info),
+      'icon-color'      : color.invert($info),
+    ),
+    'light'             : (
+      'background-color': translucentBackground($white),
+      'text-color'      : Text($darkgray),
+      'icon-color'      : ColorLight($black),
+    ),
+    'dark'              : (
+      'background-color': translucentBackground($black)
+      'text-color'      : Text($darkgray),
+      'icon-color'      : ColorDark($white);
+    ),
+  ),
+  $badges
+);

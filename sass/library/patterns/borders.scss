@@ -1,0 +1,131 @@
+// #BORDERS -------------------------- * ------------------------------------ //
+
+// -- =DEFINITIONS
+  $BorderWidth: 0.0625 !default; //1px
+  $BorderStyle: solid !default;
+  $BorderColor: Border($borderColor) !default;
+    $separator--Height: 0.0625 !default;
+  $BorderRadius: calc($BaseUnit / 2) !default; // 7.25px
+
+// -- =VARIABLES
+// ---- Width
+    $BorderWidth-normal: $BorderWidth;
+    $BorderWidth-disabled: thin;
+    $BorderWidth-active: medium;
+    $BorderWidth-focus: thick;
+
+// ---- Radius
+    $BorderRadius-sm: calc($BorderRadius / 2.5);
+    $BorderRadius-lg: $BaseUnit;
+    $BorderRadius-xl: calc($BaseUnit * 2);
+    $pill--BorderRadius: calc($BaseUnit * 3);
+    $rounded-pill: calc($BaseUnit * 4);
+    $circle--BorderRadius: 50%;
+
+// ---- Variants
+    $white-Border: $white;
+    $translucent-Border: translucentBorder($BorderColor);
+    $separator-Border: to-css-rgb($BorderColor, 0.5);
+
+
+// -- =MAPS & LISTS
+  $BorderWidths: (
+  	normal: $BorderWidth,
+  	thin : $BorderWidth-disabled,
+  	medium: $BorderWidth-active,
+  	focus : $BorderWidth-focus
+  );
+
+  $Radius: (
+    sm: calc($BorderRadius / 2.5),
+    md: calc($BorderRadius * $BorderInterval),
+    button: calc($BorderRadius * calc($BorderInterval * 1.5)),
+    pill: 33rem,
+    circle: 50%
+  );
+
+
+// -- =FUNCTIONS
+  // Single side border-radius
+  // Helper function to replace negative values with 0
+  @function valid-radius($radius) {
+    $return: ();
+    @each $value in $radius {
+      @if type-of($value) == number {
+        $return: append($return, max($value, 0));
+      }
+      @else {
+        $return: append($return, $value);
+      }
+    }
+    @return $return;
+  }
+
+// -- =MIXINS
+@mixin border-radius($radius: $BorderRadius, $fallback-border-radius: false) {
+  @if $enable-rounded {
+    border-radius: valid-radius($radius);
+  }
+  @else if $fallback-border-radius != false {
+    border-radius: $fallback-border-radius;
+  }
+}
+
+@mixin border-top-radius($radius: $BorderRadius) {
+  @if $enable-rounded {
+    border-top-left-radius: valid-radius($radius);
+    border-top-right-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-end-radius($radius: $BorderRadius) {
+  @if $enable-rounded {
+    border-top-right-radius: valid-radius($radius);
+    border-bottom-right-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-bottom-radius($radius: $BorderRadius) {
+  @if $enable-rounded {
+    border-bottom-right-radius: valid-radius($radius);
+    border-bottom-left-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-start-radius($radius: $BorderRadius) {
+  @if $enable-rounded {
+    border-top-left-radius: valid-radius($radius);
+    border-bottom-left-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-top-start-radius($radius: $BorderRadius) {
+  @if $enable-rounded {
+    border-top-left-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-top-end-radius($radius: $BorderRadius) {
+  @if $enable-rounded {
+    border-top-right-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-bottom-end-radius($radius: $BorderRadius) {
+  @if $enable-rounded {
+    border-bottom-right-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-bottom-start-radius($radius: $BorderRadius) {
+  @if $enable-rounded {
+    border-bottom-left-radius: valid-radius($radius);
+  }
+}
+
+@mixin border($radius) {
+  -webkit--BorderRadius: $radius;
+     -moz--BorderRadius: $radius;
+          border-radius: $radius;
+       -o--BorderRadius: $radius;
+}

@@ -1,0 +1,56 @@
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+// scss-docs-start table-variables
+$table-cell--OffsetVertical: 0.5rem;
+$table-cell--OffsetHorizontal: 0.5rem;
+$table-cell--OffsetVertical-sm: 0.25rem;
+$table-cell--OffsetHorizontal-sm: 0.25rem;
+
+$table-cell-vertical-align: top;
+
+$table--TextColor: $Text;
+$tableBackgroundColor: transparent;
+$table-accentBackgroundColor: transparent;
+
+$table-th--FontWeight: null;
+
+$table-striped--TextColor: $table--TextColor;
+$table-stripedBackgroundColor-factor: 0.05;
+$table-stripedBackgroundColor: black, $table-stripedBackgroundColor-factor;
+
+$table--active--TextColor: $table--TextColor;
+$table--activeBackgroundColor-factor: 0.1;
+$table--activeBackgroundColor: black, $table--activeBackgroundColor-factor;
+
+$table--hover--LinkColor: $table--TextColor;
+$table--hoverBackgroundColor-factor: 0.075;
+$table--hoverBackgroundColor: black, $table--hoverBackgroundColor-factor;
+
+$table-border-factor: 0.1;
+$table--BorderWidth: $BorderWidth;
+$table-Border: $BorderColor;
+
+$table-striped-order: odd;
+$table-striped-columns-order: even;
+
+$table-group-separator--TextColor: currentcolor;
+
+$table-caption--TextColor: ColorLight($primary);
+
+$tableBackgroundColor-scale: .80;
+// scss-docs-end table-variables
+
+// scss-docs-start table-loop
+$table-variants: (
+  "primary":    mix(lightgray, $primary, $tableBackgroundColor-scale),
+  "secondary":  mix(lightgray, $secondary, $tableBackgroundColor-scale),
+  "success":    mix(lightgray, $success, $tableBackgroundColor-scale),
+  "info":       mix(lightgray, $info, $tableBackgroundColor-scale),
+  "warning":    mix(lightgray, $warning, $tableBackgroundColor-scale),
+  "danger":     mix(lightgray, $danger, $tableBackgroundColor-scale),
+  "light":      ColorLight($primary),
+  "dark":       ColorDark(inherit)
+) !default;
+// scss-docs-end table-loop

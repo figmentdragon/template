@@ -1,0 +1,155 @@
+/**
+ * 7.0 Categories
+ * ---------------------------------------------*---------------------------- */
+.categories {
+  line-height: 1.25;
+
+  margin-bottom: 2rem;
+  a {
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    margin: 0.5rem 0 0 1rem;
+
+    text-decoration: none;
+    letter-spacing: 0.036666667rem;
+    text-transform: uppercase;
+    border-bottom: 0.15rem solid currentColor;
+    &:focus,
+    &:hover { border-bottom-color: transparent; }
+  }
+  &-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    margin: -0.5rem 0 0 -1rem;
+  }
+}
+
+.category,
+.cat {
+  &-links { /* Styles category links inside the entry meta */
+    font-size: 60%;
+    font-weight: $medium--FontWeight;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    a { @include on-event; }
+  }
+  &-misc { }
+  &-example { }
+  &-links {
+
+  }
+  &-item {
+  }
+}
+
+.cat {
+  &-intro,
+  &-intro .headline {
+    margin-bottom: $SpacerHorizontalNested;
+  }
+}
+
+.post-tags,
+.tag,
+.tag-links { /* Styles links to tags inside the entry-meta */
+  font-size: 0.9rem;
+
+  float: left;
+
+  width: calc(100% - calc(2 * $Spacer));
+  margin: 0;
+  p {
+    margin-bottom: -12px;
+    padding: 6px 0;
+  }
+  a {
+    @include on-event {
+      margin-right: 6px;
+      &:first-child::before {
+        margin-left: $SpacerVerticalNested;
+      }
+      &::before {
+        position: relative;
+        bottom: -1px;
+
+        font-family: "FontAwesome";
+        font-weight: normal;
+
+        margin-right: 4px;
+        margin-left: 6px;
+
+        content: "\f02b";
+
+        text-decoration: none;
+
+        color: DarkColor(rgba($primary, 0.3));
+      }
+    }
+  }
+  .meta-icon svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  &-news {  }
+  &-wordpress {  }
+  &-markup {  }
+  &-links {  }
+}
+
+.post-taxonomy,
+.taxonomy {
+  font-size: 0.9rem;
+  float: left;
+
+  width: calc(100% - calc(2 * $Spacer));
+  margin: 0;
+  padding: 8px 0;
+  a {
+    @include on-event {
+      font-size: 0.75rem;
+      display: inline-block;
+
+      margin: 4px 0;
+      padding: 4px 8px 2px 8px;
+
+      text-decoration: none;
+      text-transform: uppercase;
+
+      color: DarkColor(rgba($primary, 0.3)) !important;
+      border: $BorderWidth solid rgba($BorderColor, 0.12);
+      border-radius: 2px;
+      &:hover {
+        color: tint($gray, $ColorInterval * 4) !important;
+        border-color: #000000; background: #000000;
+      }
+    }
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.sep { /* Separator between category links, cat links, comments links, etc */ }
+
+.comments-link { /* Link to leave a comment */ }
+
+.comment-edit-link,
+.edit-link { /* Link to Edit the post (only shows up for admins) */
+	display: inline-block;
+  float: right;
+  font-size: $smSize;
+  line-height: $EntryHeight;
+  margin-top: .75rem;
+  margin-right: .75rem;
+  padding: 0;
+}
+
+.wp-audio-shortcode { /* Classic editor audio embeds. */
+	margin: 12px 0;
+  @extend %responsive--WidthDefault;
+}

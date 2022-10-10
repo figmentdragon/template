@@ -1,0 +1,52 @@
+// Individual list items
+//
+// Use on `li`s or `div`s within the `.list-group` parent.
+
+.listgroup-item {
+  position: relative;
+
+  display: block;
+
+  padding: $ListGroup--item--OffsetVertical $ListGroup--item--OffsetHorizontal;
+
+  text-decoration: $LinkDecoration;
+
+  color: $ListGroup--TextColor;
+  border: $ListGroup--BorderWidth $BorderStyle $ListGroup-Border;
+  background-color: $list-groupBackgroundColor;
+
+  &:first-child {
+    border-top-radius: inherit;
+  }
+
+  &:last-child {
+    border-bottom-radius: inherit;
+  }
+
+  &.disabled,
+  &:disabled {
+    pointer-events: none;
+
+    color: $ListGroup--disabled--TextColor;
+    background-color: $ListGroup--disabledBackgroundColor;
+  }
+
+  // Include both here for `<a>`s and `<button>`s
+  &.active {
+    z-index: 2; // Place active items above their siblings for proper border styling
+
+    color: $ListGroup--active--TextColor;
+    border-color: $ListGroup--active-Border;
+    background-color: $ListGroup--activeBackgroundColor;
+  }
+
+  & + & {
+    border-top-width: 0;
+
+    &.active {
+      margin-top: calc($ListGroup--BorderWidth * -1);
+
+      border-top-width: $ListGroup--BorderWidth;
+    }
+  }
+}

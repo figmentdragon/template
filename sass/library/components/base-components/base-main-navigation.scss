@@ -1,0 +1,46 @@
+/* =Menu
+----------------------------------------------- */
+.main-navigation {
+  @include clearfix;
+  display: block;
+  float: left;
+  width: calc(100% - calc(2 * $Spacer));
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: $OffsetVerticalNested;
+    ul {
+      box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+      display: none;
+      float: left;
+      :hover > a { }
+      ul {
+        left: 100%;
+        top: 0;
+      }
+      a {
+        width: 200px;
+        &:hover {  }
+      }
+      li {  }
+    }
+    li:hover > ul { display: block; }
+  }
+  li {
+    float: left;
+    position: relative;
+    &:hover > a {  }
+    &.current_page_item a,
+    &.current-menu-item a {    }
+  }
+  a {
+    display: block;
+    text-decoration: none;
+  }
+}
+
+/* Small menu */
+.menu-toggle {}
+.main-small-navigation .menu {
+  display: none;
+}

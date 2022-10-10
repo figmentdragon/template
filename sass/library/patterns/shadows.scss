@@ -1,0 +1,174 @@
+/**
+ * = SHADOWS
+ * ----------------------------------- * ----------------------------------- */
+
+ // VARIABLES -------------------------------- //
+ $ShadowColor              : Shadow($shadowColor);
+   $ShadowColor-soft       : ColorSoft($ShadowColor);
+   $ShadowColor-dark       : ColorDark($ShadowColor);
+   $ShadowColor-light      : ColorLight($ShadowColor);
+
+ $ShadowPrimary            : Shadow( $primary );
+   $soft--primaryShadow    : ColorSoft($ShadowPrimary);
+   $strong--primaryShadow  : ColorDark($ShadowPrimary);
+   $light--primaryShadow   : ColorLight($ShadowPrimary);
+ $ShadowSecondary          : Shadow( $secondary );
+   $soft--secondaryShadow  : ColorSoft($ShadowSecondary);
+   $strong--secondaryShadow: ColorDark($ShadowSecondary);
+   $light--secondaryShadow : ColorLight($ShadowSecondary);
+ $ShadowTertiary           : Shadow( $tertiary );
+   $soft--tertiaryShadow   : ColorSoft($ShadowTertiary);
+   $strong--tertiaryShadow : ColorDark($ShadowTertiary);
+   $light--tertiaryShadow  : ColorLight($ShadowTertiary);
+
+ $ShadowSuccess            : Shadow( $success );
+   $soft--successShadow    : ColorSoft($ShadowSuccess);
+   $strong--successShadow  : ColorDark($ShadowSuccess);
+   $light--successShadow   : ColorLight($ShadowSuccess);
+ $ShadowInfo               : Shadow( $info );
+   $soft--infoShadow       : ColorSoft($ShadowInfo);
+   $strong--infoShadow     : ColorDark($ShadowInfo);
+   $light--infoShadow      : ColorLight($ShadowInfo);
+ $ShadowWarning            : Shadow( $warning );
+   $soft--warningShadow    : ColorSoft($ShadowWarning);
+   $strong--warningShadow  : ColorDark($ShadowWarning);
+   $light--warningShadow   : ColorLight($ShadowWarning);
+ $ShadowDanger             : Shadow( $danger );
+   $soft--dangerShadow     : ColorSoft($ShadowDanger);
+   $strong--dangerShadow   : ColorDark($ShadowDanger);
+   $light--dangerShadow    : ColorLight($ShadowDanger);
+
+ $BoxShadow       : 0 0.5rem 1rem;
+ $BoxShadow-sm    : 0 0.125rem 0.25rem;
+ $BoxShadow-lg    : 0 1rem 3rem;
+ $BoxShadow-hover : 0.25rem 0.5rem 0.75rem;
+ $BoxShadow-focus : -0.25rem 0.5rem 0.75rem;
+ $BoxShadow-inset : inset 0 1px 2px rgba($shadowColor, .075);
+
+ $BoxShadow-0: none;
+ $BoxShadow-1: 0 1px 2px 0 Shadow(rgba($shadowColor, 0.07));
+ $BoxShadow-2: 0 1px 3px 0 Shadow(rgba($shadowColor, 0.07)), 0 1px 2px 0 Shadow(rgba($primary, 0.05));
+ $BoxShadow-3: 0 4px 6px -1px Shadow(rgba($shadowColor, 0.07)), 0 2px 4px -1px Shadow(rgba($primary, 0.05));
+ $BoxShadow-4: 0 10px 15px -3px Shadow(rgba($shadowColor, 0.07)), 0 4px 6px -2px Shadow(rgba($primary, 0.05));
+ $BoxShadow-5: 0 20px 25px -5px Shadow(rgba($shadowColor, 0.07)), 0 10px 10px -5px Shadow(rgba($primary, 0.05));
+ $BoxShadow-6: 0 25px 50px -.75rem Shadow(rgba($shadowColor, 0.21));
+
+ /* Box Shadow -- Soft */
+ $BoxShadow-soft  : 6px 6px .75rem $shadowColor, -6px -6px .75rem $shadowColor;
+ $BoxShadow-1-soft: 0 1px 5px 0 rgba($shadowColor, 0.05);
+ $BoxShadow-2-soft: 0 2px 10px 0 rgba($shadowColor, 0.05);
+ $BoxShadow-3-soft: 0 5px 15px 0 rgba($shadowColor, 0.05);
+ $BoxShadow-4-soft: 0 10px 20px 0 rgba($shadowColor, 0.05);
+ $BoxShadow-5-soft: 0 15px 30px 0 rgba($shadowColor, 0.05);
+ $BoxShadow-6-soft: 0 20px 40px 0 rgba($shadowColor, 0.05);
+
+ /* Box Shadow -- Light */
+$BoxShadow-light: 3px 3px 6px $shadowColor, -3px -3px 6px $shadowColor;
+
+ /* Box Shadow -- Strong */
+ $BoxShadow-1-strong: 0 1px 5px 0 rgba($shadowColor, 0.21);
+ $BoxShadow-2-strong: 0 2px 10px 0 rgba($shadowColor, 0.21);
+ $BoxShadow-3-strong: 0 5px 15px 0 rgba($shadowColor, 0.21);
+ $BoxShadow-4-strong: 0 10px 20px 0 rgba($shadowColor, 0.21);
+ $BoxShadow-5-strong: 0 15px 30px 0 rgba($shadowColor, 0.21);
+ $BoxShadow-6-strong: 0 20px 40px 0 rgba($shadowColor, 0.21);
+
+ /* Box Shadow -- Top */
+ $BoxShadow-3-top: 0 -10px 20px 0 Shadow(rgba($primary, 0.05));
+
+ /* Box Shadow -- Inset */
+ $BoxShadow-inset: inset 0 1px 2px $ShadowPrimary;
+ $BoxShadow-inset-2: inset 2px 2px 5px $ShadowPrimary, inset -3px -3px 7px $shadowColor;
+ $BoxShadow-inner: inset 0 2px 4px 0 ColorLight(rgba($shadowColor, 0.06));
+
+ @mixin shadow($box-shadow) {
+   background-color: $gray;
+   border: none;
+   box-shadow: $box-shadow;
+   transition: background-color .15s ease-in-out, border .15s ease-in-out, box-shadow .15s ease-in-out, color .15s ease-in-out;
+ }
+
+@mixin box-shadow($box-shadow...) {
+  @if $enable-shadows {
+    $result: ();
+    @each $value in $shadowColor {
+      @if $value != null {
+        $result: append($result, $value, "comma");
+      }
+      @if $value == none and length($box-shadow) > 1 {
+        @warn "The keyword 'none' must be used as a single argument.";
+      }
+    }
+    @if (length($result) > 0) {
+      box-shadow: $result;
+    }
+  }
+}
+
+/* If we add the border using a regular CSS border, it won't look good on non-retina devices,
+ * since its edges can look jagged due to lack of antialiasing. In this case, we are several
+ * layers of box-shadow to add the border visually, which will render the border smoother. */
+
+@mixin box-shadow-size( $size ) {
+	box-shadow:
+		0 0 0 $size $shadowColor inset,           // Original border.
+		0 0 0 ($size + 1px) $shadowColor inset,   // Antialiasing, inner edge.
+		0 0 1px 0 rgba(ColorLight($primary), 0.7);      // Antialiasing, outer edge.
+}
+
+@mixin shadow-outline($shadow) {
+  content: "";
+  position: absolute;
+  left: -.5rem;
+  right: -.5rem;
+  top: -.5rem;
+  bottom: -.5rem;
+  background-color: $Background;
+  border: 1px $BorderStyle translucentBorder($white);
+  box-shadow: $shadow;
+  transition: background-color .15s ease-in-out, border .15s ease-in-out, box-shadow .15s ease-in-out, color .15s ease-in-out;
+  z-index: -1;
+}
+
+[class*='shadow*'] {
+  @if $enable-transitions { transition: all .2s ease-in-out; }
+}
+
+.shadow {
+	box-shadow: 0px 0px 12px rgba($shadowColor, 0.12);
+  box-sizing: border-box;
+	border: $BorderWidth $BorderStyle TranslucentBorder($borderColor);
+}
+
+.shadow-1{ box-shadow: $BoxShadow-1; }
+.shadow-2{ box-shadow: $BoxShadow-2; }
+.shadow-3{ box-shadow: $BoxShadow-3; }
+.shadow-4{ box-shadow: $BoxShadow-4; }
+.shadow-5{ box-shadow: $BoxShadow-5; }
+
+.shadow-sm{ box-shadow: $BoxShadow-sm !important; }
+.shadow { box-shadow: $BoxShadow !important; }
+.shadow-lg { box-shadow: $BoxShadow-lg !important; }
+.shadow-none { box-shadow: none !important; }
+
+.shadow-soft { box-shadow: $BoxShadow-soft !important; }
+.shadow-inset { box-shadow: $BoxShadow-inset !important; }
+
+@each $name, $color in $theme-colors {
+  .otto-#{$name} {
+    color: transparent;
+    background-image: linear-gradient( 210deg, $color transparent);
+    text-shadow: 0 1px 0 ColorDark(Text($color)),
+    0 2px 0 $ShadowColor,
+    0 3px 0 ColorDark(Shadow($color)),
+    0 4px 0 $ShadowColor,
+    0 5px 0 ColorDark(Shadow($color))
+    0 6px 1px $ShadowColor .1,
+    0 0 5px Shadow($color) .1,
+    0 1px 3px Shadow($color) .3,
+    0 3px 5px Shadow($color) .2,
+    0 5px 10px Shadow($color) .25,
+    0 10px 10px Shadow($color) .2,
+    0 20px 20px Shadow($color) .15;
+  }
+}

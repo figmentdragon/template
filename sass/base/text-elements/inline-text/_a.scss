@@ -1,0 +1,238 @@
+/// The <a> HTML element (or anchor element), with its href attribute, creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.
+// ----------------------------------- * -------------------------------------//
+
+// - #DEFINITIONS
+  $linkColor: $tertiary !default;
+
+
+// - #VARIABLES
+  $LinkText: Link($linkColor);
+    $LinkText-hover: HoverShift($LinkText);
+    $LinkText-focus: HoverShift($LinkText);
+    $LinkText-visited: Muted($LinkText);
+    $LinkText-disabled: Disabled($LinkText);
+  $LinkBorder: Border($linkColor);
+    $LinkBorder-hover: ColorDark($LinkBorder);
+    $LinkBorder-focus: ColorDark($LinkBorder);
+    $LinkBorder-visited: Muted($LinkBorder);
+    $LinkBorder-translucent: translucentBorder($LinkBorder);
+  $LinkBackground: Background($linkColor);
+    $LinkBackground-hover: ColorDark($LinkBackground);
+    $LinkBackground-focus: ColorDark($LinkBackground);
+    $LinkBackground-visited: Muted($LinkBackground);
+    $LinkBackground-translucent: translucentBackground($LinkBackground);
+
+// - #FUNCTIONS
+
+// - #MIXINS
+  @import "./../../../library/global/mixins/mixin-on-event";
+// - #HELPERS
+
+// - #STYLE
+a {
+  font-family: $FontAccent;
+  background-color: transparent;
+  cursor: pointer;
+  @include on-event {
+    &,
+    &:active,
+    &:link {
+      text-decoration: $LinkDecoration;
+      transition: $TransitionLink;
+      color: $LinkText;
+      cursor: pointer;
+      outline: none !important;
+      @include TransitionLink;
+    }
+    &:hover,
+    &.hover {
+      text-decoration: $LinkDecoration-hover;
+      text-decoration-style: dotted;
+      text-decoration-skip-ink: none;
+      color: $LinkText-hover;
+    }
+    &:hover,
+    &.hover,
+    &:focus,
+    &.focus {
+      cursor: pointer;
+      outline: thin dotted;
+    }
+    &:focus,
+    &.focus {
+      border-bottom: $BorderWidth-focus $BorderStyle $LinkBorder-focus;
+      outline: thin dotted;
+      text-decoration: $LinkDecoration-focus;
+    }
+    &:visited {
+      color: $LinkText-visited;
+      text-decoration-line: $LinkDecoration-visited;
+      opacity: 0.75;
+      word-wrap: break-word;
+      &:hover {
+        text-decoration: $LinkDecoration-hover;
+        color: HoverShift($LinkText-visited);
+      }
+    }
+    &:disabled,
+    &.disabled,
+    &.inactive {
+      color: $LinkText-disabled;
+      text-decoration-line: $LinkDecoration-visited;
+      opacity: 0.5;
+      outline: 0;
+      text-decoration: none;
+    }
+  }
+}
+
+a {
+  &[href^="tel"] {
+    font-family: $FontAccent;
+    font-size: $FontSize;
+    font-style: inherit;
+
+    text-decoration: none;
+
+    color: inherit;
+    &:before {
+      content:"📞 "
+    }
+  }
+  &[href^=mailto]:before {
+    content: "📧";
+  }
+  &[href^=sms]:before {
+    content:"💬 "
+  }
+  &[name]{
+  	padding-top: 50px;
+  }
+  :not([href]):not([class]) {
+    &:focus,
+    &:hover {
+      text-decoration: none;
+
+      color: inherit;
+    }
+  }
+  img { border: none; }
+  > p {
+    @include on-event { line-height: inherit; }
+  }
+  b,
+  em,
+  i,
+  strong {
+    border-radius: $BorderRadius;
+    display: inline-block;
+    font-size: $FontSize;
+    font-weight: bold;
+    line-height: $LineHeight;
+    margin: 0.5rem 0;
+    padding: $BaseUnit calc(2 * $BaseUnit);
+  }
+  b,
+  strong {
+    background-color: Background($linkColor);
+    border: $BorderWidth solid Border($linkColor);
+    color: $LinkText;
+  }
+  em,
+  i {
+    border: $BorderWidth solid Border($linkColor);
+    border-radius: $BorderRadius;
+    color: $LinkText;
+    display: inline-block;
+    padding: 1rem 2rem;
+  }
+}
+
+p a,
+p a:visited { line-height: inherit; }
+
+.stretched-link {
+  $stretched-link-pseudo-element:           after !default;
+  $stretched-link-z-index:                  1 !default;
+  &::#{$stretched-link-pseudo-element} {
+    position: absolute;
+    z-index: $stretched-link-z-index;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    content: "";
+  }
+}
+.site a:focus:not(.wp-block-button__link):not(.wp-block-file__button) {
+	/* Only visible in Windows High Contrast mode */
+	outline: 2px solid transparent;
+
+	text-decoration: underline 1px dotted currentColor;
+	text-decoration-skip-ink: none;
+	background: rgba(255, 255, 255, .9);
+
+	// Change text color when the body background is dark.
+	.is-dark-theme & {
+		background: translucentBackground($black);
+		color: Text($white);
+		text-decoration: none;
+
+		.meta-nav { color: var(--wp--styleText--link, $white); }
+	}
+
+	// Change colors when the body background is white.
+	.has-background-white & {
+		background: DarkColor(rgba($primary, .9));
+		color: var(--wp--styleText--link, Text($white));
+
+		.meta-nav { color: var(--wp--styleText--link, $white); }
+	}
+
+	&.skip-link {
+
+		/* Only visible in Windows High Contrast mode */
+		outline: 2px solid transparent;
+		outline-offset: -2px;
+
+		&:focus {
+			color: #21759b;
+			background-color: #f1f1f1;
+		}
+	}
+
+	&.custom-logo-link { background: none; }
+
+	img { outline: 2px dotted (var(--wp--styleText--link), $primary); }
+}
+
+// Enforce the custom link color even if a custom background color has been set.
+// The extra specificity here is required to override the background color styles.
+.has-background {
+	// Target both current level and nested block.
+	.has-link-color a,
+	&.has-link-color a {
+		color: var(--wp--styleText--link, $primary);
+	}
+}
+
+// - #UTILITIES
+a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+  &:hover,
+  &:focus{
+    color: inherit;
+    text-decoration: none;
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+
+a:not([href]):not([class]),
+a:not([href]):not([class]):hover {
+  color: inherit;
+  text-decoration: none;
+}

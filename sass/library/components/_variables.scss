@@ -1,0 +1,528 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $MenuLinkText-disabled and $ModalContent--BoxShadow-xs.
+
+// Color system
+
+// scss-docs-start gray-color-variables
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray: #adb5bd !default;
+
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+// scss-docs-end gray-color-variables
+
+// fusv-disable
+// scss-docs-start gray-colors-map
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray,
+  "600": Text($gray),
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+) !default;
+
+$blue-100: tint-color($blue, 80%) !default;
+$blue-200: tint-color($blue, 60%) !default;
+$blue-300: tint-color($blue, 40%) !default;
+$blue-400: tint-color($blue, 20%) !default;
+$blue-500: $blue !default;
+$blue-600: shade-color($blue, 20%) !default;
+$blue-700: shade-color($blue, 40%) !default;
+$blue-800: shade-color($blue, 60%) !default;
+$blue-900: shade-color($blue, 80%) !default;
+
+$indigo-100: tint-color($indigo, 80%) !default;
+$indigo-200: tint-color($indigo, 60%) !default;
+$indigo-300: tint-color($indigo, 40%) !default;
+$indigo-400: tint-color($indigo, 20%) !default;
+$indigo-500: $indigo !default;
+$indigo-600: shade-color($indigo, 20%) !default;
+$indigo-700: shade-color($indigo, 40%) !default;
+$indigo-800: shade-color($indigo, 60%) !default;
+$indigo-900: shade-color($indigo, 80%) !default;
+
+$purple-100: tint-color($purple, 80%) !default;
+$purple-200: tint-color($purple, 60%) !default;
+$purple-300: tint-color($purple, 40%) !default;
+$purple-400: tint-color($purple, 20%) !default;
+$purple-500: $purple !default;
+$purple-600: shade-color($purple, 20%) !default;
+$purple-700: shade-color($purple, 40%) !default;
+$purple-800: shade-color($purple, 60%) !default;
+$purple-900: shade-color($purple, 80%) !default;
+
+$pink-100: tint-color($pink, 80%) !default;
+$pink-200: tint-color($pink, 60%) !default;
+$pink-300: tint-color($pink, 40%) !default;
+$pink-400: tint-color($pink, 20%) !default;
+$pink-500: $pink !default;
+$pink-600: shade-color($pink, 20%) !default;
+$pink-700: shade-color($pink, 40%) !default;
+$pink-800: shade-color($pink, 60%) !default;
+$pink-900: shade-color($pink, 80%) !default;
+
+$red-100: tint-color($red, 80%) !default;
+$red-200: tint-color($red, 60%) !default;
+$red-300: tint-color($red, 40%) !default;
+$red-400: tint-color($red, 20%) !default;
+$red-500: $red !default;
+$red-600: shade-color($red, 20%) !default;
+$red-700: shade-color($red, 40%) !default;
+$red-800: shade-color($red, 60%) !default;
+$red-900: shade-color($red, 80%) !default;
+
+$orange-100: tint-color($orange, 80%) !default;
+$orange-200: tint-color($orange, 60%) !default;
+$orange-300: tint-color($orange, 40%) !default;
+$orange-400: tint-color($orange, 20%) !default;
+$orange-500: $orange !default;
+$orange-600: shade-color($orange, 20%) !default;
+$orange-700: shade-color($orange, 40%) !default;
+$orange-800: shade-color($orange, 60%) !default;
+$orange-900: shade-color($orange, 80%) !default;
+
+$yellow-100: tint-color($yellow, 80%) !default;
+$yellow-200: tint-color($yellow, 60%) !default;
+$yellow-300: tint-color($yellow, 40%) !default;
+$yellow-400: tint-color($yellow, 20%) !default;
+$yellow-500: $yellow !default;
+$yellow-600: shade-color($yellow, 20%) !default;
+$yellow-700: shade-color($yellow, 40%) !default;
+$yellow-800: shade-color($yellow, 60%) !default;
+$yellow-900: shade-color($yellow, 80%) !default;
+
+$green-100: tint-color($green, 80%) !default;
+$green-200: tint-color($green, 60%) !default;
+$green-300: tint-color($green, 40%) !default;
+$green-400: tint-color($green, 20%) !default;
+$green-500: $green !default;
+$green-600: shade-color($green, 20%) !default;
+$green-700: shade-color($green, 40%) !default;
+$green-800: shade-color($green, 60%) !default;
+$green-900: shade-color($green, 80%) !default;
+
+$teal-100: tint-color($teal, 80%) !default;
+$teal-200: tint-color($teal, 60%) !default;
+$teal-300: tint-color($teal, 40%) !default;
+$teal-400: tint-color($teal, 20%) !default;
+$teal-500: $teal !default;
+$teal-600: shade-color($teal, 20%) !default;
+$teal-700: shade-color($teal, 40%) !default;
+$teal-800: shade-color($teal, 60%) !default;
+$teal-900: shade-color($teal, 80%) !default;
+
+$cyan-100: tint-color($cyan, 80%) !default;
+$cyan-200: tint-color($cyan, 60%) !default;
+$cyan-300: tint-color($cyan, 40%) !default;
+$cyan-400: tint-color($cyan, 20%) !default;
+$cyan-500: $cyan !default;
+$cyan-600: shade-color($cyan, 20%) !default;
+$cyan-700: shade-color($cyan, 40%) !default;
+$cyan-800: shade-color($cyan, 60%) !default;
+$cyan-900: shade-color($cyan, 80%) !default;
+
+$blues: (
+  "blue-100": $blue-100,
+  "blue-200": $blue-200,
+  "blue-300": $blue-300,
+  "blue-400": $blue-400,
+  "blue-500": $blue-500,
+  "blue-600": $blue-600,
+  "blue-700": $blue-700,
+  "blue-800": $blue-800,
+  "blue-900": $blue-900
+) !default;
+
+$indigos: (
+  "indigo-100": $indigo-100,
+  "indigo-200": $indigo-200,
+  "indigo-300": $indigo-300,
+  "indigo-400": $indigo-400,
+  "indigo-500": $indigo-500,
+  "indigo-600": $indigo-600,
+  "indigo-700": $indigo-700,
+  "indigo-800": $indigo-800,
+  "indigo-900": $indigo-900
+) !default;
+
+$purples: (
+  "purple-100": $purple-100,
+  "purple-200": $purple-200,
+  "purple-300": $purple-300,
+  "purple-400": $purple-400,
+  "purple-500": $purple-500,
+  "purple-600": $purple-600,
+  "purple-700": $purple-700,
+  "purple-800": $purple-800,
+  "purple-900": $purple-900
+) !default;
+
+$pinks: (
+  "pink-100": $pink-100,
+  "pink-200": $pink-200,
+  "pink-300": $pink-300,
+  "pink-400": $pink-400,
+  "pink-500": $pink-500,
+  "pink-600": $pink-600,
+  "pink-700": $pink-700,
+  "pink-800": $pink-800,
+  "pink-900": $pink-900
+) !default;
+
+$reds: (
+  "red-100": $red-100,
+  "red-200": $red-200,
+  "red-300": $red-300,
+  "red-400": $red-400,
+  "red-500": $red-500,
+  "red-600": $red-600,
+  "red-700": $red-700,
+  "red-800": $red-800,
+  "red-900": $red-900
+) !default;
+
+$oranges: (
+  "orange-100": $orange-100,
+  "orange-200": $orange-200,
+  "orange-300": $orange-300,
+  "orange-400": $orange-400,
+  "orange-500": $orange-500,
+  "orange-600": $orange-600,
+  "orange-700": $orange-700,
+  "orange-800": $orange-800,
+  "orange-900": $orange-900
+) !default;
+
+$yellows: (
+  "yellow-100": $yellow-100,
+  "yellow-200": $yellow-200,
+  "yellow-300": $yellow-300,
+  "yellow-400": $yellow-400,
+  "yellow-500": $yellow-500,
+  "yellow-600": $yellow-600,
+  "yellow-700": $yellow-700,
+  "yellow-800": $yellow-800,
+  "yellow-900": $yellow-900
+) !default;
+
+$greens: (
+  "green-100": $green-100,
+  "green-200": $green-200,
+  "green-300": $green-300,
+  "green-400": $green-400,
+  "green-500": $green-500,
+  "green-600": $green-600,
+  "green-700": $green-700,
+  "green-800": $green-800,
+  "green-900": $green-900
+) !default;
+
+$teals: (
+  "teal-100": $teal-100,
+  "teal-200": $teal-200,
+  "teal-300": $teal-300,
+  "teal-400": $teal-400,
+  "teal-500": $teal-500,
+  "teal-600": $teal-600,
+  "teal-700": $teal-700,
+  "teal-800": $teal-800,
+  "teal-900": $teal-900
+) !default;
+
+$cyans: (
+  "cyan-100": $cyan-100,
+  "cyan-200": $cyan-200,
+  "cyan-300": $cyan-300,
+  "cyan-400": $cyan-400,
+  "cyan-500": $cyan-500,
+  "cyan-600": $cyan-600,
+  "cyan-700": $cyan-700,
+  "cyan-800": $cyan-800,
+  "cyan-900": $cyan-900
+) !default;
+
+$primary:       $blue !default;
+$secondary:     Text($gray) !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray !default;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+) !default;
+
+// Characters which are escaped by the escape-svg function
+$escaped-characters: (
+  ("<", "%3c"),
+  (">", "%3e"),
+  ("#", "%23"),
+  ("(", "%28"),
+  (")", "%29"),
+) !default;
+
+
+// Gradient
+//
+// The gradient which is added to components if `$enable-gradients` is `true`
+// This gradient is also added to elements with `.bg-gradient`
+$gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0)) !default;
+
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $Spacers map, should you need more variation.
+
+$Spacer: 1rem !default;
+$Spacers: (
+  0: 0,
+  1: $Spacer * .25,
+  2: $Spacer * .5,
+  3: $Spacer,
+  4: $Spacer * 1.5,
+  5: $Spacer * 3,
+) !default;
+
+
+$body-text-align:           null !default;
+
+// Links
+//
+$link-shade-percentage:                   20% !default;
+
+$stretched-link-pseudo-element:           after !default;
+$stretched-link-z-index:                  1 !default;
+
+$paragraph-SpacerHorizontal:   1rem !default;
+
+// Forms
+$FormText-Spacer-top:                  .25rem !default;
+
+$FormLabel-SpacerHorizontal:              .5rem !default;
+$FormLabel-FontSize:                  null !default;
+$FormLabel-FontStyle:                 null !default;
+$FormLabel-FontWeight:                null !default;
+$FormLabel-color:                      null !default;
+
+
+$InputBorderHeight: calc($BorderWidth * 2) !default;
+
+$InputBorderHeight-inner:                    add(calc($InputBorderHeight * 1rem), $InputBtn-OffsetVertical * 2) !default;
+$InputBorderHeight-inner-half:               add(calc($InputBorderHeight * .5em), $InputBtn-OffsetVertical) !default;
+$InputBorderHeight-inner-quarter:            add(calc($InputBorderHeight * .25rem), $InputBtn-OffsetVertical * .5) !default;
+
+$Input-height:                          add(calc($InputBorderHeight * 1rem), add($InputBtn-OffsetVertical * 2, $InputBorderHeight, false)) !default;
+$InputBorderHeight-sm:                       add(calc($InputBorderHeight * 1rem), add($InputBtn-OffsetVertical-sm * 2, $InputBorderHeight, false)) !default;
+$InputBorderHeight-lg:                       add(calc($InputBorderHeight * 1rem), add($InputBtn-OffsetVertical-lg * 2, $InputBorderHeight, false)) !default;
+
+
+$Form-color-width:                      3rem !default;
+
+$FormCheck-input-width:                  1em !default;
+$FormCheck-min-height:                   $FontSize * $LineHeight !default;
+$FormCheck-Offset-start:                $FormCheck-input-width + .5em !default;
+$FormCheck-SpacerHorizontal:                .125rem !default;
+$FormCheck-label-color:                  null !default;
+$FormCheck-label-cursor:                 null !default;
+$FormCheckTransition:                   null !default;
+
+$FormCheck-input-active-filter:          brightness(90%) !default;
+
+$FormCheck-input-Background:                     $InputBackground !default;
+$FormCheck-input-border:                 1px solid rgba($black, .25) !default;
+$FormCheck-input--BorderRadius:          .25em !default;
+$FormCheck-radio--BorderRadius:          50% !default;
+$FormCheck-input-focus-border:           $InputBorder-focus !default;
+$FormCheck-input-BoxShadow-focus:       $InputBtn-BoxShadow-focus !default;
+
+$FormCheck-input-checked-color:          $ComponentText-active !default;
+$FormCheck-input-checked-BackgroundColor:       $component-Background-active !default;
+$FormCheck-input-checkedBorder:   $FormCheck-input-checked-BackgroundColor !default;
+$FormCheck-input-checked-Background-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$FormCheck-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !default;
+$FormCheck-radio-checked-Background-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$FormCheck-input-checked-color}'/></svg>") !default;
+
+$FormCheck-input-indeterminate-color:          $ComponentText-active !default;
+$FormCheck-input-indeterminate-BackgroundColor:       $component-Background-active !default;
+$FormCheck-input-indeterminateBorder:   $FormCheck-input-indeterminate-BackgroundColor !default;
+$FormCheck-input-indeterminate-Background-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$FormCheck-input-indeterminate-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>") !default;
+
+$FormCheck-input-DisabledOpacity:        .5 !default;
+$FormCheck-label-DisabledOpacity:        $FormCheck-input-DisabledOpacity !default;
+$FormCheck-Button-check-DisabledOpacity:    $InputBtnText-opacity !default;
+
+$FormCheck-inline-Spacer-end:    1rem !default;
+
+$FormSwitchText:               rgba($black, .25) !default;
+$FormSwitch--width:               2em !default;
+$FormSwitch-Offset-start:       $FormSwitch--width + .5em !default;
+$FormSwitchBackground-image:            url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$FormSwitchText}'/></svg>") !default;
+$FormSwitch--BorderRadius:       $FormSwitch--width !default;
+$FormSwitchTransition:          background-position .15s ease-in-out !default;
+
+$FormSwitchText-focus:         $InputBorder-focus !default;
+$FormSwitchBackground-focus-image:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$FormSwitchText-focus}'/></svg>") !default;
+
+$FormSwitch--checked-color:       $ComponentText-active !default;
+$FormSwitch--checked-Background-image:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$FormSwitch--checked-color}'/></svg>") !default;
+$FormSwitch--checked-Background-position: right center !default;
+
+
+$FormSelect-OffsetVertical:             $InputBtn-OffsetVertical !default;
+$FormSelect-OffsetHorizontal:             $InputBtn-OffsetHorizontal !default;
+$FormSelect--FontText:           $InputBtnFont !default;
+$FormSelectSize:             $InputBtnSize !default;
+$FormSelect--indicator-Offset:     $FormSelect-OffsetHorizontal * 3 !default; // Extra padding for background-image
+$FormSelect--FontWeight:           $InputWeight !default;
+$FormSelect--LineHeight:           $FormHeight !default;
+$FormSelectText:                 $InputText !default;
+$FormSelectBackground:                    $InputBackground !default;
+$FormSelectText-disabled:        null !default;
+$FormSelectBackground-disabled:           $gray !default;
+$FormSelect-Border-disabled: $InputBorder-disabled !default;
+$FormSelectBackground-position:           right $FormSelect-OffsetHorizontal center !default;
+$FormSelectBackground-size:               16px 12px !default; // In pixels because image dimensions
+$FormSelect--indicator-color:       $gray-800 !default;
+$FormSelect--indicator:             url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$FormSelect--indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
+
+$FormSelectFeedback-icon-Offset-end: $FormSelect-OffsetHorizontal * 2.5 + $FormSelect--indicator-Offset !default;
+$FormSelectFeedback-icon-position:    center right $FormSelect--indicator-Offset !default;
+$FormSelectFeedback-icon-size:        $FormContainer-inner-half $FormContainer-inner-half !default;
+
+$FormSelect--BorderWidth:        $BorderWidth !default;
+$FormSelect-Border:        $InputBorder !default;
+$FormSelect--BorderRadius:       $InputRadius !default;
+$FormSelect--BoxShadow:          $BoxShadow-inset !default;
+
+$FormSelect-Border-focus:  $InputBorder-focus !default;
+$FormSelect--BorderWidth-focus:         $BorderWidth-focus !default;
+$FormSelect--BoxShadow-focus:    0 0 0 $FormSelect--BorderWidth-focus $InputBtnText-focus !default;
+
+$FormSelect-OffsetVertical-sm:        $InputBtn-OffsetVertical-sm !default;
+$FormSelect-OffsetHorizontal-sm:        $InputBtn-OffsetHorizontal-sm !default;
+$FormSelectSize-sm:        $InputBtnSize-sm !default;
+$FormSelect--BorderRadius-sm:    calc($InputRadius * $sm) !default;
+
+$FormSelect-OffsetVertical-lg:        $InputBtn-OffsetVertical-lg !default;
+$FormSelect-OffsetHorizontal-lg:        $InputBtn-OffsetHorizontal-lg !default;
+$FormSelectSize-lg:        $InputBtnSize-lg !default;
+$FormSelect--BorderRadius-lg:    calc($InputRadius * $lg) !default;
+
+$FormSelectTransition:          $TransitionInput !default;
+// scss-docs-end form-select-variables
+
+// scss-docs-start form-range-variables
+$FormRangeTrack--width:          100% !default;
+$FormRangeTrack--height:         .5rem !default;
+$FormRangeTrack--cursor:         pointer !default;
+$FormRangeTrackBackground:             $gray-300 !default;
+$FormRangeTrack--BorderRadius:  1rem !default;
+$FormRangeTrack--BoxShadow:     $BoxShadow-inset !default;
+
+$FormRangeThumb--width:                   1rem !default;
+$FormRangeThumb--height:                  $FormRangeThumb--width !default;
+$FormRangeThumbBackground:                      $component-Background-active !default;
+$FormRangeThumb--border:                  0 !default;
+$FormRangeThumb--BorderRadius:           1rem !default;
+$FormRangeThumb--BoxShadow:              0 .1rem .25rem rgba($black, .1) !default;
+$FormRangeThumb--BoxShadow-focus:        0 0 0 1px $Background, $InputBoxShadow-focus !default;
+$FormRangeThumb--BoxShadow-focus-width:  $BorderWidth-focus !default; // For focus box shadow issue in Edge
+$FormRangeThumbBackground-active:               tint-color($component-Background-active, 70%) !default;
+$FormRangeThumbBackground-disabled:             $gray !default;
+$FormRangeThumbTransition:              background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+// scss-docs-end form-range-variables
+
+// scss-docs-start form-file-variables
+$FormFile--ButtonText:          $InputText !default;
+$FormFile--ButtonBackground:             $InputGroupBackground !default;
+$FormFile--ButtonBackground-hover:       shade-color($FormFile--ButtonBackground, 5%) !default;
+// scss-docs-end form-file-variables
+
+// scss-docs-start form-floating-variables
+$FormFloating--height:            add(3.5rem, $FormHeight) !default;
+$FormFloating--LineHeight:       1.25 !default;
+$FormFloating-OffsetHorizontal:         $InputBtn-OffsetHorizontal !default;
+$FormFloating-OffsetVertical:         1rem !default;
+$FormFloating--input-Offset-t:   1.625rem !default;
+$FormFloating--input-Offset-b:   .625rem !default;
+$FormFloating--LabelOpacity:     .65 !default;
+$FormFloating--LabelTransform:   scale(.85) translateY(-.5rem) translateX(.15rem) !default;
+$Form-FloatingTransition:        opacity .1s ease-in-out, transform .1s ease-in-out !default;
+// scss-docs-end form-floating-variables
+
+// Form validation
+
+// scss-docs-start form-feedback-variables
+$FormFeedback--Spacer-top:          $FormText-Spacer-top !default;
+$FormFeedbackSize:           $FormText-FontSize !default;
+$FormFeedback--FontStyle:          $FormStyle !default;
+$FormFeedback--valid-color:         $success !default;
+$FormFeedback--invalid-color:       $danger !default;
+
+$FormFeedback--icon-valid-color:    $FormFeedback--valid-color !default;
+$FormFeedback--icon-valid:          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='#{$FormFeedback--icon-valid-color}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/></svg>") !default;
+$FormFeedback--icon-invalid-color:  $FormFeedback--invalid-color !default;
+$FormFeedback--icon-invalid:        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='#{$FormFeedback--icon-invalid-color}'><circle cx='6' cy='6' r='4.5'/><path stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/><circle cx='6' cy='8.2' r='.6' fill='#{$FormFeedback--icon-invalid-color}' stroke='none'/></svg>") !default;
+// scss-docs-end form-feedback-variables
+
+// scss-docs-start form-validation-states
+$Form-validation-states: (
+  "valid": (
+    "color": $FormFeedback--valid-color,
+    "icon": $FormFeedback--icon-valid
+  ),
+  "invalid": (
+    "color": $FormFeedback--invalid-color,
+    "icon": $FormFeedback--icon-invalid
+  )
+) !default;
+// scss-docs-end form-validation-states
+
+// Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+$zindex-dropdown:                   1000 !default;
+$zindex-sticky:                     1020 !default;
+$zindex-fixed:                      1030 !default;
+$zindex-OffCanvas--backdrop:         1040 !default;
+$zindex-offcanvas:                  1045 !default;
+$zindex-Modal--backdrop:             1050 !default;
+$zindex-modal:                      1055 !default;
+$zindex-popover:                    1070 !default;
+$zindex-tooltip:                    1080 !default;
+$zindex-toast:                      1090 !default;
+
+$CodeSize:                    $FontSize-sm !default;
+$CodeText:                        $pink !default;
+
+$kbd-OffsetVertical:                     .1875rem !default;
+$kbd-OffsetHorizontal:                     .375rem !default;
+$kbd-FontSize:                     $CodeSize !default;
+$kbd-color:                         var(--#{$prefix}Background) !default;
+$kbd-Background:                            var(--#{$prefix}Text) !default;
+$nested-kbd-FontWeight:            null !default; // Deprecated in v5.2.0, removing in v6
+
+$pre-color:                         null !default;

@@ -1,0 +1,242 @@
+/* Search widget */
+#searchsubmit {
+  font-size: 13px;
+  line-height: 25px;
+  position: relative;
+  top: -2px;
+  right: 0;
+  bottom: 0;
+  display: none;
+  width: calc(100% - calc(2 * $Spacer));
+  height: 37px;
+  padding: 0;
+  color: $InputText;
+  border: $BorderWidth $BorderStyle $InputBorder;
+  border-radius: 0 2px 2px 0;
+  background: translucentBackground($inputColor);
+  box-shadow: inset 0 -1px 1px rgba($InputShadow, .09);
+  &:active {
+    color: $InputText;
+    border-color: $InputBorder;
+    background: $InputBackground;
+    box-shadow: inset 0 1px 1px rgba($InputShadow, .1);
+  }
+}
+
+#searchform {
+  display: flex;
+  float: left;
+  width: calc(100% - calc(2 * $Spacer));
+  height: 100%;
+  margin: 0;
+  padding: .05vh .05vw .05vh .05vw;
+  .search-field,
+  #s {
+    line-height: 1.4;
+    float: left;
+    width: 72%;
+    margin: 0;
+    padding: 8px;
+    @include font-size($FontSize);
+  }
+
+  #searchsubmit {
+    line-height: 1.2;
+    float: right;
+    width: 22%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 4%;
+    padding: 12px;
+  }
+
+  label {
+    display: none;
+  }
+}
+
+.search-form {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  max-width: $responsive--WidthDefault;
+  margin: auto;
+  > label {
+    font-weight: $FormWeight-label;
+  }
+  label {
+    font-size: inherit;
+    display: flex;
+    float: left;
+    align-items: stretch;
+    width: calc(100% - 35px);
+    padding-right: 5px;
+  }
+  >label,
+  label {
+    margin: 0;
+    padding: 0 2px;
+    position: relative;
+    z-index: 1;
+    height: 32px;
+    width: calc(100% - calc(2 * $Spacer));
+    &:before {
+      position: absolute;
+      top: 6px;
+      right: 0;
+      z-index: 20;
+      speak: never;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    input {
+      width: calc(100% - calc(2 * $Spacer));
+      height: 45px;
+      padding: 0 15px;
+      border-color: $InputBorder;
+      border-radius: 0;
+    }
+  }
+
+  .search-field {
+    flex-grow: 1;
+    width: calc(100% - calc(2 * $Spacer));
+    max-width: inherit;
+    margin: calc($SpacerVertical / 3) 0 calc(.66 * $SpacerVertical) calc(.66 * $SpacerVertical);
+  }
+
+  .search-submit {
+    @include font-size($FontSize);
+    font-weight: 600;
+    float: left;
+    flex-shrink: 0;
+    width: 90px;
+    height: 45px;
+    margin: calc($SpacerVertical / 3) 0 calc(.66 * $SpacerVertical) calc(.66 * $SpacerVertical);
+    padding: 0;
+    cursor: pointer;
+    transition: all .3s linear;
+    color: white;
+    border: 0;
+    border-radius: 0;
+    background-color: Background($black);
+    @include on-event;
+  }
+}
+
+.search-field{
+  display: inline-block;
+  float: none;
+  position: relative;
+  z-index: 30;
+  height: 24px !important;
+  width: 0 !important;
+  max-width: none;
+  padding: 3px!important;
+  margin: 0;
+  color: $InputText;
+  background-color: $InputBackground;
+  border: none !important;
+  outline: 0;
+  cursor: pointer;
+  box-shadow: none;
+  @include box-sizing($type: border-box);
+  transition-duration: .4s;
+  transition-property: width, background;
+  transition-timing-function: ease;
+  &:focus {
+    z-index: 10;
+    color: Text($white);
+    width: 200px!important;
+    background-color: translucentBackground($black);
+    cursor: text;
+    border: 0;
+  }
+}
+.search-submit{
+  display: none;
+}
+
+.widget_search {
+  .icon {
+    width: 20px;
+    height: 20px;
+    fill: $InputBackground;
+  }
+  >.search-form {
+    .search-field {
+      margin-right: calc(-1 * 3px);
+      margin-bottom: calc(.5 * (3 * $BaseUnit));
+      -webkit-appearance: none;
+    }
+  }
+
+  .search-field {
+    width: calc(100% - calc(2 * $Spacer));
+    @include media(mobile) {
+      width: auto;
+    }
+  }
+
+  .search-submit {
+    display: block;
+    margin-top: $Spacer;
+    margin-bottom: calc(.5 * (3 * $BaseUnit));
+    margin-left: 0;
+  }
+}
+
+.search-box {
+  position: relative;
+  padding: calc($Offset * 3) 0 $BaseUnit $BaseUnit;
+}
+
+.box-search {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - calc(2 * $Spacer));
+  height: 100%;
+  z-index: 999;
+  background-color: $InputBackground;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.box-search input[type="search"] {
+  height: 50px;
+  font-size: 24px;
+  padding-top: 0;
+  border: none;
+  border-bottom: $BorderWidth solid translucentBorder($inputColor);
+}
+.box-search.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+input[type='search'].search-field {
+  display: none;
+  width: calc(100% - 35px);
+}
+
+button[class='search-submit'] {
+  display: none;
+  width: 35px;
+  padding: 0;
+}
+
+.no-result-search {
+  display: block;
+  margin-top: 12px;
+  .page-content {
+    margin-top: calc(3 * $SpacerVertical);
+  }
+  #searchform {
+    max-width: 480px;
+  }
+}

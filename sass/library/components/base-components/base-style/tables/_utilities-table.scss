@@ -1,0 +1,9 @@
+@each $name, $value in $utilities-colors {
+  .table-#{$name} {
+    $text: color-contrast(darkgray, $value);
+    $activeBackgroundColor: mix(lightgray, $value, percentage(0.1));
+    $hoverBackgroundColor: mix(lightgray, $activeBackgroundColor, percentage(0.75));
+    $stripedBackgroundColor: mix(lightgray, $value, percentage(0.33));
+    $BorderColor: mix($gray, $value, percentage($TableBorderFactor));
+  }
+}

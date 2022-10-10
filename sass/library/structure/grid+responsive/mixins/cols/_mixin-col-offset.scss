@@ -1,0 +1,4 @@
+@mixin make-col--Offset($size) {
+  $num: divide($size, $grid-columns);
+  margin-left: divide(100%, $grid-columns);
+}

@@ -1,0 +1,47 @@
+$form--top: 0.25rem;
+$form--top-lg: 0.4rem;
+$form--margin-left: 2.5rem;
+$form--margin-left-lg: 3rem;
+
+// Utilities
+$form--form-margin-top: 1.5rem;
+$form--form-margin-bottom: $form--form-margin-top;
+
+
+$form--form-text-ml: 2.6rem;
+$form--form-text-ml-sm: 2rem;
+$form--form-text-ml-lg: 3.1rem;
+
+
+/* Form */
+$FormText-label: #757575;
+$FormSize-label: 1rem;
+$FormSize-label-lg: 1.25rem;
+$FormSize-label-sm: 0.95rem;
+$FormSize-label: 1rem;
+$FormSize-label-lg: 1.15rem;
+$form--label-active-transform: translateY(-14px) ease-out;
+$form--label-top: 0.65rem;
+$form--label-after-top: 65px;
+$form--label-valid-top-sm: 3.7rem;
+$form--label-valid-top: 4.1rem;
+$form--label-valid-top-lg: 4.6rem;
+$form--label-invalid-top-sm: 3.6rem;
+$form--label-invalid-top-lg: 4.6rem;
+$form--label-invalid-top: 4rem;
+$form--label-after-transition: 0.2s opacity ease-out, 0.2s ease-out;
+$form--label-transition: 0.2s ease-out;
+
+
+/* Prefix */
+$form--validate-mb: 2.5rem;
+$form--validate-mb-sm: 2.3rem;
+$form--validate-mb-lg: 2.8rem;
+
+/* Form Prefix */
+$form--top-sm: 0.35rem;
+$FormSize-sm: 1.5rem;
+$form--margin-left-sm: 2rem;
+$form--width-sm: calc(100% - 2rem);
+
+$form--disabled-solid-color: #BDBDBD ;

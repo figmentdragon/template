@@ -1,0 +1,17 @@
+/* Map: purple */
+$purples: () !default;
+$purples: map-merge(
+	(
+		'purple-100': $purple-100,
+		'purple': $purple,
+		'purple-300': $purple-300,
+		'purple-400': $purple-400,
+		'purple-500': $purple-500,
+		'purple-600': $purple-600,
+		'purple-700': $purple-700,
+		'purple-800': $purple-800,
+		'purple': $purple,
+		'purple': $purple
+	),
+	$purples
+);

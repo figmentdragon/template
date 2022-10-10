@@ -1,0 +1,17 @@
+/* Map: success */
+$successs: () !default;
+$successs: map-merge(
+	(
+		'success-100': $success-100,
+		'success': $success,
+		'success-300': $success-300,
+		'success-400': $success-400,
+		'success-500': TextShade($success),
+		'success-600': $success-600,
+		'success-700': $success-700,
+		'success-800': $success-800,
+		'success': $success,
+		'success': $success
+	),
+	$successs
+);

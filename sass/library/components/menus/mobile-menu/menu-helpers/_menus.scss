@@ -1,0 +1,36 @@
+body {
+  transition: all 0.4s;
+  position: relative;
+  left: 0;
+  &.menu-open {
+    overflow-y: scroll;
+    width: calc(100% - calc(2 * $Spacer));
+    left: -300px;
+    &::before {
+      position: absolute;
+      width: calc(100% - calc(2 * $Spacer));
+      height: 100%;
+      top: 0;
+      left: 0;
+      content: "";
+      background-color: DarkColor(rgba($primary, 0.5);
+      z-index: 99;
+    }
+  }
+}
+
+.absolute-header .site-identity {
+  display: inline-block;
+}
+
+// .navigation-modern #primary-menu-wrapper .menu-inside-wrapper {
+//     max-width: 350px;
+//     position: fixed;
+//     width: 300px;
+//     padding: 56px 0;
+//     height: 100vh;
+// }
+
+.admin-bar #primary-menu-wrapper .menu-inside-wrapper {
+  padding-top: 63px;
+}

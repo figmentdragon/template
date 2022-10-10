@@ -1,0 +1,18 @@
+@mixin box-shadow($box-shadow...) {
+  @if $enable-shadows {
+    $result: ();
+
+    @each $value in $box-shadow {
+      @if $value != null {
+        $result: append($result, $value, "comma");
+      }
+      @if $value == none and length($box-shadow) > 1 {
+        @warn "The keyword 'none' must be used as a single argument.";
+      }
+    }
+
+    @if (length($result) > 0) {
+      box-shadow: $result;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+textarea
+{
+    font-size: $FontSize;
+    line-height: $LineHeight;
+    overflow: auto;
+
+    width: calc(100% - calc(2 * $Spacer));
+    width: -webkit-fill-available;
+    height: auto;
+    min-height: $BaseUnit * 4;
+    padding: divide($Offset, 4) divide($Offset, 4);
+
+    resize: vertical;
+    vertical-align: top;
+    white-space: revert;
+
+    color: $Text;
+    border: $BorderWidth $BorderStyle $InputBorder;
+    border-radius: $InputRadius;
+    background-color: $InputBackground;
+    &:focus
+    {
+        text-decoration: none;
+
+        outline-width: $BorderWidth-focus;
+        outline-style: dotted;
+        outline-color: $InputBorder-focus;
+        background-color: $InputBackground-focus;
+    }
+    &:not([cols])
+    {
+        width: calc(100% - calc(2 * $Spacer));
+    }
+    &::-webkit-input-placeholder
+    {
+        color: $Input-placeholder;
+    }
+    &:-moz-placeholder
+    {
+        color: $Input-placeholder;
+    }
+}

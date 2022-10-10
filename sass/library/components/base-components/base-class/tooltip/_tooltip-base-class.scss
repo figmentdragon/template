@@ -1,0 +1,44 @@
+// Base class
+.tooltip {
+  // scss-docs-start Tooltip--css-vars
+  $Tooltip--zindex: #{$zindex-tooltip};
+  $Tooltip--MaxWidth: #{$Tooltip--MaxWidth};
+  $Tooltip--OffsetHorizontal: #{$Tooltip--OffsetHorizontal};
+  $Tooltip--OffsetVertical: #{$Tooltip--OffsetVertical};
+  $Tooltip--margin: #{$Tooltip--margin};
+  //@include font-size($tooltipSize, $tooltipSize);
+  $Tooltip--TextColor: #{$Tooltip--TextColor};
+  $tooltipBackgroundColor: #{$tooltipBackgroundColor};
+  $Tooltip--BorderRadius: #{$Tooltip--BorderRadius};
+  $TooltipOpacity: #{$TooltipOpacity};
+  $Tooltip--ArrowWidth: #{$Tooltip--ArrowWidth};
+  $Tooltip--ArrowHeight: #{$Tooltip--ArrowHeight};
+  // scss-docs-end Tooltip--css-vars
+
+  z-index: $Tooltip--zindex);
+  display: block;
+  margin: $Tooltip--margin);
+  @include deprecate('`$Tooltip--margin`', 'v5', 'v5.x', );
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  @include reset-text();
+  //@include font-size($tooltipSize);
+  // Allow breaking very long words so they don't overflow the tooltip's bounds
+  word-wrap: break-word;
+  opacity: 0;
+
+  &.show { opacity: $TooltipOpacity); }
+
+  .Tooltip--arrow {
+    display: block;
+    width: $Tooltip--ArrowWidth);
+    height: $Tooltip--ArrowHeight);
+
+    &::before {
+      position: absolute;
+      content: '';
+      border-color: transparent;
+      border-style: $BorderStyle;
+    }
+  }
+}

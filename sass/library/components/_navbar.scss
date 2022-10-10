@@ -1,0 +1,317 @@
+// Navbar
+//
+// Provide a static navbar from which we expand to create full-width, fixed, and
+// other navbar variations.
+
+$MenuBar--OffsetVertical:                  $Spacer * .5 !default;
+$MenuBar--OffsetHorizontal:                  null !default;
+
+$MenuBar--MenuLink--OffsetHorizontal:         .5rem !default;
+
+$MenuBar--brand-FontSize:            $FontSize-lg !default;
+// Compute the NavBar--brand OffsetVertical so the NavBar--brand will have the same height as NavBar--text and nav-link
+$MenuLink--height:                   $FontSize * $LineHeight + $MenuLink--OffsetVertical * 2 !default;
+$MenuBar--brand-height:               $MenuBar--brand-FontSize * $LineHeight !default;
+$MenuBar--brand--OffsetVertical:            ($MenuLink--height - $MenuBar--brand-height) * .5 !default;
+$MenuBar--brand-Spacer-end:           1rem !default;
+
+$MenuBar--toggler--OffsetVertical:          .25rem !default;
+$MenuBar--toggler--OffsetHorizontal:          .75rem !default;
+$MenuBar--toggler-FontSize:          $FontSize-lg !default;
+$MenuBar--toggler--BorderRadius:      $ButtonRadius !default;
+$MenuBar--toggler-BorderWidth-focus:        $BorderWidth-focus !default;
+$MenuBar--togglerTransition:         box-shadow .15s ease-in-out !default;
+
+$MenuBar--light-color:                rgba($black, .55) !default;
+$MenuBar--light-Color-hover:          rgba($black, .7) !default;
+$MenuBar--light-Color-active:         rgba($black, .9) !default;
+$MenuBar--light-Color-disabled:       rgba($black, .3) !default;
+$MenuBar--light-toggler-IconBackground:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$MenuBar--light-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
+$MenuBar--light-togglerBorder: rgba($black, .1) !default;
+$MenuBar--light-brand-color:          $MenuBar--light-Color-active !default;
+$MenuBar--light-brand-Color-hover:    $MenuBar--light-Color-active !default;
+// scss-docs-end NavBar--variables
+
+// scss-docs-start NavBar--dark-variables
+$MenuBar--dark-color:                 rgba($white, .55) !default;
+$MenuBar--dark-Color-hover:           rgba($white, .75) !default;
+$MenuBar--dark-Color-active:          $white !default;
+$MenuBar--dark-Color-disabled:        rgba($white, .25) !default;
+$MenuBar--dark-toggler-IconBackground:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$MenuBar--dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
+$MenuBar--dark-togglerBorder:  rgba($white, .1) !default;
+$MenuBar--dark-brand-color:           $MenuBar--dark-Color-active !default;
+$MenuBar--dark-brand-Color-hover:     $MenuBar--dark-Color-active !default;
+
+.navbar {
+  // scss-docs-start NavBar--css-vars
+  --#{$prefix}NavBar--OffsetHorizontal: #{if($MenuBar--OffsetHorizontal == null, 0, $MenuBar--OffsetHorizontal)};
+  --#{$prefix}NavBar--OffsetVertical: #{$MenuBar--OffsetVertical};
+  --#{$prefix}NavBarText: #{$MenuBar--light-color};
+  --#{$prefix}NavBarText-hover: #{$MenuBar--light-Color-hover};
+  --#{$prefix}NavBarText-disabled: #{$MenuBar--light-Color-disabled};
+  --#{$prefix}NavBarText-active: #{$MenuBar--light-Color-active};
+  --#{$prefix}NavBar--brand--OffsetVertical: #{$MenuBar--brand--OffsetVertical};
+  --#{$prefix}NavBar--brand-Spacer-end: #{$MenuBar--brand-Spacer-end};
+  --#{$prefix}NavBar--brand-FontSize: #{$MenuBar--brand-FontSize};
+  --#{$prefix}NavBar--brand-color: #{$MenuBar--light-brand-color};
+  --#{$prefix}NavBar--brand-Color-hover: #{$MenuBar--light-brand-Color-hover};
+  --#{$prefix}NavBar--MenuLink--OffsetHorizontal: #{$MenuBar--MenuLink--OffsetHorizontal};
+  --#{$prefix}NavBar--toggler--OffsetVertical: #{$MenuBar--toggler--OffsetVertical};
+  --#{$prefix}NavBar--toggler--OffsetHorizontal: #{$MenuBar--toggler--OffsetHorizontal};
+  --#{$prefix}NavBar--toggler-FontSize: #{$MenuBar--toggler-FontSize};
+  --#{$prefix}NavBar--toggler-IconBackground: #{escape-svg($MenuBar--light-toggler-IconBackground)};
+  --#{$prefix}NavBar--togglerBorder: #{$MenuBar--light-togglerBorder};
+  --#{$prefix}NavBar--toggler--BorderRadius: #{$MenuBar--toggler--BorderRadius};
+  --#{$prefix}NavBar--toggler-BorderWidth-focus: #{$MenuBar--toggler-BorderWidth-focus};
+  --#{$prefix}NavBar--togglerTransition: #{$MenuBar--togglerTransition};
+  // scss-docs-end NavBar--css-vars
+
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; // allow us to do the line break for collapsing content
+  align-items: center;
+  justify-content: space-between; // space out brand from logo
+  padding: var(--#{$prefix}NavBar--OffsetVertical) var(--#{$prefix}NavBar--OffsetHorizontal);
+  @include gradient-background();
+
+  // Because flex properties aren't inherited, we need to redeclare these first
+  // few properties so that content nested within behave properly.
+  // The `flex-wrap` property is inherited to simplify the expanded navbars
+  %container-flex-properties {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  > .container,
+  > .container-fluid {
+    @extend %container-flex-properties;
+  }
+
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    > .container#{breakpoint-infix($breakpoint, $container-max-widths)} {
+      @extend %container-flex-properties;
+    }
+  }
+}
+
+
+// Navbar brand
+//
+// Used for brand, project, or site names.
+
+.NavBar--brand {
+  padding-top: var(--#{$prefix}NavBar--brand--OffsetVertical);
+  padding-bottom: var(--#{$prefix}NavBar--brand--OffsetVertical);
+  margin-right: var(--#{$prefix}NavBar--brand-Spacer-end);
+  @include font-size(var(--#{$prefix}NavBar--brand-FontSize));
+  color: var(--#{$prefix}NavBar--brand-color);
+  text-decoration: if($LinkDecoration == none, null, none);
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    color: var(--#{$prefix}NavBar--brand-Color-hover);
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+  }
+}
+
+
+// Navbar nav
+//
+// Custom navbar navigation (doesn't require `.nav`, but does make use of `.nav-link`).
+
+.NavBar--nav {
+  // scss-docs-start NavBar--nav-css-vars
+  --#{$prefix}nav-link--OffsetHorizontal: 0;
+  --#{$prefix}nav-link--OffsetVertical: #{$MenuLink--OffsetVertical};
+  @include rfs($MenuLinkSize, --#{$prefix}nav-link-FontSize);
+  --#{$prefix}nav-link-FontWeight: #{$MenuLink--FontWeight};
+  --#{$prefix}nav-LinkText: var(--#{$prefix}NavBarText);
+  --#{$prefix}nav-LinkText-hover: var(--#{$prefix}NavBarText-hover);
+  --#{$prefix}nav-LinkText-disabled: var(--#{$prefix}NavBarText-disabled);
+  // scss-docs-end NavBar--nav-css-vars
+
+  display: flex;
+  flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  .show > .nav-link,
+  .nav-link.active {
+    color: var(--#{$prefix}NavBarText-active);
+  }
+
+  .dropdown-menu {
+    position: static;
+  }
+}
+
+
+// Navbar text
+//
+//
+
+.NavBar--text {
+  padding-top: $MenuLink--OffsetVertical;
+  padding-bottom: $MenuLink--OffsetVertical;
+  color: var(--#{$prefix}NavBarText);
+
+  a,
+  a:hover,
+  a:focus  {
+    color: var(--#{$prefix}NavBarText-active);
+  }
+}
+
+
+// Responsive navbar
+//
+// Custom styles for responsive collapsing and toggling of navbar contents.
+// Powered by the collapse Bootstrap JavaScript plugin.
+
+// When collapsed, prevent the toggleable navbar contents from appearing in
+// the default flexbox row orientation. Requires the use of `flex-wrap: wrap`
+// on the `.navbar` parent.
+.NavBar--collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  // For always expanded or extra full navbars, ensure content aligns itself
+  // properly vertically. Can be easily overridden with flex utilities.
+  align-items: center;
+}
+
+// Button for toggling the navbar when in its collapsed state
+.NavBar--toggler {
+  padding: var(--#{$prefix}NavBar--toggler--OffsetVertical) var(--#{$prefix}NavBar--toggler--OffsetHorizontal);
+  @include font-size(var(--#{$prefix}NavBar--toggler-FontSize));
+  line-height: 1;
+  color: var(--#{$prefix}NavBarText);
+  background-color: transparent; // remove default button style
+  border: var(--#{$prefix}border-width) solid var(--#{$prefix}NavBar--togglerBorder); // remove default button style
+  @include border-radius(var(--#{$prefix}NavBar--toggler--BorderRadius));
+  @include Transition(var(--#{$prefix}NavBar--togglerTransition));
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 var(--#{$prefix}NavBar--toggler-BorderWidth-focus);
+  }
+}
+
+// Keep as a separate element so folks can easily override it with another icon
+// or image file as needed.
+.NavBar--toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: var(--#{$prefix}NavBar--toggler-IconBackground);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+.NavBar--nav-scroll {
+  max-height: var(--#{$prefix}scroll-height, 75vh);
+  overflow-y: auto;
+}
+
+// scss-docs-start NavBar--expand-loop
+// Generate series of `.NavBar--expand-*` responsive classes for configuring
+// where your navbar collapses.
+.NavBar--expand {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+
+    // stylelint-disable-next-line scss/selector-no-union-class-name
+    &#{$infix} {
+      @include media-breakpoint-up($next) {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+
+        .NavBar--nav {
+          flex-direction: row;
+
+          .dropdown-menu {
+            position: absolute;
+          }
+
+          .nav-link {
+            padding-right: var(--#{$prefix}NavBar--MenuLink--OffsetHorizontal);
+            padding-left: var(--#{$prefix}NavBar--MenuLink--OffsetHorizontal);
+          }
+        }
+
+        .NavBar--nav-scroll {
+          overflow: visible;
+        }
+
+        .NavBar--collapse {
+          display: flex !important; // stylelint-disable-line declaration-no-important
+          flex-basis: auto;
+        }
+
+        .NavBar--toggler {
+          display: none;
+        }
+
+        .offcanvas {
+          // stylelint-disable declaration-no-important
+          position: static;
+          z-index: auto;
+          flex-grow: 1;
+          width: auto !important;
+          height: auto !important;
+          visibility: visible !important;
+          background-color: transparent !important;
+          border: 0 !important;
+          transform: none !important;
+          @include box-shadow(none);
+          @include Transition(none);
+          // stylelint-enable declaration-no-important
+
+          .OffCanvas--header {
+            display: none;
+          }
+
+          .OffCanvas--body {
+            display: flex;
+            flex-grow: 0;
+            padding: 0;
+            overflow-y: visible;
+          }
+        }
+      }
+    }
+  }
+}
+// scss-docs-end NavBar--expand-loop
+
+// Navbar themes
+//
+// Styles for switching between navbars with light or dark background.
+
+.NavBar--light {
+  @include deprecate("`.NavBar--light`", "v5.2.0", "v6.0.0", true);
+}
+
+.NavBar--dark {
+  // scss-docs-start NavBar--dark-css-vars
+  --#{$prefix}NavBarText: #{$MenuBar--dark-color};
+  --#{$prefix}NavBarText-hover: #{$MenuBar--dark-Color-hover};
+  --#{$prefix}NavBarText-disabled: #{$MenuBar--dark-Color-disabled};
+  --#{$prefix}NavBarText-active: #{$MenuBar--dark-Color-active};
+  --#{$prefix}NavBar--brand-color: #{$MenuBar--dark-brand-color};
+  --#{$prefix}NavBar--brand-Color-hover: #{$MenuBar--dark-brand-Color-hover};
+  --#{$prefix}NavBar--togglerBorder: #{$MenuBar--dark-togglerBorder};
+  --#{$prefix}NavBar--toggler-IconBackground: #{escape-svg($MenuBar--dark-toggler-IconBackground)};
+  // scss-docs-end NavBar--dark-css-vars
+}

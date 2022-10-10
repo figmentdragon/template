@@ -1,0 +1,13 @@
+// Alerts
+//
+// Define alert colors, border radius, and padding.
+$Alert---OffsetVertical: $Spacer;
+$Alert---OffsetHorizontal: $Spacer;
+$Alert---MarginBottom: $BaseUnit;
+$Alert---BorderRadius: $BorderRadius;
+$Alert---LinkFontWeight: bold;
+$Alert---BorderWidth: $BorderWidth;
+$AlertBackgroundInterval: ($ColorInterval * 9);
+$AlertBorderInterval: ($ColorInterval * 7);
+$AlertInterval: ($ColorInterval * 5);
+$Alert--dismissible--Offset-r: $Alert---OffsetHorizontal * 3; // 3x covers width of x plus default padding on either side

@@ -1,0 +1,59 @@
+/* Search widget */
+#searchform {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  label { display: none; }
+  .search-field,
+  #s {
+    float: left;
+    width: 72%;
+    font-size: 1em;
+    line-height: 1.4;
+    margin: 0;
+    padding: 8px;
+  }
+  #searchsubmit {
+    float: right;
+    width: 22%;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 4%;
+    padding: 12px;
+  }
+}
+.widget_search #s { }
+#searchsubmit { display: none; }
+
+#calendar_wrap {
+  margin: 0 auto 0;
+  padding: 5px 0;
+  caption { font-style: italic; }
+  th {  }
+  tr { td {  } }
+  td {  }
+  a {  }
+  #today {  }
+  #prev { a { } }
+  #next { a {  } }
+}
+
+.recentcomments {}
+#recentcomments {
+  li {
+    display: block;
+    padding: 6px 0;
+    a { }
+  }
+  .recentcomments a { background: none; }
+}
+
+/* Text Widgets */
+.textwidget {
+  margin: 0;
+  padding: 0;
+  a {  margin: 12px 0; }
+}
+
+.widget p{ a {} }

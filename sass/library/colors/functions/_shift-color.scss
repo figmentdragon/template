@@ -1,0 +1,17 @@
+// Shade the color if the weight is positive, else tint it
+@function shift-color($color, $weight) {
+  @return if($weight > 0, shade-color($color, $weight), tint-color($color, -$weight));
+}
+
+@function HoverShift($color) {
+  @if "property" == "bg" {
+    @return shift-color(rgba(#color, $TranslucentOpacity), $BackgroundInterval * 1.5);
+  } @if "property" == "text" {
+    @return shift-color($color, $TextInterval * 1.5);
+  } @if "property" == "border" {
+    @return shift-color("currentColor", $BorderInterval * 1.5);
+  } @if $color == 'color' {
+    @return shift-color($color, $weight: $Interval);
+  }
+  @return $color
+}

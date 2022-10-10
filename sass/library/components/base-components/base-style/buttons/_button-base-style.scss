@@ -1,0 +1,168 @@
+// Base styles
+//
+
+.button {
+  font-family: $ButtonFont;
+  font-size: $ButtonSize;
+  font-weight: $ButtonWeight;
+  line-height: $Button-LineHeight;
+
+  display: inline-block;
+
+  padding: $Button-OffsetVertical $Button-OffsetHorizontal;
+
+  cursor: if($enable-button-pointers, pointer, null);
+  user-select: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: $Button-white-space;
+  text-decoration: $LinkDecoration;
+
+  color: $Button-link--TextColor;
+  border: $BorderWidth $BorderStyle $ButtonBorder;
+  border-radius: $ButtonRadius;
+
+  $Button-OffsetHorizontal: #{$Button-OffsetHorizontal};
+  $Button-OffsetVertical: #{$Button-OffsetVertical};
+  $ButtonFont: #{$ButtonFont};
+  //@include font-size($ButtonSize);
+  $ButtonWeight: #{$ButtonWeight};
+  $Button-LineHeight: #{$Button-LineHeight};
+  $Button-LinkColor: #{$Text};
+  $Button-active--TextColor: #{$Button-LinkColor};
+  $Button-focus--Textcolor: $Text;
+  $Button-hover--LinkColor: $Button-focus--TextColor;
+  $ButtonBackgroundColor: transparent;
+  $Button-activeBackgroundColor: $ButtonBackgroundColor;
+  $Button-hoverBackgroundColor: $secondary;
+  $BorderWidth: #{$BorderWidth};
+  $ButtonBorder: transparent;
+  $Button-active-Border: $ButtonBorder;
+  $Button-hover-Border: $secondary;
+  $ButtonRadius: #{$ButtonRadius};
+  $Button-BoxShadow: #{$Button-BoxShadow};
+  $DisabedOpacity: #{$DisabedOpacity};
+  $Button-BoxShadow-focus: 0 0 0 #{$Button-focus-width} rgba($Button-focus--TextColor, 0.5);
+  $Button-active-shadow: $Button-BoxShadow-focus;
+  $Button-disabled-Border: rbga($ButtonBorder, $DisabedOpacity);
+  $Button-disabledBackgroundColor: rbga($ButtonBackgroundColor, $DisabedOpacity);
+  @include gradientBackgroundColor($ButtonBackgroundColor);
+  @include box-shadow($Button-BoxShadow);
+  @include Transition($ButtonTransition);
+
+  &:hover {
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+
+    color: $Button-hover--LinkColor;
+    border-color: $Button-hover-Border;
+    background-color: $Button-hoverBackgroundColor;
+  }
+
+  .button-check:focus + &,
+  &:focus {
+    color: $Button-hover--LinkColor;
+    border-color: $Button-hover-Border;
+    outline: 0;
+
+    @include gradientBackgroundColor($Button-hoverBackgroundColor);
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: $Button-BoxShadow, $Button-BoxShadow-focus;
+    } @else {
+      box-shadow: $Button-BoxShadow-focus;
+    }
+  }
+
+  .button-check:checked + &,
+  .button-check:active + &,
+  &:active,
+  &.active,
+  &.show {
+    color: $Button-active--TextColor;
+    border-color: $Button-active-Border;
+    background-color: $Button-activeBackgroundColor;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+
+    @include box-shadow($Button-active-shadow);
+
+    &:focus {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      @if $enable-shadows {
+        box-shadow: $Button-active-shadow, $Button-BoxShadow-focus;
+      } @else {
+        box-shadow: $Button-BoxShadow-focus;
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled,
+  fieldset:disabled & {
+    pointer-events: none;
+
+    opacity: $DisabedOpacity;
+    color: $Button-disabled--TextColor;
+    border-color: $Button-disabled-Border;
+    background-color: $Button-disabledBackgroundColor;
+    background-image: if($enable-gradients, none, null);
+
+    @include box-shadow(none);
+  }
+}
+
+a.button,
+a.button:link,
+a.button:visited,
+.reply a,
+.reply a:link,
+.reply a:visited,
+#searchsubmit,
+a.more-link,
+#submit,
+input[type="submit"],
+input#submit,
+input.button,
+#infinite-handle span,
+.wp-block-button a {
+  font-size: 80%;
+  font-style: normal;
+  line-height: 1;
+
+  position: relative;
+
+  display: inline-block;
+
+  padding: .75rem 1.5rem;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: #000 !important;
+  border: 3px $BorderStyle #000;
+  border-radius: 0;
+  background-color: translucentBackground($white);
+
+  -webkit-appearance: none;
+}
+
+a.button:hover,
+a.button:focus,
+a.button:active,
+.reply a:hover,
+.reply a:active,
+.reply a:focus,
+#searchsubmit:hover,
+a.more-link:hover,
+input[type="submit"]:hover,
+#submit:hover,
+input#submit:hover,
+input.button:hover,
+#infinite-handle span:hover,
+.wp-block-button a:hover {
+  cursor: pointer;
+  text-decoration: none;
+
+  color: #fff !important;
+  background-color: #000;
+}

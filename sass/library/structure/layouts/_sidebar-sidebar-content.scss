@@ -1,0 +1,19 @@
+/* -- =SIDEBAR-SIDEBAR-CONTENT --------------- */
+
+#primary {
+float: right;
+margin: 0 0 0 -80%;
+width: calc(100% - calc(2 * $Spacer));
+}
+#content {
+margin: 0 0 0 40%;
+}
+#main .widget-area {
+float: left;
+overflow: hidden;
+width: 20%;
+}
+.site-footer {
+clear: both;
+width: calc(100% - calc(2 * $Spacer));
+}

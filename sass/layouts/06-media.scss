@@ -1,0 +1,14 @@
+/* =Media
+----------------------------------------------- */
+
+@import "content/media/09-alignment";
+@import "content/media/10-media";
+@import "content/media/11-captions";
+@import "content/media/12-gallery";
+
+/* Make sure embeds and iframes fit their containers */
+embed,
+iframe,
+object {
+	max-width: calc(100% - calc(2 * $Spacer));
+}

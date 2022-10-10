@@ -1,0 +1,126 @@
+// visualizing layout internals
+* {
+  @if $enable-debug {
+
+    @function DebugBorder($color) {
+      @return rgba($color, $weight: .75);
+    }
+
+    $DebugBorderWidth: medium;
+    $DebugBorderColor: hotpink;
+    $DebugBackground: slategray;
+    $DebugTextColor: orange;
+    $DebugFontSize: 18px;
+    $DebugFontWeight: bold;
+
+    $element-colors: () !default;
+    $element-colors: (
+    	'body' : red,
+      'header' : orange,
+      'footer' : yellow,
+      'main' : green,
+      'article' : blue,
+      'aside' : indigo,
+      'nav' : violet,
+      'menu' : teal,
+      'section' : pink,
+    	'[class^='column']' : cyan,
+    	'[class^='row']' : goldenrod,
+    	'[class^='container']' : darkslategray
+    );
+
+    @mixin debug-before {
+    	color: $DebugTextColor;
+    	font-size: $DebugFontSize;
+    	font-weight: $DebugFontWeight;
+    	padding: $OffsetHorizontal $OffsetVertical;
+    	position: absolute;
+    	display: flex;
+    	align-items: center;
+    	top:0;
+    	left:0;
+    }
+    outline: $DebugBorderWidth solid $DebugBorderColor !important;
+    background: translucentBackground($DebugBackground) !important;
+    color: Text($DebugTextColor) !important;
+    box-shadow: none !important;
+    filter:     none !important;
+
+    @each $element, $color in $element-colors {
+      #{$element} {
+        outline: $DebugBorderWidth solid DebugBorder($color);
+        outline-offset: -$BorderWidth;
+        position:relative;
+        &:before {
+      		@include debug-before;
+          background: translucentBackground($DebugBackground) !important;
+      		content: '#{$element}';
+        }
+    	}
+    }
+  }
+}
+
+.debug :not(g):not(path) {
+  @if ($debug) {
+    color: hsla(210, 100%, 100%, 0.9) !important;
+    background: hsla(210, 100%, 50%, 0.5) !important;
+    outline: solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+
+    box-shadow: none !important;
+    filter: none !important;
+  }
+}
+
+[debug],
+[debug] * {
+	color:                 hsla(210, 100%, 100%, 0.9) !important;
+	background:            hsla(210, 100%,  50%, 0.5) !important;
+	outline: solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+
+	box-shadow: none !important;
+	filter:     none !important;
+}
+
+@mixin debug-before {
+	color: $DebugTextColor;
+	font-size: $DebugFontSize;
+	font-weight: $DebugFontWeight;
+	padding: $OffsetHorizontal $OffsetVertical;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	top:0;
+	left:0;
+}
+
+$element-colors: () !default;
+$element-colors: (
+	'body' : red,
+  'header' : orange,
+  'footer' : yellow,
+  'main' : green,
+  'article' : blue,
+  'aside' : indigo,
+  'nav' : violet,
+  'menu' : teal,
+  'section' : pink,
+	'[class^='column']' : cyan,
+	'[class^='row']' : goldenrod,
+	'[class^='container']' : darkslategray
+);
+
+@each $element, $color in $element-colors {
+	.#{$element},
+	#{$element} {
+		outline: $BorderWidth solid Border($color);
+		outline-offset: -$BorderWidth;
+		position:relative;
+	};
+	.#{$element}:before,
+	#{$element}:before {
+		@include debug-before;
+		background-color: Background($color);
+		content: '#{$element}';
+	}
+}

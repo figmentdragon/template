@@ -1,0 +1,11 @@
+$devices: () !default;
+$devices: (
+  'mobile'      : $mobile,
+  'Tablet'      : $Tablet,
+  'touch'       : $touch,
+  'laptop'      : $laptop,
+  'desktop'     : $desktop,
+  'largescreen' : $largescreen,
+  'widescreen'  : $widescreen,
+  'ultrawide'   : $ultrawide
+) !default;

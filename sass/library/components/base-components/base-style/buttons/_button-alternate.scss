@@ -1,0 +1,19 @@
+// Alternate buttons
+//
+
+// scss-docs-start Button-variant-loops
+@if $enable-themeing {
+    @each $color, $value in $theme-colors {
+    .button-#{$color} {
+      @include button-variant($value, $value);
+    }
+  }
+}
+
+@if $enable-themeing {
+    @each $color, $value in $theme-colors {
+    .button-outline-#{$color} {
+      @include button-outline-variant($value);
+    }
+  }
+}

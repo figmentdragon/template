@@ -1,0 +1,594 @@
+/* Typography
+--------------------------------------------- */
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+	color: $Text;
+	font-family: $FontMain;
+	@include font-size($FontSize);
+	line-height: $LineHeight;
+}
+
+p {
+	margin-bottom: calc($BaseUnit * 1.5);
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted $BorderColor-abbr;
+	cursor: help;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+  border-bottom: 0;
+}
+
+mark {
+  padding: .2rem;
+}
+
+mark,
+ins {
+	background: Background(yellow);
+	color: Text($black);
+	text-decoration: none;
+}
+
+q {
+  margin-bottom: $BaseUnit;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: $BaseUnit;
+  quotes: '\201C''\201D''\2018''\2019';
+}
+
+time {
+  margin-right: calc(2 * $Spacer);
+}
+
+small {
+  font-size: 80%;
+	filter:contrast(0.5);
+}
+
+big {
+	font-size: 125%;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.8rem;
+}
+
+sub {
+  bottom: -0.4rem;
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+cite {
+  margin-top: $BaseUnit;
+}
+
+blockquote {
+	margin  : calc($BaseUnit * 1.5) 0 calc($BaseUnit * 1.5) -calc($BaseUnit * 1.5);
+  padding : calc($OffsetHorizontal / 2) $OffsetVertical;
+	font-style: italic;
+	p {
+		margin-bottom: 0;
+	}
+	small {
+		color: Muted($Text);
+	  display: block;
+		&:before {
+			content: '\2014 \00A0';
+		}
+	}
+}
+
+figcaption {
+	text-align: center;
+}
+
+summary {
+	display: list-item;
+  cursor: pointer;
+}
+
+
+/* Elements
+--------------------------------------------- */
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  width: calc(100% - calc(2 * $Spacer));
+  height: 100%;
+  scroll-behavior: smooth;
+  line-height: $LineHeight;
+	-webkit-text-size-adjust: 100%;
+  @include box-sizing($type: border-box);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+/** Inherit box-sizing to more easily change it's value on a component level.*/
+*,
+*:before,
+*:after,
+*::before,
+*::after {
+  @include box-sizing($type: inherit);
+}
+
+*,
+*:after,
+*:before {
+  margin: auto;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+  word-wrap: break-word;
+  text-rendering: geometricPrecision;
+}
+
+html,
+body {
+  line-height: $LineHeight;
+  color: $Text;
+  overflow: hidden;
+  @include box-sizing($type: border-box);
+
+  text-align: left;
+  overflow: hidden;
+}
+
+body {
+	margin: $Spacer;
+  padding: $Offset;
+  height: calc(100% - calc(2 * $Spacer));
+  width: calc(100% - calc(2 * $Spacer));
+}
+
+article,
+aside,
+dialog,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+details {
+  display: block;
+}
+
+footer,
+header,
+main {
+  margin: $Spacer auto;
+  max-width: calc(100% - calc(2 * $Spacer));
+  padding: $Offset;
+}
+
+footer {
+  display: inline-flex;
+  justify-content: space-between;
+
+	padding: $Offset calc($Offset * 2);
+  width: calc(100% - calc(2 * $Spacer));
+}
+
+header {
+  height: calc(100% - calc(2 *$Spacer));
+	padding: $Offset;
+}
+
+main {
+  padding-top: calc($BaseUnit * 1.5);
+}
+
+@media screen and (max-width: 719px) {
+  footer,
+  header,
+  main {
+    margin: $SpacerHorizontal auto;
+    max-width: calc($responsive--SiteMain - calc(2 * $responsive--SpacerVertical));
+    padding: $OffsetHorizontal $BaseUnit;
+  }
+}
+
+article {
+  margin: 0 0 $BaseUnit 0;
+  padding-top: $OffsetHorizontal;
+  padding-right: calc($OffsetVertical * $xs);
+  padding-bottom: $OffsetHorizontal;
+  padding-left: calc($OffsetVertical * $xs);
+  width: calc(100% - calc(2 * $Spacer));
+  height: calc(100% - $BaseUnit);
+}
+
+
+nav {
+  margin-bottom: calc(7 * $BaseUnit);
+  padding: $OffsetNested;
+  width: min-content;
+	min-height: fit-content;
+  &[list]{
+  	display: flex;
+  	flex: 0;
+  	flex-flow: column;
+  }
+}
+
+aside {
+  margin-bottom: $BaseUnit;
+  margin-left: $BaseUnit;
+
+  padding: $BaseUnit 1.25rem;
+  width: calc(calc(100% - 75%) - $BaseUnit);
+  height: calc(100% - $BaseUnit);
+}
+
+section {
+  margin: calc(3 * $BaseUnit) 0;
+  padding: 2rem $BaseUnit;
+}
+
+template {
+  display: none;
+}
+
+address {
+  margin: 0 0 calc($BaseUnit * 1.5);
+}
+
+// Always hide an element with the `hidden` HTML attribute
+[hidden] {
+  display: none !important;
+}
+
+a {
+	color: $LinkText;
+
+	&:visited {
+		color: $LinkText-visited;
+	}
+
+	&:hover,
+	&:focus{
+		color: $LinkText-hover;
+	}
+
+	&:focus {
+		outline: thin dotted;
+	}
+
+	&:hover,
+	&:active {
+		outline: 0;
+	}
+}
+
+ul,
+ol {
+	margin: 0 0 calc($BaseUnit * 1.5) 3rem;
+}
+
+nav ol,
+nav ul {
+  list-style: none;
+  list-style-image: none;
+  margin-left: 0;
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+menu,
+ol,
+ul,
+dl {
+  margin: 0 0 1.25rem 0;
+  margin: 0 0 calc(2 * $BaseUnit) 0;
+  padding: 0;
+}
+
+
+menu ul,
+menu ol,
+ul ul,
+ul ol,
+ol ol,
+ol ul,
+dd {
+  margin-bottom: 0;
+}
+
+nav li:before {
+  content: '\200B';
+  position: absolute;
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	margin-left: calc($BaseUnit * 1.5);
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd {
+	margin: 0 calc($BaseUnit * 1.5) calc($BaseUnit * 1.5) 0;
+}
+
+hr,
+fieldset{
+	border-width: calc($BorderWidth / 2) 0 calc($BorderWidth / 2) 0;
+	border-color: $BorderColor;
+	border-style: solid;
+	border-radius: $BorderRadius;
+}
+
+hr {
+  display: block;
+  height: 0;
+  color: inherit;
+  margin: calc(2 * $BaseUnit) 0;
+  padding: 0;
+	overflow: visible;
+	@include box-sizing($type: content-box);
+}
+
+/* Make sure embeds and iframes fit their containers. */
+img,
+canvas,
+audio,
+video,
+iframe,
+object,
+embed {
+  max-width: calc(100% - calc(2 * $Spacer));
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+}
+
+audio,
+video,
+canvas,
+img,
+svg {
+  vertical-align: middle;
+}
+
+img {
+	height: auto; // Make sure images are scaled correctly.
+	border-style: none;
+}
+
+figure {
+	margin: $BaseUnit 0; // Extra wide images within figure tags don't overflow the content area.
+}
+
+template {
+	display: none;
+}
+
+table {
+  max-width: calc(100% - calc(2 * $Spacer));
+	width: calc(100% - calc(2 * $Spacer));
+  margin: 2rem 0 calc($BaseUnit * 1.5) 0;
+  border-collapse: collapse;
+}
+
+caption {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+	color: Muted($Text);
+	text-align: left;
+	caption-side: bottom;
+	line-height: 1.375;
+	font-size: 90%;
+}
+
+th,
+td,
+thead,
+tr {
+	padding: 0.667rem;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+thead th {
+  vertical-align: bottom;
+}
+
+th,
+td {
+  vertical-align: top;
+}
+
+th {
+  text-align: inherit;
+  font-weight: 700;
+}
+
+
+/* Forms
+--------------------------------------------- */
+button,
+input {
+	overflow: visible;
+}
+
+button,
+select {
+	text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+	-webkit-appearance: button;
+	border: $BorderWidth solid;
+	border-color: $ButtonBorder-color;
+	border-radius: $BorderRadius;
+	background: $ButtonBackground;
+	color: Muted($Text);
+	line-height: 1;
+	padding: $Offset $BaseUnit $OffsetHorizontal;
+
+	&:hover {
+		border-color: $ButtonBorder-color-hover;
+	}
+
+	&:active,
+	&:focus {
+		border-color: $ButtonBorder-focus;
+	}
+	&::-moz-focus-inner {
+		border-style: none;
+		padding: 0;
+	}
+	&:-moz-focusring {
+		outline: $BorderWidth-focus dotted $ButtonBorder-focus;
+	}
+}
+
+input[type="text"],
+input[type="remail"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea,
+.site textarea {
+	color: $InputText;
+	border: $BorderWidth solid $InputBorder;
+	border-radius: calc($BorderRadius / 2);
+	padding: $Offset;
+
+	&:focus {
+		color: $InputText-focus;
+	}
+}
+
+select {
+	border: $BorderWidth solid $InputBorder;
+}
+
+textarea {
+	width: calc(100% - calc(2 * $Spacer));
+	overflow: auto;
+}
+
+fieldset {
+	padding: 0.35rem 0.75rem 0.625rem;
+}
+
+legend {
+	@include box-sizing($type: border-box);
+	color: inherit;
+	display: table;
+	max-width: calc(100% - calc(2 * $Spacer));
+	padding: 0;
+	white-space: normal;
+}
+
+progress {
+	vertical-align: baseline;
+}
+
+
+[type="checkbox"],
+[type="radio"] {
+	@include box-sizing($type: border-box);
+	padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+
+[type="search"] {
+	-webkit-appearance: textfield;
+	outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+	-webkit-appearance: button;
+	font: inherit;
+}
+
+details {
+	display: block;
+}

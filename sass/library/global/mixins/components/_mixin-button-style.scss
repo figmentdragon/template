@@ -1,0 +1,61 @@
+// - Applies button styles to blocks and elements that share them.
+@mixin button-style() {
+	border: var(--button--border-width) solid transparent;
+	border-radius: var(--button--border-radius);
+	cursor: pointer;
+	font-weight: var(--button--font-weight);
+	font-family: var(--buttonFont);
+	font-size: var(--buttonSize);
+	line-height: var(--button--line-height);
+	padding: var(--Button-OffsetVertical) var(--Button-OffsetHorizontal);
+	text-decoration: none;
+
+	// Standard Button Color Relationship Logic
+	&:not(:hover):not(:active) {
+
+		// Text colors
+		&:not(.has-text-color) {
+			color: var(Background);
+
+			// Nested
+			.has-background & {
+				color: var(--localText-background, var(--primary));
+
+				&.has-background {
+					color: var(--primary);
+				}
+			}
+		}
+
+		// Background-colors
+		&:not(.has-background) {
+			background-color: var(--primary);
+
+			// Nested
+			.has-background & {
+				background-color: var(--localText-primary, var(--primary));
+			}
+		}
+	}
+
+	// Hover Button color should match parent element foreground color
+	&:hover,
+	&:active {
+		background-color: transparent;
+		border-color: currentColor;
+		color: inherit;
+	}
+
+	// Focus Button outline color should always match the current text color
+	&:focus {
+		outline--Offset: -6px;
+		outline: 2px dotted currentColor;
+	}
+
+	// Disabled Button colors
+	&:disabled {
+		background-color: var(--globalText-white-50);
+		border-color: var(--globalText-white-50);
+		color: var(--ButtonText-text-active);
+	}
+}

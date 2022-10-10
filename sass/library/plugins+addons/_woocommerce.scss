@@ -1,0 +1,71 @@
+/* - #WooCommerce ---------------------------------------------------------- *\
+ * -> WooCommerce
+\* ------------------------------------------------------------------------- */
+
+.woocommerce .products ul,
+.woocommerce ul.products {
+  display: flex;
+}
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+  width: calc(100% - calc(2 * $Spacer));
+  min-width: 300px;
+  margin: 0 1.5rem 0 0;
+}
+.woocommerce-product-gallery .flex-viewport,
+.woocommerce-product-gallery .flex-control-nav li {
+  @include box-sizing(border-box);
+  padding: 0 !important;
+
+  border: 5px $BorderStyle tint($gray, $ColorInterval * 4);
+  border: 5px $BorderStyle rgba(255,255,255,0);
+}
+.woocommerce div.product div.woocommerce-product-gallery.images ol.flex-control-thumbs {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+.woocommerce-product-gallery__wrapper {
+  margin-right: 0;
+  margin-left: 0;
+}
+.woocommerce div.product div.woocommerce-product-gallery.images .woocommerce-product-gallery__trigger {
+  top: 1em;
+}
+.woocommerce-product-gallery .flex-control-nav {
+  position: relative;
+}
+.woocommerce a.button:hover {
+  color: #000000 !important;
+  border: none !important;
+}
+.woocommerce a.added_to_cart,
+.woocommerce-page a.added_to_cart {
+  display: block !important;
+}
+.woocommerce ul.products li.product h3,
+.woocommerce-page ul.products li.product h3 {
+  font-weight: 400;
+
+  letter-spacing: 0;
+}
+.woocommerce ul.products li.product .price,
+.woocommerce-page ul.products li.product .price {
+  margin-bottom: .75rem !important;
+}
+.woocommerce .woocommerce-ordering select,
+.woocommerce-page .woocommerce-ordering select {
+  margin-right: 0;
+}
+.woocommerce .quantity input.qty,
+.woocommerce #content .quantity input.qty,
+.woocommerce-page .quantity input.qty,
+.woocommerce-page #content .quantity input.qty {
+  margin: 0;
+  padding: 0 !important;
+}
+.woocommerce  #review_form_wrapper {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+
+  background: #F9F9F9;
+}

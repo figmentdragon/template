@@ -1,0 +1,105 @@
+// To use in headings `<h1> - <h4>`.
+//
+// Outputs `font-size`, `line-height`, `margin-bottom` and `margin-top`.
+//
+// @param {number} $step -
+// `<h1>` &rarr; `$step: 3`
+//
+// `<h2>` &rarr; `$step: 2`
+//
+// `<h3>` &rarr; `$step: 1`
+//
+// `<h4>` &rarr; `$step: 0`
+//
+// @param {string} $unit ["px"] - Unit to output(Defin $BaseUnit)
+// @param {number} $base-value [18px] - Optional call with a different base font size when using em (Define $FontSize)
+// @param {number} $scale-factor [1.618] - Scale factor constants
+// @param {number} $LineHeight [1.2] - Base line-height
+// @example scss
+// h1 {
+// 	@include heading(3, "em");
+// }
+//
+// h2 {
+// 	@include heading(2, "px");
+// }
+//
+// h3 {
+// 	@include heading(1, "pxrem");
+// }
+//
+// h4 {
+// 	@include heading(0);
+// }
+//
+// @example css
+// h1 {
+//     font-size: 4.22222em;
+//     line-height: 1.15789em;
+//     margin-bottom: 0.28947em;
+//     margin-top: 0.57895em;
+// }
+//
+// h2 {
+//     font-size: 47px;
+//     line-height: 66px;
+//     margin-bottom: 22px;
+//     margin-top: 44px;
+// }
+//
+// h3 {
+//     font-size: 29px;
+//     line-height: 44px;
+//     margin-bottom: 22px;
+//     margin-top: 22px;
+//     font-size: 1.8125rem;
+//     line-height: 2.75rem;
+//     margin-bottom: 1.375rem;
+//     margin-top: 1.375rem;
+// }
+//
+// h4 {
+//     font-size: 18px;
+//     line-height: 22px;
+//     margin-bottom: 22px;
+//     margin-top: 22px;
+//     font-size: 1.125rem;
+//     line-height: 1.375rem;
+//     margin-bottom: 1.375rem;
+//     margin-top: 1.375rem;
+// }
+
+@mixin heading($step, $unit: "px", $base-value: 18px, $scale-factor: 1.618, $LineHeight:1.2) {
+    $FontSize: $base-value;
+    $scale: $scale-factor;
+    $computed-font-size: round($FontSize * exponent($scale, $step));
+    $LineHeight: round($FontSize * $LineHeight);
+    $lines: ceil($computed-font-size / $LineHeight);
+    $computed-line-height: $LineHeight * $lines;
+
+    $margin-top: $LineHeight;
+    @if ($step > 1) {
+        $margin-top: $LineHeight * 2;
+    }
+
+    @if ($unit == "px" or $unit == "pxrem") {
+        font-size: $computed-font-size * 1px;
+        line-height: $computed-line-height * 1px;
+        margin-bottom: $LineHeight * 1px;
+        margin-top: $margin-top * 1px;
+    }
+
+    @if ($unit == "rem" or $unit == "pxrem") {
+        font-size: px2rem($computed-font-size);
+        line-height: px2rem($computed-line-height);
+        margin-bottom: px2rem($LineHeight);
+        margin-top: px2rem($margin-top);
+    }
+
+    @if ($unit == "em") {
+        font-size: decimal-ceil(px2em($computed-font-size, strip-units($base-value)), 5);
+        line-height: decimal-ceil(px2em($computed-line-height, $computed-font-size), 5);
+        margin-bottom: decimal-ceil(px2em($LineHeight, $computed-font-size), 5);
+        margin-top: decimal-ceil(px2em($margin-top, $computed-font-size), 5);
+    }
+}

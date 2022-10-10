@@ -1,0 +1,52 @@
+/**
+ * = Shadows
+ */
+
+ $BoxShadow:                  0 .5rem 1rem rgba($black, .15) !default;
+ $BoxShadow-sm:               0 .125rem .25rem rgba($black, .075) !default;
+ $BoxShadow-lg:               0 1rem 3rem rgba($black, .175) !default;
+ $shadow-hover    : 0.25rem 0.5rem 0.75rem ColorDark($primary);
+ $shadow-focus    : -0.25rem 0.5rem 0.75rem ColorLight($primary);
+$BoxShadow-inset:            inset 0 1px 2px rgba($black, .075) !default;
+
+ $BoxShadow-0: none;
+ $BoxShadow-1: 0 1px 2px 0 rgba($ShadowPrimary, 0.07);
+ $BoxShadow-2: 0 1px 3px 0 rgba($ShadowPrimary, 0.07), 0 1px 2px 0 rgba($ShadowPrimary, 0.05);
+ $BoxShadow-3: 0 4px 6px -1px rgba($ShadowPrimary, 0.07), 0 2px 4px -1px rgba($ShadowPrimary, 0.05);
+ $BoxShadow-4: 0 10px 15px -3px rgba($ShadowPrimary, 0.07), 0 4px 6px -2px rgba($ShadowPrimary, 0.05);
+ $BoxShadow-5: 0 20px 25px -5px rgba($ShadowPrimary, 0.07), 0 10px 10px -5px rgba($ShadowPrimary, 0.05);
+ $BoxShadow-6: 0 25px 50px -.75rem rgba($ShadowPrimary, 0.21);
+
+ /* Box Shadow -- Soft */
+ $BoxShadow-soft: 6px 6px .75rem $ShadowColor-soft, -6px -6px .75rem $ShadowColor-light;
+ $BoxShadow-1-soft: 0 1px 5px 0 rgba($ShadowColor-soft, 0.05);
+ $BoxShadow-2-soft: 0 2px 10px 0 rgba($ShadowColor-soft, 0.05);
+ $BoxShadow-3-soft: 0 5px 15px 0 rgba($ShadowColor-soft, 0.05);
+ $BoxShadow-4-soft: 0 10px 20px 0 rgba($ShadowColor-soft, 0.05);
+ $BoxShadow-5-soft: 0 15px 30px 0 rgba($ShadowColor-soft, 0.05);
+ $BoxShadow-6-soft: 0 20px 40px 0 rgba($ShadowColor-soft, 0.05);
+
+ /* Box Shadow -- Light */
+ $shadow-light: 3px 3px 6px $ShadowColor-light, -3px -3px 6px $ShadowColor-soft;
+
+ /* Box Shadow -- Strong */
+ $BoxShadow-1-strong: 0 1px 5px 0 rgba($strong--ShadowColor, 0.21);
+ $BoxShadow-2-strong: 0 2px 10px 0 rgba($strong--ShadowColor, 0.21);
+ $BoxShadow-3-strong: 0 5px 15px 0 rgba($strong--ShadowColor, 0.21);
+ $BoxShadow-4-strong: 0 10px 20px 0 rgba($strong--ShadowColor, 0.21);
+ $BoxShadow-5-strong: 0 15px 30px 0 rgba($strong--ShadowColor, 0.21);
+ $BoxShadow-6-strong: 0 20px 40px 0 rgba($strong--ShadowColor, 0.21);
+
+ /* Box Shadow -- Top */
+ $BoxShadow-3-top: 0 -10px 20px 0 rgba($ShadowPrimary, 0.05);
+
+ /* Box Shadow -- Inset */
+ $shadow-inset: inset 0 1px 2px $ShadowPrimary;
+ $shadow-inset-2: inset 2px 2px 5px $ShadowPrimary, inset -3px -3px 7px $strong--ShadowColor;
+ $BoxShadow-inner: inset 0 2px 4px 0 rgba($ShadowColor-light, 0.06);
+
+@import "mixin-shadow";
+@import "mixin-shadow-box";
+@import "mixin-shadow-box-size";
+@import "mixin-shadow-outline";
+@import "utilities-shadow";

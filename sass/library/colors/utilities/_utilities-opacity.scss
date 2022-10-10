@@ -1,0 +1,39 @@
+/* Opacity ----------------------------------- */
+
+.opacity-0 { opacity: 0; }
+.opacity-5 { opacity: 0.05; }
+.opacity-10 { opacity: 0.1; }
+.opacity-15 { opacity: 0.15; }
+.opacity-20 { opacity: 0.2; }
+.opacity-25 { opacity: 0.25; }
+.opacity-30 { opacity: 0.3; }
+.opacity-35 { opacity: 0.35; }
+.opacity-40 { opacity: 0.4; }
+.opacity-45 { opacity: 0.45; }
+.opacity-50 { opacity: 0.5; }
+.opacity-55 { opacity: 0.55; }
+.opacity-60 { opacity: 0.6; }
+.opacity-65 { opacity: 0.65; }
+.opacity-70 { opacity: 0.7; }
+.opacity-75 { opacity: 0.75; }
+.opacity-80 { opacity: 0.8; }
+.opacity-85 { opacity: 0.85; }
+.opacity-90 { opacity: 0.9; }
+.blend-mode-exclusion { mix-blend-mode: exclusion; }
+.blend-mode-hue { mix-blend-mode: hue; }
+.blend-mode-saturation { mix-blend-mode: saturation; }
+.blend-mode-color { mix-blend-mode: color; }
+.blend-mode-luminosity { mix-blend-mode: luminosity; }
+
+@for $nr from 0 to 10 {
+  .opacity-#{$nr} {
+    opacity: #{divide($nr,10)} !important;
+  }
+}
+
+// Fill opacity classes
+@for $nr from 0 to 10 {
+  .fill-opacity-#{$nr} {
+    fill-opacity: #{divide($nr,10)} !important;
+  }
+}

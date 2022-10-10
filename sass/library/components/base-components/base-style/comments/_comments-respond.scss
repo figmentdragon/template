@@ -1,0 +1,23 @@
+.comment-respond {
+  position: relative;
+
+  margin: $BaseUnit 0;
+  padding: 42px;
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+  > * {
+    margin-top: $BaseUnit;
+    margin-bottom: $BaseUnit;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+      &.comment-form {
+        margin-bottom: $BaseUnit;
+      }
+    }
+  }
+}

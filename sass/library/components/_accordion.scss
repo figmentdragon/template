@@ -1,0 +1,175 @@
+//
+// Accordion
+//
+
+$Accordion--OffsetVertical          : $BaseUnit !default;
+$Accordion--OffsetHorizontal        : 1.25rem !default;
+$AccordionText                      : var(--#{$prefix}Text) !default;
+$Accordion--BorderRadius-inner      : subtract($BorderRadius, $BorderWidth) !default;
+
+$Accordion--body--OffsetVertical    : $Accordion--OffsetVertical !default;
+$Accordion--body--OffsetHorizontal  : $Accordion--OffsetHorizontal !default;
+
+$Accordion--OffsetVertical-button   : $Accordion--OffsetVertical !default;
+$Accordion--OffsetHorizontal-button : $Accordion--OffsetHorizontal !default;
+$Accordion--ButtonText       : ColorDark($ButtonText) !default;
+$Accordion--ButtonBackground        : var(--#{$prefix}Background) !default;
+$AccordionTransition                : $ButtonTransition, border-radius .15s ease !default;
+$Accordion--ButtonBackground : translucentBackground($ButtonBackground) !default;
+
+$Accordion--ButtonBorder-focus: $ButtonBorder-hover !default;
+$Accordion--Button-BoxShadow-focus  : $Button-BoxShadow-focus !default;
+
+$Accordion--IconWidth               : 1.25rem !default;
+$Accordion--IconText                : $Accordion--ButtonText !default;
+$Accordion--IconTransition          : transform .2s ease-in-out !default;
+$Accordion--IconTransform           : rotate(-180deg) !default;
+
+$Accordion--ButtonIcon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$Accordion--IconText}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$Accordion--ButtonIcon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$Accordion--IconText}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+// scss-docs-end Accordion--variables
+
+[class*='accordion'] {
+  --#{$prefix}AccordionText: #{$AccordionText};
+  --#{$prefix}Background: #{$Background};
+  --#{$prefix}AccordionTransition: #{$AccordionTransition};
+  --#{$prefix}BorderColor: #{$BorderColor};
+  --#{$prefix}BorderWidth: #{$BorderWidth};
+  --#{$prefix}BorderRadius: #{$BorderRadius};
+  --#{$prefix}Accordion--BorderRadius-inner: #{$Accordion--BorderRadius-inner};
+  --#{$prefix}Accordion--OffsetHorizontal-button: #{$Accordion--OffsetHorizontal-button};
+  --#{$prefix}Accordion--OffsetVertical-button: #{$Accordion--OffsetVertical-button};
+  --#{$prefix}Accordion--ButtonText: #{$Accordion--ButtonText};
+  --#{$prefix}Accordion--ButtonBackground: #{$Accordion--ButtonBackground};
+  --#{$prefix}Accordion--ButtonIcon: #{escape-svg($Accordion--ButtonIcon)};
+  --#{$prefix}Accordion--ButtonIconWidth: #{$Accordion--IconWidth};
+  --#{$prefix}Accordion--ButtonIconTransform: #{$Accordion--IconTransform};
+  --#{$prefix}Accordion--ButtonIconTransition: #{$Accordion--IconTransition};
+  --#{$prefix}Accordion--ButtonIcon: #{escape-svg($Accordion--ButtonIcon)};
+  --#{$prefix}Accordion--ButtonBorder-focus: #{$Accordion--ButtonBorder-focus};
+  --#{$prefix}Accordion--Button-BoxShadow-focus: #{$Accordion--Button-BoxShadow-focus};
+  --#{$prefix}Accordion--body--OffsetHorizontal: #{$Accordion--body--OffsetHorizontal};
+  --#{$prefix}Accordion--body--OffsetVertical: #{$Accordion--body--OffsetVertical};
+  --#{$prefix}AccordionText: #{$Accordion--ButtonText};
+  --#{$prefix}ButtonBackground: #{$Accordion--ButtonBackground};
+
+}
+
+.accordion--button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: calc(100% - calc(2 * $Spacer));
+  padding: var(--#{$prefix}Accordion--OffsetVertical-button) var(--#{$prefix}Accordion--OffsetHorizontal-button);
+  @include font-size($FontSize);
+  color: var(--#{$prefix}Accordion--ButtonText);
+  text-align: left; // Reset button style
+  background-color: var(--#{$prefix}Accordion--ButtonBackground);
+  border: 0;
+  @include border-radius(0);
+  overflow-anchor: none;
+  @include Transition(var(--#{$prefix}AccordionTransition));
+
+  &:not(.collapsed) {
+    color: var(--#{$prefix}AccordionText);
+    background-color: var(--#{$prefix}Background);
+    box-shadow: inset 0 calc(-1 * var(--#{$prefix}BorderWidth)) 0 var(--#{$prefix}BorderColor); // stylelint-disable-line function-disallowed-list
+
+    &::after {
+      background-image: var(--#{$prefix}Accordion--ButtonIcon);
+      transform: var(--#{$prefix}Accordion--ButtonIconTransform);
+    }
+  }
+
+  // Accordion icon
+  &::after {
+    flex-shrink: 0;
+    width: var(--#{$prefix}Accordion--ButtonIconWidth);
+    height: var(--#{$prefix}Accordion--ButtonIconWidth);
+    margin-left: auto;
+    content: "";
+    background-image: var(--#{$prefix}Accordion--ButtonIcon);
+    background-repeat: no-repeat;
+    background-size: var(--#{$prefix}Accordion--ButtonIconWidth);
+    @include Transition(var(--#{$prefix}Accordion--ButtonIconTransition));
+  }
+
+  &:hover {
+    z-index: 2;
+  }
+
+  &:focus {
+    z-index: 3;
+    border-color: var(--#{$prefix}Accordion--ButtonBorder-focus);
+    outline: 0;
+    box-shadow: var(--#{$prefix}Accordion--Button-BoxShadow-focus);
+  }
+}
+
+.accordion--header {
+  margin-bottom: 0;
+}
+
+.accordion--item {
+  color: var(--#{$prefix}AccordionText);
+  background-color: var(--#{$prefix}Background);
+  border: var(--#{$prefix}BorderWidth) solid var(--#{$prefix}BorderColor);
+
+  &:first-of-type {
+    @include border-top-radius(var(--#{$prefix}BorderRadius));
+
+    .accordion--button {
+      @include border-top-radius(var(--#{$prefix}Accordion--BorderRadius-inner));
+    }
+  }
+
+  &:not(:first-of-type) {
+    border-top: 0;
+  }
+
+  // Only set a border-radius on the last item if the Accordion is collapsed
+  &:last-of-type {
+    @include border-bottom-radius(var(--#{$prefix}BorderRadius));
+
+    .accordion--button {
+      &.collapsed {
+        @include border-bottom-radius(var(--#{$prefix}Accordion--BorderRadius-inner));
+      }
+    }
+
+    .accordion--collapse {
+      @include border-bottom-radius(var(--#{$prefix}BorderRadius));
+    }
+  }
+}
+
+.accordion--body {
+  padding: var(--#{$prefix}Accordion--body--OffsetVertical) var(--#{$prefix}Accordion--body--OffsetHorizontal);
+}
+
+
+// Flush Accordion items
+//
+// Remove borders and border-radius to keep Accordion items edge-to-edge.
+
+.accordion--flush {
+  .accordion--collapse {
+    border-width: 0;
+  }
+
+  .accordion--item {
+    border-right: 0;
+    border-left: 0;
+    @include border-radius(0);
+
+    &:first-child { border-top: 0; }
+    &:last-child { border-bottom: 0; }
+
+    .accordion--button {
+      &,
+      &.collapsed {
+        @include border-radius(0);
+      }
+    }
+  }
+}

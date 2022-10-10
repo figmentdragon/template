@@ -1,0 +1,95 @@
+/* 4.2.0 Slideout Menu */
+.sidr {
+	display: block;
+	background: $accent-700;
+	color: $TextColor;
+	position: fixed;
+	top: 0;
+	height: 100%;
+	z-index: 9;
+	width: 260px;
+	overflow-x: hidden;
+	overflow-y: auto;
+  @include box-sizing(border-box);
+  &-inner {
+  	min-height: 100vh;
+  	padding: 1.5rem;
+  	border-right: 1px $BorderStyle rgba(255, 255, 255, 0.24);
+    @include box-sizing(border-box);
+  }
+  &.right {
+  	left: auto;
+  	right: -280px;
+		border-left: 1px $BorderStyle rgba($BorderColor, 0.12);
+  }
+  &.left {
+  	left: -280px;
+  	right: auto;
+		border-right: 1px $BorderStyle rgba($BorderColor, 0.12);
+  }
+	p {
+		margin: 6px 0px;
+		padding: 0px;
+	}
+  ul {
+  	margin: 0px;
+  	padding: 0px;
+		&.sidr-class-menu {
+			margin: 0px;
+		}
+  }
+  li {
+		position: relative;
+		list-style: none;
+  	margin: 8px 0px;
+		padding: 0px;
+		border-bottom: 1px $BorderStyle rgba($BorderColor, 0.12);
+		&.sidr-class-menu-item-has-children > a::after {
+			background: none;
+			position: relative;
+			content: '\f107';
+			font-family: 'FontAwesome';
+			font-weight: 400;
+			margin-left: 6px;
+		}
+    a {
+    	display: block;
+    	color: rgba(255, 255, 255, 0.6);
+    	font-size: 0.9rem;
+    	font-family: $FontAccent;
+    	text-transform: uppercase;
+    	font-weight: $medium--FontWeight;
+    	line-height: 1.6;
+			text-decoration: none;
+    	padding: 2px 0px 2px 12px;
+			border-left: 3px $BorderStyle $BorderColor;
+			border-right: none;
+      &:hover,
+			&:active,
+			&:focus {
+      	color: $hover--LinkColor;
+      	border-left-color: rgba($BorderColor, 1);
+      	text-decoration: none;
+      }
+			&:link,
+			&:visited {
+				color: rgba($ColorMuted, 0.4);
+			}
+    }
+    li a {
+			font-size: 0.85rem;
+			line-height: 1;
+	    margin-left: 12px;
+			padding: 8px;
+			border-left: 1px $BorderStyle rgba($BorderColor, 0.24);
+			border-right: none;
+			&::before {
+				content: '- ';
+				margin-right: 4px;
+			}
+    }
+  }
+}
+.admin-bar .sidr-inner {
+	margin-top: 32px;
+}

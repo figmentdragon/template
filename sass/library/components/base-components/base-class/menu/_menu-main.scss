@@ -1,0 +1,82 @@
+/* Desktop Navigation */
+nav #primary-navigation,
+nav .main-menu {
+  /* container class */
+  padding: 30px 0 0 0;
+  a {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 8px;
+    padding: .75rem 15px;
+
+    &:focus {
+      display: flex;
+      align-items: center;
+
+      margin-bottom: 8px;
+      padding: .75rem 15px;
+      i {
+        padding-right: 8px;
+      }
+    }
+    &:hover {
+      i { }
+    }
+    i {
+      padding-right: 8px;
+    }
+  }
+  > ul > li {
+    position: relative;
+
+    white-space: nowrap;
+  }
+  .active {
+    i { }
+    &:focus {
+      i { }
+    }
+  }
+  .Menulist > li > a {
+    display: block;
+
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+  .dropdown-plus { margin-top: 7px; }
+}
+
+/* SUBMENU */
+.main-menu ul { /* container class first unordered list */
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.main-menu ul ul { /* unordered list within an unordered list */ }
+
+.main-menu li { /* each navigation item */
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  &:hover > a {
+    text-decoration: none;
+    i { }
+  }
+}
+.main-menu li a { /* each navigation item anchor */ }
+.main-menu li ul ul { /* unordered list if there is drop down items */ }
+.main-menu li li { /* each drop down navigation item */ }
+.main-menu li li a { /* each drap down navigation item anchor */ }
+
+.main-menu * {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}

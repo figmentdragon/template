@@ -1,0 +1,13 @@
+/* -- =NO SIDEBAR ---------------------------- */
+
+.no-sidebar {
+
+	.site {
+		display: grid;
+		grid-template-columns: auto;
+		grid-template-areas:
+			"header"
+			"main"
+			"footer";
+	}
+}

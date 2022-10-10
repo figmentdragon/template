@@ -1,0 +1,237 @@
+.button {
+  border-width: $BorderWidth;
+  border-style: $border-style;
+
+  @include border-radius($BorderRadius-lg);
+
+  font-size: $FontSize * 14px;
+  font-weight: null;
+  padding: ($Offset * 4) $Offset;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  @include elevation(5);
+  transition: $ButtonTransition;
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  @each $name, $value from $theme-colors,
+  @each $name, $value from $utilities--TextColors {
+    &-#{$name}, a:active {
+      color: shade($value, $ColorInterval);
+      background-color: tint($value, $ColorInterval * 5);
+      border-color: shade($value, $TextInterval);
+      &:hover,
+      &:focus {
+        color: shade($value, $ColorInterval * 2.5);
+        background-color: tint($value, $ColorInterval * 3);
+        border-color: shade($value, $ColorInterval * 2.5);
+      }
+      &:disabled,
+      &.inactive {
+        color: tint($value, $TextInterval);
+        background-color: tint($value, $ColorInterval * 5);
+        border-color: tint($value, $ColorInterval * 3);
+      }
+    }
+  }
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: $Background;
+    color: gray;
+    border-color: gray;
+    @include elevation(8);
+  }
+
+  &:active {
+    @include elevation(4);
+    &:hover,
+    &:focus {
+      background: material--TextColor($dk, "300");
+      @include elevation(8);
+    }
+    &:focus-visible {
+      background: material--TextColor($dk, "400");
+    }
+    &.is-disabled,
+    &:disabled {
+      pointer-events: none;
+      opacity: .65;
+  }
+
+  @if $enable-themeing {
+    @each $name, $color in $theme-color {
+      &-#{$name} {
+        background: mix($ButtonBackgroundColor, $color);
+        color: mix($Text, $color, $text-percentage);
+        border: mix($BorderColor, $color, $border-percentage);
+      }
+    }
+    @each $state, $color in $utilities--TextColor {
+      &.#{$state} {
+        background: tint($color);
+        color: Text($white);
+      }
+    }
+    // Outlined
+    //
+    &.outlined {
+      @each $state & @each $name, $color in $theme-colors {
+        @each $value in $theme-colors {
+          background: transparent;
+          outline: 1px $BorderStyle $theme-color;
+          outline--Offset: -1px;
+          color: $theme-color;
+          box-shadow: none;
+
+          &:#{$state} {
+            background: transparent;
+            outline: 1px $BorderStyle ($value, "400");
+          }
+
+          &:#{$state} {
+            background: tint($value, "200");
+            outline: 1px $BorderStyle ($value, "500");
+          }
+
+          &.#{$name} {
+            outline--TextColor: material--TextColor($p, "300");
+            color: material--TextColor($p, "500");
+
+            &:#{$state} {
+              outline--TextColor: material--TextColor($p, "600");
+            }
+
+            &:#{$state} {
+              background: rgba(material--TextColor($p, "500"), 0.12);
+              outline--TextColor: 1px $BorderStyle $p, "800");
+            }
+          }
+
+          &.#{$name} {
+            outline--TextColor: material--TextColor($s, "300");
+            color: material--TextColor($s, "500");
+
+            &:#{$state} {
+              outline--TextColor: material--TextColor($s, "600");
+            }
+
+            &:#{$state} {
+              background: rgba(material--TextColor($s, "500"), 0.12);
+              outline--TextColor: 1px $BorderStyle $s, "800");
+            }
+          }
+
+          &.#{$name} {
+            outline--TextColor: material--TextColor($d, "300");
+            color: material--TextColor($d, "500");
+
+            &:#{$state} {
+              outline--TextColor: material--TextColor($d, "600");
+            }
+
+            &:#{$state} {
+              background: rgba(material--TextColor($d, "500"), 0.12);
+              outline--TextColor: 1px $BorderStyle $d, "800");
+            }
+          }
+
+          &.#{$name} {
+            outline--TextColor: material--TextColor($g, "300");
+            color: material--TextColor($g, "500");
+
+            &:#{$state} {
+              outline--TextColor: material--TextColor($g, "600");
+            }
+
+            &:#{$state} {
+              background: rgba(material--TextColor($g, "500"), 0.12);
+              outline--TextColor: 1px $BorderStyle $g, "800");
+            }
+          }
+
+          &.#{$name} {
+            outline--TextColor: $theme-color;
+            color: material--TextColor($w, "500");
+
+            &:#{$state} {
+              outline--TextColor: $theme-color;
+            }
+
+            &:#{$state} {
+              background: rgba(tint($theme-color, 7.5% * 2), 0.12);
+              outline--TextColor: 1px $BorderStyle $theme-color;
+            }
+          }
+
+          &.#{$state},
+          &:inactive {
+            background: transparent;
+            outline--TextColor: material--TextColor($dk, "300");
+            color: material--TextColor($dk, "800");
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+
+  //
+  // Text Button
+  //
+
+  &.text {
+    background: transparent;
+    box-shadow: none;
+    @each $state, @each $name, $value from $theme-colors {
+
+      &:#{$state} {
+        background: rgba(tint($value, 7.6% * 2), 0.1);
+      }
+      &.#{$name} {
+        color: $value;
+
+        &:#{$state} {
+          background: rgba(tint($value, 7.6% * 2), 0.1);
+        }
+
+        &:#{$state} {
+          background: rgba(tint($value, 7.6% * 2), 0.2);
+        }
+      }
+      &.inactive,
+      &:inactive {
+        background: transparent;
+        color: mix(ColorLight($primary), $value, 7.6%);
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  //
+  // Unelevated
+  //
+
+  &.unelevated {
+    box-shadow: none !important;
+  }
+
+  //
+  // Size
+  //
+
+  &.small {
+    font-size: $FontSize * 14px;
+    padding: $padding * 8px #{$padding * 10px};
+  }
+
+  &.large {
+    font-size: $FontSize * 20px;
+    padding: $padding * 14px #{$padding * 25px};
+  }
+}

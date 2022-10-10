@@ -1,0 +1,11 @@
+/**
+* = Helper classes
+*/
+
+// Z indexes
+@for $nr from 0 to 20 {
+  .z-#{$nr} {
+    position: relative;
+    z-index: #{$nr} !important;
+  }
+}

@@ -1,0 +1,8 @@
+$custom-checkboxBackgroundColor: $gray;
+$custom-checkbox-checkedBackgroundColor: $accent;
+$custom-checkbox-disabled-checkedBackgroundColor: rgba(ColorDark(inherit) 0.7);
+$custom-checkbox-indicator--BorderRadius: 50%;
+$custom-checkbox-indicator--BorderWidth: $BorderWidth * $md;
+$square-checkbox-indicator--BorderRadius: 2px;
+$custom-checkbox-indicator-icon-checked: null;
+$custom-checkshadow-inset: inset 1px 2px 2px #AFCBFF, inset -5px -2px 4px tint($gray, $ColorInterval * 4);

@@ -1,0 +1,40 @@
+// Generic colors
+$blue:    #0000FF;
+$indigo:  #4B0082;
+$purple:  #6A0DAD;
+$pink:    #FFC0CB;
+$red:     #A91E2C;
+$orange:  #FFA500;
+$yellow:  #FFFF00;
+$green:   #008000;
+$teal:    #008080;
+$cyan:    #00FFFF;
+
+
+// scss-docs-start colors-map
+$colors: (
+  'blue': $blue,
+  'indigo': $indigo,
+  'purple': $purple,
+  'pink': $pink,
+  'red': $red,
+  'orange': $orange,
+  'yellow': $yellow,
+  'green': $green,
+  'teal': $teal,
+  'cyan': $cyan,
+  'white': $white,
+  'gray': Text($gray),
+  'gray-dark': $gray-800
+);
+
+$charcoal: hsl(0, 0%, 27%); // grayscale of blue
+$nero: hsl(0, 0%, 15%) ; $gray-indigo : $nero;
+$eclipse: hsl(0, 0%, 23%) ; $gray-purple : $eclipse;
+$light-grey:  hsl(0, 0%, 83%) ; $gray-pink : $light-grey;
+$matterhorn: hsl(0, 0%, 30%) ; $gray-red : $matterhorn;
+$dark-gray: hsl(0, 0%, 68%) ; $gray-orange : $dark-gray;
+$gainsboro: hsl(0, 0%, 89%) ; $gray-yellow : $gainsboro;
+$matternhorn: hsl(0, 0%, 30%) ; $gray-green : $matternhorn;
+$zambezi: hsl(0, 0%, 35%) ; $gray-teal : $zambezi;
+$pink-swan: hsl(0, 0%, 70%) ; $gray-cyan : $pink-swan;

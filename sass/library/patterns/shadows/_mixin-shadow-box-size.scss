@@ -1,0 +1,10 @@
+/* If we add the border using a regular CSS border, it won't look good on non-retina devices,
+ * since its edges can look jagged due to lack of antialiasing. In this case, we are several
+ * layers of box-shadow to add the border visually, which will render the border smoother. */
+
+@mixin box-shadow-size( $size ) {
+	box-shadow:
+		0 0 0 $size $light inset,           // Original border.
+		0 0 0 ($size + 1px) $light inset,   // Antialiasing, inner edge.
+		0 0 1px 0 rgba( ColorLight($primary), 0.7 );      // Antialiasing, outer edge.
+}

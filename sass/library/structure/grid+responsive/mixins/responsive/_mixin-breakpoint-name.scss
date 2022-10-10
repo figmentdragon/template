@@ -1,0 +1,24 @@
+@mixin breakpoint($name) {
+  $breakpoint: map-get($grid-breakpoints, $name);
+
+  @if $breakpoint {
+    $from: map-get($breakpoint, "from");
+    $until: map-get($breakpoint, "until");
+
+    @if $from and $until {
+      @include between($from, $until) {
+        @content;
+      }
+    }
+    @else if $from {
+      @include from($from) {
+        @content;
+      }
+    }
+    @else if $until {
+      @include until($until) {
+        @content;
+      }
+    }
+  }
+}

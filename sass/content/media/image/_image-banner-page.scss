@@ -1,0 +1,32 @@
+.feature-img.page-banner,
+.page-banner
+{
+    position: relative;
+
+    display: block;
+
+    width: calc(100% - calc(2 * $Spacer));
+    min-height: 240px;
+    max-height: 640px;
+    margin: 0;
+
+    background-position: center center;
+    background-size: cover;
+    img
+    {
+        transition: transform 1s;
+    }
+    &:hover .bg-img
+    {
+        transform: scale(1.1);
+
+        box-shadow: none;
+
+        -webkit-backface-visibility: hidden;
+    }
+}
+.feature-img.page-banner.profile-img
+{
+    min-height: auto;
+    margin-bottom: 36px;
+}

@@ -1,0 +1,28 @@
+/* Aspect Ratios List */
+@use "./../maps+lists/map-aspect-ratio";
+
+/* Credit: Nicolas Gallagher and SUIT CSS. */
+.ratio {
+  position: relative;
+  width: calc(100% - calc(2 * $Spacer));
+
+  &::before {
+    display: block;
+    padding-top: var(--aspect-ratio);
+    content: "";
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - calc(2 * $Spacer));
+    height: 100%;
+  }
+}
+
+@each $key, $ratio in $aspect-ratios {
+  .ratio-#{$key} {
+    aspect-ratio: #{$ratio};
+  }
+}

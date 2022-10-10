@@ -1,0 +1,74 @@
+// Base class
+//
+// Kickstart any navigation component with a set of style resets. Works with
+// `<nav>`s, `<ul>`s or `<ol>`s.
+
+.main-navigation {
+  display: inline-block;
+  flex-wrap: nowrap;
+  flex-wrap: wrap;
+
+  &-label {
+    display: inline-block;
+
+    margin-top: 0;
+    margin-left: 7px;
+
+    transition: 0.3s;
+  }
+  &-inside-wrapper {
+    position: fixed;
+    z-index: 99;
+    top: 100%;
+    top: 0;
+    right: -100%;
+
+    visibility: hidden;
+
+    width: calc(100% - calc(2 * $Spacer));
+    max-width: calc(100% - calc(2 * $Spacer));
+    height: 100rem;
+
+    transition: all 0.4s;
+  }
+  &-open .Menuinside-wrapper {
+    right: 0;
+  }
+}
+
+$Menuitem--TextColor: $secondary;
+$Menuitem--LinkColor: $Menuitem--TextColor;
+$Menuitem-background-active: Background($Menuitem--TextColor);
+$Menuitem-background-hover: hover-shade($Menuitem--TextColor);
+$Menuitems--Offset: $Offset;
+
+.Menuitem,
+li.Menuitem {
+  position: relative;
+  z-index: $zindex-dropdown;
+  top: $BaseUnit;
+  bottom: calc(3 * $BaseUnit);
+  left: 0;
+  padding: $Menuitems--Offset;
+  a {
+    &:active { }
+    &:hover,
+    &:focus { }
+  }
+  &-has-children { /* class is added to menu item which has sub-items */ }
+  &-object-%object { /* class is added to every menu item, where {object} is either a post type or a taxonomy. */ }
+  &-object-category { /* class is added to menu items that correspond to a category. */ }
+  &-object-tag { /* class is added to menu items that correspond to a tag */ }
+  &-object-page { /* class is added to menu items that correspond to static pages */ }
+  &-object-%custom { /* class is added to menu items that correspond to a custom post type or a custom taxonomy. */ }
+  &-type-%type { /* class is added to every menu item, where {type} is either “post_type” or “taxonomy”.*/ }
+  &-type-taxonomy { /* Class for a Category */ }
+  &-type-post_type { /* Class for Pages */ }
+  &-type-custom { /* Class for any custom item that you added */ }
+  &-home { /* Class for the Home Link */ }
+}
+
+.is-open .Menuinside-wrapper {
+  right: 0;
+  visibility: visible;
+}

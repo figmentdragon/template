@@ -1,0 +1,46 @@
+// Menubar nav
+//
+// Custom menubar navigation (doesn't require `.menu`, but does make use of `.menu-link`).
+
+$menubar-nav-link--OffsetHorizontal:         .5rem;
+
+.menubar-nav {
+  $menu-link--OffsetHorizontal: 0;
+  $menu-link--OffsetVertical: #{$menu-link--OffsetVertical};
+  $menu-link--TextColor: $menubar--TextColor;
+  $menu-link--hover--LinkColor: $menubar--hover--LinkColor;
+  $menu-link-inactive--TextColor: $menubar-inactive--TextColor;
+  display: flex;
+  flex-direction: column; // cannot use `inherit` to get the `.menubar`s value
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  .show > .menu-link,
+  .menu-link.active {
+    color: $menubar--active--TextColor;
+  }
+  .menu-item {
+    float: left;
+  }
+
+  .menu-link {
+    display: block;
+    padding-right: 0;
+    padding-left: 0;
+    color: $menubar--TextColor;
+    padding-top:    .425rem;
+    padding-bottom: .425rem;
+
+    + .menu-link {
+      margin-left: $BaseUnit;
+    }
+  }
+  .menu-item + .menu-item {
+    margin-left: $BaseUnit;
+  }
+
+  .dropdown-menu {
+    position: static;
+  }
+}

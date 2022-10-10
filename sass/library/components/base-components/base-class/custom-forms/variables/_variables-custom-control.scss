@@ -1,0 +1,24 @@
+$custom-control-gutter: 1.75rem;
+$custom-control--SpacerHorizontal: $BaseUnit;
+$custom-control-line-height: 1;
+$custom-control-indicator-size: 1.25rem;
+$custom-controlBackgroundColor: $gray;
+$custom-control-indicatorBackgroundColor: $white;
+$custom-control--BorderWidth: $BorderWidth;
+$custom-control-Border: $FormBorder-color;
+$custom-control--BoxShadow: none;
+
+$custom-toggle-slider-indicatorBackgroundColor: ColorDark($primary);
+$custom-control-indicator--hover--LinkColor: $secondary;
+$custom-control-indicator--hoverBackgroundColor: $accent;
+$custom-control-indicator--hover-Border: $tertiary;
+$custom-control-indicator--active--TextColor: Background($primary);
+$custom-control-indicator--active--Bordercolor: $Text;
+$custom-control-indicator--activeBackgroundColor: transparent;
+$custom-control-indicator-checked--TextColor: Background($primary);
+$custom-control-indicator-checkedBackgroundColor: $accent;
+$custom-control-indicator-checked-Border: $accent;
+$custom-control-indicator-checked-disabledBackgroundColor: rgba($accent, 0.7);
+$custom-control-indicator--BorderWidth: 1px;
+$custom-control-indicator-disabledBackgroundColor: $gray;
+$custom-control-label-disabled--TextColor: $gray;

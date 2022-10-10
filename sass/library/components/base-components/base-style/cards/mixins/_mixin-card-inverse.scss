@@ -1,0 +1,26 @@
+//
+// Inverse text within a card for use with dark backgrounds
+//
+
+@mixin Card--inverse {
+  .Card--header,
+  .Card--footer {
+    border-bottom: $Card---BorderWidth $BorderStyle rgba(255,255,255,.2);
+  }
+  .Card--header,
+  .Card--footer,
+  .Card--title,
+  .Card--blockquote {
+    color: Text($white);
+  }
+  .Card--link,
+  .Card--text,
+  .Card--blockquote > footer {
+    color: rgba(255,255,255,.65);
+  }
+  .Card--link {
+    @include on-event {
+      color: $gray;
+    }
+  }
+}

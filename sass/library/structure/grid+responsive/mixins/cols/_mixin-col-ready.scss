@@ -1,0 +1,12 @@
+@mixin make-col-ready() { // Add box sizing if only the grid is loaded
+  @if $include-column-box-sizing {
+    @include box-sizing($type: border-box);
+  }
+  @else {
+    flex-shrink: 0;
+    width: calc(100% - calc(2 * $Spacer));
+    max-width: calc(100% - calc(2 * $Spacer));
+    padding:calc($grid-gutter-width * 5);
+    margin-top: $grid-gutter-width;
+  }
+}

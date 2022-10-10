@@ -1,0 +1,11 @@
+//
+// Card groups
+//
+
+.CardGroup {
+  // The child selector allows nested `.card` within `.CardGroup`
+  // to display properly.
+  > .card {
+    margin-bottom: $CardGroup--margin;
+  }
+}

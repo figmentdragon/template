@@ -1,0 +1,19 @@
+/* rtl:begin:ignore */
+.Tooltip--start {
+  padding: 0 $Tooltip--ArrowHeight;
+
+  .Tooltip--arrow {
+    right: 0;
+
+    width: $Tooltip--ArrowHeight;
+    height: $Tooltip--ArrowWidth;
+
+    &::before {
+      left: -1px;
+
+      border-width: calc($Tooltip--ArrowWidth * 0.5) 0
+        calc($Tooltip--ArrowWidth * 0.5) $Tooltip--ArrowHeight;
+      border-left--TextColor: $tooltipBackgroundColor;
+    }
+  }
+}

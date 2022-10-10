@@ -1,0 +1,71 @@
+// Progress bars
+
+// scss-docs-start Progress--variables
+$Progress--height:                   1rem !default;
+$ProgressSize:                $FontSize * .75 !default;
+$ProgressBackground:                       $gray !default;
+$Progress--BorderRadius:            $BorderRadius !default;
+$Progress--BoxShadow:               $BoxShadow-inset !default;
+$ProgressBarText:                $white !default;
+$ProgressBarBackground:                   $primary !default;
+$ProgressBar--AnimationTiming:     1s linear infinite !default;
+$ProgressBarTransition:           width .6s ease !default;
+
+
+
+@if $enable-transitions {
+  @keyframes progress-bar-stripes {
+    0% { background-position-x: $Progress--height; }
+  }
+}
+// scss-docs-end Progress--keyframes
+
+[class='progress'] {
+  // scss-docs-start Progress--css-vars
+  --#{$prefix}Progress--height: #{$Progress--height};
+  @include rfs($ProgressSize, --#{$prefix}ProgressSize);
+  --#{$prefix}ProgressBackground: #{$ProgressBackground};
+  --#{$prefix}Progress--BorderRadius: #{$Progress--BorderRadius};
+  --#{$prefix}Progress--BoxShadow: #{$Progress--BoxShadow};
+  --#{$prefix}ProgressBarText: #{$ProgressBarText};
+  --#{$prefix}ProgressBarBackground: #{$ProgressBarBackground};
+  --#{$prefix}ProgressBarTransition: #{$ProgressBarTransition};
+  // scss-docs-end Progress--css-vars
+
+  display: flex;
+  height: var(--#{$prefix}Progress--height);
+  overflow: hidden; // force rounded corners by cropping it
+  @include font-size(var(--#{$prefix}ProgressSize));
+  background-color: var(--#{$prefix}ProgressBackground);
+  @include border-radius(var(--#{$prefix}Progress--BorderRadius));
+  @include box-shadow(var(--#{$prefix}Progress--BoxShadow));
+}
+
+[class*='progressbar'] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--#{$prefix}ProgressBarText);
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--#{$prefix}ProgressBarBackground);
+  @include Transition(var(--#{$prefix}ProgressBarTransition));
+}
+
+.progressbar-striped {
+  @include gradient-striped($color: rgba($primary, $BackgroundOpacity), $angle: 90deg);
+  background-size: var(--#{$prefix}Progress--height) var(--#{$prefix}Progress--height);
+}
+
+@if $enable-transitions {
+  .progressbar-animated {
+    animation: $ProgressBar--AnimationTiming progress-bar-stripes;
+
+    @if $enable-reduced-motion {
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+  }
+}

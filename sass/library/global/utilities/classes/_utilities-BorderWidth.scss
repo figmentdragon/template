@@ -1,0 +1,13 @@
+.border { border: $BorderWidth $BorderStyle $BorderColor !important; }
+.border-top { border-top: $BorderWidth $BorderStyle $BorderColor !important; }
+.border-right { border-right: $BorderWidth $BorderStyle $BorderColor !important; }
+.border-bottom { border-bottom: $BorderWidth $BorderStyle $BorderColor !important; }
+.border-left { border-left: $BorderWidth $BorderStyle $BorderColor !important; }
+
+.border-0 { border: 0 !important; }
+.border-top-0 { border-top: 0 !important; }
+.border-right-0 { border-right: 0 !important; }
+.border-bottom-0 { border-bottom: 0 !important; }
+.border-left-0 { border-left: 0 !important; }
+
+.borderless { border: none !important; }

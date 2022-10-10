@@ -1,0 +1,108 @@
+/* SUB MENU */
+// Sub-menu depth indicators + text styles
+.menu ul,
+ul.submenu,
+* > ul,
+* > .submenu { /* The menu is an unordered list */
+  display: none;
+  background: #000;
+	border-radius: 0.4rem;
+	color: Text($white);
+	font-size: 1.7rem;
+	opacity: 0;
+	list-style: none;
+	margin: 0;
+	padding: 12px 12px 12px 0;
+  position: absolute;
+  right: 9999rem;
+  top: calc(100% + 2rem);
+  transition: opacity 0.15s linear, transform 0.15s linear, right 0s 0.15s;
+  transform: translateY(0.6rem);
+  width: 20rem;
+  z-index: $zindex-dropdown;
+  border-radius: calc($BorderRadius / 2.5);;
+	box-sizing: border-box;
+	border: $BorderWidth $BorderStyle $BorderColor;
+  box-shadow: 0px 0px 12px rgba($primary--ShadowColor, 0.08);
+	transition-delay: .2s;
+  &::before
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 100%;
+  }
+  &::before { /* Widen Submenu Boundaries */
+    position: absolute;
+  	top: -12px;
+    left: -36px;
+  	height: 2rem;
+    width: calc(100% - calc(2 * $Spacer));
+    height: 100%;
+    content: '';
+  	padding: 72px;
+  }
+  &::after {
+  	border: 0.8rem $BorderStyle $translucent--BorderStyle;
+  	border-bottom-color: #000;
+  	right: 1.8rem;
+  }
+  a {
+  	background: transparent;
+  	border: none;
+  	color: inherit;
+  	display: block;
+  	padding: calc(4 * $Offset) calc(8 * $Offset);
+  	transition: background-color 0.15s linear;
+  	width: calc(100% - calc(2 * $Spacer));
+  }
+  li {
+  	&:hover > ul { display: block;}
+  	&.menu-item-has-children {
+  		> a {
+  			padding-right: 4.5rem;
+  		}
+  		.icon {
+  			position: absolute;
+  			right: 1.5rem;
+  			top: calc(50% - 0.5rem);
+  		}
+  	}
+  }
+  .menu-item {
+    > a {
+      padding: calc(1.25 * $primary-nav--Offset) $primary-nav--Offset;
+			display: block;
+			font-size: $primary-navSize-mobile-submenu;
+			font-style: $primary-nav--mobile--submenu--FontStyle;
+    }
+  }
+}
+
+// Show top-level sub-menu indicators above mobile-breakpoint-only
+.menu-item-has-children {
+  > .svg-icon {
+    display: none;
+  }
+}
+
+.menu-item-description {
+  display: block;
+  clear: both;
+	font-size: $FontSize * .25;
+	text-transform: none;
+	line-height: 1.7;
+  > span {
+    display: inline-block;
+  }
+}
+
+.current-menu-item > a:first-child,
+.current_page_item > a:first-child {
+  text-decoration: underline;
+  text-decoration-style: $BorderStyle;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+}

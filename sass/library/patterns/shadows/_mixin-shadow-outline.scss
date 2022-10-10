@@ -1,0 +1,13 @@
+@mixin shadow-outline($box-shadow) {
+  content: "";
+  position: absolute;
+  left: -.5rem;
+  right: -.5rem;
+  top: -.5rem;
+  bottom: -.5rem;
+  background-color: $Background;
+  border: 1px $BorderStyle white;
+  box-shadow: $box-shadow;
+  transition: background-color .15s ease-in-out, border .15s ease-in-out, box-shadow .15s ease-in-out, color .15s ease-in-out;
+  z-index: -1;
+}

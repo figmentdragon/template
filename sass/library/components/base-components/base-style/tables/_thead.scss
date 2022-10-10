@@ -1,0 +1,23 @@
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+	border-width: 0;
+	border-style: $BorderStyle;
+	border-color: inherit;
+}
+
+thead,
+tr {
+	font-weight: bold;
+
+	padding: 0.667em;
+
+	text-align: left;
+}
+
+thead th {
+	border-width: 0 1px 1px 0;
+}

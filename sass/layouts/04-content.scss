@@ -1,0 +1,116 @@
+/* =Content
+----------------------------------------------- */
+
+/* Styles for posts and pages */
+.sticky { /* Style your sticky posts. This class is applied to the same element as .hentry below. */
+
+}
+.hentry { /* The wrapper for individual posts */
+	position: relative;
+	z-index: 850;
+}
+
+.entry-header { /* Container for the entry title, byline and post date */
+	grid-column: 1/26;
+	grid-row: 1/3;
+}
+
+.entry-title,
+.entry-title a { /* Post titles */
+
+}
+.page-title { /* Page titles */
+
+}
+body.search .page-title,
+body.archive .page-title { /* Optional, if you want your page titles to look different on search and archive pages */
+
+}
+.entry-meta { /* Container for the entry metadata */
+	clear: both;
+}
+.entry-date {
+
+}
+.byline { /* By default, bylines are hidden */
+	display: none;
+}
+.single .byline,
+.group-blog .byline { /* Bylines are displayed on single posts and/or when there are multiple authors */
+	display: inline;
+}
+.cat-links {  /* Styles category links inside the entry meta */
+
+}
+.tag-links { /* Styles links to tags inside the entry-meta */
+
+}
+.sep {  /* Separator between category links, cat links, comments links, etc */
+
+}
+.comments-link {  /* Link to leave a comment */
+
+}
+.edit-link { /* Link to Edit the post (only shows up for admins)*/
+
+}
+.entry-content,
+.entry-summary { /* Container for the post body/excerpt text */
+	margin: 1.5rem 0 0;
+
+}
+
+.entry-content {
+	position: relative;
+	z-index: 825;
+	grid-column: 1 /26;
+	grid-row: 1/ 25;
+}
+
+/* Styling In-Post Tables */
+.entry-content Table,
+.comment-content Table {
+	border: $BorderWidth solid #000;
+	border-left-width: 0;
+	margin: 0 -0.083rem 2.083rem 0;
+	text-align: left;
+	width: calc(100% - calc(2 * $Spacer));
+}
+.entry-content tr th,
+.entry-content thead th,
+.comment-content tr th,
+.comment-content thead th {
+	border-left: $BorderWidth solid #000;
+	font-weight: bold;
+	padding: 0.5rem 	1.25rem;
+}
+.entry-content tr td,
+.comment-content tr td {
+	border: $BorderWidth solid #000;
+	border-width: $BorderWidth 0 0 $BorderWidth;
+	padding: 0.5rem 	1.25rem;
+}
+.entry-content tr.odd td,
+.comment-content tr.odd td { /* If you want to apply alternate styles to even/odd Table rows */
+
+}
+
+.no-results.not-found > *:first-child {
+	margin: 0 0 calc(3 * $SpacerHorizontal) 0;
+}
+
+.page-links { /* Style the page numbers for multi-page posts (posts that have been split with <!--next-page -->. */
+	clear: both;
+
+		.post-page-numbers {
+			display: inline-block;
+			margin-left: calc(0.66 * $Spacer);
+			margin-right: calc(0.66 *  $Spacer);
+			min-width: 44px;
+			min-height: 44px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}

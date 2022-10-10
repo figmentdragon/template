@@ -1,0 +1,11 @@
+// Container mixins
+
+@mixin make-container($gutter: $container--horizontal--Offset) {
+  $gutter-x: #{$gutter};
+  $gutter-y: 0;
+  width: calc(100% - calc(2 * $Spacer));
+  padding-right: calc(var($gutter-x) * .5); // stylelint-disable-line function-disallowed-list
+  padding-left: calc(var($gutter-x) * .5); // stylelint-disable-line function-disallowed-list
+  margin-right: auto;
+  margin-left: auto;
+}

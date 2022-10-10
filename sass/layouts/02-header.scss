@@ -1,0 +1,321 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+/* Style elements inside of the .site-header container */
+.site-header {
+	> * {
+		@include elevation(5);
+	}
+	@extend %responsive--SideHeader;
+  display: grid;
+  grid-template-columns: repeat(15, minmax(0, 1fr));
+  grid-template-rows: repeat($grid-row-columns, minmax(0, 1fr));
+  row-gap: $grid-gutter-width; // Add space in case the menu wraps below the site branding.
+	height: 100%;
+	margin: 0;
+	justify-items: center;
+	backdrop-filter: blur(2px);
+	a {
+	  color: $LinkText;
+		@include on-event {
+		  &:visited {
+		    color: $LinkText-visited;
+		  }
+		  &:hover {
+		  	color: $LinkText-hover;
+				@include hue-rotate;
+			}
+		}
+	}
+	.nav-section {
+    display: none;
+  }
+
+  > #nameplate {
+    grid-column: 1 / 7;
+    grid-row: 1 / 26;
+    position: absolute;
+		z-index: 925;
+    top: calc(-2 * $grid-gutter-width);
+    bottom: calc(-1 * $grid-gutter-width);
+    left: $grid-gutter-width;
+    width: calc(100% - $BaseUnit);
+  }
+  > #navigation {
+    position: relative;
+    z-index: 910;
+		top: 0;
+		right: 0;
+    bottom: 0;
+    grid-column: 5/16;
+    grid-row: 1/26;
+    padding: $Offset;
+    button {
+      padding: 0;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+
+// Site branding
+#nameplate {
+	display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 1fr;
+
+  background-color: translucentBackground($white);
+
+	align-items: center;
+	margin: 0 auto 0 $Spacer;
+	text-align: left;
+	overflow: visible;
+
+	.site-title,
+  .site-description {
+    position: relative;
+    z-index: 935;
+    writing-mode: vertical-lr;
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    transform: rotate(.50turn);
+    height: 100%;
+    width: calc(100% - calc(2 * $Spacer));
+    letter-spacing: normal;
+    backdrop-filter: opacity(.5) blur(1px);
+  }
+	.site-title {
+		grid-column: 1 / 2;
+		grid-row: 1 / 2;
+		font-family: 'Euphorigenic', sans-serif;
+		@include font-size(calc($FontSize-h1 * 1.5));
+		line-height: .4;
+
+		background-image: $gradient-theme;
+		-webkit-background-clip: text;
+		text-shadow: inset 0 4px 1px transparent;
+		-webkit-text-stroke:1.5px Border($accent);
+		color: transparent;
+		@include hue-rotate;
+		cursor: default;
+	}
+	.site-description {
+		grid-column: 2 / 3;
+		grid-row: 1 / 2;
+		font-family: 'Donau-Neue';
+		@include font-size($FontSize-h5);
+		font-variant: small-caps;
+		line-height: 2.5;
+	}
+
+	@include media(mobile) {
+		margin-right: initial;
+		margin-top: $Spacer; // Align the baseline of the site title with the primary menu
+	}
+}
+
+#navigation {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat($grid-row-columns, minmax(0, 1fr));
+  grid-gap: $grid-gutter-width;
+  .main-menu {
+    grid-column: 1/ 5;
+    grid-row: 1/15;
+  }
+  .socials {
+    grid-column: 1/ 3;
+    grid-row: 15/22;
+  }
+  .search-box {
+    grid-column: 1/ 5;
+    grid-row: 22 / 25;
+  }
+  .copyright {
+    grid-column: 1/5;
+    grid-row: 25/26;
+  }
+}
+
+// Site title
+h1,
+.site-tile {
+	grid-row: 1 / 2;
+	height: 1rem;
+	color: $SiteTitle;
+	margin-bottom: calc($SpacerHorizontal / 6);
+	font-variant: small-caps;
+  font-size: 2rem;
+	font-weight: bolder;
+	width: max-content;
+
+	a {
+		color: currentColor;
+		font-weight: bolder;
+
+		&:link,
+		&:visited,
+		&:active { color: currentColor; }
+
+		&:hover,
+		&:focus { color: HoverShift($SiteTitle); }
+	}
+	@include media(mobile-only) { @include font-size($TitleSize); }
+}
+
+// Site description
+h4.site-description {
+	grid-column: 1 / 2;
+	grid-row: 2/3;
+	color: $SiteDescription;
+	font-family: $secondary--BrandFont;
+	line-height: $HeadingHeight;
+	font-size: 2vw;
+	text-align: left;
+	margin-left: $BaseUnit;
+}
+
+.site-title > a {
+	text-decoration-color: $secondary;
+}
+
+// Site logo
+.site-logo {
+	$logo--WidthMax: 275px;
+	$logo--HeightMax: 275px;
+	$logo--WidthMax-mobile: calc($logo--WidthMax / 4);
+	$logo--HeightMax-mobile: calc($logo--HeightMax / 4);
+
+	margin: auto;
+	height: 100%;
+
+	.site-header > & {
+		grid-column: 1 / 6;
+		grid-row: 1 / 11;
+		width: calc(100% - $BaseUnit);
+		padding-bottom: calc($OffsetHorizontal * 1.5);
+		text-align: center;
+		margin-right: 0;
+		margin-left: 0;
+		height: 100%;
+		position: relative;
+		z-index: 700;
+	}
+
+  .custom-logo { /* Make sure logo link wraps around logo image. */
+		max-width: $logo--WidthMax;
+		max-height: $logo--HeightMax;
+		height: auto;
+		display: inline-block;
+		width: auto;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {	}
+
+  @include media(mobile) {
+    .custom-logo {
+			max-width: $logo--WidthMax;
+			max-height: $logo--HeightMax;
+			height: auto;
+			width: auto;
+			text-align: center;
+		}
+	}
+	@include media(Tablet) {
+		width: 64px;
+		height: 64px;
+	}
+}
+
+@include media(mobile-only) {
+
+	.site-header {
+
+		&.has-logo {
+
+			&:not(.has-title-and-tagline) {
+
+				&.has-menu {
+
+					.site-logo {
+						position: absolute;
+						padding-top: calc(0.5 * $OffsetHorizontal);
+						margin-top: 0;
+						top: $admin-bar--Height;
+
+						.primary-navigation-open & {
+							display: none;
+						}
+
+						img {
+							max-height: calc(var(--button--OffsetVertical) - (0.25 * $Spacer) + 1.7em);
+						}
+					}
+				}
+			}
+
+			&.has-title-and-tagline {
+				align-items: flex-start;
+
+				&.has-menu {
+					justify-content: space-between;
+
+					.site-branding {
+						max-width: calc(100% - 160px);
+					}
+				}
+
+				.site-branding {
+					margin-right: 0;
+				}
+
+				body:not(.primary-navigation-open) & {
+
+					&:after {
+						display: none;
+					}
+
+					.primary-navigation {
+						position: relative;
+						top: 0;
+					}
+
+					.menu-button-container {
+						position: relative;
+						padding-top: 0;
+						margin-top: calc(0px - var(--button--OffsetVertical) + (0.25 * $Spacer));
+
+						#primary-mobile-menu {
+							// The 4.5px here is to offset the icon size horizontallly
+							// (the icon's width is larger than the path's width and has extra space on the sides).
+							padding-left: calc($OffsetVertical * 0.6 - 4.5px);
+							padding-right: calc($OffsetVertical * 0.6 - 4.5px);
+							margin-right: calc(0px - $SpacerVertical * 0.6);
+						}
+					}
+				}
+			}
+		}
+
+		&:not(.has-logo) {
+
+			&.has-title-and-tagline {
+
+				.site-branding {
+					margin-right: 0;
+					max-width: calc(100% - 160px);
+				}
+			}
+		}
+
+		&:not(.has-menu) {
+			justify-content: center;
+		}
+	}
+}

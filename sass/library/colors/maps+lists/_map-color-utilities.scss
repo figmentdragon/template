@@ -1,0 +1,11 @@
+// Map
+$utilities-colors: () !default;
+$utilities-colors: map-merge(
+  (
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger
+  ),
+  $utilities-colors
+);

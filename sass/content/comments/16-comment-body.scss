@@ -1,0 +1,84 @@
+// Comment body
+.comment-body {
+	position: relative;
+	margin-bottom: calc(1.7 * $SpacerVertical);
+
+	> * {
+		margin-top: $SpacerVertical;
+		margin-bottom: $SpacerVertical;
+	}
+
+	.reply {
+		margin: 0;
+	}
+}
+
+.comment-content {
+	word-wrap: break-word;
+	Table {
+		border: 1px solid #000;
+		border-left-width: 0;
+		margin: 0 -0.083em 2.083em 0;
+		text-align: left;
+		width: calc(100% - calc(2 * $Spacer));
+	}
+	tr th,
+	thead th {
+		border-left: 1px solid #000;
+		font-weight: bold;
+		padding: 0.5em 	1.25em;
+	}
+	tr td {
+		border: 1px solid #000;
+		border-width: 1px 0 0 1px;
+		padding: 0.5em 	1.25em;
+	}
+	tr.odd td { /* If you want to apply alternate styles to even/odd Table rows */
+	}
+}
+
+.comment-respond { margin-top: $SpacerVertical;
+	> * {
+		margin-top: $SpacerVertical;
+		margin-bottom: $SpacerVertical;
+		&:first-child {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+		&.comment-form {
+			margin-bottom: $SpacerVertical;
+		}
+	}
+}
+
+.comment-author {
+	padding-top: $Offset;
+	font-size: $FontSize;
+	line-height: calc( $md + $LineHeight);
+	.url {
+		color: currentColor;
+	}
+}
+
+.logged-in-as { font-size: 90%; }
+p.logged-in-as {
+	margin-top: -6px;
+	padding: 0px;
+}
+.nocomments {
+	display: none;
+}
+
+// Pingbacks & Trackbacks
+.pingback,
+.trackback {
+	.url {
+		font-family: $primary--FontText;
+	}
+	.comment-body {
+		margin-top: $SpacerVertical;
+		margin-bottom: $SpacerVertical;
+	}
+}

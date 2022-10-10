@@ -1,0 +1,259 @@
+/* - #BUTTONS -------------------------------- */
+
+// - #DEFINITIONS
+// --=SPACING
+$Button-OffsetVertical:  calc($BaseUnit / 2);
+$Button-OffsetHorizontal: calc($BaseUnit / 2);
+$ButtonSpacing: 0.025em;
+$Button-WhiteSpace: nowrap;
+
+// --=COLORS
+$ButtonBackground      : Background($buttonColor);
+$ButtonText            : Text($buttonColor);
+$ButtonBorder: Border($buttonColor);
+
+// --=FONTS
+$ButtonFont  : $FontAccent;
+$ButtonSize  : $FontSize;
+$ButtonWeight: bold !default;
+$ButtonHeight: calc($LineHeight + $md);
+$Button-TextTransform: uppercase;
+
+// --=COMPONENTS
+$ButtonRadius          : $BorderRadius;
+
+
+
+// - #FUNCTIONS ------------------------------ */
+// - #VARIABLES ------------------------------ */
+$Button-OffsetVertical-sm:  calc($Button-OffsetVertical * 0.25);
+$Button-OffsetHorizontal-sm: calc($Button-OffsetHorizontal * 0.5);
+$ButtonSize-sm: $FontSize-sm;
+$ButtonHeight-sm: $EntryHeight;
+
+/* Padding - Lg */
+$Button-OffsetVertical-lg: calc($Button-OffsetVertical * 0.5);
+$Button-OffsetHorizontal-lg: calc($Button-OffsetHorizontal * 1);
+$ButtonSize-lg: $FontSize-lg;
+$ButtonHeight-lg: $HeadingHeight;
+
+/* Radius */
+// Allows for customizing button radius independently from global border radius
+$ButtonRadius: $BorderRadius;
+$ButtonRadius-sm: $ButtonRadius * $sm;
+$ButtonRadius-lg: $ButtonRadius * $lg;
+$ButtonRadius-xl: $ButtonRadius * $lg;
+
+// - #MAPS ------------------------------ */
+// - #MIXINS ------------------------------ */
+@import "buttons/button-size";
+// - #HELPERS ------------------------------ */
+$Button-BoxShadow      : inset 0 3px 5px ColorDark($buttonColor) 0.125;
+$Button-BoxShadow-focus: inset 2px 2px 5px findColorInvert($shadowColor) 0.075,
+  inset -3px -3px 7px ColorDark($buttonColor);
+
+// --=Percentage Change
+$ButtonBackground-hovershade-amount: 15%;
+$ButtonBackground-hovertint-amount: 15%;
+$ButtonBorder-hovershade-amount: 20%;
+$ButtonBorder-hovertint-amount: 10%;
+$ButtonBackground-activeshade-amount: 20%;
+$ButtonBackground-activetint-amount: 20%;
+$ButtonBorder-activeamount: 25%;
+$ButtonBorder-activetint-amount: 10%;
+
+@mixin button {
+  font-family: $ButtonFont;
+  font-size: $ButtonSize;
+  font-weight: $ButtonWeight;
+  line-height: $ButtonHeight;
+  padding: $Button-OffsetHorizontal $Button-OffsetVertical;
+  background-color: $ButtonBackground;
+  color: $ButtonText;
+  border: none;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: Hovershift($ButtonBackground);
+    color: HoverShift($ButtonText);
+  }
+
+  &:disabled {
+    background: Disabled($ButtonBackground);
+    cursor: not-allowed;
+  }
+
+  &[secondary] {
+    background-color: findInvertColor($ButtonBackground);
+    color: findInvertColor($ButtonText);
+
+    &:active {
+      background-color: $ButtonBackground;
+      color: initial;
+    }
+  }
+}
+
+@mixin button-variant(
+  $background,
+  $border,
+  $text: color-contrast($background),
+  $hover-background: if($text == $color-contrast-light, findColorInvert($background), findColorInvert($background)),
+  $hover-border: if($border == $color-contrast-light, darken($border, $ButtonBorder-hovershade-amount), tint($text, $ButtonBorder-hovertint-amount)),
+  $hover-color: color-contrast($hover-background),
+  $active-background: if($text == $color-contrast-light, darken($background, $ButtonBackground-activeshade-amount), tint-color($background, $ButtonBackground-activetint-amount)),
+  $active-border: if($border == $color-contrast-light, findColorInvert($background), findColorInvert($text)),
+  $active-color: color-contrast($active-background),
+  $disabled-background: Disabled($background),
+  $disabled-border: color-contrast($disabled-background),
+  $disabled-color: color-contrast($disabled-background)
+) {
+  @each $name, $map in $utilities-colors {
+  --#{$prefix}ButtonLink: Link(#{$name});
+  --#{$prefix}ButtonBackground: Background(#{$name});
+  --#{$prefix}ButtonBorder: Border(#{$name});
+  --#{$prefix}ButtonLink-hover: #{$hover-color};
+  --#{$prefix}ButtonBackground-hover: #{$hover-background};
+  --#{$prefix}ButtonBorder-hover: #{$hover-border};
+  --#{$prefix}Button-BoxShadow-focus: #{$Button-BoxShadow-focus};
+  --#{$prefix}ButtonLink-active: #{$active-color};
+  --#{$prefix}ButtonBackground-active: #{$active-background};
+  --#{$prefix}ButtonBorder-active: #{$active-border};
+  --#{$prefix}Button-BoxShadow: #{$Button-BoxShadow};
+  --#{$prefix}ButtonLink-disabled: #{$disabled-color};
+  --#{$prefix}ButtonBackground-disabled: #{$disabled-background};
+  --#{$prefix}ButtonBorder-disabled: #{$disabled-border};
+}
+}
+
+@mixin button-outline-variant(
+  $color,
+  $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  --#{$prefix}ButtonText: #{$color};
+  --#{$prefix}ButtonBorder: #{$color};
+  --#{$prefix}ButtonText-hover: #{$color-hover};
+  --#{$prefix}ButtonBackground-hover: #{$active-background};
+  --#{$prefix}ButtonBorder-hover: #{$active-border};
+  --#{$prefix}btn-focus-shadow-rgb: #{to-rgb($color)};
+  --#{$prefix}ButtonLink-active: #{$active-color};
+  --#{$prefix}ButtonBackground-active: #{$active-background};
+  --#{$prefix}ButtonBorder-active: #{$active-border};
+  --#{$prefix}btn-active-shadow: #{$Button-BoxShadow};
+  --#{$prefix}ButtonLink-disabled: #{$color};
+  --#{$prefix}ButtonBackground-disabled: transparent;
+  --#{$prefix}ButtonBorder-disabled: #{$color};
+  --#{$prefix}gradient: none;
+}
+
+button {
+  @include button();
+  border-radius: $BorderRadius;
+  display: inline-block;
+  margin: 0.5rem 0;
+  padding: $Offset;
+  transition: all 0.25s ease-in-out;
+  cursor: if($enable-button-pointers, pointer, null);
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  text-align: center;
+  user-select: none;
+  vertical-align: middle;
+
+  svg {
+    margin-left: 0.5rem;
+    height: 2rem;
+  }
+  &:active {
+    filter: $ActiveBrightness;
+  }
+
+  &:hover {
+    cursor: pointer;
+    filter: $HoverBrightness;
+  }
+
+  &.search-field {
+    width: calc(100% - calc(2 * $Spacer));
+  }
+
+  &.search-submit {
+    display: none;
+  }
+
+  &.close-submit {
+    position: absolute;
+    right: 17px;
+    bottom: 20px;
+    padding: 14px;
+    border-radius: 50%;
+  }
+  @each $name, $color in $utilities-colors {
+    &.#{$name},
+    #{$name} {
+      @if $color == "light" {
+        @include button-variant(
+          $value,
+          $value,
+          $hover-background: darken($value, $ButtonBackground-hovershade-amount),
+          $hover-border: darken($value, $Button-Border-hovershade-amount),
+          $active-background: darken($value, $ButtonBackground-activeshade-amount),
+          $active-border: darken($value, $Button-Border-activeshade-amount)
+        );
+      } @else if $color == "dark" {
+        @include button-variant(
+          $value,
+          $value,
+          $hover-background: tint-color($value, $ButtonBackground-hovertint-amount),
+          $hover-border: tint-color($value, $Button-Border-hovertint-amount),
+          $active-background: tint-color($value, $ButtonBackground-activetint-amount),
+          $active-border: tint-color($value, $Button-Border-activetint-amount)
+        );
+      } @else {
+        @include button-variant($color, $colors);
+      }
+    }
+  }
+}
+
+[role="button"] {
+  cursor: pointer;
+
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus,
+  &:not([aria-disabled="true"]):hover {
+    filter: brightness(1.4);
+    cursor: pointer;
+  }
+}
+
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="checkbox"],
+input[type="radio"],
+select {
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:enabled:hover,
+  &:focus {
+    filter: brightness(1.4);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,22 @@
+// Layout options
+//
+// By default radios and checkboxes are `inline-block` with no additional spacing
+// set. Use these optional classes to tweak the layout.
+
+.c-inputs-stacked {
+  .c-input {
+    display: inline;
+
+    &::after {
+      display: block;
+
+      margin-bottom: 0.25rem;
+
+      content: "";
+    }
+
+    + .c-input {
+      margin-left: 0;
+    }
+  }
+}

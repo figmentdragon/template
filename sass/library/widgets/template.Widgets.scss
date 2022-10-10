@@ -1,0 +1,235 @@
+.widget {
+  display: inline-block;
+  position: relative;
+  width: calc(100% - calc(2 * $Spacer));
+  margin: 0 0 $Spacer;
+  ul { /* Unordered lists inside widgets */;
+    padding: 0;
+
+    list-style: none;
+    &.sub-menu,
+    &.children { margin-left: $WidgetMenu-spacing; }
+    .sub-menu-toggle { display: none; }
+    ul { margin-left: 10px;  }
+    li { margin-bottom: $Spacer;  }
+  }
+  li {
+    list-style-type: none;
+    display: block;
+    margin: 4px 0 0 0;
+    padding: 4px 0 0 0;
+    &:last-child { padding-bottom: 4px; }
+    li {
+      padding-left: 12px;
+      &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+    a {
+      margin: 0;
+      padding: 0;
+    }
+  }
+  select { /* Make sure select elements fit in widgets. */
+    max-width: calc(100% - calc(2 * $Spacer));
+  }
+  table { margin-top: 0; }
+  a { @include on-event; }
+  &_search {
+    overflow: hidden;
+    #s {}
+  }
+  &_recent_entries,
+  &_recent_comments,
+  &_archive,
+  &_categories,
+  &_meta {
+    margin: 0 auto;
+    padding: 36px;
+    ul {
+      column-count: 3;
+      column-gap: 1.5rem;
+    }
+    ul, li {
+      list-style-type: none;
+      margin: 0;
+      padding: 6px 0;
+    }
+  }
+
+  &_archive
+  &_categories,
+  &_meta,
+  &_nav_menu,
+  &_pages,
+  &_recent_comments,
+  &_recent_entries,
+  &_rss {
+    ul {
+      padding: 0;
+      list-style: none;
+
+      li {
+        color: ColorLight($Text);
+        @include font-family( $HeadingFont );
+        @include font-size(calc(#{$FontSize} * #{$FontInterval}));
+        font-weight: 700;
+        line-height: $HeadingHeight;
+        margin-top: #{0.5 * $Spacer};
+        margin-bottom: #{0.5 * $Spacer};
+      }
+
+      @include nestedSubMenuPadding();
+    }
+  }
+
+  &_meta { ul { li { a {
+        }
+      }
+    }
+  }
+  &_links {
+    ul { li { a { } } }
+    li {
+      &:after { }
+      &:before { }
+    }
+  }
+  &_archive { ul { li { a {
+        }
+      }
+    }
+    select { }
+    option { }
+  }
+  &_pages { ul { li { a {
+        }
+      }
+    }
+  }
+  &_tag_cloud {
+    a {
+      &:after { }
+      &:before { }
+    }
+    div {
+      line-height: 1.5;
+      padding: 0.231rem 0;
+    }
+  }
+  &_categories {
+    ul {
+      li { }
+      &.children { }
+    }
+    a { }
+    select {
+      &#cat { }
+      .postform { }
+    }
+    option { }
+    .level-0 { }
+    .level-1 { }
+    .level-2 { }
+    .level-3 { }
+  }
+  &_recent_comments { }
+  &_recent_entries { ul { li { a {
+        }
+      }
+    }
+  }
+  &_text { }
+  &:last-child { margin-bottom: 0; }
+  .gallery figcaption { display: none; }
+}
+
+/* Sub-Items in Menu & Categories Widgets. These classes are useful if you want to add special styling, such as indention, to sub-items in your menu and categories widgets. */
+.widget-area .sub-menu,
+.widget-area .children {
+	margin-left:  1.5em;
+  li { }
+}
+
+/* -- =CLOUD TAG */
+.wp_widget_tag_cloud,
+.widget_tag_cloud {
+	.tagcloud {
+		@include font-family( $HeadingFont );
+		font-weight: 700;
+	}
+  div {
+  	line-height: 1.5;
+  	padding: 0.231em 0;
+  }
+}
+
+/* -- =SEARCH */
+#searchsubmit { display: none; }
+.widget_search {
+	.search-field {
+		width: calc(100% - calc(2 * $Spacer));
+		@include media(mobile) { width: auto; }
+	}
+	.search-submit {
+		display: block;
+		margin-top: $Spacer;
+	}
+  #s { }
+}
+
+/* -- =CALENDAR */
+#wp-calendar {
+  width: calc(100% - calc(2 * $Spacer));
+  caption { font-style: italic; }
+  thead th { text-align: center; }
+  tbody,
+  tbody td { border: 1px $BorderStyle #000; }
+  tbody {
+    border-left-width: 0;
+    td {
+      border-width: 1px 0 0 0;
+      a { font-weight: bold; }
+      &:hover { }
+    }
+    .pad { }
+  }
+  tfoot #next { text-align: right; }
+  #today { font-weight: bold; }
+  #prev,
+  #next { }
+}
+.widget_calendar .calendar_wrap {
+	text-align: center;
+
+	table td,
+	table th { border: none; }
+
+	a { text-decoration: underline; }
+
+	.wp-calendar-table { margin-bottom: 0; }
+
+	.wp-calendar-nav {
+		margin: 0 0 $Spacer;
+		display: table;
+		width: calc(100% - calc(2 * $Spacer));
+		@include font-family( $HeadingFont );
+
+		span {
+			display: table-cell;
+			padding: 0.5em;
+		}
+	}
+
+	.wp-calendar-nav-prev,
+	.wp-calendar-nav-next { width: 40%; }
+}
+
+/* -- =RSS Widget */
+.rsswidget img { /* This is the orange RSS icon to the left of the RSS widget title */
+	margin: 0;
+	vertical-align: text-top;
+}
+.rss-date { }
+.rssSummary { }

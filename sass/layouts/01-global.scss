@@ -1,0 +1,69 @@
+// Global
+// Use this section to set widths and margins, and to build a layout.
+
+.data-background,
+.bg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  background-color: translucentBackground($gray);
+}
+
+#page {
+  position: relative;
+  width: calc(100% - calc(2 * $Spacer));
+  height: calc(100% - calc(2 * $Spacer));
+  margin: $Spacer;
+  display: grid;
+  grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
+  grid-template-rows: repeat($grid-row-columns, minmax(0, 1fr));
+  grid-gap: $grid-gutter-width;
+  #content {
+    grid-column: 3/26;
+    grid-row: 1/26;
+    position: relative;
+    z-index: $zindex-content;
+  }
+}
+
+#content {
+  grid-column: 3 / 26;
+  grid-row: 1 / 26;
+  position: relative;
+  z-index: $zindex-content;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - calc(2 * $Spacer));
+  margin: $Spacer;
+  border-radius: 15px;
+}
+
+#masthead {
+  @include elevation(5);
+  grid-column: 1 / 15;
+  grid-row: 1 / 26;
+  position: fixed;
+  z-index: $zindex-masthead;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: $Spacer auto;
+  justify-self: center;
+  align-self: stretch;
+  height: 100vh;
+  width: calc(100% - calc(2 * $Spacer));
+}
+
+#colophon {
+  grid-column: 5 / 26;
+  grid-row: 25 / 26;
+  position: relative;
+  z-index: $zindex-colophon;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: calc(100% - calc(2 * $Spacer));
+}

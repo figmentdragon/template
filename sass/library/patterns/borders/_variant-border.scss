@@ -1,0 +1,40 @@
+@each $name, $value in $utilities-colors {
+  @include color-scheme($name) {
+    $Text: Text($value);
+    $BorderColor: Border($value);
+    $Background: Background($value);
+
+    .border,
+    .button {
+      &-#{$name} {
+        color: $Text;
+        border-color: $BorderColor !important;
+        background-color: $Background;
+        &:hover,
+        &:focus {
+          color: HoverShift($Text);
+          border-color: HoverShift($BorderColor);
+          background-color: HoverShift($Background);
+        }
+        &:hover {
+          @include elevation(5);
+        }
+      }
+    }
+    .button-#{$name} {
+      &:disabled {
+        color: Disabled($Text);
+        border-color: Disabled($colorBorder);
+        background-color: Disabled($colorBackground);
+      }
+    }
+      .button-#{$name} {
+
+      }
+    }
+  }
+}
+
+.border-white {
+  border-color: white !important;
+}

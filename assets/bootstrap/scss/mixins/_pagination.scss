@@ -1,0 +1,10 @@
+// Pagination
+
+// scss-docs-start pagination-mixin
+@mixin pagination-size($padding-y, $padding-x, $FontSize, $BorderRadius) {
+  --#{$prefix}pagination-OffsetHorizontal: #{$padding-x};
+  --#{$prefix}pagination-OffsetVertical: #{$padding-y};
+  @include rfs($FontSize, --#{$prefix}pagination-FontSize);
+  --#{$prefix}pagination-BorderRadius: #{$BorderRadius};
+}
+// scss-docs-end pagination-mixin

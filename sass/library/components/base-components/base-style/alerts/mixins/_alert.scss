@@ -1,0 +1,17 @@
+@mixin Alert--variant($Background, $border, $color) {
+  $alert: #{$color};
+  $Alert-BackgroundColor: #{$Background};
+  $Alert--Border: #{$border};
+
+  @if $enable-gradients {
+    background-image: $gradient;
+  }
+
+  .alertLink {
+    color: shade--TextColor($color, 7.6% * 4);
+    &.hover,
+    &:hover {
+      color: $black;
+    }
+  }
+}

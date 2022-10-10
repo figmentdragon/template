@@ -1,0 +1,28 @@
+// - #DEFINITIONS ---------------------------- //
+// -- =Lengths
+  $xs  : 0.50;  // 8px
+  $sm  : 0.75;  // 12px
+  $md  : 0.875; //14px
+  $lg  : 1.15;  // 18.4px
+  $xl  : 1.25;  // 20px
+  $x2l : 1.75;  // 28px
+  $x3l : calc($x2l + $xs); // 2.25 36px
+
+// -- =Breakingpoints
+  $mobile              : 30rem; //482px
+  $touch               : 47.820678024652rem; //768px
+  $Tablet              : 61.768375781843rem; //992px
+  $laptop              : 63.76090403287rem; //1024px
+  $desktop             : 80rem; //1280px
+  $widescreen          : 85.056049715723rem; //366px
+  $ultrawide           : 119.55169506163rem; //1920px
+
+  $Spacer-measure: null;
+
+@import "spacing/config.Spacing";
+@import "grid+responsive/config.Grid";
+@import "grid+responsive/config.Responsive";
+
+@import "breakpoints";
+@import "vertical-margins";
+@import "measure";

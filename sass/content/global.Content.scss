@@ -1,0 +1,865 @@
+$entry-header--Text: Text($primary);
+$entry-header--LinkText: currentColor;
+$entry-header--LinkText-hover: HoverShift($entry-header--LinkText);
+$entry-header--LinkText-focus: HoverShift($entry-header--LinkText);
+$EntrySize-header: $HeadingSize;
+//$entry-content--FontText: $secondary--FontText;
+
+$entry-author-bioSize: $HeadingSize;
+$entry-author-bio--FontFamily: 'Raleway';
+
+$WidgetHeight-list: 1.9;
+$WidgetHeight: 1.4;
+$WidgetWeight: 700;
+$WidgetSpacer-menu: calc(.66 * $BaseUnit);
+
+
+
+.sticky
+{
+    // This class is required to pass ThemeCheck.
+}
+
+.no-results.not-found > *:first-child
+{
+    margin-bottom: calc(3 * $SpacerHorizontal);
+}
+
+// Styling for wp_link_pages.
+.page-links
+{
+    clear: both;
+
+    .post-page-numbers
+    {
+        display: inline-block;
+
+        min-width: 44px;
+        min-height: 44px;
+        margin-right: calc(.66 * $BaseUnit);
+        margin-left: calc(.66 * $BaseUnit);
+
+        &:first-child
+        {
+            margin-left: 0;
+        }
+    }
+}
+
+.entry-title
+{
+    font-size: $EntrySize-header;
+    line-height: $HeadingHeight;
+
+    letter-spacing: $HeadingSpacing;
+
+    color: $entry-header--Text;
+
+    overflow-wrap: break-word;
+
+    a
+    {
+        color: $entry-header--LinkText;
+
+        text-underline--Offset: .15em;
+
+        &:hover
+        {
+            color: $entry-header--LinkText-hover;
+        }
+
+        &:focus
+        {
+            color: $entry-header--LinkText-focus;
+        }
+
+        &:active
+        {
+            color: $entry-header--LinkText;
+        }
+    }
+}
+
+.singular .entry-title
+{
+    font-size: $HeadingSize;
+}
+
+h3.entry-title
+{
+    font-weight: $HeadingWeight;
+    line-height: $HeadingSize;
+}
+
+/**
+ * Entry Content
+ */
+
+.entry-content,
+.entry-summary
+{
+    //font-family: $entry-content--FontText;
+}
+
+.entry-content
+{
+    p
+    {
+        word-wrap: break-word;
+    }
+
+    // Overwrite iframe embeds that have inline styles.
+    > iframe[style]
+    {
+        max-width: 100% !important;
+        margin: $SpacerHorizontal 0 !important;
+    }
+
+    // Classic editor audio embeds.
+    .wp-audio-shortcode
+    {
+        @extend %responsive--WidthDefault;
+    }
+}
+
+.entry-footer
+{
+    font-size: calc($xs * $FontSize);
+
+    display: block;
+    float: none;
+    clear: both;
+
+    color: $Text;
+
+    > span
+    {
+        display: inline-block;
+    }
+
+    a
+    {
+        color: currentColor;
+
+        &:hover,
+        &:focus
+        {
+            color: HoverShift(currentColor);
+        }
+
+        &:active
+        {
+            color: currentColor;
+        }
+    }
+}
+
+// Extra specificity to override rules in _vertical-margins.scss
+.site-main > article > .entry-footer
+{
+    margin-top: $SpacerHorizontal;
+    padding-top: $BaseUnit;
+    padding-bottom: calc(3 * $OffsetHorizontal);
+
+    border-bottom: $separator--Height solid $separator-Border;
+}
+
+body:not(.single) .site-main > article:last-of-type .entry-footer
+{
+    border-bottom: $separator--Height solid transparent;
+}
+
+.single .site-main > article > .entry-footer
+{
+    display: grid;
+
+    margin-top: calc(3.4 * $SpacerHorizontal);
+    margin-bottom: calc(3.4 * $SpacerHorizontal);
+    padding-top: calc(.8 * $OffsetHorizontal);
+    padding-bottom: 0;
+
+    border-top: 3px solid $separator-Border;
+    border-bottom: $separator--Height solid transparent;
+
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: calc(2 * $OffsetVertical);
+    @include media(mobile-only)
+    {
+        display: block;
+
+        .full-size-link
+        {
+            display: block;
+        }
+
+        .post-taxonomies,
+        .full-size-link
+        {
+            text-align: left;
+        }
+    }
+
+    .post-taxonomies,
+    .full-size-link
+    {
+        justify-content: flex-end;
+
+        text-align: right;
+    }
+
+    .full-size-link:first-child:last-child
+    {
+        grid-column: span 2;
+    }
+
+    .posted-on,
+    .byline,
+    .cat-links,
+    .tags-links
+    {
+        display: block;
+    }
+}
+
+/**
+ * Post Thumbnails
+ */
+
+.post-thumbnail
+{
+    text-align: center;
+
+    @extend %responsive--WidthDefault;
+
+    .entry-header &,
+    .singular &
+    {
+        @extend %responsive--WidthWideNested;
+    }
+
+    .wp-post-image
+    {
+        display: block;
+
+        width: auto;
+        max-width: calc(100% - calc(2 * $Spacer));
+        margin-top: calc(2 * $SpacerHorizontal);
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+/**
+ * Author
+ */
+
+.author-bio
+{
+    font-size: calc($xs * $FontSize);
+
+    position: relative;
+
+    max-width: $responsive--WidthDefault;
+
+    .site-main > article > &
+    {
+        margin-top: calc(2 * $SpacerHorizontal);
+    }
+
+    // Avatars are optional and can be turned off.
+    &.show-avatars
+    {
+        .avatar
+        {
+            display: inline-block;
+
+            vertical-align: top;
+
+            border-radius: 50%;
+        }
+
+        .author-bio-content
+        {
+            display: inline-block;
+
+            max-width: calc($responsive--WidthDefault - 90px);
+            padding-left: $OffsetVertical;
+        }
+    }
+
+    .author-bio-content
+    {
+        .author-title
+        {
+            font-family: $entry-author-bio--FontFamily;
+            font-size: $entry-author-bioSize;
+
+            display: inline;
+        }
+
+        .author-description
+        {
+            font-size: calc($xs * $FontSize);
+
+            margin-top: calc(.5 * $SpacerHorizontal);
+            margin-bottom: calc(.5 * $SpacerHorizontal);
+        }
+    }
+}
+
+@import '04-meta';
+@import '05-content';
+@import '06-media';
+.widget-area
+{
+    font-family: inherit;
+    font-size: calc($md * $FontSize);
+
+    margin-top: calc(6 * $SpacerHorizontal);
+    padding-bottom: calc($OffsetHorizontal / 3);
+
+    color: $FooterText;
+
+    @extend %responsive--WidthWide;
+    @include media(laptop)
+    {
+        display: grid;
+
+        width: calc(100% - calc( 2 * $Spacer));
+
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+        column-gap: calc(2 * $OffsetVertical);
+    }
+    @include media(wide)
+    {
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+				width: calc(100% - calc( 2 * $Spacer));
+    }
+    @include media(mobile-only)
+    {
+        margin-top: calc(3 * $SpacerHorizontal);
+    }
+
+    .wp-block-social-links
+    {
+        &.alignright
+        {
+            justify-content: flex-end;
+
+            margin-top: $SpacerHorizontal;
+        }
+
+        &.alignleft
+        {
+            margin-top: $SpacerHorizontal;
+        }
+    }
+
+    &:after
+    {
+        display: table;
+        clear: both;
+
+        content: '';
+    }
+}
+
+.widget
+{
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+    {
+        font-weight: $WidgetWeight;
+        line-height: $WidgetHeight;
+    }
+
+    h1
+    {
+        font-size: $FontSize;
+    }
+
+    h2
+    {
+        font-size: calc($md * $FontSize);
+    }
+
+    h3
+    {
+        font-size: calc($xs * $FontSize);
+    }
+
+    h4
+    {
+        font-size: calc($xs * $FontSize);
+    }
+
+    h5
+    {
+        font-size: calc($xs * $FontSize);
+    }
+
+    h6
+    {
+        font-size: calc($xs * $FontSize);
+    }
+
+    ul
+    {
+        padding: 0;
+
+        list-style-type: none;
+
+        li
+        {
+            line-height: $WidgetHeight-list;
+        }
+
+        &.sub-menu,
+        &.children
+        {
+            margin-left: $WidgetSpacer-menu;
+        }
+
+        .sub-menu-toggle
+        {
+            display: none;
+        }
+    }
+
+    a
+    {
+        text-decoration: underline;
+
+        color: Link($footerColor);
+
+        text-decoration-style: solid;
+        text-decoration-color: currentColor;
+
+        &:link,
+        &:visited,
+        &:active
+        {
+            color: Link($footerColor);
+        }
+
+        &:hover
+        {
+            color: HoverShift(Link($footerColor));
+
+            text-decoration-style: dotted;
+        }
+    }
+}
+
+// Search widget styles
+.search-form
+{
+    display: flex;
+    flex-wrap: wrap;
+
+    max-width: $responsive--WidthDefault;
+    margin: auto;
+
+    > label
+    {
+        font-weight: medium;
+
+        width: calc(100% - calc(2 * $Spacer));
+        margin-bottom: 0;
+    }
+
+    .search-field
+    {
+        flex-grow: 1;
+
+        max-width: inherit;
+        margin-top: calc($SpacerHorizontal / 3);
+        margin-right: calc(.66 * $SpacerVertical);
+    }
+
+    .search-submit
+    {
+        margin-top: calc($SpacerHorizontal / 3);
+        margin-left: 10px;
+    }
+}
+
+.widget_search > .search-form
+{
+    .search-field
+    {
+        margin-right: calc(-1 * $BorderWidth-active);
+        margin-bottom: calc(.5 * $SpacerHorizontal);
+
+        -webkit-appearance: none;
+    }
+
+    .search-submit
+    {
+        margin-bottom: calc(.5 * $SpacerHorizontal);
+        margin-left: 0;
+    }
+}
+
+.widget_rss a.rsswidget .rss-widget-icon
+{
+    display: none;
+}
+
+
+/**
+ * Comments Wrapper
+ */
+.comments-area
+{
+    > *
+    {
+        margin-top: $SpacerHorizontal;
+        margin-bottom: $SpacerHorizontal;
+
+        &:first-child
+        {
+            margin-top: 0;
+        }
+
+        &:last-child
+        {
+            margin-bottom: 0;
+        }
+    }
+
+    &.show-avatars
+    {
+        .avatar
+        {
+            position: absolute;
+            top: 10px;
+
+            border-radius: 50%;
+        }
+
+        .fn
+        {
+            display: inline-block;
+
+            padding-left: 85px;
+        }
+
+        .comment-metadata
+        {
+            padding: 8px 0 9px 85px;
+        }
+    }
+}
+
+/**
+ * Comment Title
+ */
+
+.comments-title,
+.comment-reply-title
+{
+    font-size: $HeadingSize;
+
+    letter-spacing: $HeadingSpacing;
+}
+
+.comment-reply-title
+{
+    display: flex;
+    justify-content: space-between;
+
+    small
+    {
+        a
+        {
+            //font-family: $secondary--FontText;
+            font-size: calc($xs * $FontSize);
+            font-weight: normal;
+            font-style: normal;
+
+            letter-spacing: normal;
+        }
+    }
+}
+
+/* Nested comment reply title*/
+.comment .comment-respond .comment-reply-title
+{
+    font-size: calc($lg * $FontSize);
+}
+
+/**
+ * Comment Lists
+ */
+.comment-list
+{
+    padding-left: 0;
+
+    list-style: none;
+
+    > li
+    {
+        margin-top: $SpacerHorizontal;
+        margin-bottom: $SpacerHorizontal;
+    }
+}
+
+.comment-list .children
+{
+    padding-left: 0;
+
+    list-style: none;
+
+    > li
+    {
+        margin-top: $SpacerHorizontal;
+        margin-bottom: $SpacerHorizontal;
+    }
+}
+
+.comment-list .depth-2,
+.comment-list .depth-3
+{
+    @include media(mobile)
+    {
+        padding-left: calc(4 * $OffsetVertical);
+    }
+}
+
+/**
+ * Comment Meta
+ */
+.comment-meta
+{
+    @include media(mobile)
+    {
+        margin-right: inherit;
+
+        .comment-author
+        {
+            max-width: inherit;
+        }
+    }
+    .comment-author
+    {
+        line-height: $HeadingHeight;
+
+        margin-bottom: calc(.25 * $BaseUnit);
+
+        @include media(mobile)
+        {
+            margin-bottom: 0;
+            padding-right: 0;
+        }
+
+        .fn
+        {
+            font-size: calc($lg * $FontSize);
+            //font-family: $secondary--FontText;
+            font-weight: normal;
+
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+        }
+    }
+
+    .comment-metadata
+    {
+        font-size: calc($xs * $FontSize);
+
+        padding: 8px 0 9px 0;
+
+        color: $Text;
+
+        .edit-link
+        {
+            margin-left: $SpacerVertical;
+        }
+    }
+}
+
+.reply
+{
+    font-size: calc($md * $FontSize);
+    line-height: $HeadingHeight;
+}
+
+.bypostauthor
+{
+    display: block;
+}
+
+.says
+{
+    display: none;
+}
+
+.pingback .url,
+.trackback .url
+{
+    //font-family: $primary--FontText;
+}
+
+// Comment body
+.comment-body
+{
+    position: relative;
+
+    margin-bottom: calc(1.7 * $SpacerHorizontal);
+
+    > *
+    {
+        margin-top: $SpacerHorizontal;
+        margin-bottom: $SpacerHorizontal;
+    }
+
+    .reply
+    {
+        margin: 0;
+    }
+}
+
+.comment-content
+{
+    word-wrap: break-word;
+}
+
+// Pingbacks & Trackbacks
+.pingback .comment-body,
+.trackback .comment-body
+{
+    margin-top: $SpacerHorizontal;
+    margin-bottom: $SpacerHorizontal;
+}
+
+.comment-respond
+{
+    margin-top: $SpacerHorizontal;
+}
+
+.comment-respond > *
+{
+    margin-top: $BaseUnit;
+    margin-bottom: $BaseUnit;
+
+    &:first-child
+    {
+        margin-top: 0;
+    }
+
+    &:last-child
+    {
+        margin-bottom: 0;
+
+        &.comment-form
+        {
+            margin-bottom: $SpacerHorizontal;
+        }
+    }
+}
+
+.comment-author
+{
+    padding-top: 3px;
+
+    .url
+    {
+        color: currentColor;
+    }
+}
+
+.comment-form
+{
+    display: flex;
+    flex-wrap: wrap;
+
+    > *
+    {
+        flex-basis: 100%;
+    }
+
+    .comment-notes
+    {
+        font-size: calc($md * $FontSize);
+    }
+
+    .comment-form-url,
+    .comment-form-comment
+    {
+        width: calc(100% - calc(2 * $Spacer));
+    }
+
+    .comment-form-author,
+    .comment-form-email
+    {
+        flex-basis: 0;
+        flex-grow: 1;
+
+        @include media(mobile-only)
+        {
+            flex-basis: 100%;
+        }
+    }
+
+    .comment-form-cookies-consent > label,
+    .comment-notes
+    {
+        font-size: calc($xs * $FontSize);
+        font-weight: normal;
+    }
+}
+
+.comment-form > p
+{
+    margin-bottom: $BaseUnit;
+
+    @include media(mobile)
+    {
+        &.comment-form-author
+        {
+            margin-right: calc(1.5 * $SpacerVertical);
+        }
+
+        &.comment-notes,
+        &.logged-in-as
+        {
+            display: block;
+        }
+    }
+
+    &:first-of-type
+    {
+        margin-top: 0;
+    }
+
+    &:last-of-type
+    {
+        margin-bottom: 0;
+    }
+
+    label,
+    input[type='email'],
+    input[type='text'],
+    input[type='url'],
+    textarea
+    {
+        font-size: calc($md * $FontSize);
+        font-weight: medium;
+
+        display: block;
+
+        width: calc(100% - calc(2 * $Spacer));
+        margin-bottom: calc(.5 * $BaseUnit);
+    }
+
+    &.comment-form-cookies-consent
+    {
+        display: flex;
+    }
+}

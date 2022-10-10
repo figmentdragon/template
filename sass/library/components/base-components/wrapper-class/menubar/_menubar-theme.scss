@@ -1,0 +1,78 @@
+// Menubar themes
+//
+// Styles for switching between menubars with light or dark background.
+
+.menubar-light {
+  @include deprecate('`.menubar-light`', 'v5.2.0', 'v6.0.0', true);
+  .menubar-brand {
+    color: $menubar-light--active--TextColor;
+
+    @include on-event {
+      color: $menubar-light--active--TextColor;
+    }
+  }
+
+  .menubar-nav {
+    .menu-link {
+      color: $menubar-light--active--TextColor;
+
+      @include on-event {
+        color: $menubar-light--hover--LinkColor;
+      }
+    }
+
+    .open > .menu-link,
+    .active > .menu-link,
+    .menu-link.open,
+    .menu-link.active {
+      @include on-event {
+        color: $menubar-light--active--TextColor;
+      }
+    }
+  }
+
+  .menubar-divider {
+    background-color: rgba(0,0,0,.075);
+  }
+}
+
+.menubar-dark { // White links against a dark background
+  $menubar--TextColor: $menubar-dark--active--TextColor;
+  $menubar--hover--LinkColor: $menubar-dark--hover--LinkColor;
+  $menubar-inactive--TextColor: $menubar-dark-inactive--TextColor;
+  $menubar--active--TextColor: $menubar-dark--active--TextColor;
+  $menubar-brand--TextColor: $menubar-dark-brand--TextColor;
+  $menubar-brand--hover--LinkColor: $menubar-dark-brand--hover--LinkColor;
+  $menubar-toggler-Border: $menubar-dark-toggler-Border;
+  $menubar-toggler-iconBackgroundColor: escape-svg($menubar-dark-toggler-iconBackgroundColor);
+  .menubar-brand {
+    color: $menubar-dark--active--TextColor;
+
+    @include on-event {
+      color: $menubar-dark--active--TextColor;
+    }
+  }
+
+  .menubar-nav {
+    .menu-link {
+      color: $menubar-dark--active--TextColor;
+
+      @include on-event {
+        color: $menubar-dark--hover--LinkColor;
+      }
+    }
+
+    .open > .menu-link,
+    .active > .menu-link,
+    .menu-link.open,
+    .menu-link.active {
+      @include on-event {
+        color: $menubar-dark--active--TextColor;
+      }
+    }
+  }
+
+  .menubar-divider {
+    background-color: rgba(255,255,255,.075);
+  }
+}

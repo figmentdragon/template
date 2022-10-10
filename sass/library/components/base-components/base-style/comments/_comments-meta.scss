@@ -1,0 +1,85 @@
+/* Comment Meta */
+.comment-meta {
+  /* Comment date, time, etc */
+  font-size: .75rem;
+
+  margin-bottom: 15px;
+  padding-left: 42px;
+
+
+  .author-name,
+  .comment-author {
+		line-height: $HeadingHeight;
+    font-weight: 400 + 200;
+    font-style: normal;
+
+    display: block;
+
+		margin-bottom: calc(0.25 * $SpacerVertical);
+    .fn {
+      font-family: $FontSecondary;
+      font-weight: normal;
+      font-size: $FontSize * $lg;
+      hyphens: auto;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+  }
+
+  .edit-link {
+    margin-left: $BaseUnit;
+  }
+
+  a { @include on-event; }
+
+  .comment-permalink {
+    display: inline-block;
+  }
+}
+
+.comment-metadata {
+  font-size: calc($sm * $FontSize);
+  line-height: $LineHeight;
+  font-style: italic;
+
+  padding: 8px 0 9px 0;
+
+  text-transform: uppercase;
+
+  color: $Text;
+
+  a {
+    text-decoration: none;
+
+    color: inherit;
+  }
+
+  .comment-edit-link {
+    font-size: calc($sm * $FontSize);
+    font-style: italic;
+
+    display: inline-block;
+
+    float: right;
+    margin-left: $SpacerHorizontal;
+  }
+}
+
+.reply {
+  font-size: $FontSize * 0.75;
+  line-height: $BaseUnit * 1.5;
+
+  float: left;
+
+  margin: 6px 0;
+  a,
+  a:link,
+  a:visited {
+    margin: 0;
+    padding: 6px 18px;
+  }
+}
+
+.says {
+  display: none;
+}

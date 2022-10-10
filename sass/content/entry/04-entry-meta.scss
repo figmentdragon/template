@@ -1,0 +1,180 @@
+/**
+ * 6.0 Entry Meta
+ * ---------------------------------------------*---------------------------- */
+.post-meta,
+.entry-meta {/* Container for the entry metadata */
+  position: relative;
+
+  font-size: 0.8rem;
+  line-height: 1.3333333333;
+  font-weight: 400;
+
+  display: inline-block;
+  display: block;
+
+  clear: both;
+  overflow: hidden;
+
+  width: calc(100% - calc(2 * $Spacer));
+  margin: 12px 0;
+  padding: 6px 0;
+
+  list-style: none;
+
+  text-transform: uppercase;
+
+  color: #6D6D6D;
+  color: DarkColor(rgba($primary, 0.4));
+
+  a {
+    text-decoration: none;
+    @include on-event;
+  }
+  .tag-links a {
+    position: relative;
+
+    font-size: 11px;
+    line-height: 1.2727272727;
+    font-weight: 700;
+
+    display: inline-block;
+
+    margin: 2px 4px 2px 10px;
+    padding: 3px 7px;
+
+    text-transform: uppercase;
+
+    &:hover { &:before { } }
+    &:before { position: absolute;
+      top: 0;
+      left: -8px;
+
+      width: 0;
+      height: 0;
+
+      content: "";
+    }
+    :after { position: absolute;
+      top: 8px;
+      left: -2px;
+
+      width: 4px;
+      height: 4px;
+
+      content: "";
+    }
+  }
+  &::before {
+    position: absolute;
+    z-index: 1;
+    bottom: 1.5rem;
+    display: block;
+
+    width: calc(100% - calc(2 * $Spacer));
+
+    content: "";
+
+    border-top: $BorderWidth solid rgba($BorderColor, 0.12);
+  }
+  .author-avatar {
+    display: inline-block; float: none;
+    overflow: hidden;
+
+    width: auto;
+    margin: 0 0 -6px 4px;
+    padding: 0;
+
+    border-radius: 14px;
+  }
+  .icon { margin-right: 7px;
+  }
+  .meta-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    width: calc(100% - calc(2 * $Spacer));
+    max-width: 58rem;
+    margin-top: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .meta-icon {
+    flex-shrink: 0;
+
+    margin-right: $BaseUnit;
+  }
+  .byline .meta-icon svg { width: 1.6rem;
+    height: 1.8rem;
+  }
+  .categories .meta-icon svg { width: 1.8rem;
+    height: 1.7rem;
+  }
+  .comments-link .meta-icon svg { width: 1.8rem;
+    height: 1.8rem;
+  }
+  .entry-date .meta-icon svg { width: 1.7rem;
+    height: 1.8rem;
+  }
+  .edit-link .meta-icon svg { width: 1.8rem;
+    height: 1.8rem;
+  }
+  .sticky .meta-icon svg { width: 1.5rem;
+    height: 1.8rem;
+  }
+  svg * { fill: currentColor;
+  }
+}
+
+.entry-date,
+.byline,
+.category { font-family: $FontAccent; }
+
+.post-date,
+.entry-date {
+
+  font-size: 60%;
+  font-weight: $medium--FontWeight;
+  text-transform: uppercase;
+  p {
+    background: tint($gray, $ColorInterval * 4);
+    &.align-left { padding-right: 12px;
+    }
+    &.align-right { padding-left: 12px;
+    }
+  }
+}
+
+.byline { /* By default, bylines are hidden */
+  display: none;
+}
+
+.single .byline,
+.group-blog .byline { /* Bylines are displayed on single posts and/or when there are multiple authors */
+  font-size: 60%;
+  font-weight: $medium--FontWeight;
+
+  display: inline;
+
+  margin-right: 6px;
+  padding: 0;
+
+  text-transform: uppercase;
+  &::after { margin-left: 6px;
+
+    content: "//";
+
+    opacity: 0.6;
+  }
+  .author-avatar {
+    display: inline-block;
+
+    float: none;
+    overflow: hidden;
+
+    width: auto;
+    margin: 0 0 -6px 4px;
+    padding: 0;
+  }
+}
+s

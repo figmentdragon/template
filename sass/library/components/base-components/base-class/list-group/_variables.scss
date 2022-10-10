@@ -1,0 +1,28 @@
+// List group
+
+// scss-docs-start ListGroup--variables
+$ListGroup--TextColor:                  ColorDark($primary);
+$list-groupBackgroundColor:                     white;
+$ListGroup-Border:           black .125;
+$ListGroup--BorderWidth:           $BorderWidth;
+$ListGroup--BorderRadius:          $BorderRadius;
+
+$ListGroup--item--OffsetVertical:         $Spacer * .5;
+$ListGroup--item--OffsetHorizontal:         $Spacer;
+$ListGroup--itemBackgroundColor-scale:          -80%;
+$ListGroup--item--TextColor-scale:       40%;
+
+$ListGroup--hoverBackgroundColor:               ColorLight($primary);
+$ListGroup--active--TextColor:           Background($primary);
+$ListGroup--activeBackgroundColor:              Background($primary);
+$ListGroup--active-Border:    $ListGroup--activeBackgroundColor;
+
+$ListGroup--disabled--TextColor:         gray;
+$ListGroup--disabledBackgroundColor:            $list-groupBackgroundColor;
+
+$ListGroup--action--TextColor:           ColorDark($primary);
+$ListGroup--action--hover--LinkColor:     $ListGroup--action--TextColor;
+
+$ListGroup--action--active--TextColor:    $Text;
+$ListGroup--action--activeBackgroundColor:       ColorLight($primary);
+// scss-docs-end ListGroup--variables

@@ -1,0 +1,10 @@
+// Close button Animation for when a custom logo is present.
+@keyframes close-button-transition {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}

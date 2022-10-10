@@ -1,0 +1,4 @@
+// Column width with margin
+@mixin column-width($numberColumns: $grid-columns) {
+	width: calc(calc($columns-margin * ($numberColumns - 1)) / $numberColumns);
+}

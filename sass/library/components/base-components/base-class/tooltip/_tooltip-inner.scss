@@ -1,0 +1,11 @@
+// Wrapper for the tooltip content
+.Tooltip--inner {
+  max-width: $Tooltip--MaxWidth;
+  padding: $Tooltip--OffsetVertical $Tooltip--OffsetHorizontal;
+
+  text-align: center;
+
+  color: $Tooltip--TextColor;
+  border-radius: $Tooltip--BorderRadius, 0;
+  background-color: $tooltipBackgroundColor;
+}

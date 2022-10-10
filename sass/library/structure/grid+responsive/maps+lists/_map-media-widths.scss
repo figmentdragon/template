@@ -1,0 +1,10 @@
+$displays : () !default;
+$displays : (
+  'mobile'      : "screen and (max-width: $touch - 1)",
+  'touch'       : "(min-width: $touch)" and "(max-width: calc($Tablet - 1))",
+  'Tablet'      : "(min-width: $Tablet)" and "(max-width: calc($laptop - 1))",
+  'laptop'      : "(min-width: $laptop)" and "(max-width: calc($desktop - 1))",
+  'desktop'     : "(min-width: $desktop)" and "(max-width: calc($widescreen - 1))",
+  'widescreen'  : "(min-width: $widescreen)" and "(max-width: calc($ultrwide - 1))",
+  'ultrawide'   : "(min-width: $ultrawide )"
+);

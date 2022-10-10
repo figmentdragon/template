@@ -1,0 +1,89 @@
+.comment-author {
+  /* Comment author's name */
+  position: relative;
+
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 600;
+
+  margin: 0 28px 28px 0;
+  padding-top: 3px;
+  padding-left: 30px;
+
+  text-transform: capitalize;
+
+  color: #151515;
+  .fn {
+    position: relative;
+
+    font-size: 18px;
+    line-height: normal;
+    font-weight: 900;
+
+    text-transform: capitalize;
+
+    color: #151515;
+    a {
+      color: #2B2B2B;
+    }
+  }
+
+  a {
+    font-size: $FontSize;
+    line-height: 1.5rem;
+
+    display: inline-block;
+
+    margin-top: 0;
+    margin-bottom: 5px;
+
+    text-decoration: none;
+    letter-spacing: 1px;
+
+    color: #000000;
+    &:hover {
+      color: #41A62A;
+    }
+  }
+  .avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 18px;
+    height: 18px;
+    padding: 2px;
+
+    border: 1px $BorderStyle rgba($BorderColor, 0.1);
+    border-radius: 50%;
+  }
+  .says {
+    display: none;
+  }
+  img {
+    margin-right: 10px;
+    margin-left: -42px;
+  }
+  .url {
+    color: currentColor;
+  }
+}
+
+.author-name {
+  text-transform: capitalize;
+}
+
+.bypostauthor {
+  /* Gives post author comments thier own style */
+  position: relative;
+
+  display: block;
+  > article .fn:before {
+    position: relative;
+    top: -1px;
+
+    margin: 0 2px 0 -2px;
+
+    content: "\f408";
+  }
+}

@@ -1,0 +1,9 @@
+#site-navigation {
+	min-width: 120px;
+	color: #999999;
+	font-size: 0.9em;
+	font-weight: 400;
+	padding: 0px;
+	@include box-sizing(border-box);
+	z-index: calc($zindex-masthead + 150);
+}

@@ -1,0 +1,54 @@
+// Make the div behave like a button
+.buttongroup,
+.buttongroup-vertical {
+	position: relative;
+	display: inline-flex;
+	vertical-align: middle; // match .button alignment given font-size hack above
+
+	> .button {
+		position: relative;
+		flex: 1 1 auto;
+	}
+
+	// Bring the hover, focused, and "active" buttons to the front to overlay
+	// the borders properly
+	> .button-check:checked + .button,
+	> .button-check:focus + .button,
+	> .button:hover,
+	> .button:focus,
+	> .button:active,
+	> .button.active {
+		z-index: 1;
+	}
+}
+
+//
+// Vertical button groups
+//
+
+.buttongroup-vertical {
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+
+	> .button,
+	> .buttongroup {
+		width: calc(100% - calc(2 * $Spacer));
+	}
+
+	> .button:not(:first-child),
+	> .buttongroup:not(:first-child) {
+		margin-top: $BorderWidth;
+	}
+
+	// Reset rounded corners
+	> .button:not(:last-child):not(.dropdown-toggle),
+	> .buttongroup:not(:last-child) > .button {
+		border-bottom-radius: 0;
+	}
+
+	> .button ~ .button,
+	> .buttongroup:not(:first-child) > .button {
+		border-top-radius: 0;
+	}
+}

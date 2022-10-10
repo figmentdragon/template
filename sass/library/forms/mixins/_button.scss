@@ -1,0 +1,128 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin button-variant(
+  $Background,
+  $border,
+  $color: color-contrast($Background),
+  $hover-background: if($color == $ContrastLight, shade-color($Background, $button--hover-bg-shade-amount), tint-color($Background, $button--hover-bg-tint-amount)),
+  $hover-border: if($color == $ContrastLight, shade-color($border, $button--hover-border-shade-amount), tint-color($border, $button--hover-border-tint-amount)),
+  $LinkText-hover: color-contrast($hover-background),
+  $active-background: if($color == $ContrastLight, shade-color($Background, $button--active-bg-shade-amount), tint-color($Background, $button--active-bg-tint-amount)),
+  $active-border: if($color == $ContrastLight, shade-color($border, $button--active-border-shade-amount), tint-color($border, $button--active-border-tint-amount)),
+  $active-color: color-contrast($active-background),
+  $disabled-background: $Background,
+  $disabled-border: $border,
+  $disabled-color: color-contrast($disabled-background)
+) {
+  $ButtonText: #{$color};
+  $ButtonBackground: #{$Background};
+  $ButtonBorder: #{$border};
+  $ButtonText-hover: #{$LinkText-hover};
+  $ButtonBackground-hover: #{$hover-background};
+  $ButtonBorder-hover: #{$hover-border};
+  $ButtonShadow-focus-rgb: #{to-rgb(mix($color, $border, 15%))};
+  $ButtonText-active: #{$active-color};
+  $ButtonBackground-active: #{$active-background};
+  $ButtonBorder-active: #{$active-border};
+  $ButtonShadow-active: #{$button--BoxShadow};
+  $ButtonText-disabled: #{$disabled-color};
+  $ButtonBackground-disabled: #{$disabled-background};
+  $ButtonBorder-disabled: #{$disabled-border};
+}
+// scss-docs-end btn-variant-mixin
+
+// scss-docs-start btn-outline-variant-mixin
+@mixin button-outline-variant(
+  $color,
+  $hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  $ButtonText: #{$color};
+  $ButtonBorder: #{$color};
+  $ButtonText-hover: #{$hover};
+  $ButtonBackground-hover: #{$active-background};
+  $ButtonBorder-hover: #{$active-border};
+  $ButtonShadow-focus-rgb: #{to-rgb($color)};
+  $ButtonText-active: #{$active-color};
+  $ButtonBackground-active: #{$active-background};
+  $ButtonBorder-active: #{$active-border};
+  $ButtonShadow-active: #{$button--BoxShadow};
+  $ButtonText-disabled: #{$color};
+  $ButtonBackground-disabled: transparent;
+  $gradient: none;
+}
+
+@mixin button-size($OffsetVertical, $OffsetHorizontal, $FontSize, $BorderRadius) {
+  --#{$prefix}Button-OffsetVertical: #{$OffsetVertical};
+  --#{$prefix}Button-OffsetHorizontal: #{$OffsetHorizontal};
+  @include rfs($FontSize, --#{$prefix}ButtonSize);
+  --#{$prefix}ButtonRadius: #{$BorderRadius};
+}
+
+// Button style
+// - Applies button styles to blocks and elements that share them.
+@mixin button-style() {
+	border: var(--BorderWidth) $BorderStyle var(--ButtonBorder);
+	border-radius: var(--ButtonRadius);
+	cursor: pointer;
+	font-weight: var(--ButtonWeight);
+	font-family: var(--ButtonFont);
+	font-size: var(--ButtonSize);
+	line-height: var(--ButtonHeight);
+	padding: var(--Button-OffsetVertical) var(--Button-OffsetHorizontal);
+	text-decoration: none;
+
+	// Standard Button Color Relationship Logic
+	&:not(:hover):not(:active) {
+
+		// Text colors
+		&:not(.has-text) {
+			color: Text(var(--color));
+
+			// Nested
+			.has-background & {
+				color: color-contrast(Background(--color));
+
+				&.has-background {
+					color: color-contrast(Background(--color));
+				}
+			}
+		}
+
+		// Background-colors
+		&:not(.has-background) {
+			background-color: Background(var(--color));
+
+			// Nested
+			.has-background & {
+				background-color: color-contrast(Background(--color));
+			}
+		}
+	}
+
+	// Hover Button color should match parent element foreground color
+	&:hover,
+	&:active {
+		background-color: transparent;
+		border-color: HoverShift(currentColor);
+		color: inherit;
+	}
+
+	// Focus Button outline color should always match the current text color
+	&:focus {
+		outline-offset: -6px;
+		outline: $BorderWidth-focus dotted ColorDark(Border(currentColor));
+	}
+
+	// Disabled Button colors
+	&:disabled {
+		background-color: Disabled(var(--color));
+		border-color: Disabled(var(--color));
+		color: Disabled(var(--color));
+	}
+}

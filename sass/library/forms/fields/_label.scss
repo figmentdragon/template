@@ -1,0 +1,121 @@
+label {
+  user-select: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  font-size: $InputBtnSize;
+	font-weight: $FormWeight-label;
+  position: relative;
+  margin-top: 1rem;
+	margin-bottom: calc($SpacerHorizontal / 3);
+  display: inline-block;
+  > input,
+  > select,
+  > textarea {
+    margin-top: 0.25rem;
+    display: block;
+  }
+}
+
+label.inline,
+input[type="checkbox"] + label {
+	display: inline;
+	font-weight: 400;
+	margin-left: 0.5rem;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		position: relative;
+		width: 25px;
+		height: 25px;
+		border: var(--BorderWidth) solid var(--InputBorder);
+		background: translucentBackground(var(--inputColor));
+
+		&:disabled {
+			opacity: 0.7;
+		}
+
+		.is-dark-theme & {
+			background: Background($white);
+		}
+	}
+
+	input[type="checkbox"] {
+
+		&:focus {
+			outline-offset: 2px;
+			outline: 2px dotted var(--InputBorder);
+		}
+
+		&:after {
+			content: "";
+			opacity: 0;
+			display: block;
+			left: 5px;
+			top: 2px;
+			position: absolute;
+			width: 7px;
+			height: 13px;
+			border: 3px solid var(--InputBorder);
+			border-top: 0;
+			border-left: 0;
+			transform: rotate(30deg);
+		}
+
+		&:checked {
+			color: ColorDark(var(--InputText));
+
+			&:after {
+				opacity: 1;
+			}
+		}
+	}
+
+	input[type="radio"] {
+		border-radius: 50%;
+
+		&:focus {
+			outline-offset: 2px;
+			outline: 2px dotted var(--InputBorder-focus);
+		}
+
+		&:after {
+			content: "";
+			opacity: 0;
+			display: block;
+			left: 3px;
+			top: 3px;
+			position: absolute;
+			width: 11px;
+			height: 11px;
+			border-radius: 50%;
+			background: var(--InputBackground);
+		}
+
+		&:checked {
+			border: 4px solid Muted($InputBorder);
+
+			&:after {
+				opacity: 1;
+			}
+
+			// Focus style for checked radio buttons.
+			&:focus {
+				outline-offset: 4px;
+				outline: 2px dotted $InputBorder;
+			}
+		}
+	}
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+	display: inline-block;
+	padding-left: 10px;
+	@include font-size($FontSize-sm);
+	vertical-align: top;
+}

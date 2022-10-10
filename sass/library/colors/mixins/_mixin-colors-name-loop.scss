@@ -1,0 +1,12 @@
+// OOCSS Color placeholders are necessary at the style guide level as to ensure that
+// the colors are being generated from the proper context.
+
+// This mixin loops through a list of values to produce the necessary silent placeholders
+@mixin name-color-loop {
+	@each $name in $colors {
+	  $i: index($colors, $name);
+	  %#{$name} {
+	    background: nth($color_var, $i);
+	  }
+	}
+}

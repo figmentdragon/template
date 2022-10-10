@@ -1,0 +1,31 @@
+@import "library/components/menus/social/social-links-menu";
+
+
+.social-menu {
+  margin: 12px 0 0 0;
+  padding: 0;
+  li {
+    display: inline;
+    padding: 0 5px;
+    a {
+      font-size: 0;
+      color: transparent;
+      line-height: 40px;
+      display: inline-block;
+      &:hover {
+        color: #000000;
+      }
+      &:before {
+        content: "";
+        font-family: FontAwesome, sans-serif;
+        font-size: 14px;
+        transition: color 0.3s ease-in-out 0s;
+        vertical-align: middle;
+        color: #68686d;
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,211 @@
+/**
+ * Responsive Styles
+ */
+
+// Responsive breakpoints mixin
+@mixin media( $res ) {
+
+	@if mobile-only == $res {
+		@media only screen and (max-width: #{$breakpoint-sm - $gap}) {
+			@content;
+		}
+	}
+
+	@if mobile == $res {
+		@media only screen and (min-width: #{$breakpoint-xs}) {
+			@content;
+		}
+	}
+
+	@if Tablet-only == $res {
+		@media only screen and (max-width: #{$breakpoint-lg - $gap}) {
+			@content;
+		}
+	}
+
+	@if Tablet == $res {
+		@media only screen and (min-width: #{$breakpoint-md}) {
+			@content;
+		}
+	}
+
+	@if laptop-only == $res {
+		@media only screen and (max-width: #{$breakpoint-xl - $gap}) {
+			@content;
+		}
+	}
+
+	@if laptop == $res {
+		@media only screen and (min-width: #{$breakpoint-lg}) {
+			@content;
+		}
+	}
+
+	@if desktop-only == $res {
+		@media only screen and (max-width: #{$breakpoint-x2l - $gap}) {
+			@content;
+		}
+	}
+
+	@if desktop == $res {
+		@media only screen and (min-width: #{$breakpoint-xl}) {
+			@content;
+		}
+	}
+
+	@if wide-only == $res {
+		@media only screen and (max-width: #{$breakpoint-x3l - $gap}) {
+			@content;
+		}
+	}
+
+	@if wide == $res {
+		@media only screen and (min-width: #{$breakpoint-x2l}) {
+			@content;
+		}
+	}
+}
+
+/**
+ * Root Media Query Variables
+ */
+:root {
+	--responsive--SpacerHorizontal: calc(2 * #{$SpacerHorizontal} * 0.6);
+	--responsive--WidthDefault: calc(100vw - var(--responsive--SpacerHorizontal));
+	--responsive--WidthWide: calc(100vw - var(--responsive--SpacerHorizontal));
+	--responsive--WidthFull: 100%;
+	--responsive--alignright-margin: #{$SpacerHorizontal};
+	--responsive--alignleft-margin: #{$SpacerHorizontal};
+}
+
+@include media(mobile) {
+
+	:root {
+		--responsive--WidthDefault: min(calc(100vw - 4 * #{$SpacerHorizontal}), #{$Width--default});
+		--responsive--WidthWide: calc(100vw - 4 * #{$SpacerHorizontal});
+		--responsive--VerticalRight: calc(0.5 * (100vw - var(--responsive--WidthDefault)));
+		--responsive--VerticalLeft: calc(0.5 * (100vw - var(--responsive--WidthDefault)));
+	}
+}
+
+@include media(desktop) {
+
+	:root {
+		--responsive--WidthDefault: min(calc(100vw - 8 * #{$SpacerHorizontal}), #{$Width--default});
+		--responsive--WidthWide: min(calc(100vw - 8 * #{$SpacerHorizontal}), #{$Content--Width-max});
+	}
+}
+
+/**
+ * Extends
+ */
+%responsive--WidthDefault {
+	max-width: var(--responsive--WidthDefault);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+%responsive--WidthWide {
+	max-width: var(--responsive--WidthWide);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+%responsive--mobile--WidthFull {
+	max-width: var(--responsive--WidthFull);
+	width: var(--responsive--WidthFull);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@include media(mobile) {
+	%responsive--WidthFull {
+		max-width: var(--responsive--WidthFull);
+		width: auto;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+%responsive--WidthWide-nested {
+	margin-left: auto;
+	margin-right: auto;
+	width: var(--responsive--WidthWide);
+	max-width: var(--responsive--WidthFull);
+}
+
+%responsive--WidthFull-nested {
+	margin-left: auto;
+	margin-right: auto;
+	width: calc(var(--responsive--WidthFull) - calc(2 * var(--responsive--SpacerHorizontal)));
+	max-width: var(--responsive--WidthFull);
+}
+
+@include media(desktop) {
+	%responsive--WidthFull-nested {
+		margin-left: auto;
+		margin-right: auto;
+		width: calc(var(--responsive--WidthFull) - calc(4 * var(--responsive--SpacerHorizontal)));
+		max-width: var(--responsive--WidthFull);
+	}
+}
+
+
+%responsive--mobile--VerticalLeft {
+
+	/*rtl:ignore*/
+	margin-left: 0;
+
+	/*rtl:ignore*/
+	margin-right: var(--responsive--SpacerHorizontal);
+}
+
+@include media(mobile) {
+	%responsive--VerticalLeft {
+
+		/*rtl:ignore*/
+		margin-left: var(--responsive--VerticalLeft);
+
+		/*rtl:ignore*/
+		margin-right: #{$SpacerHorizontal};
+	}
+}
+
+%responsive--mobile--VerticalRight {
+
+	/*rtl:ignore*/
+	margin-left: var(--responsive--SpacerHorizontal);
+
+	/*rtl:ignore*/
+	margin-right: 0;
+}
+
+@include media(mobile) {
+	%responsive--VerticalRight {
+
+		/*rtl:ignore*/
+		margin-left: #{$SpacerHorizontal};
+
+		/*rtl:ignore*/
+		margin-right: var(--responsive--VerticalRight);
+	}
+}
+
+%responsive--SideHeader {
+	max-width: var(--responsive--WidthDefault);
+	margin-left: #{calc(2 * $BaseUnit)};
+	margin-right: var(--responsive--VerticalRight);
+}
+
+// Output
+.default-max-width {
+	@extend %responsive--WidthDefault;
+}
+
+.wide-max-width {
+	@extend %responsive--WidthWide;
+}
+
+.full-max-width {
+	@extend %responsive--WidthFull;
+}

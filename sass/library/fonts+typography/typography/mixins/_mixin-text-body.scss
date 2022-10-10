@@ -1,0 +1,30 @@
+// To use in the `body` element.Outputs `font-size` and `line-height`.
+// @param {number} $FontSize [18px] - Base font size(Define $FontSize)
+// @param {number} $LineHeight [1.2] - Base line-height (Define $LineHeight)
+// @param {number} $FontSize [1rem] - Default font size
+// @param {string} $unit ["px"] - Unit to output (Define $BaseUnit)
+// @example scss
+// body {
+// 	@include body();
+// }
+// @example css
+// body {
+//     font-size: 18px;
+//     line-height: 22px;
+// }
+// @author hiulit
+// @link https://github.com/hiulit/Sassy-Gridlover/blob/master/sassy-gridlover/_sassy-gridlover.scss
+
+@mixin body($FontSize, $LineHeight, $unit){
+	$LineHeight: round(($FontSize * $LineHeight));
+
+	@if ($unit == 'px') {
+		font-size: $FontSize * 16px;
+		line-height: $LineHeight * 1px;
+	}
+
+	@if ($unit == 'rem'){
+		font-size: $FontSize * 1rem;
+		line-height: $LineHeight * 1rem;
+	}
+}

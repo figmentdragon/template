@@ -1,0 +1,213 @@
+// # CONFIGURATION ------------------- * ------------------------------------ //
+
+@use "sass:math";
+@use "sass:color";
+
+// -- =TOGGLE
+// ->-> Used in conjunction with global variables to enable certain theme features.
+  $enable-reduced-motion             : true;
+  $enable-smooth-scroll              : true;
+  $enable-rfs                        : true;
+  $enable-validation-icons           : true;
+  $enable-deprecation-messages       : true;
+  $enable-important-utilities        : true;
+  $enable-hover-media-query          : true;
+  $enable-print-styles               : false;
+
+// -- =DEFINITIONS
+  $xs  : 0.50;  // 8px
+  $sm  : 0.75;  // 12px
+  $md  : 0.875; //14px
+  $lg  : 1.15;  // 18.4px
+  $xl  : 1.25;  // 20px
+  $x2l : 1.75;  // 28px
+  $x3l : calc($x2l + $xs); // 2.25 36px
+
+  $min-contrast-ratio                : 4.2%;
+  $prefix: de-;
+
+// - #STRUCTURE -------------------------------- //
+// -- =TOGGLE
+// ->-> SPACING
+  $enable-negative-margins    : true;
+	$enable-responsive-structure: true;
+
+// ->-> GRID
+  $enable-grid-classes           : true;
+  $enable-container-classes      : true;
+  $enable-cssgrid                : true;
+  $enable-flex                   : true;
+  $include-column-box-sizing     : true; // toggle your columns grids on and off
+
+// ->-> RESPONSIVE
+  $widescreen-enabled            : true;
+  $fullhd-enabled                : true;
+
+// -- =DEFINITIONS
+// ->-> SPACING
+  $BaseUnit                : 1rem;
+  $SpacingMeasure         : unset; // Use ch units here. ie: 60ch = 60 character max-width
+  $admin-bar--Height      : 0;
+
+  $Spacer                  : calc($BaseUnit / 4);
+  $SpacerBlock             : calc($BaseUnit / 8);
+  $Offset                  : calc($BaseUnit / 4);
+
+// ->-> GRID
+// ->->-> Columns&Rows
+  $grid-columns     : 25;
+  $grid-row-columns : 25;
+  $grid-gutter-width: calc($BaseUnit / 5);
+  $gap              : 0.125rem;
+
+// ->->-> Breakpoint
+  $grid-breakpoint-x3l: 119.55169506163rem;
+  $grid-breakpoint-x2l: 87.5rem;
+  $grid-breakpoint-xl : 75rem;
+  $grid-breakpoint-lg : 62rem;
+  $grid-breakpoint-md : 48rem;
+  $grid-breakpoint-sm : 36rem;
+  $grid-breakpoint-xs : 30rem;
+  $grid-breakpoint-xxs: 0;
+
+  $mobile              : 30rem; //482px
+  $touch               : 47.820678024652rem; //768px
+  $Tablet              : 61.768375781843rem; //992px
+  $laptop              : 63.76090403287rem; //1024px
+  $desktop             : 80rem; //1280px
+  $widescreen          : 85.056049715723rem; //366px
+  $ultrawide           : 119.55169506163rem; //1920px
+
+// - #STYLING -------------------------------- //
+// -- =TOGGLE
+  $enable-full-palette : true;
+  $enable-themeing     : true;
+
+// -- =DEFINITIONS
+  $Interval             : 7.6%;
+  $TranslucentOpacity   : 0.35;
+  $BackgroundOpacity    : 0.5;
+  $BorderOpacity        : 0.6;
+  $DisabledOpacity      : 0.75;
+  $HoverBrightness      : brightness(0.6);
+  $ActiveBrightness     : brightness(0.85);
+
+  $ColorInterval       : $Interval;
+  $TextInterval        : calc($Interval * 2); //2
+  $BackgroundInterval  : calc($Interval * 3); //3
+  $BorderInterval      : calc($Interval * 4); //4
+  $ShadowInterval      : calc($Interval * 5); //5
+  $LinkInterval        : calc($Interval * 1.25);
+  $HoverInterval       : calc($Interval * 1.5); //1.5
+  $TitleInterval       : calc($Interval * 2.25);
+  $VisitedInterval     : calc($Interval * 2.5); //2.5
+  $MutedInterval       : calc($Interval * 3.5);
+  $TranslucentInterval : calc($Interval * 4.5);
+
+  $color--ContrastDark  : black;
+  $color--ContrastLight : white;
+
+// ->-> COLORS
+// ->->-> Define the general, utility, and theme colors general colors
+  $blue       : #0000FF; //info
+  $indigo     : #4B0082; //footer
+  $purple     : #800080; //card
+  $pink       : #FFC0CB; //code
+  $red        : #FF0000; //danger
+  $orange     : #FFA500; //warning
+  $yellow     : #FFFF00;
+  $green      : #00FF00; //success
+  $teal       : #008080; //input
+  $cyan       : #00FFFF; //quote
+  $gray       : #93A5BE;
+  $darkgray   : #4E4E4E;
+
+// ->->-> utility colors
+  $white      : #E6EEF5;
+  $black      : #000000;
+  $success    : #00FF00; //green
+  $info       : #0000FF; //blue
+  $warning    : #FFA500; //orange
+  $danger     : #FF0000; //red
+
+// ->->-> theme colors
+  $primary    : #FFFF00;
+  $secondary  : #0000B2;
+  $accent     : #B2B200;
+  $tertiary   : #0000FF;
+
+// ->-> FONTS
+// ->->-> Font Family Short Hand
+  $FontPrimaryFamily   : sans-serif;
+  $codeFontFamily      : monospace;
+
+// ->->-> Fonts
+  $FontPrimary         : 'Poiret One', sans-serif;
+  $FontSecondary       : 'Pompiere', sans-serif;
+  $FontAccent          : 'Glass Antiqua', sans-serif;
+  $FontTertiary        : 'Modern Antiqua', sans-serif;
+  $FontMain            : Arapey, sans-serif;
+
+// ->-> TYPOGRAPHY
+// ->->-> $FontSize-root affects the value of `rem`, which is used for font sizes, paddings, and margins
+  $rootSize       : null;
+  $globalSize     : 100%;
+
+// ->->-> Define base line height, letter spacing, font weight, and font family to be used in Components and Elements
+  $FontInterval             : 1.125;
+    $TitleInterval    : 1.375;
+    $HeadingInterval  : 0.95;
+  $LineHeight               : 1.1;
+    $EntryHeight      : calc($LineHeight - 0.2);
+    $HeadingHeight    : 1.35; // 22.4px
+    $TitleHeight      : calc($LineHeight + 0.25);
+  $FontWeight               : 400;
+    $mute--FontWeight       : thin;
+    $entry--FontWeight      : medium;
+    $HeadingWeight    : bold;
+    $TitleWeight      : bolder;
+  $FontSize                 : 1;
+    $EntrySize        : calc(#{$FontSize + 0.125});
+    $HeadingSize      : calc(#{$FontSize + 0.5});
+    $TitleSize        : calc($FontSize + 2);
+  $LetterSpacing            : 0.0235;
+    $EntrySpacing   : calc($LetterSpacing + 0.002);
+    $HeadingSpacing : 0.025;
+    $TitleSpacing   : calc(#{$LetterSpacing * .5});
+
+// - #COMPONENTS -------------------------------- //
+// -- =TOGGLE
+  $enable-caret          : true;
+  $enable-rounded        : true;
+  $enable-shadows        : true;
+  $enable-gradients      : true;
+  $enable-button-pointers: true;
+  $enable-transitions    : true;
+
+// -- =DEFINITIONS
+// ->-> LINKS
+  $LinkDecoration            : none;
+    $LinkDecoration-disabled : line-through;
+    $LinkDecoration-visited  : underline;
+    $LinkDecoration-focus    : underline bold;
+    $LinkDecoration-hover    : underline bold;
+
+// ->-> BORDERS
+  $BorderWidth: thin; //1px
+    $BorderWidth : medium;
+    $BorderWidth-focus: thick;
+  $BorderRadius: 0.45; // 7.25px
+  $BorderStyle: solid;
+    $separator--Height: 0.0625;
+
+// ->-> BUTTONS
+
+// ->-> CARET
+  $CaretWidth: 0.3rem;
+
+// ->-> CARET
+  $MenuStyle                        : normal;
+  $menu--mobile--submenu--FontStyle: normal;
+  $MenuWeight                      : medium;
+  $menu--button--FontWeight        : null;
+  $MenuOffset                      : calc(0.66 * $Offset);

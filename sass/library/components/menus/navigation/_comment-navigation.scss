@@ -1,0 +1,64 @@
+.image-navigation,
+.comment-navigation {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    line-height: 1.6153846154;
+    margin: 0 7.6923% 2.1538461538em;
+    padding: 1.0769230769em 0;
+}
+
+.comment-navigation {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.comments-title + .comment-navigation {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.image-navigation .nav-previous:not(:empty),
+.image-navigation .nav-next:not(:empty),
+.comment-navigation .nav-previous:not(:empty),
+.comment-navigation .nav-next:not(:empty) {
+    display: inline-block;
+}
+
+.image-navigation .nav-previous:not(:empty) + .nav-next:not(:empty):before,
+.comment-navigation .nav-previous:not(:empty) + .nav-next:not(:empty):before {
+    content: "\002f";
+    display: inline-block;
+    opacity: 0.7;
+    padding: 0 0.538461538em;
+}
+
+.pagination .prev,
+.pagination .next {
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+.pagination .page-numbers {
+    display: inline-block;
+    font-family: 'poppins',sans-serif;
+    margin: 7px 0;
+    text-transform: uppercase;
+    color: Text($white);
+    width: 49px;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+}
+
+.pagination .prev.page-numbers,
+.pagination .next.page-numbers{
+    width: auto;
+
+}
+.pagination .page-numbers.current {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid;
+}

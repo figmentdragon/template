@@ -1,0 +1,273 @@
+$BackgroundOpacity: 0.5;
+
+$blueBackground :   Background($blue);
+$purpleBackground : Background($purple);
+$indigoBackground : Background($indigo);
+$redBackground :    Background($red);
+$orangeBackground : Background($orange);
+$yellowBackground : Background($yellow);
+$greenBackground :  Background($green);
+$tealBackground :   Background($teal);
+$cyanBackground :   Background($cyan);
+$pinkBackground :   Background($pink);
+$grayBackground :   Background($gray);
+
+$primaryBackground: Background($primary);
+$secondaryBackground: Background($secondary);
+$accentBackground: Background($accent);
+$tertiaryBackground: Background($tertiary);
+
+$successBackground: Background($success);
+$infoBackground: Background($info);
+$warningBackground: Background($warning);
+$dangerBackground: Background($danger);
+
+$parents : 'header', 'footer', 'nav', 'main', 'aside', 'article';
+
+@mixin bg-gradient-variant($parent, $color) {
+  @each $parent in key-map($parents) {
+    @each $value in $theme-colors {
+      .#{$parent} {
+        background-image: linear-gradient(
+        87deg,
+        $color 0,
+        saturate($color, 10%) 100%
+        ) !important;
+      }
+    }
+  }
+}
+
+@mixin bg-gradient-variant($color, $value) {
+  @each $key, $color in $colors {
+    .bg-#{$key}-gradient-variant {
+      background-image: linear-gradient(
+        180deg,
+        DarkColor($color),
+        LightColor($color),
+        SoftColor($color),
+        transparent
+      ) !important;
+    }
+  }
+}
+
+@mixin gradient-background($color, $deg) {
+  background-image: linear-gradient($deg, $color, white);
+  background-size: cover;
+}
+
+@mixin gradient-background($color: null) {
+  background-color: $color;
+
+  @if $enable-gradients {
+    background-image: $gradient;
+  }
+}
+
+// Shared between modals and offcanvases
+@mixin overlay-backdrop($zindex, $backdropColor, $backdropOpacity) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $zindex;
+  width: 100rem;
+  height: 100rem;
+  background-color: $backdropColor;
+
+  // Fade for backdrop
+  &.fade { opacity: 0; }
+  &.show { opacity: $backdropOpacity; }
+}
+
+// Variant backgrounds
+
+// Map
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "accent": $accent,
+    "tertiary": $tertiary
+  ),
+  $theme-colors
+);
+
+@mixin background-image($background-repeat, $size-background) {
+  background-repeat: $background-repeat;
+  background-position: top center;
+  background-size: $size-background;
+}
+
+@mixin bg-variant($color) {
+  color: #fff !important;
+  background-color: $color !important;
+
+  @include hover-focus {
+    background-color: hover-shade($color);
+  }
+}
+
+// Contextual backgrounds
+
+@mixin contextual-background($color) {
+  color: Text($color) !important;
+  background-color: Background($color) !important;
+  &:hover,
+  &:focus {
+    background-color: HoverShift($color, 10%);
+  }
+}
+
+// Inverse
+// TODO: redo this as a proper class
+@each $name, $value in $theme-colors {
+  .bg-#{$name} {
+    &-inverse {
+      background-color: findInvertColor(Background($value));
+    }
+    &-faded {
+      background-color: SoftColor($value);
+    }
+    &-translucent {
+      background-color: TranslucentBackground($value);
+    }
+  }
+}
+
+.section-image {
+  @include background-image(no-repeat, cover);
+}
+
+.bg-img-holder {
+  position: absolute;
+  z-index: -1;
+
+  height: 100%;
+  min-height: 20rem;
+
+  background-repeat: no-repeat;
+}
+
+.bg-white {
+  background-color: $white !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+// Backgrounds Overlay
+@each $color, $value in $theme-colors {
+  .overlay-#{$color} {
+    &:before {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+
+      width: calc(100% - calc(2 * $Spacer));
+      height: 100%;
+
+      content: "";
+
+      opacity: 0.5;
+      background: $value;
+    }
+  }
+  .overlay-soft-#{$color} {
+    &:before {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+
+      width: calc(100% - calc(2 * $Spacer));
+      height: 100%;
+
+      content: "";
+
+      opacity: 0.3;
+      background: $value;
+    }
+  }
+}
+
+// All-caps `RGBA()` function used because of this Sass bug: https://github.com/sass/node-sass/issues/2251
+
+@each $color, $value in $theme-colors {
+  $rgb: to-rgb($value);
+  .textBackgroundColor-#{$color} {
+    color: color-contrast($value) !important;
+    background-color: RGBA($rgb($value), $BackgroundOpacity), !important;
+  }
+}
+
+//
+// Contextual backgrounds
+//
+
+@mixin bg-variant($name, $value) {
+  .bg-#{$name} {
+    background-color: Background($value) !important;
+    @include on-event {
+      background-color: HoverShift($value) !important;
+    }
+  }
+  .text-#{$name} {
+    color: #{$value} !important;
+    > a {
+      color: $value;
+      @include on-event {
+        color: HoverShift($value) !important;
+      }
+    }
+  }
+  .bg-#{$name}-faded {
+    background-color: (Background(rgba($value, $BackgroundOpacity * .25)));
+  }
+}
+
+@each $name, $value in $theme-colors {
+  @include bg-variant($name, $value);
+}
+
+@each $name, $color in $colors {
+  @include bg-variant(".bg-#{$name}", $color);
+
+  .border-#{$name} {
+    border-color: Border($color) !important;
+  }
+  .bg-#{$name}-faded {
+    background-color: tint($color, $ColorInterval * 3);
+  }
+}
+
+@each $name, $value in $colors {
+  @include bg-variant($name, $value);
+}
+
+@each $name, $value in $utilities-colors {
+  @include bg-variant($name, $value);
+}
+
+@each $name, $value in $theme-colors{
+  .bg-#{$name} {
+    @include bg-variant(".bg-#{$name}", $value);
+  }
+  @include bg-variant(".section-#{$name}", $value);
+  @include bg-variant(".bg-#{$name}", $value);
+}
+
+@if $enable-gradients {
+  @each $color, $value in $theme-colors{
+    @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
+  }
+  @each $color, $value in $theme-colors{
+    @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
+  }
+  @each $color, $value in $utilities-colors{
+    @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
+  }
+}

@@ -1,0 +1,29 @@
+[class$='menu-container'] {
+	// Menu Item Link
+	a {
+	  display: block;
+	  font-family: $primary-nav--FontFamily;
+	  font-size: $primary-navSize-mobile;
+	  font-weight: $primary-nav--FontWeight;
+	  padding: $primary-nav--Offset 0;
+	  text-decoration: none;
+		+ svg {
+			fill: $primary-nav--TextColor;
+		}
+		&:hover,
+		&:link,
+		&:visited {
+			color: $primary-nav--hover--LinkColor;
+		}
+		&:hover {
+			text-decoration: underline;
+			text-decoration-style: dotted;
+		}
+	  &:focus {
+	    position: relative;
+	    z-index: 99999; // Ensure focus styles appear above absolute positioned elements
+	    outline-offset: 0;
+	    text-decoration-thickness: 2px;
+		}
+	}
+}

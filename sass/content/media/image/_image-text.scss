@@ -1,0 +1,32 @@
+a.img-text {
+	display: flex;
+	position: absolute;
+	background-color: rgba($BorderColor, 0.4);
+	align-content: stretch;
+	justify-content: center;
+	text-decoration: none;
+	width: calc(100% - calc(2 * $Spacer));
+	height: 100%;
+	opacity: 0;
+	margin: 0px;
+	padding: 1.5rem;
+	transition: all .25s;
+	-moz-transition: all .25s;
+	-webkit-transition: all .25s;
+	-o-transition: all .25s;
+  @include box-sizing(border-box);
+	outline: none;
+	z-index: 8;
+	&:hover {
+		opacity: 1;
+	}
+	.title {
+		background-color: rgba($BorderColor, 0.8);
+		color: tint($gray, $ColorInterval * 4);
+		font-size: 1.1em;
+		align-self: center;
+		margin: 0px;
+		padding: 12px 18px;
+		border-radius: 2px;
+	}
+}

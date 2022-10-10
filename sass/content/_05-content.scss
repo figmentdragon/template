@@ -1,0 +1,87 @@
+.entry-content {
+  /* Container for the post body/excerpt text */
+  display: inline-block;
+	position: relative;
+
+  width: 67.391304348%;
+  margin: 1.5em auto 0;
+  padding-right: 1rem;
+
+  text-align: right;
+  vertical-align: top;
+  white-space: normal;
+  word-wrap: break-word;
+  hyphens: auto;
+  transition: all 0.25s ease-in-out;
+  img {
+    height: auto;
+  	max-width: calc(100% - calc(2 * $Spacer));
+  }
+  a {
+    text-decoration: underline;
+    &:hover,
+    &.button {
+      text-decoration: none;
+    }
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  p,
+  > p {
+    word-wrap: break-word;
+    &:first-child {
+      &:first-letter {
+
+        float: left;
+        margin: 0;
+        padding-top: 6px;
+        padding-right: 4px;
+      }
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  // Overwrite iframe embeds that have inline styles.
+  > iframe[style] {
+    max-width: 100% !important;
+    margin: 1rem 0 !important;
+  }
+  .edit-link {
+    font-size: .75rem;
+    line-height: 1.3333333333;
+    font-weight: 400;
+
+    display: block;
+
+    clear: both;
+
+    text-transform: uppercase;
+    a {
+      text-decoration: none;
+
+      &:hover { }
+    }
+  }
+  .more-link {
+    white-space: nowrap;
+  }
+  .audio-shortcode {
+    /* Classic editor audio embeds. */
+  }
+  .wp-smiley {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+
+    border: none;
+  }
+}

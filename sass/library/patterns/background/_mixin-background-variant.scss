@@ -1,0 +1,28 @@
+// Variant backgrounds
+
+// Map
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "accent": $accent,
+    "tertiary": $tertiary
+  ),
+  $theme-colors
+);
+
+@mixin background-image($BackgroundColor-repeat, $sizeBackgroundColor) {
+  background-repeat: $BackgroundColor-repeat;
+  background-position: top center;
+  background-size: $sizeBackgroundColor;
+}
+
+@mixin bg-variant($color) {
+  color: #fff !important;
+  background-color: $color !important;
+
+  @include hover-focus {
+    background-color: hover-shade($color);
+  }
+}

@@ -1,0 +1,119 @@
+//---------------------------------------------------------
+// All Emphasis  Base Styles Go Here
+
+// Small - The <small> HTML element represents side-comments and small print, like copyright and legal text, independent of its styled presentation. By default, it renders text within it one font-size smaller, such as from small to x-small.
+
+//---------------------------------------------------------
+
+
+$small-percentage: 6%;
+$emphasis--FontText: cursive;
+$emphasis--FontWeight: bold;
+$emphasisSize: 0.875;
+$emphasis--LineHeight: 14px * 0.875;
+$smallSize: 0.75rem;
+$sub-supSize: 0.75rem;
+$initialSize: calc($sm * $FontSize) !default;
+
+b,
+strong,
+time,
+dfn,
+em,
+sub,
+sup,
+small,
+big {
+  font-family: $emphasis--FontText;
+}
+
+b,
+strong,
+time,
+dfn,
+em {
+  @include font-size($emphasisSize);
+  line-height: 1.2;
+}
+
+b,
+strong,
+time,
+big {
+  font-weight: bold;
+}
+
+b,
+strong,
+time {
+  font-family: $emphasis--FontText;
+  @include font-size($emphasisSize);
+  font-weight: bold;
+}
+
+em em,
+em i {
+  font-weight: bolder;
+}
+
+small {
+  font-family: $FontAccent;
+  @include font-size($smallSize);
+  line-height: $emphasis--LineHeight;
+  display: inline-block;
+
+  text-align: right;
+  text-transform: capitalize;
+  color: Text($white);
+  text-shadow: 0 1px 0.5px $tertiary, 1px 0 0.5px $black;
+  small {
+    font-size: 100%;
+  }
+}
+
+sub,
+sup {
+  position: relative;
+
+  @include font-size($emphasisSize);
+  line-height: 0;
+
+  height: 0;
+
+  vertical-align: baseline;
+}
+sup {
+  background-color: Background($tertiary);
+  border-radius: $BorderRadius;
+  color: $Text;
+  @include font-size($smallSize);
+  font-weight: bold;
+  margin: 0.2rem;
+  padding: 0.2rem 0.3rem;
+  position: relative;
+  top: -0.5em;
+  bottom: 1ex;
+}
+
+sub {
+  top: 0.5ex;
+  bottom: -0.25em;
+
+  vertical-align: bottom;
+}
+
+.big
+big {
+  font-size: 125%;
+  font-family: $FontAccent;
+  line-height: 0;
+
+  height: 0;
+
+  vertical-align: baseline;
+}
+
+dfn,
+em {
+  font-style: italic;
+}

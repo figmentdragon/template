@@ -1,0 +1,162 @@
+// Pagination
+
+// scss-docs-start Pagination--variables
+$Pagination--OffsetVertical:              .375rem !default;
+$Pagination--OffsetHorizontal:              .75rem !default;
+$Pagination--OffsetVertical-sm:           .25rem !default;
+$Pagination--OffsetHorizontal-sm:           .5rem !default;
+$Pagination--OffsetVertical-lg:           .75rem !default;
+$Pagination--OffsetHorizontal-lg:           1.5rem !default;
+
+$PaginationSize:              $FontSize !default;
+
+$PaginationText:                  var(--#{$prefix}LinkText) !default;
+$PaginationBackground:                     $white !default;
+$Pagination--BorderRadius:          $BorderRadius !default;
+$Pagination--BorderWidth:           $BorderWidth !default;
+$Pagination--Spacer-start:           calc($Pagination--BorderWidth * -1) !default;
+$Pagination-Border:           Border($gray) !default;
+
+$PaginationText-focus:            var(--#{$prefix}LinkText-hover) !default;
+$PaginationBackground-focus:               $gray !default;
+$Pagination--BoxShadow-focus:       $InputBtn-BoxShadow-focus !default;
+$Pagination--focus-outline:          0 !default;
+
+$PaginationText-hover:            var(--#{$prefix}LinkText-hover) !default;
+$PaginationBackground-hover:               $gray !default;
+$Pagination-Border-hover:     $gray-300 !default;
+
+$PaginationText-active:           $ComponentText-active !default;
+$PaginationBackground-active:              $component-Background-active !default;
+$Pagination-Border-active:    $PaginationBackground-active !default;
+
+$PaginationText-disabled:         Text($gray) !default;
+$PaginationBackground-disabled:            $white !default;
+$Pagination-Border-disabled:  $gray-300 !default;
+
+$PaginationTransition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+
+$Pagination--BorderRadius-sm:       $BorderRadius-sm !default;
+$Pagination--BorderRadius-lg:       $BorderRadius-lg !default;
+
+
+@mixin Pagination--size($OffsetVertical, $OffsetHorizontal, $FontSize, $BorderRadius) {
+  $Pagination--OffsetHorizontal: #{$OffsetHorizontal};
+  $Pagination--OffsetVertical: #{$OffsetVertical};
+  @include rfs($FontSize, $PaginationSize);
+  $Pagination--border-radius: #{$BorderRadius}; // stylelint-disable-line custom-property-empty-line-before
+}
+
+
+
+
+
+.pagination {
+  // scss-docs-start Pagination--css-vars
+  --#{$prefix}Pagination--OffsetHorizontal: #{$Pagination--OffsetHorizontal};
+  --#{$prefix}Pagination--OffsetVertical: #{$Pagination--OffsetVertical};
+  @include rfs($PaginationSize, --#{$prefix}PaginationSize);
+  --#{$prefix}PaginationText: #{$PaginationText};
+  --#{$prefix}PaginationBackground: #{$PaginationBackground};
+  --#{$prefix}Pagination--BorderWidth: #{$Pagination--BorderWidth};
+  --#{$prefix}Pagination-Border: #{$Pagination-Border};
+  --#{$prefix}Pagination--BorderRadius: #{$Pagination--BorderRadius};
+  --#{$prefix}PaginationText-hover: #{$PaginationText-hover};
+  --#{$prefix}PaginationBackground-hover: #{$PaginationBackground-hover};
+  --#{$prefix}Pagination-Border-hover: #{$Pagination-Border-hover};
+  --#{$prefix}PaginationText-focus: #{$PaginationText-focus};
+  --#{$prefix}PaginationBackground-focus: #{$PaginationBackground-focus};
+  --#{$prefix}Pagination--BoxShadow-focus: #{$Pagination--BoxShadow-focus};
+  --#{$prefix}PaginationText-active: #{$PaginationText-active};
+  --#{$prefix}PaginationBackground-active: #{$PaginationBackground-active};
+  --#{$prefix}Pagination-Border-active: #{$Pagination-Border-active};
+  --#{$prefix}PaginationText-disabled: #{$PaginationText-disabled};
+  --#{$prefix}PaginationBackground-disabled: #{$PaginationBackground-disabled};
+  --#{$prefix}Pagination-Border-disabled: #{$Pagination-Border-disabled};
+  // scss-docs-end Pagination--css-vars
+
+  display: flex;
+  @include list-unstyled();
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: var(--#{$prefix}Pagination--OffsetVertical) var(--#{$prefix}Pagination--OffsetHorizontal);
+  @include font-size(var(--#{$prefix}PaginationSize));
+  color: var(--#{$prefix}PaginationText);
+  text-decoration: if($LinkDecoration == none, null, none);
+  background-color: var(--#{$prefix}PaginationBackground);
+  border: var(--#{$prefix}Pagination--BorderWidth) solid var(--#{$prefix}Pagination-Border);
+  @include Transition($PaginationTransition);
+
+  &:hover {
+    z-index: 2;
+    color: var(--#{$prefix}PaginationText-hover);
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+    background-color: var(--#{$prefix}PaginationBackground-hover);
+    border-color: var(--#{$prefix}Pagination-Border-hover);
+  }
+
+  &:focus {
+    z-index: 3;
+    color: var(--#{$prefix}PaginationText-focus);
+    background-color: var(--#{$prefix}PaginationBackground-focus);
+    outline: $Pagination--focus-outline;
+    box-shadow: var(--#{$prefix}Pagination--BoxShadow-focus);
+  }
+
+  &.active,
+  .active > & {
+    z-index: 3;
+    color: var(--#{$prefix}PaginationText-active);
+    @include gradient-background(var(--#{$prefix}PaginationBackground-active));
+    border-color: var(--#{$prefix}Pagination-Border-active);
+  }
+
+  &.disabled,
+  .disabled > & {
+    color: var(--#{$prefix}PaginationText-disabled);
+    pointer-events: none;
+    background-color: var(--#{$prefix}PaginationBackground-disabled);
+    border-color: var(--#{$prefix}Pagination-Border-disabled);
+  }
+}
+
+.page-item {
+  &:not(:first-child) .page-link {
+    margin-left: $Pagination--Spacer-start;
+  }
+
+  @if $Pagination--Spacer-start == calc(#{$prefix}$Pagination--BorderWidth * -1) {
+    &:first-child {
+      .page-link {
+        @include border-start-radius(var(--#{$prefix}Pagination--BorderRadius));
+      }
+    }
+
+    &:last-child {
+      .page-link {
+        @include border-end-radius(var(--#{$prefix}Pagination--BorderRadius));
+      }
+    }
+  } @else {
+    // Add border-radius to all pageLinks in case they have left margin
+    .page-link {
+      @include border-radius(var(--#{$prefix}Pagination--BorderRadius));
+    }
+  }
+}
+
+
+//
+// Sizing
+//
+
+.Pagination--lg {
+  @include Pagination--size($Pagination--OffsetVertical-lg, $Pagination--OffsetHorizontal-lg, $FontSize-lg, $Pagination--BorderRadius-lg);
+}
+
+.Pagination--sm {
+  @include Pagination--size($Pagination--OffsetVertical-sm, $Pagination--OffsetHorizontal-sm, $FontSize-sm, $Pagination--BorderRadius-sm);
+}

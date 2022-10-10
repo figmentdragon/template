@@ -1,0 +1,19 @@
+@mixin post-section-dash {
+	&:before {
+		background: translucentBackground($Background);
+		content: "\020";
+		display: block;
+		height: 2px;
+		margin: calc(0.5 * $Spacer) 0;
+		width: 1em;
+	}
+
+	&.has-text-align-center:before {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&.has-text-align-right:before {
+		margin-left: auto;
+	}
+}

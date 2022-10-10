@@ -1,0 +1,59 @@
+// Navbar
+//
+// Provide a static navbar from which we expand to create full-width, fixed, and
+// other navbar variations.
+
+.navbar {
+  --#{$prefix}NavBar--OffsetHorizontal: #{if($MenuBar--OffsetHorizontal == null, 0, $MenuBar--OffsetHorizontal)};
+  --#{$prefix}NavBar--OffsetVertical: #{$MenuBar--OffsetVertical};
+  --#{$prefix}NavBarText: #{$MenuBar--light-color};
+  --#{$prefix}NavBar--hover-color: #{$MenuBar--light-hover-color};
+  --#{$prefix}NavBar--inactive-color: #{$MenuBar--light-inactive-color};
+  --#{$prefix}NavBar--active-color: #{$MenuBar--light-active-color};
+  --#{$prefix}NavBar--brand--OffsetVertical: #{$MenuBar--brand--OffsetVertical};
+  --#{$prefix}NavBar--brand-margin-end: #{$MenuBar--brand-margin-end};
+  --#{$prefix}NavBar--brand-font-size: #{$MenuBar--brand-font-size};
+  --#{$prefix}NavBar--brand-color: #{$MenuBar--light-brand-color};
+  --#{$prefix}NavBar--brand-hover-color: #{$MenuBar--light-brand-hover-color};
+  --#{$prefix}NavBar--nav-link--OffsetHorizontal: #{$MenuBar--nav-link--OffsetHorizontal};
+  --#{$prefix}NavBar--toggler--OffsetVertical: #{$MenuBar--toggler--OffsetVertical};
+  --#{$prefix}NavBar--toggler--OffsetHorizontal: #{$MenuBar--toggler--OffsetHorizontal};
+  --#{$prefix}NavBar--toggler-font-size: #{$MenuBar--toggler-font-size};
+  --#{$prefix}NavBar--toggler-icon-bg: #{escape-svg($MenuBar--light-toggler-icon-bg)};
+  --#{$prefix}NavBar--toggler-border-color: #{$MenuBar--light-toggler-border-color};
+  --#{$prefix}NavBar--toggler-border-radius: #{$MenuBar--toggler-border-radius};
+  --#{$prefix}NavBar--toggler-focus-width: #{$MenuBar--toggler-focus-width};
+  --#{$prefix}NavBar--togglerTransition: #{$MenuBar--togglerTransition};
+
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; // allow us to do the line break for collapsing content
+  align-items: center;
+  justify-content: space-between; // space out brand from logo
+  padding: var(--#{$prefix}NavBar--OffsetVertical) var(--#{$prefix}NavBar--OffsetHorizontal);
+  @include gradient-bg();
+
+  // Because flex properties aren't inherited, we need to redeclare these first
+  // few properties so that content nested within behave properly.
+  // The `flex-wrap` property is inherited to simplify the expanded navbars
+  // Because flex properties aren't inherited, we need to redeclare these first
+  // few properties so that content nested within behave properly.
+  // The `flex-wrap` property is inherited to simplify the expanded navbars
+  %container-flex-properties {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  > .container,
+  > .container-fluid {
+    @extend %container-flex-properties;
+  }
+
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    > .container#{breakpoint-infix($breakpoint, $container-max-width)} {
+      @extend %container-flex-properties;
+    }
+  }
+}

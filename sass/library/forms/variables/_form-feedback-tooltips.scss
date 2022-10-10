@@ -1,0 +1,7 @@
+// Form tooltips must come after regular tooltips
+$FormFeedback-Tooltip-OffsetVertical: calc($OffsetVertical / 3) !default;
+$FormFeedback-Tooltip-OffsetHorizontal: calc($OffsetHorizontal / 2.5)  !default;
+$FormFeedback-tooltipSize: $FontSize + calc(1rem * $md) !default;
+$FormFeedback-Tooltip-Height: null !default;
+$FormFeedback-TooltipOpacity: .85 !default;
+$FormFeedback-Tooltip--border-radius: $BorderRadius + $sm !default;

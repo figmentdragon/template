@@ -1,0 +1,12 @@
+@mixin make-col($i, $grid-columns) {
+  @if $size == false {
+    @for $i from 1 through $grid-columns {
+      .col-#{$size}-#{$i} {
+        width: divide(100%, $grid-columns);
+      }
+    }
+  } @else {
+    flex: 1 1 0;
+    max-width: calc(100% - calc(2 * $Spacer));
+  }
+}

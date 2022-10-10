@@ -1,0 +1,70 @@
+ul.social-menu .footer-social {
+  position: relative;
+  z-index: 1035;
+  top: 0;
+
+  display: inline;
+  align-self: center;
+
+  max-width: 0;
+  margin: 0 0 0 0;
+  padding: 15px;
+
+  list-style: none;
+  > li {
+    display: inline-block;
+
+    margin: 0;
+    padding: 0.9rem;
+    a {
+      position: relative;
+
+      font-size: 14px;
+
+      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 36px;
+      height: 36px;
+      margin: 12px 3px;
+      padding: 0;
+
+      text-align: center;
+
+      color: $Text;
+      border-width: $border-width-lg;
+      background-color: rgba($primary-800, 0.5);
+
+      @include border-radius($border-radius-circle);
+      &:hover {
+        color: rgba($tertiary, 0.75);
+        background-color: rgba($secondary-300, 0.75);
+
+        @include border-radius($border-radius-circle);
+        -webkit-text-stroke: 1px white;
+        &:before {
+          font-family: FontAwesome, sans-serif;
+          font-size: 18px;
+
+          margin: 15px;
+
+          content: "";
+          transition: color 0.3s ease-in-out 0s;
+          vertical-align: middle;
+
+          color: $Text;
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.site-footer-menu .wrapper > nav {
+    margin-bottom: 21px;
+    text-align: center;
+}

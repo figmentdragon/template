@@ -1,0 +1,153 @@
+.site-title {
+  &-holder {
+    display: flex;
+    align-content: center;
+  }
+  &-inner-shadow {
+    background-clip: text;
+    text-shadow: inset 0 2px 3px $ShadowColor;
+    @include gradientElement($gradient, $deg: 180deg, $color:$primary);
+  }
+
+  &-slideshow {
+    display: flex;
+    align-content: center;
+    .title {
+      margin: calc($BaseUnit / 2.75) 0 calc($BaseUnit / 2.75) calc($BaseUnit * .75);
+      padding: 0 $Offset;
+      border-left: $BorderWidth-focus $BorderStyle rgba($BorderColor, .12);
+      align-self: center;
+    }
+  }
+
+  > a {
+    text-decoration-color: $LinkText;
+  }
+
+  a {
+    @include on-event {
+      &:link, &:visited {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.heading,
+.heading-section,
+.heading-title,
+.headline {
+  line-height: $HeadingHeight;
+  font-size: $HeadingSize;
+  margin: $Spacer $Spacer $HeadingMargin-bottom;
+  text-transform: $HeadingTransform;
+  letter-spacing: $HeadingSpacing;
+  font-weight: $HeadingWeight;
+  color: $HeadingTitle;
+  text-rendering: optimizeLegibility;
+
+  &:first-child {
+  margin-top: 0;
+  }
+
+  > a {
+  text-decoration: none;
+  color: currentColor;
+  outline: none;
+  @include on-event;
+  }
+}
+//Headings
+.heading {
+  &:first-child {
+  margin-top: 0;
+  }
+
+  > a {
+  @include on-event;
+  }
+}
+
+.heading-title {
+  $FontSize: $FontSize-h3;
+  $FontWeight: bold;
+  $TextTransform: uppercase;
+  font-size: $FontSize;
+  font-weight: $FontWeight;
+  letter-spacing: $LetterSpacing;
+  text-transform: $TextTransform;
+}
+
+.heading-section {
+  font-size: $HeadingSize;
+  font-weight: $HeadingWeight;
+  letter-spacing: $HeadingSpacing;
+  text-transform: $HeadingTransform;
+
+  img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 1.5rem;
+  }
+
+  &.text-center {
+  img {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  }
+}
+
+.headline {
+  margin: 0 0 1.5rem;
+  padding: 0;
+
+  &-small {
+  font-size: $FontSize * 2;
+  line-height: 1.2;
+  margin: 0 0 2px;
+  padding: 0 0 2px;
+  letter-spacing: 0;
+  }
+}
+
+.archive .headline,
+.blog .headline,
+.category .headline {
+  margin: 0 0 1.5rem -12px;
+  padding: 0 0 0 12px;
+  border-left: calc(3 * $BorderWidth) $BorderStyle $translucent-Border;
+}
+
+.title {
+  color: $HeadingTitle;
+  font-size: 0.9em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  padding: 0;
+}
+
+.excerpt,
+.lead {
+  font-family: $FontAccent;
+  line-height: $LineHeight;
+  @include font-size($FontSize-h5);
+  font-weight: $HeadingWeight;
+  color: $HeadingTitle;
+  -webkit-text-stroke: $BorderWidth Border($tertiary);
+
+  + .button-wrapper {
+  margin-top: calc($SpacerHorizontal * 3);
+  }
+
+  p {
+  &.lead,
+  .lead {
+    @include font-size($FontSize);
+    font-weight: $FontWeight;
+    margin: $SpacerHorizontal 0;
+  }
+  }
+}

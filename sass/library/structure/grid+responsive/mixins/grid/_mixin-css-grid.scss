@@ -1,0 +1,28 @@
+@mixin make-cssgrid($grid-columns, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      @if $grid-columns > 0 {
+        @for $i from 1 through $grid-columns {
+          .g-col#{$infix}-#{$i} {
+            grid-column: auto / span $i + 1;
+          }
+        }
+
+        // Start with `1` because `0` is and invalid value.
+        // Ends with `$columns - 1` because offsetting by the width of an entire row isn't possible.
+        @for $i from 1 through ($grid-columns - 1) {
+          .g-start#{$infix}-#{$i} {
+            grid-column-start: $i;
+          }
+        }
+        @for $i from 1 through $grid-columns {
+          .g-end#{$infix}-#{$i} {
+            grid-column-end: $i + 1;
+          }
+        }
+      }
+    }
+  }
+}

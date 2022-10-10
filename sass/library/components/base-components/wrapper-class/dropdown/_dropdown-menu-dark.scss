@@ -1,0 +1,33 @@
+// Dark dropdowns
+.dropdown-menu-dark {
+	color: $Dropdown--dark--TextColor;
+	background-color: $Dropdown--darkBackgroundColor;
+	border-color: $Dropdown--dark-Border;
+	@include box-shadow($Dropdown--dark--BoxShadow);
+	.dropdown-item {
+		color: $Dropdown--dark-link--TextColor;
+		&:hover,
+		&:focus {
+			color: $Dropdown--dark-link--hover--LinkColor;
+			@include gradientBackgroundColor($Dropdown--dark-link--hoverBackgroundColor);
+		}
+		&.active,
+		&:active {
+			color: $Dropdown--dark-LinkColor;
+			@include gradientBackgroundColor($Dropdown--dark-link--activeBackgroundColor);
+		}
+		&.disabled,
+		&:disabled {
+			color: $Dropdown--dark-link-disabled--TextColor;
+		}
+	}
+	.dropdown-divider {
+		border-color: $Dropdown--dark-dividerBackgroundColor;
+	}
+	.dropdown-item-text {
+		color: $Dropdown--dark-link--TextColor;
+	}
+	.dropdown-header {
+		color: $Dropdown--dark-header--TextColor;
+	}
+}

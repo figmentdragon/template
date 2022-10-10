@@ -1,0 +1,44 @@
+/*! HTML - The <html> HTML element represents the root (top-level element) of an HTML document, so it is also referred to as the root element. All other elements must be descendants of this element.
+*/
+
+html {
+  font-family: sans-serif;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc($BaseUnit + 3rem);
+  text-size-adjust: auto;
+  font-size: calc(#{$FontSize} + #{$FontInterval});
+
+  text-decoration-skip-link: "auto";
+  -webkit-overflow-scrolling: touch;
+	@include box-sizing($type: border-box);
+  @include clearfix;
+
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga" 1, "calt" 0;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+html,
+body {
+  width: calc(100% - calc(2 * $Spacer));
+  height: 100%;
+  line-height: $LineHeight;
+  color: $Text;
+  @include box-sizing(border-box);
+
+  text-align: left;
+  overflow: hidden;
+  * {
+    @include box-sizing(border-box);
+  }
+}

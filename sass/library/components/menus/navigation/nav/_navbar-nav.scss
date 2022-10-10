@@ -1,0 +1,37 @@
+// Navbar nav
+//
+// Custom navbar navigation (doesn't require `.nav`, but does make use of `.nav-link`).
+
+$MenuBar--nav-link--OffsetHorizontal:         .5rem !default;
+
+.NavBar--nav {
+  display: flex;
+  flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  .nav-link {
+    padding-right: 0;
+    padding-left: 0;
+    color: var(--#{$prefix}NavBarText);
+
+    &:hover,
+    &:focus {
+      color: var(--#{$prefix}NavBar--hover-color);
+    }
+
+    &.disabled {
+      color: var(--#{$prefix}NavBar--disabled-color);
+    }
+  }
+
+  .show > .nav-link,
+  .nav-link.active {
+    color: var(--#{$prefix}NavBar--active-color);
+  }
+
+  .dropdown-menu {
+    position: static;
+  }
+}

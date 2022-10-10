@@ -1,0 +1,239 @@
+// List group
+
+// scss-docs-start ListGroup--variables
+$ListGroupText                      : Text($gray) !default;
+$ListGroupBackground                : Background($white) !default;
+$ListGroup-Border             : Border($black) !default;
+$ListGroup--BorderWidth             : $BorderWidth !default;
+$ListGroup--BorderRadius            : $BorderRadius !default;
+
+$ListGroupItem--OffsetVertical      : $Spacer * .5 !default;
+$ListGroupItem--OffsetHorizontal    : $Spacer !default;
+$ListGroupItemBackground-scale      : -80% !default;
+$ListGroupItemTextScale             : 40% !default;
+
+$ListGroupBackground-hover          : HoverShift($ListGroupBackground) !default;
+$ListGroupText-active               : $ListGroupText !default;
+$ListGroupBackground-active         : $ListGroupBackground !default;
+$ListGroup-Border-active      : $ListGroup-Border !default;
+
+$ListGroupText-disabled             : Text($gray) !default;
+$ListGroupBackground-disabled       : Disabled($ListGroupBackground) !default;
+
+$ListGroup--action-color            : $gray-700 !default;
+$ListGroup--action-Color-hover      : $ListGroup--action-color !default;
+
+$ListGroup--action-Color-active     : $Text !default;
+$ListGroup--action-Background-active: $gray !default;
+
+@mixin ListGroup--item-variant($state, $background, $color) {
+  .listgroup-item-#{$state} {
+    color: $color;
+    background-color: translucentBackground($color);
+
+    &.listgroup-item-action {
+      @include on-event {
+        color: Link($color);
+        background-color: darken(ColorLight($color), 5%);
+      }
+      &.active {
+        color: Text($white);
+        background-color: Background($color);
+        border-color: Border($color);
+      }
+    }
+  }
+}
+
+
+// Base class
+//
+// Easily usable on <ul>, <ol>, or <div>.
+
+[class^='listgroup'] {
+  // scss-docs-start ListGroup--css-vars
+  --#{$prefix}ListGroupText: #{$ListGroupText};
+  --#{$prefix}ListGroupBackground: #{$ListGroupBackground};
+  --#{$prefix}ListGroup-Border: #{$ListGroup-Border};
+  --#{$prefix}ListGroup--BorderWidth: #{$ListGroup--BorderWidth};
+  --#{$prefix}ListGroup--BorderRadius: #{$ListGroup--BorderRadius};
+  --#{$prefix}ListGroup--item--OffsetHorizontal: #{$ListGroupItem--OffsetHorizontal};
+  --#{$prefix}ListGroup--item--OffsetVertical: #{$ListGroupItem--OffsetVertical};
+  --#{$prefix}ListGroup--action-color: #{$ListGroup--action-color};
+  --#{$prefix}ListGroup--action-Color-hover: #{$ListGroup--action-Color-hover};
+  --#{$prefix}ListGroup--action-Background-hover: #{$ListGroupBackground-hover};
+  --#{$prefix}ListGroup--action-Color-active: #{$ListGroup--action-Color-active};
+  --#{$prefix}ListGroup--action-Background-active: #{$ListGroup--action-Background-active};
+  --#{$prefix}ListGroupText-disabled: #{$ListGroupText-disabled};
+  --#{$prefix}ListGroupBackground-disabled: #{$ListGroupBackground-disabled};
+  --#{$prefix}ListGroupText-active: #{$ListGroupText-active};
+  --#{$prefix}ListGroupBackground-active: #{$ListGroupBackground-active};
+  --#{$prefix}ListGroup-Border-active: #{$ListGroup-Border-active};
+  // scss-docs-end ListGroup--css-vars
+
+  display: flex;
+  flex-direction: column;
+
+  // No need to set list-style: none; since .listgroup-item is block level
+  padding-left: 0; // reset padding because ul and ol
+  margin-bottom: 0;
+  @include border-radius(var(--#{$prefix}ListGroup--BorderRadius));
+}
+
+.listgroup-numbered {
+  list-style-type: none;
+  counter-reset: section;
+
+  > .listgroup-item::before {
+    // Increments only this instance of the section counter
+    content: counters(section, ".") ". ";
+    counter-increment: section;
+  }
+}
+
+// Interactive list items
+//
+// Use anchor or button elements instead of `li`s or `div`s to create interactive
+// list items. Includes an extra `.active` modifier class for selected items.
+
+.listgroup-item-action {
+  width: calc(100% - calc(2 * $Spacer)); // For `<button>`s (anchors become 100% by default though)
+  color: var(--#{$prefix}ListGroup--action-color);
+  text-align: inherit; // For `<button>`s (anchors inherit)
+
+  // Hover state
+  &:hover,
+  &:focus {
+    z-index: 1; // Place hover/focus items above their siblings for proper border styling
+    color: var(--#{$prefix}ListGroup--action-Color-hover);
+    text-decoration: none;
+    background-color: var(--#{$prefix}ListGroup--action-Background-hover);
+  }
+
+  &:active {
+    color: var(--#{$prefix}ListGroup--action-Color-active);
+    background-color: var(--#{$prefix}ListGroup--action-Background-active);
+  }
+}
+
+// Individual list items
+//
+// Use on `li`s or `div`s within the `.list-group` parent.
+
+.listgroup-item {
+  position: relative;
+  display: block;
+  padding: var(--#{$prefix}ListGroup--item--OffsetVertical) var(--#{$prefix}ListGroup--item--OffsetHorizontal);
+  color: var(--#{$prefix}ListGroupText);
+  text-decoration: if($LinkDecoration == none, null, none);
+  background-color: var(--#{$prefix}ListGroupBackground);
+  border: var(--#{$prefix}ListGroup--BorderWidth) solid var(--#{$prefix}ListGroup-Border);
+
+  &:first-child {
+    @include border-top-radius(inherit);
+  }
+
+  &:last-child {
+    @include border-bottom-radius(inherit);
+  }
+
+  &.disabled,
+  &:disabled {
+    color: var(--#{$prefix}ListGroupText-disabled);
+    pointer-events: none;
+    background-color: var(--#{$prefix}ListGroupBackground-disabled);
+  }
+
+  // Include both here for `<a>`s and `<button>`s
+  &.active {
+    z-index: 2; // Place active items above their siblings for proper border styling
+    color: var(--#{$prefix}ListGroupText-active);
+    background-color: var(--#{$prefix}ListGroupBackground-active);
+    border-color: var(--#{$prefix}ListGroup-Border-active);
+  }
+
+  // stylelint-disable-next-line scss/selector-no-redundant-nesting-selector
+  & + .listgroup-item {
+    border-top-width: 0;
+
+    &.active {
+      margin-top: calc(-1 * var(--#{$prefix}ListGroup--BorderWidth)); // stylelint-disable-line function-disallowed-list
+      border-top-width: var(--#{$prefix}ListGroup--BorderWidth);
+    }
+  }
+}
+
+// Horizontal
+//
+// Change the layout of list group items from vertical (default) to horizontal.
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .listgroup-horizontal#{$infix} {
+      flex-direction: row;
+
+      > .listgroup-item {
+        &:first-child:not(:last-child) {
+          @include border-bottom-start-radius(var(--#{$prefix}ListGroup--BorderRadius));
+          @include border-top-end-radius(0);
+        }
+
+        &:last-child:not(:first-child) {
+          @include border-top-end-radius(var(--#{$prefix}ListGroup--BorderRadius));
+          @include border-bottom-start-radius(0);
+        }
+
+        &.active {
+          margin-top: 0;
+        }
+
+        + .listgroup-item {
+          border-top-width: var(--#{$prefix}ListGroup--BorderWidth);
+          border-left-width: 0;
+
+          &.active {
+            margin-left: calc(-1 * var(--#{$prefix}ListGroup--BorderWidth)); // stylelint-disable-line function-disallowed-list
+            border-left-width: var(--#{$prefix}ListGroup--BorderWidth);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Flush list items
+//
+// Remove borders and border-radius to keep list group items edge-to-edge. Most
+// useful within other components (e.g., cards).
+
+.listgroup-flush {
+  @include border-radius(0);
+
+  > .listgroup-item {
+    border-width: 0 0 var(--#{$prefix}ListGroup--BorderWidth);
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
+  }
+}
+
+
+// scss-docs-start ListGroup--modifiers
+// List group contextual variants
+//
+// Add modifier classes to change text and background color on individual items.
+// Organizationally, this must come after the `:hover` states.
+
+@each $state, $value in $theme-colors {
+  $ListGroup--variant-Background: HoverShift($value);
+  $ListGroup--variant-color: HoverShift($value);
+  @if (contrast-ratio($ListGroup--variant-Background, $ListGroup--variant-color) < $min-contrast-ratio) {
+    $ListGroup--variant-color: mix($value, color-contrast($ListGroup--variant-Background), abs($ListGroupItemTextScale));
+  }
+
+  @include ListGroup--item-variant($state, $ListGroup--variant-Background, $ListGroup--variant-color);
+}

@@ -1,0 +1,64 @@
+@import "01-posts+pages";
+@import "02-entry";
+@import "03-author-bio";
+@import "04-meta";
+@import "05-content";
+
+@import "post/01-posts+pages";
+@import "post/06-post-formats";
+@import "post/07-inpost-Tables";
+@import "post/08-default-menu";
+
+.page-links {
+  .prev,
+  .next {
+    &.page-numbers {
+      background-color: black;
+      color: white;
+    }
+  }
+  .caption {
+    border: 0;
+  }
+
+  .page-numbers,
+  .post-page-numbers  {
+    display: none;
+    line-height: 1;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    &:after {
+      background-color: #ffaaa6;
+      animation: scale-out-hor-left 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    }
+    @include on-event {
+      &:hover {
+        &:after {
+          animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+      }
+    }
+    &.current {
+      color: white;
+      background-color: #ffaaa6;
+      border-color: #ffaaa6;
+    }
+  }
+}
+
+
+@import "entry/02-entry-headers";
+@import "entry/03-entry-content";
+@import "entry/04-entry-meta";
+@import "entry/05-entry-categories";
+
+@import "media/09-alignment";
+@import "media/10-media";
+@import "media/11-captions";
+@import "media/12-gallery";
+
+@import "widgets/13-widgets";
+@import "widgets/14-dynamic-sidebar";

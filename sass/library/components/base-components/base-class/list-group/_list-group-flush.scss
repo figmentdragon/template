@@ -1,0 +1,16 @@
+// Flush list items
+//
+// Remove borders and border-radius to keep list group items edge-to-edge. Most
+// useful within other components (e.g., cards).
+
+.listgroup-flush {
+  border-radius: 0;
+
+  > .listgroup-item {
+    border-width: 0 0 $ListGroup--BorderWidth;
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
+  }
+}

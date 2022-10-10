@@ -1,0 +1,89 @@
+// Optional indicator pips/controls
+//
+// Add a container (such as a list) with the following class and add an item (ideally a focusable control,
+// like a button) with data-bs-target for each slide your carousel holds.
+
+$carousel-indicator-width: 30px;
+$carousel-indicator--Height: 3px;
+$carousel-indicator-hit-area-height: 10px;
+$carousel-indicator--Spacer: 3px;
+$carousel-indicator--Opacity: 0.5;
+$carousel-indicator--activeBackgroundColor: white;
+$carousel-indicator--active--Opacity: 1;
+$carousel-indicator-transition: opacity 0.6s ease;
+$carousel-indicator-Border: Border($carousel-control--TextColor);
+
+.carousel-indicators {
+  position: absolute;
+  z-index: 2;
+  // Use the .carousel-control's width as margin so we don't overlay those
+  z-index: 15;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+
+  width: 60%;
+  margin-right: $carousel-control-width;
+  margin-bottom: $BaseUnit;
+  margin-left: $carousel-control-width;
+  padding: 0;
+
+  list-style: none;
+
+  text-align: center;
+
+  [data-bs-target] {
+    flex: 0 1 auto;
+
+    box-sizing: content-box;
+    width: $carousel-indicator-width;
+    height: $carousel-indicator--Height;
+    margin-right: $carousel-indicator--Spacer;
+    margin-left: $carousel-indicator--Spacer;
+    padding: 0;
+
+    cursor: pointer;
+    text-indent: -999px;
+
+    opacity: $carousel-indicator--Opacity;
+    border: 0;
+    // Use transparent borders to increase the hit area by 10px on top and bottom.
+    border-top: $carousel-indicator-hit-area-height $BorderStyle transparent;
+    border-bottom: $carousel-indicator-hit-area-height $BorderStyle transparent;
+    background-color: $carousel-indicator--activeBackgroundColor;
+    background-clip: padding-box;
+
+    @include Transition($carousel-indicator-transition);
+  }
+
+  li {
+    display: inline-block;
+
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+
+    cursor: pointer;
+    text-indent: -999px;
+
+    border: 1px $BorderStyle $carousel-indicator-Border;
+    border-radius: 10px;
+    // IE9 hack for event handling
+    //
+    // Internet Explorer 9 does not properly handle clicks on elements with a `background-color` of `transparent`,
+    // so we use `rgba(0,0,0,0)` instead since it's a non-buggy equivalent.
+    // See https://developer.mozilla.org/en-US/docs/Web/Events/click#Internet_Explorer
+    background-color: rgba($BorderColor, 0); // IE9
+  }
+  .active {
+    width: .75rem;
+    height: .75rem;
+    margin: 0;
+
+    opacity: $carousel-indicator--active--Opacity;
+    background-color: $carousel-indicator--activeBackgroundColor;
+  }
+}

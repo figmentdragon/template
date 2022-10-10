@@ -1,0 +1,6 @@
+// Sizing
+//
+// Remix the default button sizing classes into new ones for easier manipulation.
+
+.buttongroup-sm > .button { @extend .button-sm; }
+.buttongroup-lg > .button { @extend .button-lg; }

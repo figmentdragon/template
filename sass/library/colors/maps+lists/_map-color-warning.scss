@@ -1,0 +1,17 @@
+/* Map: warning */
+$warnings: () !default;
+$warnings: map-merge(
+	(
+		'warning-100': $warning-100,
+		'warning': $warning,
+		'warning-300': $warning-300,
+		'warning-400': $warning-400,
+		'warning-500': $warning-500,
+		'warning-600': $warning-600,
+		'warning-700': $warning-700,
+		'warning-800': $warning-800,
+		'warning': $warning,
+		'warning': $warning
+	),
+	$warnings
+);

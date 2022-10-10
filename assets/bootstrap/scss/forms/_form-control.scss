@@ -1,0 +1,194 @@
+//
+// General form controls (plus a few specific high-level interventions)
+//
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: $InputOffsetVertical $InputOffsetHorizontal;
+  font-family: $InputFont;
+  @include font-size($InputSize);
+  font-weight: $InputWeight;
+  line-height: $InputLineHeight;
+  color: $InputText;
+  background-color: $InputBackground;
+  background-clip: padding-box;
+  border: $InputBorderWidth solid $InputBorderColor;
+  appearance: none; // Fix appearance for date inputs in Safari
+
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  @include border-radius($InputBorderRadius, 0);
+
+  @include box-shadow($InputBoxShadow);
+  @include transition($Input-transition);
+
+  &[type="file"] {
+    overflow: hidden; // prevent pseudo element button overlap
+
+    &:not(:disabled):not([readonly]) {
+      cursor: pointer;
+    }
+  }
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  &:focus {
+    color: $InputText-focus;
+    background-color: $InputBackground-focus;
+    border-color: $InputBorderColor-focus;
+    outline: 0;
+    @if $enable-shadows {
+      @include box-shadow($InputBoxShadow, $InputBoxShadow-focus);
+    } @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      box-shadow: $InputBoxShadow-focus;
+    }
+  }
+
+  // Add some height to date inputs on iOS
+  // https://github.com/twbs/bootstrap/issues/23307
+  // TODO: we can remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=198959 is resolved
+  &::-webkit-date-and-time-value {
+    // Multiply line-height by 1em if it has no unit
+    height: if(unit($InputLineHeight) == "", $InputLineHeight * 1em, $InputLineHeight);
+  }
+
+  // Placeholder
+  &::placeholder {
+    color: $Input-placeholder-color;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+
+  // Disabled inputs
+  //
+  // HTML5 says that controls under a fieldset > legend:first-child won't be
+  // disabled if the fieldset is disabled. Due to implementation difficulty, we
+  // don't honor that edge case; we style them as disabled anyway.
+  &:disabled {
+    color: $InputText-disabled;
+    background-color: $InputBackground-disabled;
+    border-color: $InputBorderColor-disabled;
+    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+    opacity: 1;
+  }
+
+  // File input buttons theming
+  &::file-selector-button {
+    padding: $InputOffsetVertical $InputOffsetHorizontal;
+    margin: (-$InputOffsetVertical) (-$InputOffsetHorizontal);
+    margin-inline-end: $InputOffsetHorizontal;
+    color: $FormFile-button-color;
+    @include gradient-Background($FormFile-ButtonBackground);
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: $InputBorderWidth;
+    border-radius: 0; // stylelint-disable-line property-disallowed-list
+    @include transition($Button-transition);
+  }
+
+  &:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: $FormFile-ButtonBackground-hover;
+  }
+}
+
+// Readonly controls as plain text
+//
+// Apply class to a readonly input to make it appear like regular plain
+// text (without any border, background color, focus indicator)
+
+.form-control-plaintext {
+  display: block;
+  width: 100%;
+  padding: $InputOffsetVertical 0;
+  margin-bottom: 0; // match inputs if this class comes on inputs with default margins
+  line-height: $InputLineHeight;
+  color: $Input-plaintext-color;
+  background-color: transparent;
+  border: solid transparent;
+  border-width: $InputBorderWidth 0;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &.form-control-sm,
+  &.form-control-lg {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Form control sizing
+//
+// Build on `.form-control` with modifier classes to decrease or increase the
+// height and font-size of form controls.
+//
+// Repeated in `_input_group.scss` to avoid Sass extend issues.
+
+.form-control-sm {
+  min-height: $InputLineHeight-sm;
+  padding: $InputOffsetVertical-sm $InputOffsetHorizontal-sm;
+  @include font-size($InputSize-sm);
+  @include border-radius($InputBorderRadius-sm);
+
+  &::file-selector-button {
+    padding: $InputOffsetVertical-sm $InputOffsetHorizontal-sm;
+    margin: (-$InputOffsetVertical-sm) (-$InputOffsetHorizontal-sm);
+    margin-inline-end: $InputOffsetHorizontal-sm;
+  }
+}
+
+.form-control-lg {
+  min-height: $InputLineHeight-lg;
+  padding: $InputOffsetVertical-lg $InputOffsetHorizontal-lg;
+  @include font-size($InputSize-lg);
+  @include border-radius($InputBorderRadius-lg);
+
+  &::file-selector-button {
+    padding: $InputOffsetVertical-lg $InputOffsetHorizontal-lg;
+    margin: (-$InputOffsetVertical-lg) (-$InputOffsetHorizontal-lg);
+    margin-inline-end: $InputOffsetHorizontal-lg;
+  }
+}
+
+// Make sure textareas don't shrink too much when resized
+// https://github.com/twbs/bootstrap/pull/29124
+// stylelint-disable selector-no-qualifying-type
+textarea {
+  &.form-control {
+    min-height: $Input-height;
+  }
+
+  &.form-control-sm {
+    min-height: $InputLineHeight-sm;
+  }
+
+  &.form-control-lg {
+    min-height: $InputLineHeight-lg;
+  }
+}
+// stylelint-enable selector-no-qualifying-type
+
+.form-control-color {
+  width: $Form-color-width;
+  height: $Input-height;
+  padding: $InputOffsetVertical;
+
+  &:not(:disabled):not([readonly]) {
+    cursor: pointer;
+  }
+
+  &::-moz-color-swatch {
+    border: 0 !important; // stylelint-disable-line declaration-no-important
+    @include border-radius($InputBorderRadius);
+  }
+
+  &::-webkit-color-swatch {
+    @include border-radius($InputBorderRadius);
+  }
+
+  &.form-control-sm { height: $InputLineHeight-sm; }
+  &.form-control-lg { height: $InputLineHeight-lg; }
+}

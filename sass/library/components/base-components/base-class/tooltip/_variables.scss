@@ -1,0 +1,14 @@
+// Tooltips
+
+$tooltipSize: $FontSize * 0.75;
+$Tooltip--MaxWidth: 200px;
+$Tooltip--TextColor: white;
+$tooltipBackgroundColor: black;
+$Tooltip--BorderRadius: $BorderRadius;
+$TooltipOpacity: 0.9;
+$Tooltip--OffsetVertical: $Spacer * 0.25;
+$Tooltip--OffsetHorizontal: $Spacer * 0.5;
+$Tooltip--margin: null;
+$Tooltip--ArrowWidth: 0.8rem;
+$Tooltip--ArrowHeight: 0.4rem;
+$Tooltip--ArrowColor: null;

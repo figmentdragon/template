@@ -1,0 +1,21 @@
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+// For rows
+.table-striped {
+  > tbody > tr:nth-of-type(#{$TableStriped-order}) > * {
+    color: $TableStriped--TextColor;
+
+    $Table-accentBackgroundColor: $TableStripedBackgroundColor;
+  }
+}
+
+// For columns
+.table-striped-columns {
+  > :not(caption) > tr > :nth-child(#{$TableStriped-columns-order}) {
+    color: $TableStriped--TextColor;
+
+    $Table-accentBackgroundColor: $TableStripedBackgroundColor;
+  }
+}

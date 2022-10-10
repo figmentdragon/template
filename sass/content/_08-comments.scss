@@ -1,0 +1,292 @@
+/**
+ * Comments Wrapper
+ */
+.comments-area {
+
+	> * {
+		margin-top: $SpacerVertical;
+		margin-bottom: $SpacerVertical;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&.show-avatars {
+
+		.avatar {
+			border-radius: 50%;
+			position: absolute;
+			top: 10px;
+		}
+
+		.fn {
+			display: inline-block;
+			padding-left: 85px;
+		}
+
+		.comment-metadata {
+			padding: 8px 0 9px 85px;
+		}
+
+	}
+}
+
+/**
+ * Comment Title
+ */
+
+.comments-title,
+.comment-reply-title {
+	font-size: $FontSize-h2;
+	letter-spacing: $TitleSpacing;
+}
+
+.comment-reply-title {
+	display: flex;
+	justify-content: space-between;
+
+	small {
+
+		a {
+			font-family: $FontSecondary;
+			font-size: $FontSize-xs;
+			font-style: normal;
+			font-weight: normal;
+			letter-spacing: normal;
+		}
+	}
+}
+
+/* Nested comment reply title*/
+.comment .comment-respond .comment-reply-title {
+	font-size: $FontSize-lg;
+}
+
+/**
+ * Comment Lists
+ */
+.comment-list {
+	padding-left: 0;
+	list-style: none;
+
+	> li {
+		margin-top: $SpacerVertical;
+		margin-bottom: $SpacerVertical;
+	}
+
+}
+
+.comment-list .children {
+	list-style: none;
+	padding-left: 0;
+
+	> li {
+		margin-top: $SpacerVertical;
+		margin-bottom: $SpacerVertical;
+	}
+
+}
+
+.comment-list .depth-2,
+.comment-list .depth-3 {
+	@include media(mobile) {
+		padding-left: calc(4 * $OffsetVertical);
+	}
+}
+
+/**
+ * Comment Meta
+ */
+.comment-meta {
+
+	.comment-author {
+		line-height: $HeadingHeight;
+		margin-bottom: calc(0.25 * $Spacer);
+
+		@include media(mobile) {
+			margin-bottom: 0;
+			padding-right: 0;
+		}
+
+		.fn {
+			font-family: $FontSecondary;
+			font-weight: normal;
+			font-size: $FontSize-lg;
+			hyphens: auto;
+			word-wrap: break-word;
+			word-break: break-word;
+		}
+
+	}
+
+	.comment-metadata {
+		color: Text($primary);
+		font-size: $FontSize-xs;
+		padding: 8px 0 9px 0;
+
+		.edit-link {
+			margin-left: $SpacerHorizontal;
+		}
+
+	}
+
+	@include media(mobile) {
+		margin-right: inherit;
+
+		.comment-author {
+			max-width: inherit;
+		}
+	}
+}
+
+.reply {
+	font-size: $FontSize-sm;
+	line-height: $HeadingHeight;
+}
+
+.bypostauthor {
+	display: block;
+}
+
+.says {
+	display: none;
+}
+
+.pingback .url,
+.trackback .url {
+	font-family: $FontPrimary;
+}
+
+// Comment body
+.comment-body {
+	position: relative;
+	margin-bottom: calc(1.7 * $SpacerVertical);
+
+	> * {
+		margin-top: $SpacerVertical;
+		margin-bottom: $SpacerVertical;
+	}
+
+	.reply {
+		margin: 0;
+	}
+}
+
+.comment-content {
+	word-wrap: break-word;
+}
+
+// Pingbacks & Trackbacks
+.pingback .comment-body,
+.trackback .comment-body {
+	margin-top: $SpacerVertical;
+	margin-bottom: $SpacerVertical;
+}
+
+.comment-respond {
+	margin-top: $SpacerVertical;
+}
+
+.comment-respond > * {
+	margin-top: $Spacer;
+	margin-bottom: $Spacer;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+
+		&.comment-form {
+			margin-bottom: $SpacerVertical;
+		}
+	}
+}
+
+.comment-author {
+	padding-top: 3px;
+
+	.url {
+		color: currentColor;
+	}
+}
+
+.comment-form {
+	display: flex;
+	flex-wrap: wrap;
+
+	> * {
+		flex-basis: 100%;
+	}
+
+	.comment-notes {
+		font-size: $FontSize-sm;
+	}
+
+	.comment-form-url,
+	.comment-form-comment {
+		width: calc(100% - calc(2 * $Spacer));
+	}
+
+	.comment-form-author,
+	.comment-form-email {
+		flex-basis: 0;
+		flex-grow: 1;
+
+		@include media(mobile-only) {
+			flex-basis: 100%;
+		}
+	}
+
+	.comment-form-cookies-consent > label,
+	.comment-notes {
+		font-size: $FontSize-xs;
+		font-weight: normal;
+	}
+}
+
+.comment-form > p {
+	margin-bottom: $Spacer;
+
+	&:first-of-type {
+		margin-top: 0;
+	}
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+
+	label,
+	input[type="email"],
+	input[type="text"],
+	input[type="url"],
+	textarea {
+		display: block;
+		font-size: $FontSize-sm;
+		margin-bottom: calc(.5 * $Spacer);
+		width: calc(100% - calc(2 * $Spacer));
+		font-weight: var(--form--label-weight);
+	}
+
+	&.comment-form-cookies-consent {
+		display: flex;
+	}
+
+	@include media(mobile) {
+
+		&.comment-form-author {
+			margin-right: calc(1.5 * $SpacerHorizontal);
+		}
+
+		&.comment-notes,
+		&.logged-in-as {
+			display: block;
+		}
+	}
+}

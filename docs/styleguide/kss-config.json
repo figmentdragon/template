@@ -1,0 +1,25 @@
+{
+  "title"   : "Creativity Core Michaelangelo Style Guide"
+  "mask"    : ".scss",
+  "placeholder" : "[modifier]",
+
+  "//": "The source and destination paths are relative to this file.",
+    "source": [
+      "src/scss/",
+      "src/vendors",
+      "assets/stylesheets"
+    ],
+  "destination" :  "styleguide/",
+  "homeepage"   :  "styleguide/homepage.md",
+
+  "//": "The css and js paths are URLs relative to the generated style guide.",
+  "css": [
+      "./../assets/css/styles.css",
+      "./../assets/css/stylesheets/*.css"
+  ],
+  "js": [
+    "./../assets/js/*.js",
+    "./../src/build/*.js",
+    "./../src/js/*.js"
+  ]
+}

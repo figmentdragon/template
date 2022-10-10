@@ -1,0 +1,138 @@
+/* BUTTONS * FORMS ------------------ * ------------------------------------ *\
+ * # Form Elements
+ * -> HTML provides a number of elements which can be used together to create forms which the user can fill out and submit to the Web site or application. There"s a great deal of further information about this available in the HTML forms guide.
+\* ------------------------------------------------------------------------- */
+
+// - #FEATURES ------------------------------- //
+// - #DEFINTIONS ----------------------------- //
+// -- =SPACING
+  $FormSpacer           : calc(0.5 * $Spacer);
+  $Form-OffsetHorizontal: 0.75rem;
+  $FormWidth            : calc(100vw - 2.5rem);
+
+// -- =COLORS
+  $FormText             : Text($formColor);
+  $FormLink             : Link($formColor);
+  $FormBackground       : Background($formColor);
+  $FormBorder           : Border($formColor);
+  $FormShadow           : Shadow($formColor);
+
+// -- =TYPOGRAPHY
+  $FormFont          : $FontSecondary;
+  $FormSize          : $FontSize-sm;
+  $FormWeight        : normal !default;
+    $FormWeight-label: 500;
+  $FormHeight        : $LineHeight;
+  $FormStyle         : normal !default;
+
+// -- =COMPONENTS
+  $FormText-opacity        : 0.25;
+  $FormBorder-width        : $BorderWidth;
+  $FormRadius              : 0;
+
+  $Input-placeholder:               Muted($InputText) !default;
+  $Input-plaintext:                 Muted($Text) !default;
+
+  $Text-valid: Text($success);
+  $Text-invalid: Text($warning);
+
+  $FormContainer-min          : calc($BaseUnit * $LineHeight);
+  $FormContainer-inner        : calc($FormContainer-min * 1), calc($OffsetHorizontal * 2);
+  $FormContainer-inner-half   : calc($FormHeight / 0.5 );
+  $FormContainer-inner-quarter: divide($FormContainer-inner-half, 0.5);
+  $FormContainer              : add(calc($FormHeight + 1), (calc($OffsetVertical * 2), $BorderWidth, false));
+
+// - #VENDORS ------------------------------- //
+
+// - #FUNCTIONS ------------------------------ //
+// - #VARIABLES ------------------------------ //
+// -- =SPACING
+  $Form-OffsetHorizontal-lg: calc($Form-OffsetHorizontal * $lg);
+  $Form-OffsetHorizontal-sm: calc($Form-OffsetHorizontal * $sm);
+  $FormText-width          : 3rem;
+  $FormWidth-lg            : calc(100vw - $FormText-width);
+
+// -- =COLOR
+  $FormText-muted    : Muted($FormText);
+  $FormText-focus    : ColorDark($formColor);
+  $FormLink-hover    : HoverShift($FormLink);
+  $FormLink-focus    : ColorDark($FormLink);
+  $FormLink-visited  : Muted($FormLink);
+  $FormLink-disabled : Disabled($FormLink);
+
+  $FormBackground-inactive: Muted($FormBackground);
+  $FormBackground-focus   : translucentBackground($FormBackground);
+
+  $FormBorder-hover      : HoverShift($FormBorder);
+  $FormBorder-focus      : ColorDark($FormBorder);
+  $FormBorder-translucent: translucentBorder($FormBorder);
+  $FormBorder-inactive   : Muted($FormBorder);
+
+  $soft--FormShadow   : ColorSoft($FormShadow);
+  $strong--FormShadow : ColorDark($FormShadow);
+  $light--FormShadow  : ColorLight($FormShadow);
+
+// -- =COMPONENTS
+  $FormRadius-sm: $BorderRadius * $xs;
+  $FormRadius-lg: $BorderRadius * $lg;
+
+  $FormTextRanged: $secondary;
+
+// -- =PATTERNS
+  $FormTransition            : all 0.3s border-color 0.15s ease-in-out, shadow 0.15s ease-in-out color ease-in-out 0.2s;
+  $FormShadow-box              : 0 1px 2px rgba($FormShadow, 0.15), 1px 0 1px rgba($FormShadow, 0.075);
+  $FormShadow-focus            : inset 0 1px 2px rgba($FormShadow, 0.15), 1px 0 1px rgba($FormShadow, 0.075);
+
+
+
+
+  @import "variables/input";
+  @import "variables/form-input-variable";
+  @import "variables/form-file-variable";
+  @import "variables/form-notch-variable";
+
+  @import "variables/form-feedback-tooltips";
+  @import "variables/form-feedback-variable";
+
+// - #MAPS ----------------------------------- //
+// - #MIXINS --------------------------------- //
+  @import "mixins/form-validation";
+  @import "mixins/label";
+  @import "mixins/placeholder";
+  @import "mixins/mixin-selection";
+
+// - #HELPERS -------------------------------- //
+// - #COMOPONENTS ---------------------------- //
+  @import "form-elements/form-label";
+  @import "form-elements/form-control";
+  @import "form-elements/form-floating";
+
+  @import "form-elements/form-range";
+  @import "form-elements/form-select";
+  @import "form-elements/form-text";
+  @import "form-elements/form-checkbox";
+  @import "form-elements/form-switch";
+  @import "form-elements/form-validation";
+
+// - #UTILITIES ------------------------------ //
+.form-inline {
+  .inputgroup {
+    display: inline-block;
+  }
+}
+
+.form {
+  .inputgroup {
+    display: block;
+
+    margin-bottom: $Spacer;
+    .form-label {
+      display: block;
+
+      margin-bottom: calc($Spacer / 2);
+    }
+  }
+}
+
+// - #SHEETS --------------------------------- //
+// - #MEDIA QUERIES -------------------------- //

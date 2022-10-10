@@ -1,0 +1,24 @@
+// Navs
+
+$nav-link--OffsetVertical:                .5rem;
+$nav-link--OffsetHorizontal:                1rem;
+$nav-link-font-size:                null;
+$nav-link-font-weight:              null;
+$nav-link-color:                    $nav-link-text-color;
+$nav-link-hover-color:              $nav-link-text-hover-color;
+$nav-link-transition:               color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+$nav-link-disabled:                 $nav-link-disabled-color;
+$nav-link-font-size:                1.25rem;
+$nav-link-line-height:            ($base-unit * $line-height-body) * 2;
+
+$nav-link--Spacer-xs: var(--xs);
+$nav-link--Spacer-sm: var(--sm);
+$nav-link--Spacer-md: var(--md);
+$nav-link-base: $base-unit;
+$nav-link--Spacer-xl: $size-xl;
+$nav-link--Spacer-xxl: $size-xxl;
+
+$nav-link-color: $active-color;
+$nav-link-hover-color: $hover-color;
+$nav-link-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+$nav-link-disabled-color: $disabled-color;

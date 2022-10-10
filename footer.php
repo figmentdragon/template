@@ -6,29 +6,71 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package themename
+ * @package WordPress
+ * @subpackage ThemeName
+ * @since ThemeName 1.0
  */
 
 ?>
+				</main><!-- #main -->
+			</div><!-- #primary -->
+		</div><!-- #content -->
+
 
 	<footer id="colophon" class="site-footer">
+
+		<?php if ( has_nav_menu( 'footer' ) ) : ?>
+			<nav aria-label="<?php esc_attr_e( 'Secondary menu', 'themename' ); ?>" class="footer-navigation">
+				<ul class="footer-navigation-wrapper">
+					<?php
+					wp_nav_menu(
+						array(
+							'theme_location' => 'footer',
+							'items_wrap'     => '%3$s',
+							'container'      => false,
+							'depth'          => 1,
+							'link_before'    => '<span>',
+							'link_after'     => '</span>',
+							'fallback_cb'    => false,
+						)
+					);
+					?>
+				</ul><!-- .footer-navigation-wrapper -->
+			</nav><!-- .footer-navigation -->
+		<?php endif; ?>
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'themename' ) ); ?>">
+
+
+			<?php
+			if ( function_exists( 'the_privacy_policy_link' ) ) {
+				the_privacy_policy_link( '<div class="privacy-policy">', '</div>' );
+			}
+			?>
+
+			<div class="powered-by">
 				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'themename' ), 'WordPress' );
+				printf(
+					/* translators: %s: WordPress. */
+					esc_html__( 'Proudly powered by %s.', 'themename' ),
+					'<a href="' . esc_url( __( 'https://wordpress.org/', 'themename' ) ) . '">WordPress</a>'
+				);
 				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'themename' ), 'themename', '<a href="http://underscores.me/">cjtermini</a>' );
-				?>
+			</div><!-- .powered-by -->
+
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
-</div><!-- #page -->
 
+
+</div><!-- #page -->
 <?php wp_footer(); ?>
+
+<script src="/wp-content/themes/themename/assets/js/fitty.min.js"></script>
+<script>
+	fitty( '.site-title' {
+		minSize: 20;
+		maxSize: 300;
+	});
+</script>
 
 </body>
 </html>

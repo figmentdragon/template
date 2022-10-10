@@ -1,0 +1,108 @@
+// Text
+//
+// Darken percentage for links with `.text-*` class (e.g. `.text-success`)
+$emphasized-link-hover-darken-percentage: 15% !default;
+
+.text-monospace { font-family: monospace !important; }
+.text-underline { text-decoration: underline !important; }
+.text-italic { font-style: italic !important; }
+.text-through { text-decoration: line-through !important; }
+
+// Font Sizes
+.font-small { @include font-size($FontSize-sm); }
+.normal,
+.font-base {
+  @include font-size($FontSize);
+  font-weight: $FontWeight;
+}
+.font-medium {
+  @include font-size($FontSize);
+  font-weight: $medium--FontWeight;
+}
+
+// Line heights
+// from lh-100 to lh-300
+@for $nr from 0 to 21 {
+  .lh-#{100 + $nr*10} {
+    line-height: #{1 + divide($nr,10)};
+  }
+}
+
+// Letter spacings
+.ls-1 { letter-spacing: 0.0625rem; }
+.ls-2 { letter-spacing: 0.09375rem; }
+.ls-3 { letter-spacing: 0.125rem; }
+
+// Alignment
+.text-left {  text-align: left; }
+.text-right { text-align: right; }
+.text-center {  text-align: center; }
+.text-justify {  text-align: justify !important;}
+.text-wrap {  white-space: normal !important; }
+.text-nowrap {  white-space: nowrap !important; }
+.text-truncate {  @include text-truncate; }
+
+// Responsive alignment
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .text#{$infix}-left { text-align: left !important; }
+    .text#{$infix}-right { text-align: right !important; }
+    .text#{$infix}-center { text-align: center !important; }
+  }
+}
+
+// Transformation
+.text-lowercase { text-transform: lowercase !important; }
+.text-uppercase { text-transform: uppercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+
+// Weight and italics
+.font-weight-light   { font-weight: medium !important; }
+.font-weight-lighter { font-weight: lighter !important; }
+.font-weight-normal  { font-weight: normal !important; }
+.font-weight-bold    { font-weight: bold !important; }
+.font-weight-bolder  { font-weight: bolder !important; }
+.font-italic  { font-style: italic !important; }
+
+// Contextual colors
+@each $color, $value in $theme-colors {
+  @include text-emphasis-variant(".text-#{$color}", $value);
+}
+
+.text-body { color: $Text !important; }
+.quiet,
+.text-muted { color: Muted(ColorSoft($Text)) !important; }
+
+.text-black-50 { color: rgba($black, .5) !important; }
+.text-white-50 { color: rgba($white, .5) !important; }
+
+.text-black { color: #000000; }
+.text-black-50 { color: rgba($black, .5) !important; }
+.text-white-50 { color: rgba($white, .5) !important; }
+
+.text-white, .text-white p, .text-white h1,
+.text-white h2, .text-white h3, .text-white h4,
+.text-white h5, .text-white h6, .text-white blockquote { color: tint($gray, $ColorInterval * 4); }
+
+// Misc
+.hide-text,
+.text-hide { @include text-hide($ignore-warning: true); }
+.text-decoration-none { text-decoration: none !important; }
+.text-break {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+.text-action {  @include on-event; }
+.description { font-size: #{0.75 * $FontSize}; }
+.list-style-none { @include list-unstyled; }
+.folder-structure li { font-size: 1.2rem; }
+.no-select { user-select: none; }
+
+
+// Reset
+.text-reset {
+  @include reset-text;
+  color: inherit !important;
+}

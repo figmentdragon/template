@@ -1,0 +1,10 @@
+//
+// Condensed Table w/ half padding
+//
+
+.table-sm {
+  // stylelint-disable-next-line selector-max-universal
+  > :not(caption) > * > * {
+    padding: $Table-cell--OffsetVertical-sm $Table-cell--OffsetHorizontal-sm;
+  }
+}

@@ -1,0 +1,76 @@
+// Mobile menu toggles
+.menu-button-container {
+	display: none;
+	justify-content: space-between;
+	position: absolute;
+	right: 0;
+	padding-top: calc(0.5 * $SpacerVertical);
+	padding-bottom: calc(0.25 * $SpacerVertical);
+  @include media(mobile-only) {
+    display: flex;
+  }
+  // Override specificity from default button styles.
+  #mobile-menu {
+    font-size: 1em;
+    font-weight: bold;
+
+    display: flex;
+
+    margin-left: auto;
+    padding: calc($vertical--Offset - (0.25 * $offset)) calc(0.5 * $horizontal--Offset);
+
+    color: $link-color;
+    border: none;
+    background-color: transparent;
+
+    .dropdown-icon {
+      display: flex;
+      align-items: center;
+
+      .svg-icon {
+        margin-left: calc(0.25 * $Spacer);
+      }
+
+      // Menu icon is off-center vertically to prevent blurry pixels.
+      &.open .svg-icon {
+        position: relative;
+        top: -1px;
+      }
+
+      &.close {
+        display: none;
+      }
+    }
+
+    &[aria-expanded*="true"] {
+      .dropdown-icon {
+        &.open {
+          display: none;
+        }
+
+        &.close {
+          display: flex;
+
+          .has-logo.has-title-and-tagline & {
+            Animation-name: $transition-button;
+            Animation-duration: 0.3s;
+          }
+        }
+      }
+    }
+  }
+
+  // When the menu is open, hide the close button and show the hide button.
+  .main-navigation-open &,
+  .primary-navigation-open & {
+    z-index: 500;
+
+    width: calc(100% - calc(2 * $Spacer));
+
+    background-color: $body-bg;
+
+    #mobile-menu {
+      position: static;
+    }
+  }
+}

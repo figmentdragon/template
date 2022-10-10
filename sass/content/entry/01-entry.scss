@@ -1,0 +1,184 @@
+$EntrySize: calc(($FontSize + 0.125) * 1rem) !default;
+$EntryHeight: calc($LineHeight - 0.2);
+$EntrySpacing: calc(($LetterSpacing + 0.002) * 1rem);
+
+.entry {
+	margin-top: calc(6 * $Spacer);
+	&:first-of-type {
+		margin-top: 0;
+	}
+	.entry-header {
+		margin: calc(3 * #{ $Spacer}) $Spacer $Spacer;
+		position: relative;
+	  z-index: 1;
+		height: calc(100% - 1.50rem);
+		@include media(Tablet) {
+			margin: calc(3 * #{ $Spacer}) $Spacer $Spacer;
+		}
+	}
+	.post-title,
+	.entry-title { /* Post titles */
+		@include post-section-dash;
+		margin: 0;
+		overflow-wrap: break-word;
+		a { @include on-event; }
+	}
+	.entry-meta,
+	.entry-footer {
+		color: ColorLight($primary);
+		font-weight: $medium--FontWeight;
+		> span {
+			margin-right: $Spacer;
+			display: inline-block;
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+		a {
+			@include TransitionLink;
+			color: currentColor;
+			@include on-event;
+		}
+		.svg-icon {
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 0.5em;
+		}
+	}
+	.entry-meta {
+		margin: $Spacer 0;
+	}
+	.entry-footer {
+		margin: calc(2 * $Spacer) $Spacer $Spacer;
+		@include media(Tablet) {
+			margin: $Spacer $Spacer calc(3 * $Spacer);
+			max-width: $Tablet--ContentWidth;
+		}
+		@include media(Tablet) {
+			max-width: $desktop--ContentWidth;
+		}
+	}
+	.post-thumbnail {
+		margin: $Spacer;
+		@include media(Tablet) {
+			margin: $Spacer $Spacer;
+		}
+		&:focus {
+			outline: none;
+		}
+		.post-thumbnail-inner {
+			display: block;
+			img {
+				position: relative;
+				display: block;
+				width: calc(100% - calc(2 * $Spacer));
+			}
+		}
+	}
+	.image-filters-enabled & {
+		.post-thumbnail {
+			position: relative;
+			display: block;
+			.post-thumbnail-inner {
+				filter: grayscale(100%);
+				&:after {
+					background: Translucent($Background);
+					content: "";
+					display: block;
+					height: 100%;
+					opacity: .5;
+					pointer-events: none;
+					position: absolute;
+					top: 0;
+					width: calc(100% - calc(2 * $Spacer));
+					z-index: 4;
+					@supports (mix-blend-mode: multiply) {
+						display: none;
+					}
+				}
+			}
+			&:before,
+			&:after {
+				position: absolute;
+				display: block;
+				width: calc(100% - calc(2 * $Spacer));
+				height: 100%;
+				top: 0; left: 0;
+				content: "\020";
+				pointer-events: none;
+			}
+			@include filter-duotone;
+		}
+	}
+	.entry-content,
+	.entry-summary {
+		max-width: calc(100% - (2 * $Spacer));
+		margin: 0 $Spacer;
+		@include media(Tablet) {
+			max-width: 80%;
+			margin: 0 10%;
+			padding: 0 60px;
+		}
+	}
+	.entry-content {
+		p {
+			word-wrap: break-word;
+		}
+		.more-link {
+			@include TransitionLink;
+			display: inline;
+			color: inherit;
+			&:after {
+				content: "\02192";
+				display: inline-block;
+				margin-left: 0.5em;
+			}
+			&:hover {
+				color: $LinkText-hover;
+				text-decoration: none;
+			}
+		}
+		a {
+			text-decoration: underline;
+			&.button,
+			&:hover {
+				text-decoration: none;
+			}
+			&.button {
+				display: inline-block;
+			}
+			&.button:hover {
+				background: $ButtonBackground-hover;
+				color: $Background;
+				cursor: pointer;
+			}
+		}
+		// Overwrite iframe embeds that have inline styles.
+		> iframe[style] {
+			margin: 32px 0 !important;
+			max-width: 100% !important;
+			@include media(Tablet) {
+				max-width: $Tablet--ContentWidth !important;
+			}
+			@include media(desktop) {
+				max-width: $desktop--ContentWidth !important;
+			}
+		}
+		// Page links
+		.page-links a {
+			margin: calc(0.5 * $Spacer);
+			text-decoration: none;
+		}
+		// Classic editor audio embeds.
+		.wp-audio-shortcode {
+			max-width: calc(100vw - (2 * $Spacer));
+			@include media(Tablet) {
+				max-width: $Tablet--ContentWidth;
+			}
+			@include media(desktop) {
+				max-width: $desktop--ContentWidth;
+			}
+		}
+	}
+}

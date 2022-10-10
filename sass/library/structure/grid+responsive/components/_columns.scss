@@ -1,0 +1,101 @@
+/* - #COLUMNS -------------------------------- */
+//! -> Column width with margin
+@mixin column-width($numberColumns: $grid-columns) {
+	width: calc( 100% / $grid-columns );
+}
+
+@mixin grid-col {
+  float: left;
+  padding-right: $Offset;
+}
+
+@mixin column-loop($name) {
+	@each $breakpoint in map-keys($breakpoints) {
+		$infix: breakpoint-infix($breakpoint, $breakpoints);
+		@include media-breakpoint-up($breakpoint, $breakpoints) {
+			.col#{$infix} {
+				flex: 1 0 0;
+			}
+			.col#{$infix}-auto {
+				@include make-col-auto();
+			}
+			@if $grid-columns > 0 {
+				@for $i from 1 through $grid-columns {
+					.col#{$infix}-#{$i} {
+						@include make-col($i, $grid-columns);
+					}
+				}
+			}
+		}
+	}
+}
+
+/* -> Components */
+.column {
+  min-height: 1px;
+  position: relative;
+	gap: $grid-gutter-width;
+	margin-bottom: $BaseUnit;
+	@include grid-col;
+	@include column-width($numberColumns: $grid-columns);
+  @include box-sizing(border-box);
+	.row-gutterless & {
+		padding-left : 0;
+	}
+	&:last-child {
+	  float: right;
+  	padding-right: 0 !important;
+	}
+}
+
+[class*="column"] + [class*="column"]:last-child {
+	float: right;
+}
+
+/* ->-> Span */
+@each $name, $key in $columns {
+	@include media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+		.#{$name} {
+			width: percentage( $key / $grid-columns );
+    	float: left;
+    	margin: 0 auto;
+			grid-gap: #{$grid-gutter-width};
+
+			@if $enable-grid-classes {
+				@if $grid-columns > 0 {
+					@for $i from 1 through $grid-columns {
+						&:nth-child(#{$i}n+2) { @include clearfix; }
+						&:nth-child(#{$i}n+#{$i}) article { margin-right: 0px !important; }
+						&:nth-child(#{$i}n+1) article { margin-left: 0px !important; }
+					}
+				}
+			}
+		}
+  }
+}
+
+
+.grid--Spacer {
+	width: 1.5rem;
+}
+
+/*
+@each $name, $key in $columns {
+  .#{$name} {
+    width: calc( 100% / $key );
+    float: left;
+    margin: 0 auto;
+  }
+}
+*/
+
+/* Columns generator */
+
+@each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @media only screen and ( #{$declaration} ) {
+        @include column-loop($name);
+    }
+}

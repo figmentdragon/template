@@ -1,0 +1,206 @@
+/* Small menu toggle area for screens < 600 pixels wide. The small menu requires some simple JavaScript in order to take affect. See http://themeshaper.com/2012/10/31/the-wordpress-theme-header-template/ for instructions on setting up this script. */
+.menu-toggle,
+.menu-toggle-close {
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+.menu-toggle {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	font-weight: 400;
+	line-height: 1;
+
+  display: block;
+	overflow: hidden;
+
+	width: 48px;
+	height: 48px;
+	margin: 0 auto;
+	padding: 0;
+
+	cursor: pointer;
+  transition: 0.5s ease-in-out;
+  transform: rotate(0deg);
+
+  text-align: center;;
+
+	border-radius: 0;
+  background-color: transparent;
+	text-shadow: none;
+  background-image: none;
+  span {
+    position: absolute;
+    left: 0;
+
+    display: block;
+
+    width: calc(100% - calc(2 * $Spacer));
+    height: 3px;
+
+    transition: 0.25s ease-in-out;
+    transform: rotate(0deg);
+
+    opacity: 1;
+    //@include border-radius($BorderRadius);
+    background: tint($gray, $ColorInterval * 4);
+    &.menu-icon-bar-1 { top: 0;}
+    &.menu-icon-bar-2,
+    &.menu-icon-bar-3 { top: 10px;
+    }
+    &.menu-icon-bar-4 { top: 20px;
+    }
+    &.open {
+			span {
+				&.menu-icon-bar-1 {
+					top: 10px;
+          left: 50%;
+
+          width: 0;
+        }
+        &.menu-icon-bar-2 { transform: rotate(45deg);
+        }
+        &.menu-icon-bar-3 { transform: rotate(-45deg);
+        }
+        &.menu-icon-bar-4 { top: 10px;
+          left: 50%;
+
+          width: 0;
+        }
+      }
+    }
+  }
+	&:active,
+	&:hover,
+	&:focus,
+	&.selected {
+		background-color: #444444;
+		background-color: transparent;
+		background-image: none;
+	}
+	&:focus {
+		outline: 1px dotted;
+	}
+	&-wrapper {
+		display: block;
+		float: left;
+
+		padding: 10px 0;
+	}
+	&-close {
+		font-size: 16px;
+		font-size: 1rem;
+	}
+	.icon-close {
+		display: none;
+	}
+	&.search-toggle.open + .menu-inside-wrapper {
+		visibility: visible;
+
+		opacity: 1;
+	}
+	&:before {
+		padding: 16px;
+
+		content: "\f419";
+
+		color: #ffffff;
+	}
+}
+
+.selected {
+	&.menu-toggle {
+		.icon-bars,
+		.icon-share,
+		.icon-search {
+			display: none;
+		}
+		.icon-close {
+			display: inline-block;
+		}
+	}
+}
+
+.close-toggle {
+	font-weight: 400;
+
+	margin-bottom: 7px;
+	margin-left: auto;
+}
+
+.navigation-default {
+	.menu-toggle {
+		display: none;
+	}
+	#primary-search-wrapper .menu-toggle {
+		display: block;
+
+		margin: 0;
+	}
+	.dropdown-toggle,
+	.main-navigation ul .dropdown-toggle.toggled-on,
+	#primary-menu-wrapper .menu-toggle-wrapper {
+		display: none;
+	}
+}
+
+.secondary-navigation .customize-partial-edit-shortcut button,
+.footer-sidebar .widget:first-child .customize-partial-edit-shortcut button {
+	left: 0;
+}
+
+.main-small-navigation .menu {
+	display: none;
+}
+
+#menu-toggle {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-ms-flex-align: center;
+	flex-direction: row;
+
+	border: none;
+	border-radius: 0;
+}
+
+#primary-search-wrapper .menu-toggle,
+#social-menu-wrapper .menu-toggle {
+  background-image: none;
+  border: none;
+  display: inline-block;
+  height: 42px;
+  letter-spacing: 0;
+  padding: 0;
+  -webkit-text-shadow: none;
+  text-shadow: none;
+  text-align: center;
+  width: 42px;
+  border-radius: 0;
+}
+
+#primary-search-wrapper .menu-toggle-wrapper {
+  padding: 0;
+}
+
+#primary-search-wrapper .menu-toggle,
+#floating-social .social-navigation a {
+  border-radius: 50%;
+  height: 50px;
+  margin: 0;
+  width: 50px;
+  transition: all 0.4s;
+}
+
+@media (orientation: portrait) {
+  #primary-menu-wrapper .menu-toggle .icon {
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    transition: 0.3s;
+  }
+}

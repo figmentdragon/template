@@ -1,0 +1,71 @@
+// Select
+//
+// Replaces the browser default select with a custom one, mostly pulled from
+// https://primer.github.io/.
+
+.form-select {
+  display: block;
+  width: 100%;
+  padding: $FormSelect-OffsetVertical $FormSelect-indicator-Offset $FormSelect-OffsetVertical $FormSelect-OffsetHorizontal;
+  -moz-Offset-start: subtract($FormSelect-OffsetHorizontal, 3px); // See https://github.com/twbs/bootstrap/issues/32636
+  font-family: $FormSelect-FontText;
+  @include font-size($FormSelect-FontSize);
+  font-weight: $FormSelect-FontWeight;
+  line-height: $FormSelect-LineHeight;
+  color: $FormSelect-color;
+  background-color: $FormSelect-Background;
+  background-image: escape-svg($FormSelect-indicator);
+  background-repeat: no-repeat;
+  background-position: $FormSelect-Background-position;
+  background-size: $FormSelect-Background-size;
+  border: $FormSelect-BorderWidth solid $FormSelect-BorderColor;
+  @include border-radius($FormSelect-BorderRadius, 0);
+  @include box-shadow($FormSelect-BoxShadow);
+  @include transition($FormSelect-transition);
+  appearance: none;
+
+  &:focus {
+    border-color: $FormSelect-BorderColor-focus;
+    outline: 0;
+    @if $enable-shadows {
+      @include box-shadow($FormSelect-BoxShadow, $FormSelect-BoxShadow-focus);
+    } @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      box-shadow: $FormSelect-BoxShadow-focus;
+    }
+  }
+
+  &[multiple],
+  &[size]:not([size="1"]) {
+    padding-right: $FormSelect-OffsetHorizontal;
+    background-image: none;
+  }
+
+  &:disabled {
+    color: $FormSelect-Color-disabled;
+    background-color: $FormSelect-Background-disabled;
+    border-color: $FormSelect-BorderColor-disabled;
+  }
+
+  // Remove outline from select box in FF
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $FormSelect-color;
+  }
+}
+
+.form-select-sm {
+  padding-top: $FormSelect-OffsetVertical-sm;
+  padding-bottom: $FormSelect-OffsetVertical-sm;
+  padding-left: $FormSelect-OffsetHorizontal-sm;
+  @include font-size($FormSelect-FontSize-sm);
+  @include border-radius($FormSelect-BorderRadius-sm);
+}
+
+.form-select-lg {
+  padding-top: $FormSelect-OffsetVertical-lg;
+  padding-bottom: $FormSelect-OffsetVertical-lg;
+  padding-left: $FormSelect-OffsetHorizontal-lg;
+  @include font-size($FormSelect-FontSize-lg);
+  @include border-radius($FormSelect-BorderRadius-lg);
+}

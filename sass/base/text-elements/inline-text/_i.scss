@@ -1,0 +1,21 @@
+// I - The <i> HTML element represents a range of text that is set off from the normal text for some reason, such as idiomatic text, technical terms, taxonomical designations, among others. Historically, these have been presented using italicized type, which is the original source of the <i> naming of this element.
+
+i {
+  $iSize: 0.875rem;
+  $i--TextFont: $FontMain, italic;
+  $i-Height: $LineHeight;
+  font-family: $i--TextFont;
+	font-style: italic;
+	font-size: $iSize;
+  line-height: $i-Height;
+  min-width: 2rem;
+  min-height: 2rem;
+  background-color: transparent;
+  &:hover {
+    background-color: inherit;
+  }
+  em,
+  i {
+    font-weight: bolder;
+  }
+}

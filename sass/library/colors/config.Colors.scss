@@ -1,0 +1,296 @@
+// #COLORS -------------------------- * ------------------------------------ //
+@use "sass:color";
+
+// #FEATURES -------------------------------- //
+
+  $enable-gradients: true !default;
+  $enable-themeing: true !default;
+
+// #DEFINITIONS ---------------------------- //
+  $color-contrast-dark  : black !default;
+  $color-contrast-light : white !default;
+
+  $blue       : #0000FF !default; //info
+  $indigo     : #4B0082 !default; //footer
+  $purple     : #800080 !default; //card
+  $pink       : #FFC0CB !default; //code
+  $red        : #FF0000 !default; //danger
+  $orange     : #FFA500 !default; //warning
+  $yellow     : #FFFF00 !default;
+  $green      : #00FF00 !default; //success
+  $teal       : #008080 !default; //input
+  $cyan       : #00FFFF !default; //quote
+  $gray       : #93A5BE !default;
+  $darkgray   : #4E4E4E !default;
+
+// ->->-> utility colors
+  $white      : #E6EEF5 !default;
+  $black      : #000000 !default;
+  $success    : #00FF00 !default; //green
+  $info       : #0000FF !default; //blue
+  $warning    : #FFA500 !default; //orange
+  $danger     : #FF0000 !default; //red
+
+// ->->-> theme colors
+  $primary    : #FFFF00 !default;
+  $secondary  : #0000B2 !default;
+  $accent     : #B2B200 !default;
+  $tertiary   : #0000FF !default;
+
+// - #FUNCTIONS ------------------------------ //
+  @import "functions/contrast-ratio";
+  @import "functions/contrast";
+  @import "functions/luminance-list";
+  @import "functions/luminance";
+  @import "functions/make-color-map";
+  @import "functions/opaque-color";
+  @import "functions/shade-color";
+  @import "functions/shift-color";
+  @import "functions/tint-color";
+  @import "functions/to-rgb";
+  @import "functions/color-variant";
+
+  @function findColorInvert($color) {
+    @return color.invert($color, $weight: 31.5%);
+  }
+
+  @function CodeBackground($color) {
+    @return findColorInvert(translucentBackground($codeColor));
+  }
+
+  @function ColorDark($color) {
+    @if type-of($color) != "color" {
+      @return $color;
+    }
+     @return color.scale($color, $lightness: calc(-1 * $ColorInterval) * 4);
+  }
+
+  @function ColorLight($color) {
+    @if type-of($color) != "color" {
+      @return $color;
+    }
+    @return color.scale($color, $lightness: calc( $ColorInterval * 4));
+  }
+
+  @function ColorSoft($color) { @return color.scale(rgba($color, $TranslucentOpacity), $lightness: $MutedInterval); }
+  @function Background($color) { @return lighten($color, $BackgroundInterval); }
+  @function translucentBackground($color) { @return rgba($color, $TranslucentOpacity); }
+  @function Border($color) { @return darken($color, $BorderInterval); }
+  @function translucentBorder($color) { @return color.scale(rgba($color, $BorderOpacity), $lightness: $BorderInterval); }
+  @function Disabled($color) { @return rgba($color, $DisabledOpacity); }
+  @function Text($color) {
+    $weight: $TextInterval;
+      @return darken($color, $weight);
+        @return $color;
+  }
+  @function Title($color) { @return darken($color, $TitleInterval); }
+  @function Link($color) { @return darken($color, $LinkInterval); }
+@function Muted($color) {
+  $weight: $MutedInterval;
+    @return lighten($color, $weight);
+      @return rgba($color, $weight);
+}
+  @function Shadow($color){ @return color.scale(ColorDark($color), $lightness: calc(-1 * $ShadowInterval)); }
+
+// #VARIABLES -------------------------------- //
+// ->->-> element & component colors
+  $codeColor       : $pink !default;
+  $inputColor      : $teal !default;
+  $formColor       : $info !default;
+  $cardColor       : $purple !default;
+  $quoteColor      : $cyan !default;
+  $footerColor     : $indigo !default;
+
+  $borderColor     : $secondary !default;
+  $headingColor    : $secondary !default;
+
+  $backgroundColor : $accent !default;
+  $shadowColor     : $accent !default;
+
+  $linkColor       : $primary !default;
+  $navColor        : $tertiary !default;
+  $buttonColor     : $tertiary !default;
+  $hrColor         : $tertiary !default;
+
+  $muteColor       : $darkgray !default;
+
+  $BorderColor         : Border($borderColor);
+    $BoderColor-valid  : Border($success);
+    $BoderColor-invalid: Border($warning);
+    $BoderColor-error  : Border($danger);
+
+// - #MAPS ----------------------------------- //
+$colors             : ();
+@function create_color_map($color, $percentage, $opacity) {
+  $map : (
+    base : $color,
+    light : lighten($color, $percentage),
+    dark : darken($color, $percentage),
+    trans : transparentize($color, $opacity)
+  );
+  @return $map;
+}
+@each $key, $value in $colors {
+  $map : ();
+  $map : map-merge(
+    $map, (
+    $key : create_color_map($value, 15%, 0.5) ) );
+    $colors : map-merge($colors-map,$map);
+}
+
+$theme-colors       : ();
+@function create_color_map($theme-colors, $percentage, $opacity) {
+  $theme-colors-map : (
+    base            : $theme-colors,
+    light           : lighten($theme-colors, $percentage),
+    dark            : darken($theme-colors, $percentage),
+    trans           : transparentize($theme-colors, $opacity)
+  );
+  @return $theme-colors-map;
+}
+@each $key, $value in $theme-colors {
+  $map              : ();
+  $theme-colors     : map-merge($map, $key, create_color_map($value, 5%, 0.5));
+  $theme-colors-map : map-merge($theme-colors, $map);
+}
+
+$utilities-colors      : ();
+@function create_color_map($utilities-colors, $percentage, $opacity) {
+  $utilities-colors-map: (
+    base            : $utilities-colors,
+    light           : lighten($utilities-colors, $percentage),
+    dark            : shade-color($utilities-colors, $percentage),
+    trans           : transparentize($utilities-colors, $opacity)
+  );
+  @return $utilities-colors;
+}
+@each $key, $value in $utilities-colors {
+  $map              : ();
+  $utilities-colors    : map-merge($map, $key, create_color_map($value, 5%, 0.5));
+  $utilities-colors-map: map-merge($utilities-colors, $map);
+}
+
+$component-colors      : ();
+@function create_color_map($component-colors, $percentage, $opacity) {
+  $component-colors-map: (
+    base            : $component-colors,
+    light           : lighten($component-colors, $percentage),
+    dark            : shade-color($component-colors, $percentage),
+    trans           : transparentize($component-colors, $opacity)
+  );
+  @return $component-colors-map;
+}
+@each $key, $value in $component-colors {
+  $map              : ();
+  $component-colors    : map-merge($map, $key, create_color_map($value, 5%, 0.5));
+  $component-colors-map: map-merge($component-colors, $map);
+}
+
+@import "maps+lists/map-colors";
+
+// - #MIXINS --------------------------------- //
+  @import "mixins/mixin-colors-hue-rotate";
+  @import "mixins/mixin-colors-name-loop";
+  @import "mixins/mixin-colors-scheme";
+  @import "mixins/mixin-colors-tonal-transition";
+  @import "mixins/mixin-filter-duotone";
+  @import "mixins/mixin-filter-grayscale";
+
+  @import "mixins/mixin-elevation";
+
+/* - #HELPERS -------------------------------- */
+/* - #COMPONENTS ----------------------------- */
+
+  $ColorHighlight: darken(Background($hrColor), $BackgroundInterval);
+
+  $Text         : Text($darkgray) !default;
+  $SiteTitle    : Title($primary) !default;
+  $PageTitle    : Title($secondary) !default;
+  $PostTitle    : Title($accent) !default;
+  $HeadingTitle : ColorDark(Title($secondary)) !default;
+  $HeaderText   : Text($secondary);
+  $Text-screen  : color.invert($Text);
+
+  $Background: translucentBackground($primary);
+    $Background-screen: color.invert($Background);
+    $Background-valid: Background($success);
+    $Background-valid: Background($warning);
+
+  $WidgetTitle  : Title($secondary);
+  $WidgetText   : Text($tertiary);
+  $WidgetBackground : ColorDark($Background);
+
+
+
+
+  $InputBackground: Background($inputColor);
+  $InputBorder: Border($inputColor);
+    $translucent--InputBorder: translucentBorder($inputColor);
+  $InputText: Text($inputColor);
+  $InputShadow: Shadow($inputColor);
+
+
+
+  $FooterBackground               : Background($footerColor);
+    $translucent--FooterBackground: translucentBackground($FooterBackground);
+  $FooterBorder                   : Border($footerColor);
+    $translucent--FooterBorder    : translucentBorder($FooterBorder);
+  $FooterText                     : Text($footerColor);
+    $muted--FooterText            : Muted($FooterText);
+  $FooterShadow                   : Shadow($footerColor);
+    $soft--FooterShadow           : ColorSoft($FooterShadow);
+    $strong--FooterShadow         : ColorDark($FooterShadow);
+    $light--FooterShadow          : ColorLight($FooterShadow);
+
+  $MenuBackground               : Background($navColor);
+    $translucent--NavBackground: translucentBackground($MenuBackground);
+  $MenuBorder             : Border($navColor);
+    $translucent--NavBorder    : translucentBorder($MenuBorder);
+  $MenuText                     : Text($navColor);
+    $muted--NavText            : Muted($MenuText);
+    $MenuText-hover             : HoverShift($MenuText);
+  $MenuShadow                   : Shadow($navColor);
+    $soft--NavShadow           : ColorSoft($MenuShadow);
+    $strong--NavShadow         : ColorDark($MenuShadow);
+    $light--NavShadow          : ColorLight($MenuShadow);
+
+
+  $BorderColor-abbr: Border($hrColor);
+
+  $CardColor                 : $purple;
+    $CardBackground: Background($CardColor);
+    $CardBorder: Border($CardColor);
+    $CardText: Text($CardColor);
+    $CardShadow: Shadow($CardColor);
+
+  $QuoteColor                : $cyan;
+  $QuoteBackground: Background($QuoteColor);
+  $QuoteBorder: Border($QuoteColor);
+  $QuoteText: Text($QuoteColor);
+  $QuoteShadow: Shadow($QuoteColor);
+
+  $title--StrokeColor        : darken($tertiary, $TextInterval * 2);
+
+  @each $name, $color in $utilities-colors {
+    .alert-#{$name} {
+      color: Text($color);
+      background-color: Background($color);
+      border: $BorderWidth solid Border($color);
+      &:hover,
+      &:focus {
+        color: Text($black);
+        background-color: HoverShift($color);
+        border: $BorderWidth-focus solid HoverShift(Background($color));
+      }
+    }
+    .banner-#{$name} {
+      color: Text($color);
+      background-color: ColorLight(Background($color));
+      border: $BorderWidth solid ColorDark(Border($color));
+    }
+  }
+
+// - #SHEETS --------------------------------- //
+/* - #UTILITIES ------------------------------ */
+
+// - #VENDORS -------------------------------- //

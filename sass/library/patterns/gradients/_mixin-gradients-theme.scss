@@ -1,0 +1,4 @@
+@mixin gradient-theme($deg, $theme-color) {
+  background-image: linear-gradient($deg, $theme-color, white, transparent);
+  background-size: cover;
+}

@@ -1,0 +1,101 @@
+// Spinners
+
+// scss-docs-start Spinner--variables
+$SpinnerWidth:           2rem !default;
+$SpinnerHeight:          $SpinnerWidth !default;
+$Spinner--Vertical-align:  -.125em !default;
+$Spinner--BorderWidth:    .25em !default;
+$Spinner--AnimationSpeed: .75s !default;
+
+$SpinnerWidth-sm:        1rem !default;
+$Spinner--LineHeight-sm:       $SpinnerWidth-sm !default;
+$Spinner--BorderWidth-sm: .2em !default;
+// scss-docs-end Spinner--variables
+
+
+
+//
+// Rotating border
+//
+
+.Spinner--grow,
+.Spinner--border {
+  display: inline-block;
+  width: var(--#{$prefix}Spinner--width);
+  height: var(--#{$prefix}Spinner--height);
+  vertical-align: var(--#{$prefix}Spinner--Vertical-align);
+  // stylelint-disable-next-line property-disallowed-list
+  border-radius: 50%;
+  animation: var(--#{$prefix}Spinner--AnimationSpeed) linear infinite var(--#{$prefix}Spinner--Animation-name);
+}
+
+// scss-docs-start Spinner--border-keyframes
+@keyframes Spinner--border {
+  to { transform: rotate(360deg) #{"/* rtl:ignore */"}; }
+}
+// scss-docs-end Spinner--border-keyframes
+
+.Spinner--border {
+  // scss-docs-start Spinner--border-css-vars
+  --#{$prefix}Spinner--width: #{$SpinnerWidth};
+  --#{$prefix}Spinner--height: #{$SpinnerHeight};
+  --#{$prefix}Spinner--Vertical-align: #{$Spinner--Vertical-align};
+  --#{$prefix}Spinner--BorderWidth: #{$Spinner--BorderWidth};
+  --#{$prefix}Spinner--AnimationSpeed: #{$Spinner--AnimationSpeed};
+  --#{$prefix}Spinner--Animation-name: Spinner--border;
+  // scss-docs-end Spinner--border-css-vars
+
+  border: var(--#{$prefix}Spinner--BorderWidth) solid currentcolor;
+  border-right-color: transparent;
+}
+
+.Spinner--border-sm {
+  // scss-docs-start Spinner--border-sm-css-vars
+  --#{$prefix}Spinner--width: #{$SpinnerWidth-sm};
+  --#{$prefix}Spinner--height: #{$Spinner--LineHeight-sm};
+  --#{$prefix}Spinner--BorderWidth: #{$Spinner--BorderWidth-sm};
+  // scss-docs-end Spinner--border-sm-css-vars
+}
+
+//
+// Growing circle
+//
+
+// scss-docs-start Spinner--grow-keyframes
+@keyframes Spinner--grow {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: none;
+  }
+}
+// scss-docs-end Spinner--grow-keyframes
+
+.Spinner--grow {
+  // scss-docs-start Spinner--grow-css-vars
+  --#{$prefix}Spinner--width: #{$SpinnerWidth};
+  --#{$prefix}Spinner--height: #{$SpinnerHeight};
+  --#{$prefix}Spinner--Vertical-align: #{$Spinner--Vertical-align};
+  --#{$prefix}Spinner--AnimationSpeed: #{$Spinner--AnimationSpeed};
+  --#{$prefix}Spinner--Animation-name: Spinner--grow;
+  // scss-docs-end Spinner--grow-css-vars
+
+  background-color: currentcolor;
+  opacity: 0;
+}
+
+.Spinner--grow-sm {
+  --#{$prefix}Spinner--width: #{$SpinnerWidth-sm};
+  --#{$prefix}Spinner--height: #{$Spinner--LineHeight-sm};
+}
+
+@if $enable-reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    .Spinner--border,
+    .Spinner--grow {
+      --#{$prefix}Spinner--AnimationSpeed: #{$Spinner--AnimationSpeed * 2};
+    }
+  }
+}

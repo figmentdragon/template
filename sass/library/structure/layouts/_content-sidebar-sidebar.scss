@@ -1,0 +1,24 @@
+/* -- =CONTENT-SIDEBAR-SIDEBAR --------------- */
+#primary {
+  float: left;
+  width: calc(100% - calc(2 * $Spacer));
+}
+#content {
+  margin: 0 0 0 calc(-1 * calc(3 * $BaseUnit));
+  width: calc(100% - calc(2 * $Spacer));
+}
+#main {
+  float: left;
+  overflow: hidden;
+  width: 20%;
+}
+#secondary { /* Sidebar 1 */
+  margin: 0 0 0 -40%;
+}
+#tertiary { /* Sidebar 2 */
+  margin: 0 0 0 -20%;
+}
+#colophon {
+  clear: both;
+  width: calc(100% - calc(2 * $Spacer));
+}

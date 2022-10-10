@@ -1,0 +1,17 @@
+/* Map: secondary */
+$secondarys: () !default;
+$secondarys: map-merge(
+	(
+		'secondary-100': $secondary-100,
+		'secondary': $secondary,
+		'secondary-300': $secondary-300,
+		'secondary-400': $secondary-400,
+		'secondary-500': $secondary-500,
+		'secondary-600': $secondary-600,
+		'secondary-700': $secondary-700,
+		'secondary-800': $secondary-800,
+		'secondary': $secondary,
+		'secondary': $secondary
+	),
+	$secondarys
+);

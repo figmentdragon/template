@@ -1,0 +1,33 @@
+$TableColor: #118bee;
+
+th {
+	font-weight: bold;
+	background-color: Background($TableColor);
+	color: Text($TableColor);
+	text-align: inherit;
+}
+
+th,
+td {
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+  border-bottom: 2px solid translucentBorder($TableColor);
+  line-height: 15px;
+	border-width: 0 1px 1px 0;
+	border-right-style: $BorderStyle;
+	border-right-color: translucentBorder($BorderColor);
+	border-bottom-style: $BorderStyle;
+	border-bottom-color: translucentBorder($BorderColor);
+	:first-child {
+		padding-left: 0;
+	}
+
+	:last-child {
+		padding-right: 0;
+	}
+
+	:not(last-of-type) {
+		border-right: 1px $BorderStyle gray;
+	}
+}

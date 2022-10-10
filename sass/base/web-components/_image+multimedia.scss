@@ -1,0 +1,198 @@
+/* #IMAGE & MULTIMEDIA -------------- * ------------------------------------- *\
+ * -> HTML supports various multimedia resources such as images, audio, and video.
+ * -> Audio - The <audio> HTML element is used to embed sound content in documents. It may contain one or more audio sources, represented using the src attribute or the source element: the browser will choose the most suiTable one. It can also be the destination for streamed media, using a MediaStream.
+ * -> Img - The <img> HTML element embeds an image into the document.
+ * -> Video - The <video> HTML element embeds a media player which supports video playback into the document. You can use <video> for audio content as well, but the audio element may provide a more appropriate user experience.
+\* -------------------------------------------------------------------------- */
+
+video {
+  height: auto;
+}
+
+audio {
+  width: calc(100% - calc(2 * $Spacer));
+}
+
+// Correct & normalize alignment of undefined display
+audio,
+video {
+  display: inline-block;
+
+  vertical-align: baseline;
+
+  *display: inline;
+  *zoom: 1;
+}
+
+//Prevent modern browsers from displaying `audio` without controls.
+audio:not([controls]) {
+  display: none;
+
+  height: 0;
+}
+
+img {
+  display: block;
+  vertical-align: middle;
+  margin: 0.25rem auto;
+  height: auto;
+  border-style: none;
+
+  -ms-interpolation-mode: bicubic;
+  border: 0;
+  &.hide-img {
+  	line-height: 0;
+  	margin-left: 999em;
+  	padding: 0px;
+  }
+  .hide-img > * {
+  	margin-left: -9999px;
+  }
+  &.alignnone {
+    margin: 16px 0px;
+  	padding: 0px;
+  	display: inline;
+  }
+  &.aligncenter{
+    text-align: center;
+    margin: 16px auto;
+    padding: 0px
+  }
+  &.alignright {
+    margin: 16px 0px 16px 24px;
+    padding: 0px;
+  }
+  &.alignleft {
+    margin: 16px 24px 16px 0px;
+    padding: 0px;
+  }
+  /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+  &[class*="align"],
+  &[class*="wp-image-"],
+  &[class*="attachment-"] {
+    height: auto;
+  }
+  &.size-full { /* Prevent stretching of full-size images with height and width attributes in IE8 */
+    max-width: calc(100% - calc(2 * $Spacer));
+    width: auto;
+  }
+  &#wpstats {   /* hide WordPress Stats smiley */
+    width:0px;
+    height:0px;
+    overflow:hidden
+  }
+}
+
+img,
+video {
+  max-width: calc(100% - calc(2 * $Spacer));
+  height: auto;
+  border-radius: 5px;
+}
+
+img,
+object,
+embed {
+  max-width: calc(100% - calc(2 * $Spacer));
+	margin: 0px auto 0px;
+}
+
+/* Make sure embeds and iframes fit their containers */
+embed,
+iframe,
+object,
+video {
+  max-width: calc(100% - calc(2 * $Spacer));
+}
+
+// - #FEATURES ------------------------------- //
+// - #DEFINITIONS ---------------------------- //
+  $ThumbnailBackground:               translucentBackground($gray) !default;
+
+// - #FUNCTIONS ------------------------------ //
+// - #VARIABLES ------------------------------ //
+  $Thumbnail-Offset:                 $Offset !default;
+  $Thumbnail--BorderWidth:            $BorderWidth !default;
+  $Thumbnail-Border:            var(--#{$prefix}BorderColor) !default;
+  $Thumbnail--BorderRadius:           $BorderRadius !default;
+  $Thumbnail--BoxShadow:              $BoxShadow-sm !default;
+
+// - #MAPS ----------------------------------- //
+// - #MIXINS --------------------------------- //
+// -- =Responsive image
+// ->-> Keep images from scaling beyond the width of their parents.
+  @mixin img-fluid {
+  // -> Part 1: Set a maximum relative to the parent
+    max-width: calc(100% - calc(2 * $Spacer));
+  // -> Part 2: Override the height to auto, otherwise images will be stretched
+  // -> when setting a width and height attribute on the img element.
+    height: auto;
+  }
+
+/* - #HELPERS -------------------------------- */
+.img-fluid {
+  @include img-fluid();
+}
+
+/* Classic editor images */
+.entry-content img {
+	max-width: calc(100% - calc(2 * $Spacer));
+}
+
+.img {
+  &.scale-with-grid {
+    max-width: calc(100% - calc(2 * $Spacer));
+    height: auto;
+  }
+  // Responsive images
+  &-fluid {
+    @include img-fluid();
+  }
+  &-thumbnail {
+    padding: $Thumbnail-Offset;
+
+    border: $Thumbnail--BorderWidth $BorderStyle $Thumbnail-Border;
+    border-radius: $Thumbnail--BorderRadius;
+    background-color: $ThumbnailBackground;
+
+    @include box-shadow($Thumbnail--BoxShadow);
+    // Keep them at most 100% wide
+    @include img-fluid();
+  }
+
+  &.size-full,
+  &.size-large {
+    max-width: calc(100% - calc(2 * $Spacer));
+    height: auto;
+  }
+  &-lg {  height: 12rem; }
+  &-md {  height: 5rem; }
+  &-sm {  height: 3rem; }
+  &-xs {  height: 1.875rem; }
+  .full-image {  height: 100%; }
+}
+.gallery-feed {
+  img {
+    float: left;
+
+    width: 20%;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* - #COMPONENTS ----------------------------- */
+/* - #SHEETS --------------------------------- */
+/* - #UTILITIES ------------------------------ */
+
+/* - #VENDORS -------------------------------- */
+
+
+$image-path: "/images";
+$avatar-img-max-width: 100px;
+$Thumbnail-Offset: 0.25rem;
+$Thumbnail--bg: $Background;
+$Thumbnail-BorderWidth: 2px;
+$Thumbnail--border-color: $BorderColor;
+$Thumbnail--border-radius: 15px;
+$Thumbnail--box-shadow: null;

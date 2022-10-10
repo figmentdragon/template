@@ -1,0 +1,49 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+@use "sass:math";
+
+@import "html-elements/document";
+//@import "html-elements/html";
+//@import "html-elements/body";
+
+/**
+ * #CONTENT SECTIONING
+ *
+ * Content sectioning elements allow you to organize the document
+ * content into logical pieces. Use the sectioning elements to
+ * create a broad outline for your page content, including header
+ * and footer navigation, and heading elements to identify
+ * sections of content.
+ */
+
+//@import 'html-elements/content-sectioning/headings';
+//@import 'html-elements/content-sectioning/address';
+//@import 'html-elements/content-sectioning/article';
+//@import 'html-elements/content-sectioning/footer';
+//@import 'html-elements/content-sectioning/header';
+//@import 'html-elements/content-sectioning/main';
+
+//@import 'html-elements/content-sectioning/nav';
+//@import 'html-elements/content-sectioning/aside';
+//@import 'html-elements/content-sectioning/section';
+
+// Table content
+// The elements here are used to create and handle tabular data.
+
+//@import 'html-elements/table-content/table';
+//@import 'html-elements/table-content/caption';
+//@import 'html-elements/table-content/th+td';
+//@import 'html-elements/table-content/thead';
+
+//@import "text-elements/inline-text-semantics";
+
+//@import "text-elements/text-content";
+
+//@import "web-components/web-components";
+//@import "web-components/demarcating-edits";
+//@import "web-components/embedded-content";
+//@import "web-components/image+multimedia";
+//@import "web-components/scripting";
+//@import "web-components/svg+math";
+//@import "web-components/interactive";

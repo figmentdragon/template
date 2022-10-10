@@ -1,0 +1,168 @@
+/**
+* 1.0 POST + PAGE - Styles for posts and pages
+* --------------------------------------------- * --------------------------- */
+/* WordPress adds dynamic classes to the post elements as well. Here is a list of some of the most popular ones: --------------------------------------- */
+
+/* WP CSS - post_class() */
+.post,
+.page {
+  vertical-align: top;
+  white-space: normal;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.sticky { /* This class is required to pass ThemeCheck. */
+  /* Style your sticky posts. This class is applied to the same element as .hentry below. */
+  position: relative;
+
+  display: block;
+	&-post {
+		z-index: 1;
+    background: $ButtonBackground;
+		color: $Text;
+    font-weight: bold;
+    line-height: 1;
+    text-transform: uppercase;
+    top: -$Spacer;
+  }
+  .entry-date { display: none;  }
+  .entry-sticky { color: inherit;  }
+}
+
+.hentry { /* The wrapper for individual posts */
+  width: calc(100% - 2rem);
+  height: 100%;
+  margin: 0 0 1.5rem;
+  padding-top: $BaseUnit;
+  padding-bottom: 1.5rem;
+}
+
+.updated:not(.published) { display: none; }
+
+.no-results.not-found > *:first-child {
+	margin-bottom: calc(3 * $SpacerVertical);
+}
+
+.page { /* Generic page class added when a single page is displayed. */}
+
+.post { /* Generic post class added for single blog posts. */
+  &-id { /* Adds a class with ID for single items*/ }
+  &-content {  }
+  &:last-child { }
+}
+
+.post-thumbnail {
+ @extend %responsive--WidthDefault;
+ text-align: center;
+
+ .entry-header &,
+ .singular & { @extend %responsive--WidthWideNested; }
+
+ .wp-post-image {
+   display: block;
+   width: auto;
+   max-width: calc(100% - calc(2 * $Spacer));
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: calc( $SpacerVertical / 2);
+ }
+}
+
+.avatar { background: tint($gray, $ColorInterval * 4); }
+
+.attachment { /*Generic attachment class added to attachment pages. */
+  .content-sidebar,
+  .post-thumbnail { display: none; }
+  .entry-content { padding-top: 0; }
+  footer {
+    &.entry-meta { text-transform: none; }
+  }
+}
+
+.entry-attachment .attachment { margin-bottom: 1.5rem; }
+
+/**
+ * Entry Content
+ */
+.site-content,
+.page-content,
+.entry-content,
+.entry-summary { /* Container for the post body/excerpt text */
+  margin: $Spacer auto $Spacer auto;
+  font-family: $entry-content--FontFamily;
+  hyphens: auto;
+  word-wrap: break-word;
+  @include box-sizing(border-box);
+  text-align: right;
+  img {
+  }
+  .wp-smiley {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+
+    border: none;
+  }
+  a {
+    text-decoration: underline;
+    &:hover,
+    &.button {
+      text-decoration: none;
+    }
+  }
+}
+
+.entry-summary h1:first-child,
+.entry-summary h2:first-child,
+.entry-summary h3:first-child,
+.entry-summary h4:first-child,
+.entry-summary h5:first-child,
+.entry-summary h6:first-child { margin-top: 0; }
+
+
+// Styling for wp_link_pages.
+.page-links { /* Style the page numbers for multi-page posts (posts that have been split with <!--next-page -->. */
+  text-align: center;
+  .prev,
+  .next {
+    &.page-numbers {
+      background-color: translucentBackground($black);
+      color: Link($white);
+    }
+  }
+  .page-numbers,
+  .post-page-numbers {
+    transform: perspective(1px) translateZ(0);
+    overflow: hidden;
+    line-height: 1;
+    border-style: solid;
+    border-width: $BorderWidth;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: $medium--FontWeight;
+    &:first-child { }
+    &.current {
+      color: Text($white);
+    }
+    &:after {
+      background-color: $Background;
+      animation: scale-out-hor-left 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+      content: "";
+    }
+    &:hover {
+      border-color: $BorderColor;
+      color: white;
+      &:after {
+        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      }
+    }
+		@include on-event { &:after { } }
+  }
+  .caption {
+    &:after {
+      content: none;
+    }
+    @include on-event;
+  }
+}

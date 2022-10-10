@@ -1,0 +1,40 @@
+// Accordion
+
+$accordion--OffsetVertical: $BaseUnit;
+$accordion--OffsetHorizontal: 1.25rem;
+$accordion--TextColor: $Text;
+$accordionBackgroundColor: $Background;
+$accordion--BorderRadius: $BorderRadius;
+$accordion--BorderWidth: $BorderWidth;
+$accordion-Border: $BorderColor;
+$accordion-inner--BorderRadius: subtract(
+  $accordion--BorderRadius,
+  $accordion--BorderWidth
+);
+
+$accordion-body--OffsetVertical: $accordion--OffsetVertical;
+$accordion-body--OffsetHorizontal: $accordion--OffsetHorizontal;
+
+$accordion-button--OffsetVertical: $accordion--OffsetVertical;
+$accordion-button--OffsetHorizontal: $accordion--OffsetHorizontal;
+$accordion-button--TextColor: $accordion--TextColor;
+$accordion-ButtonBackgroundColor: $accordionBackgroundColor;
+$accordion-transition: color 0.15s ease-in-out,
+  background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+  shadow 0.15s ease-in-out, border-radius 0.15s ease;
+$accordion-button--activeBackgroundColor: Background($primary);
+$accordion-button--active--TextColor: shade--TextColor(gray, 10%);
+
+$accordion-button-focus-Border: Border($info);
+$accordion-button-focus--BoxShadow: inset 2px 2px 5px gray 0.075,
+  inset -3px -3px 7px black;
+
+$accordion-IconWidth: 1.25rem;
+$accordion-icon--TextColor: $accordion-button--TextColor;
+$accordion-icon--active--TextColor: $accordion-button--active--TextColor;
+$accordion-icon-transition: transform 0.2s ease-in-out;
+$accordion-icon-transform: rotate(-180deg);
+
+$accordion-ButtonIcon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon--TextColor}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon--active--TextColor}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+// scss-docs-end accordion-variables

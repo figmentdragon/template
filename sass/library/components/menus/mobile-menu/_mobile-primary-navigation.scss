@@ -1,0 +1,244 @@
+// Navigation
+[class^='main-navigation'],
+[class^='primary-navigation'] {
+  position: absolute;
+  top: $offset * 2;
+  right: 0;
+
+  font-size: 1em * $md;
+  line-height: 1.15;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  color: $link-color;
+
+  // Mobile menu closed
+  > [class$='menu-container'] {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    visibility: hidden;
+    // Height of the menu-button-container using font size, line height, and total padding, plus 5px so the focus of the first item is visible.
+
+    padding-top: calc(1.2 * 1em + 42px + 5px);
+    padding-right: $vertical--Offset;
+    padding-bottom: $horizontal--Offset;
+    padding-left: $vertical--Offset;
+
+    transition: all 0.15s ease-in-out;
+    transform: translateY($vertical--Offset);
+
+    opacity: 0;
+    background-color: $body-bg;
+
+    // Mobile menu open
+    [class$='open'] & {
+      > [class$='menu-container'] {
+        position: absolute;
+
+        visibility: visible;
+
+        transform: translateY(0);
+
+        opacity: 1;
+      }
+    }
+
+    [class$='navigation-open'] .has-logo.has-title-and-tagline & {
+    }
+
+    // Menu list wrapper
+    > div > [class='menu-wrapper'] {
+      position: relative;
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      max-width: none;
+      margin: 0;
+      padding-left: 0;
+
+      list-style: none;
+
+      li {
+        position: relative;
+
+        display: block;
+
+        width: calc(100% - calc(2 * $Spacer));
+      }
+
+      // Sub-menu buttons
+      [class='sub-menu-toggle'] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 44px;
+        height: calc((2 * $offset) + 1.15 ) * 1px;
+        padding: 0;
+
+        color: currentColor;
+        border: none;
+        background: transparent;
+
+
+        &:focus {
+          outline: 2px solid hover-shade($link-color);
+        }
+
+        .icon-plus,
+        .icon-minus {
+          display: flex;
+          align-items: center;
+
+          height: 100%;
+
+          svg {
+            margin-top: -1px;
+          }
+        }
+
+        .icon-minus {
+          display: none;
+        }
+
+        // When the sub-menu is open, display the minus icon
+        &[aria-expanded="true"] {
+          .icon-minus {
+            display: flex;
+          }
+
+          .icon-plus {
+            display: none;
+          }
+        }
+      }
+
+      // Sub-menus Flyout
+      > li > .sub-menu {
+        position: relative;
+      }
+    }
+
+    // Top-level Item Link Colors
+    .primary-menu > .menu-item:hover > a {
+      color: $link-hover-color;
+    }
+
+    .primary-menu-container {
+    }
+
+    // Menu Item Link
+    a {
+      font-family: $accent-font;
+      font-size: 1em * $md;
+      font-weight: bold;
+
+      display: block;
+
+      padding: $offset 0;
+
+      text-decoration: none;
+      + svg {
+        fill: $link-color;
+      }
+
+      &:hover,
+      &:link,
+      &:visited {
+        color: $link-hover-color;
+      }
+
+      &:hover {
+        text-decoration: underline;
+
+        text-decoration-style: dotted;
+      }
+
+      &:focus {
+        position: relative;
+        z-index: 99999; // Ensure focus styles appear above absolute positioned elements
+
+        outline--Offset: 0;
+
+        text-decoration-thickness: 2px;
+      }
+    }
+
+    .current-menu-item > a:first-child,
+    .current_page_item > a:first-child {
+      text-decoration: underline;
+
+      text-decoration-style: solid;
+
+      &:hover {
+        text-decoration: underline;
+
+        text-decoration-style: dotted;
+      }
+    }
+
+    // Sub-menu depth indicators + text styles
+    .sub-menu {
+      margin: 0;
+      margin-left: $MenuOffset;
+      padding: 0;
+
+      list-style: none;
+
+      border: 1px solid var(--Nav--border-color);
+
+      .sub-menu {
+        border: none;
+      }
+      .menu-item {
+        > a {
+          font-size: var(--NavSize-mobile-submenu);
+          font-style: var(--Nav--font-style-mobile-submenu);
+
+          display: block;
+
+          padding: calc(1.25 * $MenuOffset) $MenuOffset;
+        }
+      }
+    }
+
+    // Show top-level sub-menu indicators above mobile-breakpoint-only
+    .menu-item-has-children {
+      > .svg-icon {
+        display: none;
+      }
+    }
+
+    .menu-item-description {
+      font-size: $xs;
+      line-height: 1.7;
+
+      display: block;
+      clear: both;
+
+      text-transform: none;
+
+      > span {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+// Close button Animation for when a custom logo is present.
+@keyframes $transition-button {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

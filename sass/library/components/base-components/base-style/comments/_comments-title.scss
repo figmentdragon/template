@@ -1,0 +1,123 @@
+/* Comment Title */
+.comment-reply-title,
+.comments-title {
+  font-weight: $bold-FontWeight;
+  font-size: $FontSize-h5;
+  margin: 0 0 1.25rem;
+
+	letter-spacing: $h5--LetterSpacing;
+  text-transform: uppercase;
+}
+
+.comment-reply-title {
+  line-height: 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 0;
+  margin-bottom: .3125rem;
+
+  text-align: center;
+  letter-spacing: $HeadingSpacing;
+  text-transform: uppercase;
+  small {
+    position: relative;
+    top: calc($BaseUnit / 2);
+
+    font-size: calc($sm * $FontSize);
+
+    display: inline-block;
+
+    float: right;
+
+    padding-left: 30px;
+
+    text-align: right;
+    a {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+
+      font-family: $FontTertiary;
+      font-size: calc($sm * $FontSize);
+      font-weight: normal;
+      font-style: normal;
+      letter-spacing: normal;
+      float: right;
+      overflow: hidden;
+
+      width: 1.5rem;
+      height: 1.5rem;
+
+      letter-spacing: normal;
+
+      border: 0;
+      @include on-event {
+        &:before {
+          font-size: 2rem;
+
+          content: "\f405";
+        }
+      }
+    }
+  }
+}
+
+/* Nested comment reply title */
+.comment .comment-respond .comment-reply-title { font-size: $FontSize-lg; }
+
+.comment-reply-link {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  line-height: 1;
+  font-weight: 700;
+
+  display: inline-block;
+
+  margin-top: 21px;
+
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  &:hover,
+  &:focus {
+    outline: 0;
+  }
+  &:before {
+    margin-right: 2px;
+
+    content: "\f412";
+  }
+}
+
+.comment-reply-login:before {
+  margin-right: 2px;
+
+  content: "\f412";
+}
+
+#respond {
+  margin-top: 40px;
+}
+
+#reply-title,
+.comments-title {
+  font-size: 28px;
+
+  text-transform: uppercase;
+}
+
+#comments-title {
+  margin: 4px 0 8px 0;
+  padding: 4px 0 8px 0;
+
+  text-transform: uppercase;
+}
+
+
+#cancel-comment-reply,
+#cancel-comment-reply-link {
+  a {
+  }
+}

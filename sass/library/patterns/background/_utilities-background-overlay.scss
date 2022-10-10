@@ -1,0 +1,35 @@
+// Backgrounds Overlay
+@each $color, $value in $theme-colors {
+  .overlay-#{$color} {
+    &:before {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+
+      width: calc(100% - calc(2 * $Spacer));
+      height: 100%;
+
+      content: "";
+
+      opacity: 0.5;
+      background: $value;
+    }
+  }
+  .overlay-soft-#{$color} {
+    &:before {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+
+      width: calc(100% - calc(2 * $Spacer));
+      height: 100%;
+
+      content: "";
+
+      opacity: 0.3;
+      background: $value;
+    }
+  }
+}

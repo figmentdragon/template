@@ -1,0 +1,17 @@
+/* Map: orange */
+$oranges: () !default;
+$oranges: map-merge(
+	(
+		'orange-100': $orange-100,
+		'orange': $orange,
+		'orange-300': $orange-300,
+		'orange-400': $orange-400,
+		'orange-500': $orange-500,
+		'orange-600': $orange-600,
+		'orange-700': $orange-700,
+		'orange-800': $orange-800,
+		'orange': $orange,
+		'orange': $orange
+	),
+	$oranges
+);

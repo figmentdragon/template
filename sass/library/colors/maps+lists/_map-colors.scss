@@ -1,0 +1,34 @@
+// Color Maps
+  $color          : () !default;
+  $colors          : (
+    'blue'         : $blue,
+    'indigo'       : $indigo,
+    'purple'       : $purple,
+    'pink'         : $pink,
+    'red'          : $red,
+    'orange'       : $orange,
+    'yellow'       : $yellow,
+    'green'        : $green,
+    'teal'         : $teal,
+    'cyan'         : $cyan,
+    'gray'         : $gray,
+    'black'        : $black,
+    'darkgray'     : $darkgray,
+    'white'        : $white
+  );
+
+  $theme-colors    : () !default;
+  $theme-colors    : (
+    'primary'      : $primary,
+    'secondary'    : $secondary,
+    'accent'       : $accent,
+    'tertiary'     : $tertiary
+  );
+
+  $utilities-colors: () !default;
+  $utilities-colors: map-merge((
+    'success'      : $success,
+    'info'         : $info,
+    'warning'      : $warning,
+    'danger'       : $danger
+  ), $utilities-colors);

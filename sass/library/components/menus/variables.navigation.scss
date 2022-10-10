@@ -1,0 +1,16 @@
+$MenuFont: $FontAccent;
+$MenuFont-mobile: $FontTertiary;
+$MenuSize: #{1.25 * $FontSize};
+$MenuSize-submenu: $FontSize * 1.05;
+$MenuSize-mobile: #{0.75 * $FontSize};
+$MenuSize-mobile--submenu: #{0.5 * $FontSize};
+$MenuSize-button: $FontSize * .25;
+$MenuStyle: normal;
+$MenuStyle-mobile--submenu: normal;
+$MenuWeight: normal;
+$MenuWeight--button: 500;
+$MenuLink: Link($navColor);
+$MenuLink--hover: HoverShift($MenuLink);
+$MenuText: Text($navColor);
+$MenuOffset: calc(0.66 * $Offset);
+$MenuBorder: Border($navColor);

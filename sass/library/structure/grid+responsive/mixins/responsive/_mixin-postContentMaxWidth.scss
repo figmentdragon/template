@@ -1,0 +1,11 @@
+/* Calculates maximum width for post content */
+@mixin postContentMaxWidth() {
+
+	@include media(Tablet) {
+		max-width: $Tablet--ContentWidth;
+	}
+
+	@include media(desktop) {
+		max-width: $desktop--ContentWidth;
+	}
+}

@@ -1,0 +1,57 @@
+.author-bio {
+  position: relative;
+
+	margin: calc(2 * .25rem) .25rem .25rem;
+
+  @include media(Tablet) {
+    margin: calc(3 * .25rem) .25rem;
+  }
+
+  @include media(desktop) {
+    margin: calc(3 * .25rem) .25rem;
+  }
+  .site-main > article > & { }
+
+  // Avatars are optional and can be turned off.
+  &.show-avatars {
+    .avatar {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .author-bio-content {
+			display: inline-block;
+			padding-left: $OffsetVertical;
+			max-width: calc($responsive--width--AlignDefault - 90px);
+    }
+  }
+  .author-bio-content {
+    .author-title {
+      @include post-section-dash;
+			display: inline;
+    }
+    .author-description {
+      display: inline;
+			margin-top: calc(0.5 * $SpacerHorizontal);
+			margin-bottom: calc(0.5 * $SpacerHorizontal);
+			padding-top: calc(2 * $Offset);
+      p{
+				margin-bottom: calc(2 * .25rem);
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			a {
+				text-decoration: underline;
+				@include on-event{
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+			.author-link {
+				display: inline-block;
+				&:hover { }
+			}
+		}
+	}
+}

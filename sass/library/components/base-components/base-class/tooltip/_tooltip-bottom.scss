@@ -1,0 +1,16 @@
+/* rtl:end:ignore */
+
+.Tooltip--bottom {
+  padding: $Tooltip--ArrowHeight 0;
+
+  .Tooltip--arrow {
+    top: 0;
+
+    &::before {
+      bottom: -1px;
+
+      border-width: 0 calc($Tooltip--ArrowWidth * 0.5) $Tooltip--ArrowHeight;
+      border-bottom--TextColor: $tooltipBackgroundColor;
+    }
+  }
+}

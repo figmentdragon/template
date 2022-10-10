@@ -1,0 +1,93 @@
+$EntrySize-header: $FontSize-h3;
+$EntryHeaderText: Title($accent);
+$EntryHeaderLink: $LinkText;
+$EntryHeaderLink-hover: HoverShift($LinkText);
+$EntryHeaderLink-focus: FocusShade($LinkText);
+
+.entry-header { /* Container for the entry title, byline and post date */
+	$LinkText: currentColor;
+	$LinkText-hover: shade--TextColor(black, $primary, $ColorInterval);
+	$focus--LinkColor: $secondary;
+	$FontSize: $h2Size;
+
+  color: $EntryHeaderText;
+  font-size: $EntrySize-header;
+  a { @include on-event; }
+	.entry-title {
+		overflow-wrap: break-word;
+	}
+	.byline { /* By default, bylines are hidden */
+	  display: none;
+	}
+	.post-date, .entry-date{
+		position: relative;
+		z-index: 8;
+		display: block;
+
+		overflow: hidden;
+
+		margin: 0;
+		padding: 8px 0;
+	}
+	p {
+		margin: 0;
+		padding: 0;
+		&.align-left { padding-right: 12px;
+		}
+		&.align-right { padding-left: 12px;
+		}
+	}
+}
+
+.post-title,
+.entry-title { /* Post titles */
+
+  color: $title-post--TextColor;
+  -webkit-text-stroke: 1px $text--StrokeColor;
+  overflow-wrap: break-word;
+
+  a {
+    color: $LinkText;
+    @include on-event {
+			text-underline--Offset: 0.15em;
+		}
+  }
+}
+
+.singular .entry-title,
+.singular .post-title { font-size: $FontSize-h3; }
+
+h3.heading,
+h3.entry-title {
+  line-height: $HeadingHeight;
+  font-weight: bold;
+  -webkit-text-stroke: 1px $text--StrokeColor;
+  margin: 0;
+}
+
+.page-title { /* Page titles */
+  font-weight: bolder;
+  text-transform: uppercase;
+
+  color: $secondary-600;
+	span {
+		padding: 5px 0;
+		position: relative;
+		display: inline-block;
+
+		&:after{
+			background-color: $Background;
+			content: "";
+			display: block;
+			position: absolute;
+			width: 50px;
+	    height: 3px;
+	    left: 0;
+	    bottom: -2px;
+		}
+  }
+}
+
+body.search .page-title,
+body.archive .page-title { /* Optional, if you want your page titles to look different on search and archive pages */
+}

@@ -1,0 +1,16 @@
+/* -- =BUTTON SIZE ----------------- */
+
+@mixin button-size($OffsetVertical, $OffsetHorizontal, $FontSize, $BorderRadius) {
+  --#{$prefix}Button-OffsetVertical: #{$OffsetVertical};
+  --#{$prefix}Button-OffsetHorizontal: #{$OffsetHorizontal};
+  @include rfs($FontSize, --#{$prefix}ButtonSize);
+  --#{$prefix}ButtonRadius: #{$BorderRadius};
+}
+
+.button-lg {
+  @include button-size($Button-OffsetVertical-lg, $Button-OffsetHorizontal-lg, $ButtonSize-lg, $ButtonRadius-lg);
+}
+
+.button-sm {
+  @include button-size($Button-OffsetVertical-sm, $Button-OffsetHorizontal-sm, $ButtonSize-sm, $ButtonRadius-sm);
+}

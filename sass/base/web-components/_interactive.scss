@@ -1,0 +1,64 @@
+// Interactive
+
+// The <details> HTML element creates a disclosure widget in which information is visible only when the widget is toggled into an "open" state. A summary or label must be provided using the summary element.
+details {
+	background-color: Background($accent);
+	border: 1px solid $BorderColor;
+	border-radius: 5px;
+	margin-bottom: $BaseUnit;
+	display: block;
+	padding: 0.7rem 1rem;
+	cursor: pointer;
+	font-weight: bold;
+	summary {
+		font-weight: bold;
+		cursor: pointer;
+		&:first-of-type {
+			display: list-item;
+		}
+	}
+	&[open] {
+		padding-bottom: .75rem;
+		summary {
+			margin-bottom: 6px;
+		}
+	}
+	&[open] > summary {
+	  margin-bottom: 0.5rem;
+		+ * {
+	  	margin-top: 0;
+		}
+	}
+	&[open] > :last-child {
+	  margin-bottom: 0;
+	}
+}
+
+// The <dialog> HTML element represents a dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow.
+dialog {
+	border: 1px solid Border($secondary);
+	border-radius: $BorderRadius;
+	box-shadow: $BoxShadow $ShadowColor;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	z-index: 999;
+}
+
+
+// The <summary> HTML element specifies a summary, caption, or legend for a details element's disclosure box. Clicking the <summary> element toggles the state of the parent <details> element open and closed.
+summary {
+  display: list-item;
+	cursor: pointer;
+  font-weight: bold;
+  padding: 0.7rem 1rem;
+  margin: -0.7rem -1rem;
+  word-break: break-all;
+}
+
+*[hidden],
+[hidden] {
+  display: none !important;
+}

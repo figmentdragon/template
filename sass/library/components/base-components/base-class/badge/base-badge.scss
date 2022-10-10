@@ -1,0 +1,65 @@
+// Badge Base
+//
+$Badge-Size        : calc($FontSize - 0.25);
+$Badge---FontWeight      : bold;
+$Badge---TextColor       : null;
+$Badge---OffsetVertical  : calc($BaseUnit / 3);
+$Badge---OffsetHorizontal: calc($BaseUnit / 2.5);
+$Badge---BorderRadius    : $BorderRadius;
+$Badge---BorderWidth     : 
+
+@mixin Badge--variant($bg) {
+  @at-root a#{&} {
+    @include on-event {
+      color: Text($value);
+      background-color: Background($value);
+    }
+  }
+}
+
+.ba
+@each $name, $value in $utilities-colors {
+  .badge--#{$name} {
+
+  }
+}
+
+.badge {
+	display: inline-block;
+	padding: $Badge---OffsetVertical $Badge---OffsetHorizontal;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	//@include font-size($Badge-Size);
+	font-weight: $Badge---FontWeight;
+
+	border-radius: $Badge---BorderRadius;
+
+  @each $name, $value in $utilities-colors {
+    &-#{$name} {
+      color: Text($value);
+      background-color: Background($value);
+      border-color: Border($value);
+    }
+    &.#{$name}-gradient {
+      color: findInvertColor(Text($value));
+      border: findInvertColor(Border($value));
+	     @include gradient-background($value);
+     }
+   }
+
+	// Empty badges collapse automatically
+	&:empty {
+		display: none;
+	}
+}
+
+// Quick fix for badges in buttons
+.button .badge {
+	position: relative;
+	top: -1px;
+}
+
+
+@import 'Badge--variant';

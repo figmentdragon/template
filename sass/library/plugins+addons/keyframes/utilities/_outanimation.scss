@@ -1,0 +1,112 @@
+/*****************
+* Out Animations *
+*****************/
+
+.bounceOut.goAway {
+    -webkit-Animation-name: bounceOut;
+    Animation-name: bounceOut;
+}
+
+
+.bounceOutUp.goAway {
+    -webkit-Animation-name: bounceOutUp;
+    Animation-name: bounceOutUp;
+}
+
+.bounceOutDown.goAway {
+    -webkit-Animation-name: bounceOutDown;
+    Animation-name: bounceOutDown;
+}
+
+
+.bounceOutLeft.goAway {
+    -webkit-Animation-name: bounceOutLeft;
+    Animation-name: bounceOutLeft;
+}
+
+
+.bounceOutRight.goAway {
+    -webkit-Animation-name: bounceOutRight;
+    Animation-name: bounceOutRight;
+}
+
+
+.fadeOut.goAway {
+    -webkit-Animation-name: fadeOut;
+    Animation-name: fadeOut;
+}
+
+.fadeOutUp.goAway {
+    -webkit-Animation-name: fadeOutUp;
+    Animation-name: fadeOutUp;
+}
+
+.fadeOutDown.goAway {
+    -webkit-Animation-name: fadeOutDown;
+    Animation-name: fadeOutDown;
+}
+
+.fadeOutLeft.goAway {
+    -webkit-Animation-name: fadeOutLeft;
+    Animation-name: fadeOutLeft;
+}
+
+
+.fadeOutRight.goAway {
+    -webkit-Animation-name: fadeOutRight;
+    Animation-name: fadeOutRight;
+}
+
+.flipOutX.goAway {
+    -webkit-Animation-name: flipOutX;
+    -webkit-backface-visibility: visible !important;
+    Animation-name: flipOutX;
+    backface-visibility: visible !important;
+}
+
+.flipOutY {
+    -webkit-backface-visibility: visible !important;
+    -webkit-Animation-name: flipOutY;
+    backface-visibility: visible !important;
+    Animation-name: flipOutY;
+}
+
+.lightSpeedOutRight.goAway {
+    -webkit-Animation-name: lightSpeedOutRight;
+    Animation-name: lightSpeedOutRight;
+    -webkit-animation-timing-function: ease-in;
+    animationTiming-function: ease-in;
+}
+
+.lightSpeedOutLeft.goAway {
+    -webkit-Animation-name: lightSpeedOutLeft;
+    Animation-name: lightSpeedOutLeft;
+    -webkit-animation-timing-function: ease-in;
+    animationTiming-function: ease-in;
+
+}
+
+.rotateOut.goAway {
+    -webkit-Animation-name: rotateOut;
+    Animation-name: rotateOut;
+}
+
+
+.rotateOutUpLeft.goAway {
+    -webkit-Animation-name: rotateOutUpLeft;
+    Animation-name: rotateOutUpLeft;
+}
+
+.rotateOutDownLeft.goAway {
+    -webkit-Animation-name: rotateOutDownLeft;
+    Animation-name: rotateOutDownLeft;
+}
+.rotateOutUpRight.goAway {
+    -webkit-Animation-name: rotateOutUpRight;
+    Animation-name: rotateOutUpRight;
+}
+
+.rollOut.goAway {
+    -webkit-Animation-name: rollOut;
+    Animation-name: rollOut;
+}

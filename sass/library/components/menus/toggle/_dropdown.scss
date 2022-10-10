@@ -1,0 +1,248 @@
+// The dropdown wrapper (`<div>`)
+.dropup,
+.dropend,
+.dropdown,
+.dropstart,
+.dropup-center,
+.dropdown-center {
+  position: relative;
+}
+
+.dropdown-toggle {
+  white-space: nowrap;
+  outline: 0;
+  // Generate the caret automatically
+  @include caret();
+}
+
+// The dropdown menu
+.dropdown-menu {
+  // scss-docs-start Dropdown--css-vars
+  --#{$prefix}Dropdown--min-width: #{$Dropdown--min-width};
+  --#{$prefix}Dropdown--OffsetHorizontal: #{$Dropdown--OffsetHorizontal};
+  --#{$prefix}Dropdown--OffsetVertical: #{$Dropdown--OffsetVertical};
+  --#{$prefix}Dropdown--Spacer: #{$Dropdown--Spacer};
+  @include rfs($DropdownSize, --#{$prefix}DropdownSize);
+  --#{$prefix}DropdownText: #{$DropdownText}; // stylelint-disable-line custom-property-empty-line-before
+  --#{$prefix}Dropdown--bg: #{$Dropdown--bg};
+  --#{$prefix}Dropdown--border-color: #{$Dropdown--border-color};
+  --#{$prefix}Dropdown--border-radius: #{$Dropdown--border-radius};
+  --#{$prefix}Dropdown--border-width: #{$Dropdown--border-width};
+  --#{$prefix}Dropdown--inner-border-radius: #{$Dropdown--inner-border-radius};
+  --#{$prefix}Dropdown--divider-bg: #{$Dropdown--divider-bg};
+  --#{$prefix}Dropdown--divider-margin-y: #{$Dropdown--divider-margin-y};
+  --#{$prefix}Dropdown--box-shadow: #{$Dropdown--box-shadow};
+  --#{$prefix}Dropdown--link-color: #{$Dropdown--link-color};
+  --#{$prefix}Dropdown--link-hover-color: #{$Dropdown--link-hover-color};
+  --#{$prefix}Dropdown--link-hover-bg: #{$Dropdown--link-hover-bg};
+  --#{$prefix}Dropdown--link-active-color: #{$Dropdown--link-active-color};
+  --#{$prefix}Dropdown--link-active-bg: #{$Dropdown--link-active-bg};
+  --#{$prefix}Dropdown--link-disabled-color: #{$Dropdown--link-disabled-color};
+  --#{$prefix}Dropdown--item--OffsetHorizontal: #{$Dropdown--item--OffsetHorizontal};
+  --#{$prefix}Dropdown--item--OffsetVertical: #{$Dropdown--item--OffsetVertical};
+  --#{$prefix}Dropdown--header-color: #{$Dropdown--header-color};
+  --#{$prefix}Dropdown--header--OffsetHorizontal: #{$Dropdown--header--OffsetHorizontal};
+  --#{$prefix}Dropdown--header--OffsetVertical: #{$Dropdown--header--OffsetVertical};
+  // scss-docs-end Dropdown--css-vars
+
+  position: absolute;
+  z-index: $zindex-dropdown;
+  display: none; // none by default, but block on "open" of the menu
+  min-width: var(--#{$prefix}Dropdown--min-width);
+  padding: var(--#{$prefix}Dropdown--OffsetVertical) var(--#{$prefix}Dropdown--OffsetHorizontal);
+  margin: 0; // Override default margin of ul
+  @include font-size(var(--#{$prefix}DropdownSize));
+  color: var(--#{$prefix}DropdownText);
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  list-style: none;
+  background-color: var(--#{$prefix}Dropdown--bg);
+  background-clip: padding-box;
+  border: var(--#{$prefix}Dropdown--border-width) solid var(--#{$prefix}Dropdown--border-color);
+  @include border-radius(var(--#{$prefix}Dropdown--border-radius));
+  @include box-shadow(var(--#{$prefix}Dropdown--box-shadow));
+
+  &[data-bs-popper] {
+    top: 100%;
+    left: 0;
+    margin-top: var(--#{$prefix}Dropdown--Spacer);
+  }
+}
+
+// scss-docs-start responsive-breakpoints
+// We deliberately hardcode the `bs-` prefix because we check
+// this custom property in JS to determine Popper's positioning
+
+@each $breakpoint in map-keys($media-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $media-breakpoints);
+
+    .dropdown-menu#{$infix}-start {
+      --bs-position: start;
+
+      &[data-bs-popper] {
+        right: auto;
+        left: 0;
+      }
+    }
+
+    .dropdown-menu#{$infix}-end {
+      --bs-position: end;
+
+      &[data-bs-popper] {
+        right: 0;
+        left: auto;
+      }
+    }
+  }
+}
+// scss-docs-end responsive-breakpoints
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+// Just add .dropup after the standard .dropdown class and you're set.
+.dropup {
+  .dropdown-menu[data-bs-popper] {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: var(--#{$prefix}Dropdown--Spacer);
+  }
+
+  .dropdown-toggle {
+    @include caret(up);
+  }
+}
+
+.dropend {
+  .dropdown-menu[data-bs-popper] {
+    top: 0;
+    right: auto;
+    left: 100%;
+    margin-top: 0;
+    margin-left: var(--#{$prefix}Dropdown--Spacer);
+  }
+
+  .dropdown-toggle {
+    @include caret(end);
+    &::after {
+      vertical-align: 0;
+    }
+  }
+}
+
+.dropstart {
+  .dropdown-menu[data-bs-popper] {
+    top: 0;
+    right: 100%;
+    left: auto;
+    margin-top: 0;
+    margin-right: var(--#{$prefix}Dropdown--Spacer);
+  }
+
+  .dropdown-toggle {
+    @include caret(start);
+    &::before {
+      vertical-align: 0;
+    }
+  }
+}
+
+
+// Dividers (basically an `<hr>`) within the dropdown
+.dropdown-divider {
+  height: 0;
+  margin: var(--#{$prefix}Dropdown--divider-margin-y) 0;
+  overflow: hidden;
+  border-top: 1px solid var(--#{$prefix}Dropdown--divider-bg);
+  opacity: 1; // Revisit in v6 to de-dupe styles that conflict with <hr> element
+}
+
+// Links, buttons, and more within the dropdown menu
+//
+// `<button>`-specific styles are denoted with `// For <button>s`
+.dropdown-item {
+  display: block;
+  width: calc(100% - calc(2 * $Spacer)); // For `<button>`s
+  padding: var(--#{$prefix}Dropdown--item--OffsetVertical) var(--#{$prefix}Dropdown--item--OffsetHorizontal);
+  clear: both;
+  font-weight: $font-weight-normal;
+  color: var(--#{$prefix}Dropdown--link-color);
+  text-align: inherit; // For `<button>`s
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: nowrap; // prevent links from randomly breaking onto new lines
+  background-color: transparent; // For `<button>`s
+  border: 0; // For `<button>`s
+
+  // Prevent dropdown overflow if there's no padding
+  // See https://github.com/twbs/bootstrap/pull/27703
+  @if $Dropdown--OffsetVertical == 0 {
+    &:first-child {
+      @include border-top-radius(var(--#{$prefix}Dropdown--inner-border-radius));
+    }
+
+    &:last-child {
+      @include border-bottom-radius(var(--#{$prefix}Dropdown--inner-border-radius));
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--#{$prefix}Dropdown--link-hover-color);
+    text-decoration: if($link-hover-decoration == underline, none, null);
+    @include gradient-bg(var(--#{$prefix}Dropdown--link-hover-bg));
+  }
+
+  &.active,
+  &:active {
+    color: var(--#{$prefix}Dropdown--link-active-color);
+    text-decoration: none;
+    @include gradient-bg(var(--#{$prefix}Dropdown--link-active-bg));
+  }
+
+  &.disabled,
+  &:disabled {
+    color: var(--#{$prefix}Dropdown--link-disabled-color);
+    pointer-events: none;
+    background-color: transparent;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+// Dropdown section headers
+.dropdown-header {
+  display: block;
+  padding: var(--#{$prefix}Dropdown--header--OffsetVertical) var(--#{$prefix}Dropdown--header--OffsetHorizontal);
+  margin-bottom: 0; // for use with heading elements
+  @include font-size($FontSize-sm);
+  color: var(--#{$prefix}Dropdown--header-color);
+  white-space: nowrap; // as with > li > a
+}
+
+// Dropdown text
+.dropdown-item-text {
+  display: block;
+  padding: var(--#{$prefix}Dropdown--item--OffsetVertical) var(--#{$prefix}Dropdown--item--OffsetHorizontal);
+  color: var(--#{$prefix}Dropdown--link-color);
+}
+
+// Dark dropdowns
+.dropdown-menu-dark {
+  // scss-docs-start Dropdown--dark-css-vars
+  --#{$prefix}DropdownText: #{$Dropdown--dark-color};
+  --#{$prefix}Dropdown--bg: #{$Dropdown--dark-bg};
+  --#{$prefix}Dropdown--border-color: #{$Dropdown--dark-border-color};
+  --#{$prefix}Dropdown--box-shadow: #{$Dropdown--dark-box-shadow};
+  --#{$prefix}Dropdown--link-color: #{$Dropdown--dark-link-color};
+  --#{$prefix}Dropdown--link-hover-color: #{$Dropdown--dark-link-hover-color};
+  --#{$prefix}Dropdown--divider-bg: #{$Dropdown--dark-divider-bg};
+  --#{$prefix}Dropdown--link-hover-bg: #{$Dropdown--dark-link-hover-bg};
+  --#{$prefix}Dropdown--link-active-color: #{$Dropdown--dark-link-active-color};
+  --#{$prefix}Dropdown--link-active-bg: #{$Dropdown--dark-link-active-bg};
+  --#{$prefix}Dropdown--link-disabled-color: #{$Dropdown--dark-link-disabled-color};
+  --#{$prefix}Dropdown--header-color: #{$Dropdown--dark-header-color};
+
+}

@@ -1,0 +1,71 @@
+// Responsive menubar
+//
+// Custom styles for responsive collapsing and toggling of menubar contents.
+// Powered by the collapse Bootstrap JavaScript plugin.
+
+// When collapsed, prevent the toggleable menubar contents from appearing in
+// the default flexbox row orientation. Requires the use of `flex-wrap: wrap`
+// on the `.menubar` parent.
+.menubar-collapse {
+  // For always expanded or extra full menubars, ensure content aligns itself
+  // properly vertically. Can be easily overridden with flex utilities.
+  align-items: center;
+  flex-basis: 100%;
+  flex-grow: 1;
+}
+
+// Button for toggling the menubar when in its collapsed state
+.menubar-toggler {
+  font-size: $menubar-togglerSize;
+  line-height: 1;
+
+  padding: $menubar-toggler--OffsetVertical $menubar-toggler--OffsetHorizontal;
+
+  color: $menubar--TextColor;
+  border: $menu-tabs--BorderWidth $BorderStyle $menubar-toggler-Border; // remove default button style
+  border-radius: $menubar-toggler--BorderRadius;
+  background-color: transparent; // remove defauRlt button style
+
+  @include Transition($menubar-toggler-transition);
+  @include on-event {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 $menubar-toggler-focus-width;
+  }
+}
+
+// Keep as a separate element so folks can easily override it with another icon
+// or image file as needed.
+.menubar-toggler-icon {
+  display: inline-block;
+
+  width: 1.5em;
+  height: 1.5em;
+
+  vertical-align: middle;
+
+  background-image: $menubar-toggler-iconBackgroundColor;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+// Custom override for
+
+.menubar-nav-scroll {
+  overflow-y: auto;
+
+  max-height: scroll-height(75rem);
+}
+
+// Generate series of `.menubar-expand-*` responsive classes for configuring
+// where your menubar collapses.
+*.menubar-expand {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+  }
+}

@@ -1,0 +1,20 @@
+//
+// Border
+//
+
+@each $name, $color in $theme-colors {
+  .color-scheme-#{$name} {
+    $TextColor: shade($color, $ColorInterval);
+    $BorderColor: shade($color, $TextInterval);
+    $BackgroundColor: tint($color, $TextInterval);
+
+    a {
+      &:hover,
+      &:focus {
+        $TextColor: shade($color, $ColorInterval * 2.5);
+        $BorderColor: shade($color, $ColorInterval * 3.5);
+        $BackgroundColor: tint($color, $ColorInterval * 3.5);
+      }
+    }
+  }
+}

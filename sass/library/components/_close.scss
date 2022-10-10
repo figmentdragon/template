@@ -1,0 +1,58 @@
+// Close
+
+// scss-docs-start close-variables
+$BtnClose--width:            1em !default;
+$BtnClose--height:           $BtnClose--width !default;
+$BtnClose--OffsetHorizontal:        .25em !default;
+$BtnClose--OffsetVertical:        $BtnClose--OffsetHorizontal !default;
+$BtnCloseText:            $black !default;
+$BtnCloseBackground:               url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$BtnCloseText}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$BtnClose--Shadow-focus:     $InputBtn-BoxShadow-focus !default;
+$BtnCloseOpacity:          .5 !default;
+$BtnClose--HoverOpacity:    .75 !default;
+$BtnClose--FocusOpacity:    1 !default;
+$BtnClose--DisabledOpacity: .25 !default;
+$BtnClose--white-filter:     invert(1) grayscale(100%) brightness(200%) !default;
+// scss-docs-end close-variables
+
+
+// Transparent background and border properties included for button version.
+// iOS requires the button element instead of an anchor tag.
+// If you want the anchor version, it requires `href="#"`.
+// See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+
+.button-close {
+  box-sizing: content-box;
+  width: $BtnClose--width;
+  height: $BtnClose--height;
+  padding: $BtnClose--OffsetVertical $BtnClose--OffsetHorizontal;
+  color: $BtnCloseText;
+  background: transparent escape-svg($BtnCloseBackground) center / $BtnClose--width auto no-repeat; // include transparent for button elements
+  border: 0; // for button elements
+  @include border-radius();
+  opacity: $BtnCloseOpacity;
+
+  // Override <a>'s hover style
+  &:hover {
+    color: $BtnCloseText;
+    text-decoration: none;
+    opacity: $BtnClose--HoverOpacity;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: $BtnClose--Shadow-focus;
+    opacity: $BtnClose--FocusOpacity;
+  }
+
+  &:disabled,
+  &.disabled {
+    pointer-events: none;
+    user-select: none;
+    opacity: $BtnClose--DisabledOpacity;
+  }
+}
+
+.button-close-white {
+  filter: $BtnClose--white-filter;
+}

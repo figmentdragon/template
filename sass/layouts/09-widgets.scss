@@ -1,0 +1,266 @@
+$WidgetHeight: .9;
+$WidgetHeight-list: 1.9;
+$WidgetHeight-title: 1.4;
+$WidgetWeight-title: 700;
+$WidgetSpacer-menu: calc(0.66 * $Spacer);
+
+/* =Widgets
+----------------------------------------------- */
+.widget-area {
+	@extend %responsive--WidthWide;
+	margin-top: calc(6 * $SpacerVertical);
+	padding-bottom: calc($OffsetVertical / 3);
+	color: $FooterText;
+	font-size: $FooterSize;
+	font-family: $FooterFont;
+
+	@include media(laptop) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: calc(2 * $SpacerHorizontal);
+	}
+
+	@include media(wide) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include media(mobile-only) {
+		margin-top: calc(3 * $SpacerVertical);
+	}
+
+	.wp-block-social-links {
+
+		&.alignright {
+			margin-top: $SpacerVertical;
+			justify-content: flex-end;
+		}
+
+		&.alignleft {
+			margin-top: $SpacerVertical;
+		}
+	}
+
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.widget {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: $WidgetWeight-title;
+		line-height: $WidgetHeight-title;
+	}
+
+	h1 {
+		font-size: $FontSize;
+	}
+
+	h2 {
+		font-size: $FontSize-sm;
+	}
+
+	h3 {
+		font-size: $FontSize-xs;
+	}
+
+	h4 {
+		font-size: $FontSize-xs;
+	}
+
+	h5 {
+		font-size: $FontSize-xs;
+	}
+
+	h6 {
+		font-size: $FontSize-xs;
+	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+
+		li {
+			line-height: $WidgetHeight-list;
+		}
+
+		&.sub-menu,
+		&.children {
+			margin-left: $WidgetSpacer-menu;
+		}
+
+		.sub-menu-toggle {
+			display: none;
+		}
+	}
+
+	a {
+		color: $FooterLink;
+		text-decoration: underline;
+		text-decoration-style: solid;
+		text-decoration-color: currentColor;
+
+		&:link,
+		&:visited,
+		&:active {
+			color: $FooterLink;
+		}
+
+		&:hover {
+			color: $FooterLink-hover;
+			text-decoration-style: dotted;
+		}
+	}
+}
+
+.widget {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: $WidgetWeight-title;
+		line-height: $WidgetHeight-title;
+	}
+
+	h1 {
+		font-size: $FontSize;
+	}
+
+	h2 {
+		font-size: $FontSize-sm;
+	}
+
+	h3 {
+		font-size: $FontSize-xs;
+	}
+
+	h4 {
+		font-size: $FontSize-xs;
+	}
+
+	h5 {
+		font-size: $FontSize-xs;
+	}
+
+	h6 {
+		font-size: $FontSize-xs;
+	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+
+		li {
+			line-height: $WidgetHeight-list;
+		}
+
+		&.sub-menu,
+		&.children {
+			margin-left: $WidgetSpacer-menu;
+		}
+
+		.sub-menu-toggle {
+			display: none;
+		}
+	}
+
+	a {
+		color: $FooterLink;
+		text-decoration: underline;
+		text-decoration-style: solid;
+		text-decoration-color: currentColor;
+
+		&:link,
+		&:visited,
+		&:active {
+			color: $FooterLink;
+		}
+
+		&:hover {
+			color: $FooterLink-hover;
+			text-decoration-style: dotted;
+		}
+	}
+}
+
+/* Sub-Items in Menu & Categories Widgets. These classes are useful if you want to add special styling, such as indention, to sub-items in your menu and categories widgets. */
+.widget-area .sub-menu,
+.widget-area .children {
+	margin-left:  1.5em;
+}
+.widget-area .sub-menu li,
+.widget-area .children li {
+
+}
+
+@import "./../library/widgets/widget-cloud";
+
+.widget_rss a.rsswidget .rss-widget-icon {
+	display: none;
+}
+
+@import "./../library/widgets/widget-rss";
+
+@import "./../library/widgets/widget-calendar";
+@import "./../library/widgets/widget-recent-comments";
+@import "./../library/widgets/widget-recent-entries";
+
+
+// Search widget styles
+.search-form {
+	position: absolute;
+  right: 0;
+  top: 0;
+	display: flex;
+	flex-wrap: wrap;
+	margin: auto;
+	max-width: $responsive--WidthDefault;
+
+	> label {
+		position: relative;
+		height: 32px;
+		padding: 0 2px;
+		width: calc(100% - calc(2 * $Spacer));
+		margin-bottom: 0;
+		font-weight: var(--FormWeight-label);
+
+	}
+
+	.search-field {
+		flex-grow: 1;
+		max-width: inherit;
+		margin-top: calc($SpacerVertical / 3);
+		margin-right: calc(0.66 * $SpacerHorizontal);
+	}
+
+	.search-submit {
+		margin-top: calc($SpacerVertical / 3);
+		margin-left: 10px;
+	}
+}
+
+.widget_search > .search-form {
+
+	.search-field {
+		margin-right: calc(-1 * $BorderWidth);
+		-webkit-appearance: none;
+		margin-bottom: calc(0.5 * $SpacerVertical);
+	}
+
+	.search-submit {
+		margin-left: 0;
+		margin-bottom: calc(0.5 * $SpacerVertical);
+	}
+}
+
+@import "./../library/widgets/widget-search";

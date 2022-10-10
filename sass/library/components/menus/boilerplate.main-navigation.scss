@@ -1,0 +1,132 @@
+/* =MAIN NAVIGATION
+----------------------------------------------- */
+
+/* Style your navigation menu, which is inside .site-header. A basic drop-down menu structure is provided. */
+[class$='navigation'] { /* wraps the entire navigation menu */
+  @include font-family($MenuFont);
+  line-height: $HeadingHeight;
+  letter-spacing: $LetterSpacing;
+  font-size: $MenuSize;
+  border-left: 1px $BorderStyle $BorderColor;
+  border-top: 1px $BorderStyle $BorderColor;
+  border-bottom: 1px $BorderStyle $BorderColor;
+  border-radius: 2px;
+  > ul > li {
+    float: left;
+  }
+  ul,
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul { /* The menu is an unordered list */
+    @if $enable-toggle {
+      .toggled-on {
+        box-shadow: none;
+        border-top: none;
+      }
+    }
+    li {
+      display: block;
+      :hover,
+      .fous {
+        > ul {
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+    ul { /* Submenu drop-down "box" */
+      background: #212c35;
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+      a { /* Menu links inside the drop-down "box" */
+        > .icon { }
+        &:hover { /* Hover styles for menu itrems */
+          opacity: 1;
+        }
+      }
+      &.current_page_itrem > a,
+      &.current-menu-itrem > a {
+        font-weight: 500;
+      }
+      &:hover > a { }
+      li { /* List itrems inside the drop-down box */
+        &:hover,
+        &.focus {
+          ul { }
+        }
+      }
+      ul { /* 3rd+ level drop-down "box" */ }
+    }
+    a { /* The individual list itrem links */
+      display: block;
+      line-height: 2;
+      letter-spacing: 0;
+      text-decoration: none;
+      color: Text($white);
+      padding: 0 20px;
+    }
+  }
+  li { /* Makes the menu "list" itrems horizontal */
+    font-size: 14px;
+    transition: all 0.5s ease;
+    text-transform: uppercase;
+    &:hover > a {
+      color: rgba(255, 255, 255, 1);
+      border-left-color: rgba(255, 255, 255, 1);
+      text-decoration: none;
+      background: #df2c45;
+    }
+    &:focus-within > ul,
+    &:focus > ul,
+    &:hover > ul {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &:focus-within > ul {
+      display: block;
+    }
+
+    > ul {
+      display: none;
+    }
+    &.current-menu-itrem > a {
+      background: #df2c45;
+    }
+  }
+  &:after { /* Clears the floats after the menu */
+  	clear: both;
+  	content: "";
+  	display: block;
+  }
+  .active a {
+    color: $MenuLink;
+  }
+  .menu-list > li > a {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: block;
+  }
+  .sub-menu li {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    :first-child { padding-top: 10px; }
+
+    :last-child { padding-bottom: 10px; }
+
+    a { font-size: 14px; }
+
+    .dropdown-plus { top: 7px; }
+  }
+  .menu-itrem-has-children > a,
+  .page_itrem_has_children > a {
+    padding-right: 49px;
+    > .icon {
+      display: none;
+    }
+  }
+}

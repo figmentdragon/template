@@ -1,0 +1,29 @@
+.wpcf7-form {
+  input[type=text],
+  input[type=email],
+  input[type=submit],
+  textarea {
+    border-style: $BorderStyle;
+    border-width: $BorderWidth;
+    border-color: #CFD8DC;
+    width: calc(100% - calc(2 * $Spacer));
+    padding: 10px $BaseUnit;
+  }
+  textarea {
+    height: 100px;
+  }
+  input[type=submit] {
+    display: inline-block;
+    line-height: 1;
+    border-style: solid;
+    border-width: $BorderWidth;
+    border-color: $InputBorder;
+    background-color: $InputBackground;
+    color: $InputText;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px calc(2 * $BaseUnit);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+}

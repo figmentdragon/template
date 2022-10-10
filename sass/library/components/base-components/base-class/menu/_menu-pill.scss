@@ -1,0 +1,21 @@
+
+// Pills
+//
+$Menupills--BorderRadius: $BorderRadius;
+$Menupills--LinkColor: Text( $secondary );
+$Menupills--LinkBackgroundColor: Background( $accent );
+
+.Menupills {
+  .MenuLink {
+    border: 0;
+    border-radius: $Menupills--BorderRadius;
+    background: none;
+  }
+
+  .MenuLink.active,
+  .show > .MenuLink {
+    color: $Menupills--LinkColor;
+
+    @include gradientBackgroundColor($Menupills--LinkBackgroundColor);
+  }
+}

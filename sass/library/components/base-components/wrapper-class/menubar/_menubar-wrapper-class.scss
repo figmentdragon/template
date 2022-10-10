@@ -1,0 +1,44 @@
+// Menubar
+// Wrapper and base class
+//
+// Provide a static menubar from which we expand to create full-width, fixed, and
+// other menubar variations.
+
+$menubar--OffsetHorizontal: if($menubar--OffsetHorizontal == null, 0, $menubar--OffsetHorizontal);
+$menubar--TextColor: $menubar-light--active--TextColor;
+$menubar--hover--LinkColor: $menubar-light--hover--LinkColor;
+$menubar-inactive--TextColor: $menubar-light-inactive--TextColor;
+$menubar--active--TextColor: $menubar-light--active--TextColor;
+$menubar-brand--TextColor: $menubar-light-brand--TextColor;
+$menubar-brand--hover--LinkColor: $menubar-light-brand--hover--LinkColor;
+$menubar-toggler-iconBackgroundColor: escape-svg($menubar-light-toggler-iconBackgroundColor);
+$menubar-toggler-Border: $menubar-light--active--TextColor;
+
+
+.menubar {
+  // scss-docs-start menubar-css-vars
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; // allow us to do the line break for collapsing content
+  justify-content: space-between; // space out brand from logo
+
+  padding: $menubar--OffsetVertical $menubar--OffsetHorizontal;
+  // Because flex properties aren't inherited, we need to redeclare these first
+  // few properties so that content nested within behave properly.
+  // The `flex-wrap` property is inherited to simplify the expanded menubars
+
+  justify-self: stretch;
+  %container-flex-properties {
+    display: flex;
+    align-items: center;
+    flex-wrap: inherit;
+    justify-content: space-between;
+  }
+
+  > .container,
+  > .container-fluid {
+    @extend %container-flex-properties;
+  }
+}

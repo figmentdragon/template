@@ -1,0 +1,7 @@
+@mixin justify-content($justify) {
+-webkit-justify-content: $justify;
+   -moz-justify-content: $justify;
+  -ms-justify-content: $justify;
+    justify-content: $justify;
+      -ms-flex-pack: $justify;
+}

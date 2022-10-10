@@ -1,0 +1,17 @@
+/* Map: accent */
+$accents: () !default;
+$accents: map-merge(
+	(
+		'accent-100': $accent-100,
+		'accent': $accent,
+		'accent-300': $accent-300,
+		'accent-400': $accent-400,
+		'accent-500': $accent-500,
+		'accent-600': $accent-600,
+		'accent-700': $accent-700,
+		'accent-800': $accent-800,
+		'accent': $accent,
+		'accent': $accent
+	),
+	$accents
+);

@@ -1,0 +1,47 @@
+
+@if $enable-important-utilities {
+  @each $name, $value in $utilities-colors {
+    $rgb: to-rgb($value);
+    $BackgroundOpacity: 1;
+    a {
+      &-#{$name} {
+        color: ($value);
+        border-color: shade($value, $ColorInterval * 3);
+        background-color: tint($value, $TextInterval);
+        &:hover,
+        &:focus {
+          font-weight: bolder;
+          color: shade($value, $ColorInterval * 2 );
+          border-color:shade($value, $ColorInterval * 3.5);
+          background-color: tint($value, $ColorInterval * 2.5);
+        }
+        &:visited {
+          color: tint($value, $ColorInterval * 4);
+        }
+      }
+    }
+    .text-bg-#{$name} {
+      color: color-contrast($value);
+      background-color: to-rgba($value, $BackgroundOpacity);
+    }
+  }
+  @each $key in mapkeys( map-merge(($red, $orange, $yellow, $green, $blue $indigo, $purple), $colors ) ) {
+    @each $name, $value in $colors {
+      .link-#{$name} {
+        color: ($value);
+        border-color: shade($value, $ColorInterval * 3);
+        background-color: tint($value, $TextInterval);
+        &:hover,
+        &:focus {
+          color: transparent;
+          font-weight: bolder;
+          border-color:shade($value, $ColorInterval * 3.5);
+          background-color: tint($value, $ColorInterval * 2.5);
+        }
+        &:visited {
+          color: tint($value, $ColorInterval * 4);
+        }
+      }
+    }
+  }
+}

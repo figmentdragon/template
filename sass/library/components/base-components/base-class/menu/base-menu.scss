@@ -1,0 +1,145 @@
+/* Base class */
+/* Kickstart any menuigation component with a set of style resets. Works with `<menu>`s, `<ul>`s or `<ol>`s. */
+
+*.menu,
+.menu * {
+  color: $black;
+  font-size: $FontSize * 1.05;
+  font-weight: bold;
+
+  > ul > li {
+    position: relative;
+    white-space: nowrap;
+  }
+  a {
+    &:focus {
+      font-size: 15px;
+
+      display: flex;
+      align-items: center;
+
+      margin-bottom: $SpacerHorizontal;
+      padding: calc(3 * $Offset) $BaseUnit;
+
+      transition: 0.3s;
+
+      color: #A8A9B4;
+    }
+    i,
+    &:focus i {
+      font-size: 1.5rem;
+
+      padding-right: .5rem;
+
+      color: #6F7180;
+    }
+    &:hover,
+    .active,
+    .active:focus,
+    li:hover > a {
+      text-decoration: none;
+
+      color: HoverShift(inherit);
+      i {
+        color: #149DDD;
+      }
+    }
+  }
+}
+
+.Menuitem,
+li.Menuitem {
+  color: $Menuitem--TextColor;
+  a {
+    font-size: $FontSize * 0.875;
+    &:active {
+      color: $Menuitem--LinkColor;
+      background-color: transparent;
+    }
+    &:hover,
+    &:focus {
+      color: $Text;
+      background-color: rgba($gray, 0.50);
+
+      rotate: 90deg;
+      -webkit-text-stroke: 1px $tertiary;
+    }
+  }
+  &-has-children { /* class is added to menu item which has sub-items */ }
+  &-object-%object { /* class is added to every menu item, where {object} is either a post type or a taxonomy. */ }
+  &-object-category { /* class is added to menu items that correspond to a category. */ }
+  &-object-tag { /* class is added to menu items that correspond to a tag */ }
+  &-object-page { /* class is added to menu items that correspond to static pages */ }
+  &-object-%custom { /* class is added to menu items that correspond to a custom post type or a custom taxonomy. */ }
+  &-type-%type { /* class is added to every menu item, where {type} is either “post_type” or “taxonomy”.*/ }
+  &-type-taxonomy { /* Class for a Category */ }
+  &-type-post_type { /* Class for Pages */ }
+  &-type-custom { /* Class for any custom item that you added */ }
+  &-home { /* Class for the Home Link */ }
+}
+
+/* Desktop Navigation */
+nav .main-navigation {
+  /* container class */
+  font-family: $FontAccent;
+  font-size: $FontSize;
+  line-height: 1.5rem;
+  a {
+    font-size: 15px;
+    transition: 0.3s;
+    color: #A8A9B4;
+    &:focus {
+      font-size: 15px;
+      transition: 0.3s;
+      color: #A8A9B4;
+      i {
+        font-size: 1.5rem;
+        color: #6F7180;
+      }
+    }
+    &:hover {
+      text-decoration: none;
+
+      color: #000000;
+      i {
+        color: #149DDD;
+      }
+    }
+    i {
+      font-size: 1.5rem;
+      color: #6F7180;
+    }
+  }
+  > ul > li { }
+  .active {
+    text-decoration: none;
+
+    color: #000000;
+    i { color: #149DDD; }
+    &:focus {
+      text-decoration: none;
+
+      color: #000000;
+      i { color: #149DDD; }
+    }
+  }
+  .Menulist > li > a { }
+  .dropdown-plus { }
+}
+
+/* SUBMENU */
+.main-navigation ul { /* container class first unordered list */ }
+.main-navigation ul ul { /* unordered list within an unordered list */ }
+
+.main-navigation li { /* each navigation item */
+  &:hover > a {
+    color: #000000;
+    i { color: #149DDD; }
+  }
+}
+.main-navigation li a { /* each navigation item anchor */ }
+.main-navigation li ul ul { /* unordered list if there is drop down items */ }
+.main-navigation li li { /* each drop down navigation item */ }
+.main-navigation li li a { /* each drap down navigation item anchor */ }
+
+.main-navigation * { }

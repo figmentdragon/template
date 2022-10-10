@@ -1,0 +1,239 @@
+/**
+ * 9.0.0 Widgets
+ * ---------------------------------------------*---------------------------- */
+// Widget Styles
+$WidgetHeight: .9;
+$WidgetHeight-list: 1.9;
+$WidgetHeight-title: 1.4;
+$WidgetWeight-title: 700;
+$WidgetSpacer-menu: calc(0.66 * $Spacer);
+
+
+.widget-area { /* All of the sidebar container divs get this common class */
+  @extend %responsive--WidthWide;
+  margin-top: calc(6 * $SpacerVertical);
+	padding-bottom: calc($OffsetVertical / 3);
+	color: $WidgetText;
+	@include font-size($FontSize-sm);
+	font-family: $FontAccent;
+  ul {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: $BorderColor;
+    li {
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-color: $BorderColor;
+      padding-top: $OffsetHorizontalNested;
+      margin-bottom: 10px;
+      &:first-child { border-top: 0; }
+      a { display: inline-block; }
+      ul {
+        margin-top: 10px;
+        border-bottom: 0;
+        @include font-size(0.9);
+        li {
+          width: calc(100% - calc(2 * $Spacer));
+          &:first-child {
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-color: $BorderColor;
+          }
+          a {
+            padding-left: $OffsetVerticalNested;
+            display: inline-block;
+          }
+          ul { list-style: dots; }
+          li a {
+            padding-left: 45px;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  select {
+    width: calc(100% - calc(2 * $Spacer));
+    padding: 10px;
+    font-family: inherit;
+    margin-top: 15px;
+  }
+  figure {
+    margin: 0 auto;
+    padding-top: 15px;
+  }
+  p img {
+    margin-top: 15px;
+  }
+  .wp-block-social-links {
+    &.alignright {
+			margin-top: $SpacerVertical;
+			justify-content: flex-end;
+		}
+    &.alignleft { margin-top: $SpacerVertical; }
+	}
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+  .menu {
+    font-weight: 700;
+    ul { font-weight: 600; }
+    ul ul { font-weight: 400; }
+  }
+  .widget-title {
+    margin: 0;
+    padding-top: 0;
+  }
+  .wp-caption {
+    margin: 0 auto;
+    padding-top: 15px;
+  }
+  .search-form { padding-top: 15px; }
+}
+
+.widget { /* The individual widget */
+  display: inline-block;
+  position: relative;
+  width: calc(100% - calc(2 * $Spacer));
+  margin: 0 0 $Spacer;
+  ul { /* Unordered lists inside widgets */;
+    padding: 0;
+    list-style: none;
+  	margin: 0;
+    &.sub-menu,
+    &.children { margin-left: $WidgetSpacer-menu; }
+    .sub-menu-toggle { display: none; }
+    ul { margin-left: 10px;  }
+    li { /* Unordered list items inside widgets */
+      margin-bottom: 0.25rem;  }
+  }
+  li {
+    list-style-type: none;
+    display: block;
+    margin: 4px 0 0 0;
+    padding: 4px 0 0 0;
+    &:last-child { padding-bottom: 4px; }
+    li {
+      padding-left: 12px;
+      &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+    a {
+      margin: 0;
+      padding: 0;
+    }
+  }
+  select { /* Make sure select elements fit in widgets. */
+    max-width: calc(100% - calc(2 * $Spacer)); }
+  Table { margin-top: 0; }
+  a { @include on-event; }
+  &_search {
+    overflow: hidden;
+    #s {}
+  }
+  &_recent_entries,
+  &_recent_comments,
+  &_archive,
+  &_categories,
+  &_meta {
+    margin: 0 auto;
+    padding: 36px;
+    ul {
+      column-count: 3;
+      column-gap: 1.5rem;
+    }
+    ul, li {
+      list-style-type: none;
+      margin: 0;
+      padding: 6px 0;
+    }
+  }
+
+  &_archive
+  &_categories,
+  &_meta,
+  &_nav_menu,
+  &_pages,
+  &_recent_comments,
+  &_recent_entries,
+  &_rss {
+    ul {
+      padding: 0;
+      list-style: none;
+
+      li {
+        color: ColorLight($primary);
+        @include font-family( $HeadingFont );
+        font-size: calc(#{$FontSize} * #{$FontInterval});
+        font-weight: $WidgetWeight-title;
+        line-height: $WidgetHeight-list;
+        margin-top: #{0.5 * $Spacer};
+        margin-bottom: #{0.5 * $Spacer};
+      }
+      @include nestedSubMenuPadding();
+    }
+  }
+
+  &_meta { ul { li { a {
+        }
+      }
+    }
+  }
+  &_links {
+    ul { li { a { } } }
+    li {
+      &:after { }
+      &:before { }
+    }
+  }
+  &_archive { ul { li { a {
+        }
+      }
+    }
+    select { }
+    option { }
+  }
+  &_pages { ul { li { a {
+        }
+      }
+    }
+  }
+  &_tag_cloud {
+    a {
+      &:after { }
+      &:before { }
+    }
+    div {
+      line-height: 1.5;
+      padding: 0.231rem 0;
+    }
+  }
+  &_categories { ul { li {
+      }
+      &.children {      }
+    }
+    a {    }
+    select {
+      &#cat {      }
+      .postform {      }
+    }
+    option {    }
+    .level-0 {    }
+    .level-1 {    }
+    .level-2 {    }
+    .level-3 {    }
+  }
+  &_recent_comments { }
+  &_recent_entries { ul { li { a {
+        }
+      }
+    }
+  }
+  &_text { }
+  &:last-child { margin-bottom: 0; }
+  .gallery figcaption { display: none; }
+}

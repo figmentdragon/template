@@ -1,0 +1,11 @@
+// Dividers (basically an `<hr>`) within the dropdown
+.dropdown-divider {
+  overflow: hidden;
+
+  height: 0;
+  margin: $Dropdown--divider-margin-y 0;
+
+  border-top: 1px $BorderStyle $Dropdown--dividerBackgroundColor;
+
+  @include menu-divider($color: $Dropdown--dividerBackgroundColor);
+}

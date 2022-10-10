@@ -1,0 +1,29 @@
+//
+// Alternate transitions
+//
+
+.carousel-fade {
+  .carousel-item {
+    transition-property: opacity;
+    transform: none;
+
+    opacity: 0;
+  }
+
+  .carousel-item.active,
+  .carousel-item-next.carousel-item-start,
+  .carousel-item-prev.carousel-item-end {
+    z-index: 1;
+
+    opacity: 1;
+  }
+
+  .active.carousel-item-start,
+  .active.carousel-item-end {
+    z-index: 0;
+
+    opacity: 0;
+
+    @include Transition(opacity 0s $CarouselTransition-duration);
+  }
+}

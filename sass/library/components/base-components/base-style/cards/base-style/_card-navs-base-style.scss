@@ -1,0 +1,31 @@
+//
+// Header navs
+//
+
+.Card--header-tabs {
+  margin-right: calc(
+    -0.5 * $CardCap---OffsetHorizontal
+  ); // stylelint-disable-line function-disallowed-list
+  margin-bottom: calc(
+    -1 * $CardCap---OffsetVertical
+  ); // stylelint-disable-line function-disallowed-list
+  margin-left: calc(
+    -0.5 * $CardCap---OffsetHorizontal
+  ); // stylelint-disable-line function-disallowed-list
+
+  border-bottom: 0;
+
+  .menu-link.active {
+    border-bottom--TextColor: $Card-BackgroundColor;
+    background-color: $Card-BackgroundColor;
+  }
+}
+
+.Card--header-pills {
+  margin-right: calc(
+    -0.5 * $CardCap---OffsetHorizontal
+  ); // stylelint-disable-line function-disallowed-list
+  margin-left: calc(
+    -0.5 * $CardCap---OffsetHorizontal
+  ); // stylelint-disable-line function-disallowed-list
+}

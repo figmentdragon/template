@@ -1,0 +1,178 @@
+// Pagination
+
+.pagination {
+  // scss-docs-start Pagination--css-vars
+  --#{$prefix}Pagination--OffsetHorizontal: #{$Pagination--OffsetHorizontal};
+  --#{$prefix}Pagination--OffsetVertical: #{$Pagination--OffsetVertical};
+  @include rfs($PaginationSize, --#{$prefix}PaginationSize);
+  --#{$prefix}PaginationText: #{$PaginationText};
+  --#{$prefix}Pagination--bg: #{$Pagination--bg};
+  --#{$prefix}Pagination--border-width: #{$Pagination--border-width};
+  --#{$prefix}Pagination--border-color: #{$Pagination--border-color};
+  --#{$prefix}Pagination--border-radius: #{$Pagination--border-radius};
+  --#{$prefix}Pagination--hover-color: #{$Pagination--hover-color};
+  --#{$prefix}Pagination--hover-bg: #{$Pagination--hover-bg};
+  --#{$prefix}Pagination--hover-border-color: #{$Pagination--hover-border-color};
+  --#{$prefix}Pagination--focus-color: #{$Pagination--focus-color};
+  --#{$prefix}Pagination--focus-bg: #{$Pagination--focus-bg};
+  --#{$prefix}Pagination--focus-box-shadow: #{$Pagination--focus-box-shadow};
+  --#{$prefix}Pagination--active-color: #{$Pagination--active-color};
+  --#{$prefix}Pagination--active-bg: #{$Pagination--active-bg};
+  --#{$prefix}Pagination--active-border-color: #{$Pagination--active-border-color};
+  --#{$prefix}Pagination--disabled-color: #{$Pagination--disabled-color};
+  --#{$prefix}Pagination--disabled-bg: #{$Pagination--disabled-bg};
+  --#{$prefix}Pagination--disabled-border-color: #{$Pagination--disabled-border-color};
+  // scss-docs-end Pagination--css-vars
+
+  display: flex;
+  @include list-unstyled();
+  .prev,
+  .next {
+    width: calc(100% - calc(2 * $Spacer));
+    font-family: 'poppins',sans-serif;
+  }
+  .nav-links {
+    text-align: center;
+  }
+  .nav-links span,
+  .nav-links a {
+    background: #df2c45;
+    padding: 10px;
+    margin: 0 2px;
+    color: Text($white);
+    font-size: 13px;
+    display: inline-block;
+    line-height: 1;
+  }
+  .nav-links a:hover,
+  .nav-links span.current {
+    background: #111;
+  }
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: var(--#{$prefix}Pagination--OffsetVertical) var(--#{$prefix}Pagination--OffsetHorizontal);
+  @include font-size(var(--#{$prefix}PaginationSize));
+  color: var(--#{$prefix}PaginationText);
+  text-decoration: if($link-decoration == none, null, none);
+  background-color: $Background;
+  @include box-shadow($box-shadow-light);
+  border: 0 solid var(--#{$prefix}Pagination--border-color);
+  @include Transition($PaginationTransition);
+
+  &:hover {
+    @include box-shadow($shadow-inset);
+    z-index: 2;
+    color: var(--#{$prefix}Pagination--hover-color);
+    text-decoration: if($link-hover-decoration == underline, none, null);
+    background-color: var(--#{$prefix}Pagination--hover-bg);
+    border-color: var(--#{$prefix}Pagination--hover-border-color);
+  }
+
+  &:focus {
+    z-index: 3;
+    color: var(--#{$prefix}Pagination--focus-color);
+    background-color: var(--#{$prefix}Pagination--focus-bg);
+    outline: $Pagination--focus-outline;
+    box-shadow: var(--#{$prefix}Pagination--focus-box-shadow);
+  }
+
+  &.active,
+  .active > & {
+    z-index: 3;
+    color: var(--#{$prefix}Pagination--active-color);
+    @include gradient-bg(var(--#{$prefix}Pagination--active-bg));
+    border-color: var(--#{$prefix}Pagination--active-border-color);
+  }
+
+  &.disabled,
+  .disabled > & {
+    color: var(--#{$prefix}Pagination--disabled-color);
+    pointer-events: none;
+    background-color: var(--#{$prefix}Pagination--disabled-bg);
+    border-color: var(--#{$prefix}Pagination--disabled-border-color);
+  }
+}
+
+.page-item {
+  &.active .page-link {
+    box-shadow: $Pagination--active-box-shadow;
+    color: $gray-800;
+  }
+  &:not(:first-child) .page-link {
+    margin-left: $Pagination--margin-start;
+  }
+  @if $Pagination--margin-start == (calc($Pagination--border-width * -1)) {
+    &:first-child {
+      .page-link {
+        @include border-start-radius(var(--#{$prefix}Pagination--border-radius));
+      }
+    }
+
+    &:last-child {
+      .page-link {
+        @include border-end-radius(var(--#{$prefix}Pagination--border-radius));
+      }
+    }
+  } @else {
+    // Add border-radius to all pageLinks in case they have left margin
+    .page-link {
+      @include border-radius(var(--#{$prefix}Pagination--border-radius));
+    }
+    .page-link,
+    span {
+      margin: 0 4px;
+      font-size: $FontSize-sm;
+      color: $dark;
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+
+//
+// Sizing
+//
+.Pagination--lg {
+  @include Pagination--size($offset-y:$Pagination--OffsetVertical-lg, $offset-x:$Pagination--OffsetHorizontal-lg, $FontSize:$FontSize-lg, $line-height:$line-height-lg, $border-radius:$Pagination--border-radius-lg);
+  .page-item {
+    .page-link,
+    span {
+      width: 46px;
+      height: 46px;
+      line-height: 46px;
+      @include display-flex();
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.Pagination--sm {
+  @include Pagination--size($offset-y:$Pagination--OffsetVertical-sm, $offset-x:$Pagination--OffsetHorizontal-sm, $FontSize:$FontSize-sm, $line-height:$line-height-sm, $border-radius:$Pagination--border-radius-sm);
+  .page-item {
+    .page-link,
+    span {
+      @include display-flex();
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.circle-pagination{
+  span{
+    @include display-flex();
+    border-radius: 50% !important;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+  }
+}

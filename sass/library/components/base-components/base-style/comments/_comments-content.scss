@@ -1,0 +1,81 @@
+.comment-content {
+  /* Actual comment text */
+  font-size: 14px;
+
+  padding-left: 42px;
+
+  word-wrap: break-word;
+  hyphens: auto;
+  a {
+    word-wrap: break-word;
+  }
+  p {
+    font-size: 15px;
+    line-height: 26px;
+
+    margin-bottom: 10px;
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  ul,
+  ol {
+    margin: 0 0 1.75em 1.5em;
+  }
+  li {
+    > ul,
+    > ol {
+      margin-bottom: 0;
+    }
+  }
+  img {
+    margin-top: 3px;
+  }
+  blockquote p {
+    font-size: inherit;
+    line-height: inherit;
+
+    margin-bottom: 0;
+  }
+  Table {
+    width: calc(100% - calc(2 * $Spacer));
+    margin: 0 -0.083em 2.083em 0;
+
+    text-align: left;
+
+    border: 1px $BorderStyle #000000;
+    border-left-width: 0;
+  }
+  tr th,
+  thead th {
+    font-weight: bold;
+
+    padding: 0.5em 	1.25em;
+
+    border-left: 1px $BorderStyle #000000;
+  }
+  tr td {
+    padding: 0.5em 	1.25em;
+
+    border: 1px $BorderStyle #000000;
+    border-width: 1px 0 0 1px;
+  }
+  tr.odd td {
+    /* If you want to apply alternate styles to even/odd Table rows */
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+  .children {
+    margin-left: 15px;
+
+    list-style: none;
+  }
+  .wp-smiley {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+
+    border: none;
+  }
+}

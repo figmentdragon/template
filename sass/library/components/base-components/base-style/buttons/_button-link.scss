@@ -1,0 +1,26 @@
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.button-link {
+  text-decoration: $LinkDecoration;
+
+  $ButtonWeight: 400;
+  $Button-LinkColor: #{$Button-link--TextColor};
+  $ButtonBackgroundColor: transparent;
+  $ButtonBorder: transparent;
+  $Button-hover--LinkColor: #{$Button-link--hover--LinkColor};
+  $Button-hover-Border: transparent;
+  $Button-active-Border: transparent;
+  $Button-disabled--TextColor: #{$Button-disabled--TextColor};
+  $Button-disabled-Border: transparent;
+  $Button-BoxShadow: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: $LinkDecoration-hover;
+  }
+
+  // No need for an active state here
+}

@@ -1,0 +1,42 @@
+ul.primary-menu,
+.primary-menu,
+#primary-menu {
+  font-size: $MenuSize;
+  font-weight: $MenuWeight;
+  letter-spacing: -0.0277em;
+
+  a { /* The individual list item links */ }
+  > .menu-item:hover > a { /* Top-level Item Link Colors */
+    color: $MenuLink-hover;
+  }
+  .icon {
+  	transform: rotate(-45deg);
+  	&::before,
+    &::after {
+    	background-color: currentColor;
+    }
+  }
+  li {
+  	font-size: inherit;
+  	line-height: 1.25;
+    &.current-menu-item {
+      > a,
+      > .link-icon-wrapper > a {
+        text-decoration: underline;
+      }
+    }
+  }
+  > li {
+    &.menu-item-has-children > a { }
+    .icon { }
+  }
+  a {
+  	color: inherit;
+  	line-height: 1.2;
+  	text-decoration: none;
+    &.current_page_ancestor {
+      text-decoration: underline;
+    }
+    @include on-event;
+  }
+}

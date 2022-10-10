@@ -1,0 +1,27 @@
+
+@mixin grid-max-width {
+  &[class^='container-#{$infix}'],
+  &[class^='grid'],
+  &[class^='cssgrid'] {
+    @media screen {
+      $size:        nth($breakpoints, 1);
+      $name:        nth($grid-breakpoints, 1);
+      $declaration: nth($breakpoints, 2);
+      @if $enable-grid-classes {
+        @each $breakpoint in $grid-breakpoints {
+          max-width: $name;
+        }
+      }
+      @if $enable-container-classes {
+        @each $container-max-width in $container-max-widths {
+          max-width: $size;
+        }
+      }
+      @if $enable-cssgrid {
+        @each $breakpoint in $grid-breakpoints {
+          max-width: $name;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,137 @@
+/* # COMPONENTS ---------------- * ------------------------------------ */
+
+// - #FEATURES ------------------------------- //
+  $enable-toggle: true;
+  $enable-caret: true !default;
+  $enable-rounded: true !default;
+  $enable-shadows: true !default;
+  $enable-gradients: true !default;
+  $enable-button-pointers: true !default;
+
+// - #DEFINITIONS ------------------------------ //
+
+  $overflows    : auto, hidden, scroll, visible;
+  $positions    : absolute, fixed, relative, static, sticky;
+  $user-selects : all, auto, contain, none, text;
+  $displayProp  : block, grid, flex, inline, inline-block, inline-flex, none, Table, Table-row, Table-cell;
+  $displays     : mobile, Tablet, touch, laptop, desktop, largescreen, widescreen, ultrawide;
+
+  $ComponentText-active:      $white !default;
+  $component-Background-active:         $primary !default;
+
+// - #VARIABLES ------------------------------ //
+// -- =Borders
+  $BorderWidth               : medium !default;
+    $BorderWidth-disabled    : thin !default;
+    $BorderWidth-focus       : thick !default;
+  $BorderColor               : Border($borderColor);
+    $BorderColor-translucent : translucentBorder($BorderColor);
+    $BorderColor-disabled    : Disabled($BorderColor);
+  $BorderRadius              : calc(2 * $BaseUnit) !default; // 7.25px
+  $BorderStyle               : solid !default;
+      $separator--Height     : 0.0625 !default;
+      $separator-Border: $BorderColor-translucent;
+
+// -- =Links
+  $LinkText            : Link($linkColor) !default;
+    $LinkText-visited  : Visited($LinkText) !default;
+    $LinkText-hover    : HoverShift($LinkText) !default;
+    $LinkText-disabled : Disabled($LinkText) !default;
+  $LinkBorder : Border($linkColor) !default;
+    $LinkBorder-visited : Visited($LinkBorder) !default;
+  $LinkDecoration            : none !default;
+    $LinkDecoration-disabled : line-through !default;
+    $LinkDecoration-visited  : underline !default;
+    $LinkDecoration-focus    : underline bold !default;
+    $LinkDecoration-hover    : underline bold !default;
+
+// -- =MENU
+  $MenuFont                : $FontAccent;
+  $MenuFont-mobile         : $FontTertiary;
+
+  $MenuStyle                : normal;
+  $MenuStyle--mobile-submenu: normal;
+  $MenuWeight               : medium;
+  $MenuWeight--button       : bold;
+  $MenuLink                 : Link($navColor);
+  $MenuLink-hover           : HoverShift($MenuLink);
+  $MenuText                 : Text($navColor);
+  $MenuOffset               : calc(0.66 * $Offset);
+  $MenuBorder-color        : $BorderColor;
+
+// -- =CODE
+  $CodeText: Text($codeColor);
+    $muted--CodeText            : Muted($CodeText);
+  $CodeBorder                   : Border($codeColor);
+    $translucent--CodeBorder  : translucentBorder($CodeBorder);
+  $CodeBackground: findInvertColor(Background($codeColor));
+  $CodeBackground               : CodeBackground(#{$codeColor});
+    $translucent--CodeBackground: translucentBackground($CodeBackground);
+  $CodeShadow                   : Shadow($codeColor);
+    $soft--CodeShadow           : ColorSoft($CodeShadow);
+    $strong--CodeShadow         : ColorDark($CodeShadow);
+    $light--CodeShadow          : ColorLight($CodeShadow);
+
+
+// -- =FORMS
+  $FormBorder: Border($info);
+  $FormLink: Link($info);
+  $FormText : Text($info);
+    $FormText-focus: ColorDark($FormText);
+  $FormBackground: Background($info);
+
+  $ButtonBackground: Background($buttonColor);
+  $ButtonText: Text($buttonColor);
+  $ButtonBorder-color: Border($buttonColor);
+    $ButtonBorder-color-hover: HoverShift($ButtonBorder-color);
+    $ButtonBorder-focus: HoverShift($ButtonBorder-color);
+
+
+// - #FUNCTIONS ------------------------------ //
+// - #VARIABLES ------------------------------ //
+  @import "library/patterns/shadows";
+  @import "library/patterns/gradients";
+
+// - #MIXINS ------------------------------ //
+
+
+/* - #HELPERS -------------------------------- */
+
+
+// - #MAPS ------------------------------ //
+
+/* - #COMPONENTS ----------------------------- */
+  @import "library/patterns/borders";
+  @import "library/components/base-components/input-group-base-style";
+
+  //@import "library/components/variables";
+  //@import "library/components/type";
+  @import "library/components/images";
+  @import "library/components/tables";
+  @import "library/components/buttons";
+  @import "library/components/dropdown";
+  @import "library/components/button-group";
+  @import "library/components/nav";
+  @import "library/components/navbar";
+  @import "library/components/card";
+  @import "library/components/accordion";
+  @import "library/components/breadcrumb";
+  //@import "library/components/pagination";
+  @import "library/components/badge";
+  //@import "library/components/alert";
+  @import "library/components/progress";
+  //@import "library/components/list-group";
+  @import "library/components/close";
+  @import "library/components/toasts";
+  //@import "library/components/modal";
+  //@import "library/components/tooltip";
+  @import "library/components/popover";
+  @import "library/components/carousel";
+  @import "library/components/spinners";
+  //@import "library/components/offcanvas";
+  @import "library/components/placeholders";
+
+/* - #UTILITIES ------------------------------ */
+
+
+// - #VENDORS ------------------------------ //

@@ -1,0 +1,156 @@
+/*Comment Output*/
+.commentlist {
+  margin: 0 0 3rem 0;
+  padding: 0;
+
+  list-style: none;
+  li {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    border-top: 1px $BorderStyle rgba($BorderColor, 0.12);
+    ul li:last-child {
+      border-bottom: none;
+    }
+    p {
+      margin: 10px 0;
+      padding: 0;
+    }
+    #respond {
+      border-top: 1px $BorderStyle rgba($BorderColor, 0.12);
+    }
+    + #respond {
+      padding-top: 1.5rem;
+    }
+    &:last-of-type {
+      /* Do you want to style the last comment differently, such as remove borders? */
+    }
+    &:last-child {
+      border-bottom: 1px $BorderStyle rgba($BorderColor, 0.12);
+    }
+    .avatar {
+      float: right;
+
+      margin: 0 0 .75rem .75rem;
+      padding: 6px;
+
+      border: none;
+      border-radius: 50%;
+      background: #F9F9F9;
+      box-shadow: 0 1px 1px rgba($BorderColor, 0.12);
+    }
+  }
+  ol {
+    margin: 0;
+    padding: 10px;
+  }
+
+  article {
+    + .comment-respond {
+      margin-bottom: 3em;
+    }
+  }
+}
+
+
+.commentlist,
+.children {
+}
+
+.commentlist {
+  .reply {
+    font-size: .75rem;
+    line-height: 2;
+
+    margin-top: 1.5rem;
+
+    text-transform: uppercase;
+    a {
+    }
+  }
+}
+
+.commentlist {
+  .alt {
+  }
+  .odd {
+  }
+  .even {
+  }
+  .thread {
+    &-alt {
+    }
+    &-odd {
+    }
+    &-even {
+    }
+  }
+  li ul {
+    &.children {
+      .alt {
+      }
+      .odd {
+      }
+      .even {
+      }
+    }
+  }
+}
+
+.commentlist {
+  .parent {
+  }
+  .children {
+    margin: 0;
+    padding-left: 0;
+
+    list-style: none;
+    li {
+      /* Contains individual nested comments */
+      margin-top: $BaseUnit;
+      margin-bottom: $BaseUnit;
+      > article {
+        padding-left: 93px;
+
+        border-top: 1px $BorderStyle #333333;
+      }
+    }
+  }
+  .comment {
+    /* Individual top-level comments */
+    border-top: 1px $BorderStyle #E9E9E9;
+  }
+  .trackback,
+  .pingback {
+    /* Individual top-level pingbacks */
+    margin-bottom: 1.5rem;
+    padding: 2em 0;
+
+    border-top: 1px $BorderStyle rgba($BorderColor, 0.1);
+    a {
+      color: #767676;
+      &:hover {
+        color: #41A62A;
+      }
+    }
+    &:first-child {
+      border-top: 0;
+    }
+  }
+  .bypostauthor {
+  }
+}
+
+.children {
+  margin: 0 0 0 6%;
+  /* Nested comments */
+
+  list-style: none;
+  article.comment,
+  li.pingback {
+    /* Nexted comments and pingbacks */
+    padding-top: 1.0em;
+  }
+}

@@ -1,0 +1,42 @@
+// Base class
+//
+// Easily usable on <ul>, <ol>, or <div>.
+
+.list-group {
+  $ListGroup--TextColor: #{$ListGroup--TextColor};
+  $list-groupBackgroundColor: #{$list-groupBackgroundColor};
+  $ListGroup-Border: #{$ListGroup-Border};
+  $ListGroup--BorderWidth: #{$ListGroup--BorderWidth};
+  $ListGroup--BorderRadius: #{$ListGroup--BorderRadius};
+  $ListGroup--item--OffsetHorizontal: #{$ListGroup--item--OffsetHorizontal};
+  $ListGroup--item--OffsetVertical: #{$ListGroup--item--OffsetVertical};
+  $ListGroup--action--TextColor: #{$ListGroup--action--TextColor};
+  $ListGroup--action--hover--LinkColor: #{$ListGroup--action--hover--LinkColor};
+  $ListGroup--action--hoverBackgroundColor: #{$ListGroup--hoverBackgroundColor};
+  $ListGroup--action--active--TextColor: #{$ListGroup--action--active--TextColor};
+  $ListGroup--action--activeBackgroundColor: #{$ListGroup--action--activeBackgroundColor};
+  $ListGroup--disabled--TextColor: #{$ListGroup--disabled--TextColor};
+  $ListGroup--disabledBackgroundColor: #{$ListGroup--disabledBackgroundColor};
+  $ListGroup--active--TextColor: #{$ListGroup--active--TextColor};
+  $ListGroup--activeBackgroundColor: #{$ListGroup--activeBackgroundColor};
+  $ListGroup--active-Border: #{$ListGroup--active-Border};
+
+  display: flex;
+  flex-direction: column;
+
+  // No need to set list-style: none; since .listgroup-item is block level
+  padding-left: 0; // reset padding because ul and ol
+  margin-bottom: 0;
+  border-radius: $ListGroup--BorderRadius;
+}
+
+.listgroup-numbered {
+  list-style-type: none;
+  counter-reset: section;
+
+  > .listgroup-item::before {
+    // Increments only this instance of the section counter
+    content: counters(section, ".") ". ";
+    counter-increment: section;
+  }
+}

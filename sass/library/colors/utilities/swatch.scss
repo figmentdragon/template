@@ -1,0 +1,631 @@
+.swatch-blue {
+  color: color-contrast(#f3f7fa);
+  background-color: #f3f7fa;
+}
+.swatch-blue::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #f3f7fa;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#f3f7fa) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-indigo {
+  color: color-contrast(#fafbfe);
+  background-color: #fafbfe;
+}
+.swatch-indigo::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #fafbfe;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#fafbfe) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-purple {
+  color: color-contrast(#e6e7ee);
+  background-color: #e6e7ee;
+}
+.swatch-purple::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #e6e7ee;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#e6e7ee) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-pink {
+  color: color-contrast(#D1D9E6);
+  background-color: #D1D9E6;
+}
+.swatch-pink::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #D1D9E6;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#D1D9E6) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-red {
+  color: color-contrast(#b1bcce);
+  background-color: #b1bcce;
+}
+.swatch-red::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #b1bcce;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#b1bcce) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-orange {
+  color: color-contrast(#93a5be);
+  background-color: #93a5be;
+}
+.swatch-orange::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #93a5be;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#93a5be) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-yellow {
+  color: color-contrast(#66799e);
+  background-color: #66799e;
+}
+.swatch-yellow::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #66799e;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#66799e) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-green {
+  color: color-contrast(#525480);
+  background-color: #525480;
+}
+.swatch-green::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #525480;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#525480) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-teal {
+  color: color-contrast(#44476A);
+  background-color: #44476A;
+}
+.swatch-teal::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #44476A;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#44476A) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-cyan {
+  color: color-contrast(#31344b);
+  background-color: #31344b;
+}
+.swatch-cyan::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #31344b;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#31344b) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-white {
+  color: color-contrast(#ECF0F3);
+  background-color: #ECF0F3;
+}
+.swatch-white::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: #ECF0F3;
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(#ECF0F3) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-gray {
+  color: color-contrast(hsl(0deg, 0%, 24%));
+  background-color: hsl(0deg, 0%, 24%);
+}
+.swatch-gray::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: hsl(0deg, 0%, 24%);
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(hsl(0deg, 0%, 24%)) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-gray-dark {
+  color: color-contrast(hsl(0deg, 0%, 16%));
+  background-color: hsl(0deg, 0%, 16%);
+}
+.swatch-gray-dark::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: hsl(0deg, 0%, 16%);
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(hsl(0deg, 0%, 16%)) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.swatch-gray-500 {
+  color: color-contrast(hsl(0deg, 0%, 31%));
+  background-color: hsl(0deg, 0%, 31%);
+}
+.swatch-gray-500::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+  content: "cont" "\a" "cont" "\a" "cont";
+  background-color: hsl(0deg, 0%, 31%);
+  background-image: linear-gradient(to bottom, transparent 0.25rem, color-contrast(hsl(0deg, 0%, 31%)) 0.25rem 0.75rem, transparent 0.75rem 1.25rem, #ECF0F3 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #262833 2.25rem 2.75rem, transparent 2.75rem);
+  background-repeat: no-repeat;
+  background-size: 0.5rem 100%;
+}
+
+.bg-blue-100 {
+  background-color: white;
+}
+.bg-blue {
+  background-color: white;
+}
+.bg-blue-300 {
+  background-color: white;
+}
+.bg-blue-400 {
+  background-color: white;
+}
+.bg-blue-500 {
+  background-color: #f3f7fa;
+}
+.bg-blue-600 {
+  background-color: #d8e5ef;
+}
+.bg-blue-700 {
+  background-color: #bcd3e3;
+}
+.bg-blue-800 {
+  background-color: #a1c0d8;
+}
+.bg-blue {
+  background-color: #86aecc;
+}
+
+.bg-indigo-100 {
+  background-color: white;
+}
+.bg-indigo {
+  background-color: white;
+}
+.bg-indigo-300 {
+  background-color: white;
+}
+.bg-indigo-400 {
+  background-color: white;
+}
+.bg-indigo-500 {
+  background-color: #fafbfe;
+}
+.bg-indigo-600 {
+  background-color: #dae1f8;
+}
+.bg-indigo-700 {
+  background-color: #b9c7f1;
+}
+.bg-indigo-800 {
+  background-color: #99adeb;
+}
+.bg-indigo {
+  background-color: #7994e4;
+}
+
+.bg-purple-100 {
+  background-color: white;
+}
+.bg-purple {
+  background-color: white;
+}
+.bg-purple-300 {
+  background-color: white;
+}
+.bg-purple-400 {
+  background-color: #fdfdfe;
+}
+.bg-purple-500 {
+  background-color: #e6e7ee;
+}
+.bg-purple-600 {
+  background-color: #cfd1de;
+}
+.bg-purple-700 {
+  background-color: #b8bbcf;
+}
+.bg-purple-800 {
+  background-color: #a1a5bf;
+}
+.bg-purple {
+  background-color: #8a8eaf;
+}
+
+.bg-pink-100 {
+  background-color: white;
+}
+.bg-pink {
+  background-color: white;
+}
+.bg-pink-300 {
+  background-color: white;
+}
+.bg-pink-400 {
+  background-color: #eaeef4;
+}
+.bg-pink-500 {
+  background-color: #D1D9E6;
+}
+.bg-pink-600 {
+  background-color: #b8c4d8;
+}
+.bg-pink-700 {
+  background-color: #9fb0cb;
+}
+.bg-pink-800 {
+  background-color: #869bbd;
+}
+.bg-pink {
+  background-color: #6d86af;
+}
+
+.bg-red-100 {
+  background-color: white;
+}
+.bg-red {
+  background-color: #f8f9fb;
+}
+.bg-red-300 {
+  background-color: #e1e5ec;
+}
+.bg-red-400 {
+  background-color: #c9d0dd;
+}
+.bg-red-500 {
+  background-color: #b1bcce;
+}
+.bg-red-600 {
+  background-color: #99a8bf;
+}
+.bg-red-700 {
+  background-color: #8193b0;
+}
+.bg-red-800 {
+  background-color: #6a7fa1;
+}
+.bg-red {
+  background-color: #586c8c;
+}
+
+.bg-orange-100 {
+  background-color: #f4f6f8;
+}
+.bg-orange {
+  background-color: #dce1ea;
+}
+.bg-orange-300 {
+  background-color: #c3cddb;
+}
+.bg-orange-400 {
+  background-color: #abb9cd;
+}
+.bg-orange-500 {
+  background-color: #93a5be;
+}
+.bg-orange-600 {
+  background-color: #7b91af;
+}
+.bg-orange-700 {
+  background-color: #637da1;
+}
+.bg-orange-800 {
+  background-color: #536a8a;
+}
+.bg-orange {
+  background-color: #445772;
+}
+
+.bg-yellow-100 {
+  background-color: #c5ccda;
+}
+.bg-yellow {
+  background-color: #adb7cb;
+}
+.bg-yellow-300 {
+  background-color: #95a3bc;
+}
+.bg-yellow-400 {
+  background-color: #7e8ead;
+}
+.bg-yellow-500 {
+  background-color: #66799e;
+}
+.bg-yellow-600 {
+  background-color: #566787;
+}
+.bg-yellow-700 {
+  background-color: #475570;
+}
+.bg-yellow-800 {
+  background-color: #384358;
+}
+.bg-yellow {
+  background-color: #293140;
+}
+
+.bg-green-100 {
+  background-color: #a7a8c6;
+}
+.bg-green {
+  background-color: #8f91b7;
+}
+.bg-green-300 {
+  background-color: #777aa8;
+}
+.bg-green-400 {
+  background-color: #616498;
+}
+.bg-green-500 {
+  background-color: #525480;
+}
+.bg-green-600 {
+  background-color: #434468;
+}
+.bg-green-700 {
+  background-color: #343551;
+}
+.bg-green-800 {
+  background-color: #252539;
+}
+.bg-green {
+  background-color: #151621;
+}
+
+.bg-teal-100 {
+  background-color: #9194b8;
+}
+.bg-teal {
+  background-color: #797da9;
+}
+.bg-teal-300 {
+  background-color: #626799;
+}
+.bg-teal-400 {
+  background-color: #535782;
+}
+.bg-teal-500 {
+  background-color: #44476A;
+}
+.bg-teal-600 {
+  background-color: #353752;
+}
+.bg-teal-700 {
+  background-color: #26273b;
+}
+.bg-teal-800 {
+  background-color: #171823;
+}
+.bg-teal {
+  background-color: #07080c;
+}
+
+.bg-cyan-100 {
+  background-color: #7379a4;
+}
+.bg-cyan {
+  background-color: #5f6591;
+}
+.bg-cyan-300 {
+  background-color: #50557a;
+}
+.bg-cyan-400 {
+  background-color: #404462;
+}
+.bg-cyan-500 {
+  background-color: #31344b;
+}
+.bg-cyan-600 {
+  background-color: #222434;
+}
+.bg-cyan-700 {
+  background-color: #12131c;
+}
+.bg-cyan-800 {
+  background-color: #030305;
+}
+.bg-cyan {
+  background-color: black;
+}
+
+.bg-white-100 {
+  background-color: white;
+}
+.bg-white {
+  background-color: white;
+}
+.bg-white-300 {
+  background-color: white;
+}
+.bg-white-400 {
+  background-color: white;
+}
+.bg-white-500 {
+  background-color: #ECF0F3;
+}
+.bg-white-600 {
+  background-color: #d4dde4;
+}
+.bg-white-700 {
+  background-color: #bccad5;
+}
+.bg-white-800 {
+  background-color: #a5b8c6;
+}
+.bg-white {
+  background-color: #8da5b7;
+}
+
+.bg-gray-100 {
+  background-color: #8b8b8b;
+}
+.bg-gray {
+  background-color: #777777;
+}
+.bg-gray-300 {
+  background-color: #646464;
+}
+.bg-gray-400 {
+  background-color: #515151;
+}
+.bg-gray-500 {
+  background-color: hsl(0deg, 0%, 24%);
+}
+.bg-gray-600 {
+  background-color: #2a2a2a;
+}
+.bg-gray-700 {
+  background-color: #161616;
+}
+.bg-gray-800 {
+  background-color: #030303;
+}
+.bg-gray {
+  background-color: black;
+}
+
+.bg-gray-dark-100 {
+  background-color: #767676;
+}
+.bg-gray-dark {
+  background-color: #636363;
+}
+.bg-gray-dark-300 {
+  background-color: #505050;
+}
+.bg-gray-dark-400 {
+  background-color: #3c3c3c;
+}
+.bg-gray-dark-500 {
+  background-color: hsl(0deg, 0%, 16%);
+}
+.bg-gray-dark-600 {
+  background-color: #151515;
+}
+.bg-gray-dark-700 {
+  background-color: #020202;
+}
+.bg-gray-dark-800 {
+  background-color: black;
+}
+.bg-gray-dark {
+  background-color: black;
+}
+
+/*# sourceMappingURL=color-palette.scss.map */

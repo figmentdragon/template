@@ -1,0 +1,171 @@
+/**
+ * 7.4 - Post Navigation
+ */
+
+.post-navigation {
+  clear: both;
+  padding: 20px 0 0 12px;
+  margin: $Spacer -30px auto;
+  width: calc(100% - calc(2 * $Spacer));
+  height: auto;
+  float: left;
+  display: block;
+  overflow: hidden;
+  @include media(desktop) {
+    margin: $Spacer auto;
+  }
+
+  a {
+    display: inline-block;
+    position: relative;
+    min-width: 20px;
+    padding: 0;
+    &:link,
+    &:visited { }
+    &:active,
+    &:focus,
+    &:hover { }
+  }
+  .nav-title {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    padding: 10px;
+    white-space: nowrap;
+    transition: all 200ms ease-out;
+    max-width: 600px;
+    overflow: hidden;
+    z-index: 1;
+  }
+}
+
+.post-navigation .meta-nav {
+  display: block;
+  margin-bottom: 0.583em;
+}
+
+.post-navigation .post-title {
+  display: inline-block;
+  transition: all .5s;
+  text-rendering: optimizeLegibility;
+}
+
+.post-navigation .nav-label {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  padding: 10px 20px;
+  transition: all 200ms ease-out;
+  &:hover { }
+}
+
+.posts-navigation .nav-links,
+.post-navigation .nav-links {
+  display: flex;
+  flex-direction: column;
+  @include media(mobile) {
+    justify-content: space-between;
+  }
+}
+
+.post-navigation .nav-links .nav-next {
+  -webkit-box-ordinal-group: 2;
+  order: 1;
+}
+
+.post-navigation .nav-links .nav-previous {
+  -webkit-box-ordinal-group: 3;
+  order: 2;
+}
+
+.post-navigation .nav-previous {
+  .nav-title {
+    left: 80%;
+  }
+  a:hover .nav-title {
+    left: 100%;
+    opacity: 1;
+  }
+  .nav-label:after {
+    float: left;
+    margin: 0 0 0 -7px;
+    padding: 0 7px 0 0;
+  }
+}
+
+.post-navigation .nav-next {
+  .nav-title {
+    right: 80%;
+    text-align: right;
+  }
+  a:hover .nav-title {
+    right: 100%;
+    opacity: 1;
+  }
+  .nav-label:after {
+    float: right;
+    margin: 0 -7px 0 0;
+    padding: 0 0 0 7px;
+    content: "\f105";
+    font-family: "Fontawesome";
+  }
+}
+
+.posts-navigation,
+.pagination,
+#content #infinite-handle {
+  clear: both;
+  margin: 0;
+  text-align: center;
+}
+
+#content #infinite-handle {
+  display: block;
+}
+
+#content #infinite-handle span {
+  background: none transparent;
+  display: inline-block;
+  padding: 0;
+}
+
+.infinite-loader #ctis-loading img {
+  margin: 0 auto;
+  width: 35px;
+}
+
+.infinite-loader {
+  clear: both;
+}
+
+.posts-navigation {
+  a {
+    display: inline-block;
+  }
+  .nav-links .nav-previous + .nav-next  {
+    margin: 21px 0 0 0;
+  }
+}
+
+#content #infinite-handle {
+  z-index: 2;
+}
+
+#content #infinite-handle,
+#content .infinite-loader,
+#content .navigation.posts-navigation {
+  cursor: pointer;
+  clear: both;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  width: calc(100% - calc(2 * $Spacer));
+}
+
+#content .navigation.posts-navigation {
+  cursor: default;
+}
+
+.archive-posts-wrapper .section-content-wrapper {
+  position: relative;
+}

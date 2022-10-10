@@ -1,0 +1,199 @@
+// Base class
+//
+// Kickstart any navigation component with a set of style resets. Works with
+// `<nav>`s, `<ul>`s or `<ol>`s.
+
+
+// Navs
+
+// scss-docs-start nav-variables
+$MenuLink--OffsetVertical:                .5rem !default;
+$MenuLink--OffsetHorizontal:                1rem !default;
+$MenuLinkSize:                null !default;
+$MenuLink--FontWeight:              null !default;
+$MenuLinkText:                    var(--#{$prefix}LinkText) !default;
+$MenuLinkhover:              var(--#{$prefix}Linkhover) !default;
+$MenuLinkTransition:               color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out !default;
+$MenuLinkdisabled:           Text($gray) !default;
+
+
+
+.menu {
+  // scss-docs-start nav-css-vars
+  --#{$prefix}MenuLink--OffsetHorizontal: #{$MenuLink--OffsetHorizontal};
+  --#{$prefix}MenuLink--OffsetVertical: #{$MenuLink--OffsetVertical};
+  @include rfs($MenuLinkSize, --#{$prefix}MenuLinkSize);
+  --#{$prefix}MenuLinkWeight: #{$MenuLink--FontWeight};
+  --#{$prefix}MenuLink: #{$MenuLinkText};
+  --#{$prefix}MenuLink-hover: #{$MenuLinkhover};
+  --#{$prefix}MenuLink-disabled: #{$MenuLinkdisabled};
+  // scss-docs-end nav-css-vars
+
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.menulink {
+  display: block;
+  padding: var(--#{$prefix}MenuLink--OffsetVertical) var(--#{$prefix}MenuLink--OffsetHorizontal);
+  @include font-size(var(--#{$prefix}MenuLinkSize));
+  font-weight: var(--#{$prefix}MenuLinkWeight);
+  color: var(--#{$prefix}MenuLink);
+  text-decoration: if($LinkDecoration == none, null, none);
+  @include Transition($MenuLinkTransition);
+
+  &:hover,
+  &:focus {
+    color: var(--#{$prefix}MenuLink-hover);
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+  }
+
+  // Disabled state lightens text
+  &.disabled {
+    color: var(--#{$prefix}MenuLink-disabled);
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+//
+// Tabs
+//
+
+$MenuTabsBorder:             Border($navColor) !default;
+$MenuTabsBorder-Width:             $BorderWidth !default;
+$MenuTabsBorder-Radius:            $BorderRadius !default;
+$MenuTabsBorder-hover:  $gray $gray $MenuTabsBorder !default;
+$MenuTabs-active:        Link($navColor) !default;
+$MenuTabsBackground-active:           $Background !default;
+$MenuTabsBorder-active: $MenuTabsBorder $MenuTabsBorder $MenuTabsBackground-active !default;
+
+.MenuTabs {
+  // scss-docs-start MenuTabs-css-vars
+  --#{$prefix}MenuTabsBorderWidth: #{$MenuTabsBorder-Width};
+  --#{$prefix}MenuTabsBorder: #{$MenuTabsBorder};
+  --#{$prefix}MenuTabsRadius: #{$MenuTabsBorder-Radius};
+  --#{$prefix}MenuTabsBorder-hover: #{$MenuTabsBorder-hover};
+  --#{$prefix}MenuTabsactive: #{$MenuTabs-active};
+  --#{$prefix}MenuTabsBackground-active: #{$MenuTabsBackground-active};
+  --#{$prefix}MenuTabsBorder-active: #{$MenuTabsBorder-active};
+  // scss-docs-end MenuTabs-css-vars
+
+  border-bottom: var(--#{$prefix}MenuTabsBorderWidth) solid var(--#{$prefix}MenuTabsBorder);
+
+  .menulink {
+    margin-bottom: calc(-1 * var(--#{$prefix}MenuTabsBorderWidth)); // stylelint-disable-line function-disallowed-list
+    background: none;
+    border: var(--#{$prefix}MenuTabsBorderWidth) solid transparent;
+    @include border-top-radius(var(--#{$prefix}MenuTabsRadius));
+
+    &:hover,
+    &:focus {
+      // Prevents active .menulink tab overlapping focus outline of previous/next .menulink
+      isolation: isolate;
+      border-color: var(--#{$prefix}MenuTabsBorder-hover);
+    }
+
+    &.disabled,
+    &:disabled {
+      color: var(--#{$prefix}MenuLink-disabled);
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  .menulink.active,
+  .menuitem.show .menulink {
+    color: var(--#{$prefix}MenuTabsactive);
+    background-color: var(--#{$prefix}MenuTabsBackground-active);
+    border-color: var(--#{$prefix}MenuTabsBorder-active);
+  }
+
+  .dropdown-menu {
+    // Make dropdown border overlap tab border
+    margin-top: calc(-1 * var(--#{$prefix}MenuTabsBorderWidth)); // stylelint-disable-line function-disallowed-list
+    // Remove the top rounded corners here since there is a hard edge above the menu
+    @include border-top-radius(0);
+  }
+}
+
+
+//
+// Pills
+//
+
+$MenuPillsRadius:           $BorderRadius !default;
+$MenuPills-active:       Link($navColor) !default;
+$MenuPillsBackground-active:          Backbround($navColor) !default;
+
+.menupills {
+  // scss-docs-start MenuPills-css-vars
+  --#{$prefix}MenuPillsRadius: #{$MenuPillsRadius};
+  --#{$prefix}MenuPills-active: #{$MenuPills-active};
+  --#{$prefix}MenuPillsBackground-active: #{$MenuPillsBackground-active};
+  // scss-docs-end MenuPills-css-vars
+
+  .menulink {
+    background: none;
+    border: 0;
+    @include border-radius(var(--#{$prefix}MenuPillsRadius));
+
+    &:disabled {
+      color: var(--#{$prefix}MenuLink-disabled);
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  .menulink.active,
+  .show > .menulink {
+    color: var(--#{$prefix}MenuPills-active);
+    @include gradient-background(var(--#{$prefix}MenuPillsBackground-active));
+  }
+}
+
+
+//
+// Justified variants
+//
+
+.menu-fill {
+  > .menulink,
+  .menuitem {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+.menu-justified {
+  > .menulink,
+  .menuitem {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+.menu-fill,
+.menu-justified {
+  .menuitem .menulink {
+    width: calc(100% - calc(2 * $Spacer)); // Make sure button will grow
+  }
+}
+
+
+// Tabbable tabs
+//
+// Hide tabbable panes to start, show them when `.active`
+
+.tab-content {
+  > .tab-pane {
+    display: none;
+  }
+  > .active {
+    display: block;
+  }
+}

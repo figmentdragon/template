@@ -1,0 +1,15 @@
+// Offcanvas
+
+$OffCanvas--OffsetVertical:               $Modal--inner--Offset;
+$OffCanvas--OffsetHorizontal:               $Modal--inner--Offset;
+$OffCanvas--horizontal-width:        400px;
+$OffCanvas--vertical-height:         30vh;
+$OffCanvasTransitionDuration:     .3s;
+$OffCanvas--border-color:            $Modal--content-border-color;
+$OffCanvas--border-width:            $Modal--content-border-width;
+$OffCanvas--title-line-height:       $Modal--title-line-height;
+$OffCanvas--bg-color:                $Modal--content-bg;
+$OffCanvasText:                   $Modal--content-color;
+$OffCanvas--box-shadow:              $Modal--content-box-shadow-xs;
+$OffCanvas--backdrop-bg:             $Modal--backdrop-bg;
+$OffCanvas--backdrop-opacity:        $Modal--backdrop-opacity;

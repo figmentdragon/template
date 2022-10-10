@@ -1,0 +1,25 @@
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+	border-width: 0;
+	border-style: $BorderStyle;
+	border-color: inherit;
+}
+
+thead,
+tr {
+	font-weight: bold;
+	text-align: left;
+}
+
+tr:nth-child(even) {
+  /* Set every other cell slightly darker. Improves readability. */
+  background-color: Background($accent);
+}
+
+thead th {
+	border-width: 0 1px 1px 0;
+}

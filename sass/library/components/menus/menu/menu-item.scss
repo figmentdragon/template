@@ -1,0 +1,30 @@
+$menu-item--Text: Link($navColor);
+$menu-itemBackground: Background($navColor);
+$menu-itemBackground-hover: HoverShift($menu-itemBackground);
+$menu-items--Offset: $Offset;
+
+.menu-item {
+  position: relative;
+  z-index: $zindex-dropdown;
+  top: -1vh;
+  right: -1.5vw;
+  bottom: -3vw;
+
+  padding: $menu-items--Offset;
+
+  color: $menu-item--Text;
+  a {
+    &:active {
+      color: $menu-item--Text;
+      background-color: transparent;
+    }
+    &:hover,
+    &:focus {
+      color: HoverShift($menu-item--Text);
+      background-color: $menu-itemBackground-hover;
+
+      rotate: 90deg;
+      -webkit-text-stroke: 1px $text--StrokeColor;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+// Comment body
+.comment-body {
+  position: relative;
+
+  font-size: 15px;
+
+	margin-bottom: calc(1.7 * $SpacerHorizontal);
+  margin-left: 0;
+  padding: 20px;
+
+  border-width: $BorderWidth;
+  border-style: $BorderStyle;
+  border-color: #EEEEEE;
+
+  > * {
+    margin-top: $SpacerHorizontal;
+		margin-bottom: $SpacerHorizontal;
+  }
+
+  .reply {
+    margin-top: 20px;
+
+    text-align: right;
+
+    a {
+      font-size: 14px;
+
+      color: inherit;
+
+      &:hover {
+        color: #DF2C45;
+      }
+
+      &:before {
+        font-family: "Fontawesome";
+
+        margin-right: 6px;
+
+        content: "\f112 ";
+      }
+    }
+
+    .comment-reply-link {
+      transition: 120ms ease-in;
+
+      text-decoration: none;
+    }
+  }
+}
+
+.comment-content {
+  word-wrap: break-word;
+}

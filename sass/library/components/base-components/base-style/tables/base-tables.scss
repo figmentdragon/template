@@ -1,0 +1,18 @@
+//
+// Basic Bootstrap Table
+//
+@import "variables";
+
+@import "mixins/table-row";
+@import "mixins/table-variant";
+
+@import "Table-base-style";
+@import "Table-condensed";
+
+@import "Table-border";
+@import "Table-stripe";
+@import "Table-state";
+@import "Table-variant";
+@import "Table-responsive";
+
+@import "utilities-Table.scss";

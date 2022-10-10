@@ -1,0 +1,17 @@
+/* Map: indigo */
+$indigos: () !default;
+$indigos: map-merge(
+	(
+		'indigo-100': $indigo-100,
+		'indigo': $indigo,
+		'indigo-300': $indigo-300,
+		'indigo-400': $indigo-400,
+		'indigo-500': $indigo-500,
+		'indigo-600': $indigo-600,
+		'indigo-700': $indigo-700,
+		'indigo-800': $indigo-800,
+		'indigo': $indigo,
+		'indigo': $indigo
+	),
+	$indigos
+);

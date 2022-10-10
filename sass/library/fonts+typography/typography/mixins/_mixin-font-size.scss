@@ -1,0 +1,23 @@
+/*
+ * Output font size in px/rem
+ */
+
+$sizeValue: 1;
+$pixels: #{$sizeValue}px;
+$rems: divide($sizeValue, 10) rem;
+
+@mixin font-size($px) {
+  font-size: $px + px;
+  font-size: divide($px, 16) rem;
+}
+
+// Rem output with px fallback
+@mixin font-size($sizeValue: 1) {
+  font-size: calc((#{$sizeValue} * 16) * 1px);
+  font-size: calc(#{$sizeValue} * 1rem);
+}
+
+@mixin font-size($size) {
+  font-size: $pixels;
+  font-size: $rems;
+}

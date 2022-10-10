@@ -1,0 +1,191 @@
+//---------------------------------------------------------
+// All List Base Styles Go Here
+
+// LI - The <li> HTML element is used to represent an item in a list. It must be contained in a parent element: an ordered list (ol), an unordered list (ul), or a menu (menu). In menus and unordered lists, list items are usually displayed using bullet points. In ordered lists, they are usually displayed with an ascending counter on the left, such as a number or letter.
+
+// OL - The <ol> HTML element represents an ordered list of items — typically rendered as a numbered list.
+
+// UL - The <ul> HTML element represents an unordered list of items, typically rendered as a bulleted list.
+//---------------------------------------------------------
+
+// Variables
+$ListSpacer-inline: $SpacerBlock;
+$ListFont: $FontAccent;
+$ListFont-secondary: $FontTertiary;
+$ListSize: calc(#{$FontInterval} * #{$FontSize});
+$ListWeight: 500;
+$ListHeight: calc(0.2 + $LineHeight);
+$ListOffset-inline: $OffsetNested;
+$list--TextTransform: uppercase;
+$list--LetterSpacing: calc(2 * $LetterSpacing);
+
+@mixin list-padding($Offset) {
+	ul {
+		padding-left: 17px;
+
+		& > li > ul {
+			padding-left: $OffsetNested;
+		}
+	}
+}
+
+// Unstyled keeps list items block level, just removes default browser padding and list-style
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+
+ul, ol {
+  padding-left: calc(2 * $OffsetVerticalNested);
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: $SpacerHorizontal;
+  margin-left: $SpacerHorizontal;
+}
+
+ul,
+ol,
+dl {
+  margin: 0 0 calc($SpacerHorizontal / 2) 0;
+  text-align: left;
+}
+
+menu,
+ol,
+ul {
+  font-family: $ListFont;
+
+  margin-bottom: add(0.5, $ListSpacer-inline);
+  margin-left: calc(3 * $ListSpacer-inline);
+  padding: 0 0 0 $ListOffset-inline;
+
+  list-style: none;
+  li {
+    line-height: $ListHeight;
+
+    margin-left: 0;
+		+ li {
+			margin-top: $Spacer;
+		}
+		> details {
+			margin: 0;
+		}
+  }
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+
+  visibility: visible;
+
+	list-style: disc outside;
+	font-variant-numeric: tabular-nums;
+
+  pointer-events: none;
+  ul {
+    list-style-type: circle;
+    ul {
+      list-style-type: square;
+    }
+  }
+  li {
+    font-family: $ListFont-secondary;
+    font-weight: $ListWeight;
+
+    padding: $ListOffset-inline 0;
+
+    letter-spacing: $list--LetterSpacing;
+    text-transform: $list--TextTransform;
+
+    a { @include on-event; }
+  }
+}
+
+li {
+  font-family: $ListFont;
+  @include font-size($ListSize);
+  line-height: $ListHeight;
+  font-weight: $ListWeight;
+
+  flex-flow: nowrap;
+
+  margin-right: $ListSpacer-inline;
+
+  text-decoration: none;
+	list-style-position: inside;
+  :before { @include font-size(inherit); }
+  a {
+    &:hover { }
+  }
+  > ul,
+  > ol {
+    margin-bottom: $ListSpacer-inline 0 0 $ListSpacer-inline;
+    padding-left: calc(2 * $ListOffset-inline);
+  }
+  .list-unstyled {
+    margin-left: 0;
+    list-style: none;
+  }
+}
+
+ol {
+  list-style-type: decimal outside;
+  ol {
+    list-style-type: lower-alpha;
+    ol {
+      list-style-type: lower-roman;
+    }
+  }
+}
+
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin-top: $ListSpacer-inline;
+  margin-right: $ListSpacer-inline;
+  margin-bottom: 0;
+  margin-left: add(0.5, $ListSpacer-inline);
+}
+
+ol li,
+ul li {
+  @include font-size($ListSize);
+  line-height: $ListHeight;
+  font-weight: $ListWeight;
+}
+
+ul li > ul,
+ol li > ol,
+ul li > ol,
+ol li > ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+ul ol li,
+ul ol ul ol li { list-style-type: decimal; }
+ol ul li,
+ol ul ol ul li { list-style-type: square; }
+
+.reset-list-style,
+.reset-list-style li,
+.reset-list-style ul,
+.reset-list-style ol {
+	list-style: none;
+	margin: 0;
+}
+
+.list-unstyled {
+  margin-left: 0;
+
+  list-style: none;
+}

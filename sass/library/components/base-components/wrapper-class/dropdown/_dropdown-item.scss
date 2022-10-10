@@ -1,0 +1,64 @@
+// Links, buttons, and more within the dropdown menu
+//
+// `<button>`-specific styles are denoted with `// For <button>s`
+.dropdown-item {
+  font-weight: $FontWeight;
+
+  display: block;
+  clear: both;
+
+  width: calc(100% - calc(2 * $Spacer)); // For `<button>`s
+  padding: $Dropdown--item--OffsetVertical $Dropdown--item--OffsetHorizontal;
+
+  text-align: inherit; // For `<button>`s
+  white-space: nowrap; // prevent links from randomly breaking onto new lines
+  text-decoration: if($LinkDecoration == none, null, none);
+
+  color: $Dropdown--link--TextColor;
+  border: 0; // For `<button>`s
+  background-color: transparent; // For `<button>`s
+
+  // Prevent dropdown overflow if there's no padding
+  // See https://github.com/twbs/bootstrap/pull/27703
+  @if $Dropdown--OffsetVertical == 0 {
+    &:first-child {
+      @include border-top-radius($Dropdown--inner--BorderRadius);
+    }
+
+    &:last-child {
+      @include border-bottom-radius($Dropdown--inner--BorderRadius);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+
+    color: $Dropdown--link--hover--LinkColor;
+
+    @include gradientBackgroundColor($Dropdown--link--hoverBackgroundColor);
+  }
+
+  &.active,
+  &:active {
+    text-decoration: none;
+
+    color: $Dropdown--LinkColor;
+
+    @include gradientBackgroundColor($Dropdown--link--activeBackgroundColor);
+  }
+
+  &.disabled,
+  &:disabled {
+    pointer-events: none;
+
+    color: $Dropdown--link-disabled--TextColor;
+    background-color: transparent;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+}

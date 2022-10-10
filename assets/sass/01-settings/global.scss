@@ -1,0 +1,252 @@
+/* Variables */
+
+// Vertical Rhythm Multiplier
+$baseline-unit: 10px;
+
+:root {
+
+	/* Font Family */
+	--Font-primary: var(--Font-headings, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif);
+	--Font-secondary: var(--Font-base, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif);
+
+	/* Font Size */
+	--FontSize-base: 1.25rem; // 20px / 16px
+	--FontSize-xs: 1rem; // 16px / 16px
+	--FontSize-sm: 1.125rem; // 18px / 16px
+	--FontSize-md: 1.25rem; // 20px / 16px
+	--FontSize-lg: 1.5rem; // 24px / 16px
+	--FontSize-xl: 2.25rem; // 36px / 16px
+	--FontSize-xxl: 4rem; // 64px / 16px
+	--FontSize-xxxl: 5rem; // 80px / 16px
+	--PageSize: var(--FontSize-xxl);
+	--letter-spacing: normal;
+
+	/* Line Height */
+	--LineHeight: 1.1 !default;
+	--$EntryHeight   : calc($LineHeight - 0.2) !default;
+	--HeadingHeight : calc($LineHeight + 0.5) !default;
+	$TitleHeight   : calc($LineHeight + 0.25) !default;
+
+	/* Headings */
+	--HeadingFont: var(--Font-primary);
+
+	--Heading--FontSize-h6: var(--FontSize-xs);
+	--Heading--FontSize-h5: var(--FontSize-sm);
+	--Heading--FontSize-h4: var(--FontSize-lg);
+	--Heading--FontSize-h3: calc(1.25 * var(--FontSize-lg));
+	--Heading--FontSize-h2: var(--FontSize-xl);
+	--Heading--FontSize-h1: var(--FontSize-page-title);
+
+	--Heading--letter-spacing-h6: 0.05em;
+	--Heading--letter-spacing-h5: 0.05em;
+	--Heading--letter-spacing-h4: var(--letter-spacing);
+	--Heading--letter-spacing-h3: var(--letter-spacing);
+	--Heading--letter-spacing-h2: var(--letter-spacing);
+	--Heading--letter-spacing-h1: var(--letter-spacing);
+
+	--HeadingHeight-h6: var(--line-height-heading);
+	--HeadingHeight-h5: var(--line-height-heading);
+	--HeadingHeight-h4: var(--line-height-heading);
+	--HeadingHeight-h3: var(--line-height-heading);
+	--HeadingHeight-h2: var(--line-height-heading);
+	--HeadingHeight-h1: var(--line-height-page-title);
+
+	--FontWeight      : 400;
+    --MuteWeight    : thin;
+    --EntryWeight   : medium;
+    --HeadingWeight : bold;
+    --TitleWeight   : bolder;
+
+	/* Block: Latest posts */
+	--latest-posts--title-font-family: var(--HeadingFont);
+	--latest-posts--title-font-size: var(--Heading--FontSize-h3);
+	--latest-posts--description-font-family: var(--Font-secondary);
+	--latest-posts--description-font-size: var(--FontSize-sm);
+
+	--listFont: var(--Font-secondary);
+	--definition-termFont: var(--Font-primary);
+
+	/* Colors */
+	--black: #000;
+	--dark-gray: #28303d;
+	--gray: #39414d;
+	--light-gray: #f0f0f0;
+	--green: #d1e4dd;
+	--blue: #d1dfe4;
+	--purple: #d1d1e4;
+	--red: #e4d1d1;
+	--orange: #e4dad1;
+	--yellow: #eeeadd;
+	--white: #fff;
+	--white-50: rgba(255, 255, 255, 0.5); // Used for disabled buttons
+	--white-90: rgba(255, 255, 255, 0.9); // Used in form fields.
+
+	--primary: var(--dark-gray); /* Body text color, site title, footer text color. */
+	--secondary: var(--gray); /* Headings */
+	--primary-hover: var(--primary);
+	--background: var(--green); /* Mint, default body background */
+	--border: var(--primary); /* Used for borders (separators) */
+
+	/* Spacing */
+	--spacing-unit: #{2 * $baseline-unit}; // 20px
+	--spacing-measure: unset; // Use ch units here. ie: 60ch = 60 character max-width
+	--spacing-horizontal: #{2.5 * $baseline-unit}; // 25px
+	--spacing-vertical: #{3 * $baseline-unit}; // 30px.
+
+	/* Elevation */
+	--elevation: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+	/* Forms */
+	--FormFont: var(--Font-secondary);
+	--Form--FontSize: var(--FontSize-sm);
+	--Form--line-height: var(--line-height-body);
+	--Form--text: var(--dark-gray); // Text color in input fields is always dark over light background.
+	--Form--ranged: var(--secondary);
+	--Form--label-weight: 500;
+	--Form--border-color: var(--secondary);
+	--Form--border-width: 3px;
+	--Form--border-radius: 0;
+	--Form--spacing-unit: calc(0.5 * var(--spacing-unit));
+
+	/* Cover block */
+	--cover--height: calc(15 * var(--spacing-vertical));
+	--cover--foreground: var(--white);
+	--cover--background: var(--black);
+
+	/* Buttons */
+	// Colors
+	--button--text: var(--background);
+	--button--text-hover: var(--secondary);
+	--button--text-active: var(--secondary);
+	--button--background: var(--secondary);
+	--button--background-active: var(--background);
+	// Fonts
+	--buttonFont: var(--Font-primary);
+	--button--FontSize: var(--FontSize-base);
+	--button--Font-weight: 500;
+	--button--line-height: 1.5;
+	// Borders
+	--button--border-width: 3px;
+	--button--border-radius: 0;
+	// Spacing
+	--Button--OffsetVertical: 15px;
+	--Button--OffsetHorizontal: calc(2 * var(--Button--OffsetVertical));
+
+	/* entry */
+	--EntryHeader: var(--primary);
+	--EntryHeader--link: currentColor;
+	--EntryHeader--hover: var(--primary-hover);
+	--EntryHeader--focus: var(--secondary);
+	--EntryHeaderSize: var(--HeadingSize-h2);
+	--EntryContentFont: var(--Font-secondary);
+	--EntryAuthorBioFont: var(--HeadingFont);
+	--EntryAuthorBioSize: var(--HeadingSize-h4);
+
+	/* Header */
+	--branding--text: var(--primary);
+	--branding--link: var(--primary);
+	--branding--link-hover: var(--secondary);
+	--branding--titleFont: var(--Font-primary);
+	--branding--titleSize: var(--FontSize-lg);
+	--branding--titleSize-mobile: var(--HeadingSize-h4);
+	--branding--title--Font-weight: normal;
+	--branding--title--text-transform: uppercase;
+	--branding--descriptionFont: var(--Font-secondary);
+	--branding--descriptionSize: var(--FontSize-sm);
+	--branding--descriptionFont: var(--Font-secondary);
+
+	--branding--logo--max-width: 300px;
+	--branding--logo--max-height: 100px;
+	--branding--logo--max-width-mobile: 96px;
+	--branding--logo--max-height-mobile: 96px;
+
+	/* Main navigation */
+	--primary-navFont: var(--Font-secondary);
+	--primary-navFont-mobile: var(--Font-primary);
+	--primary-navSize: var(--FontSize-md);
+	--primary-navSize-submenu: var(--FontSize-xs);
+	--primary-nav--FontSize-mobile: var(--FontSize-sm);
+	--primary-navSize-submenu-mobile: var(--FontSize-sm);
+	--primary-navSize-button: var(--FontSize-xs);
+	--primary-nav--Font-style: normal;
+	--primary-nav--Font-style-submenu-mobile: normal;
+	--primary-nav--Font-weight: normal;
+	--primary-nav--Font-weight-button: 500;
+	--primary-nav--link: var(--primary);
+	--primary-nav--link-hover: var(--primary-hover);
+	--primary-nav--text: var(--primary);
+	--primary-nav--padding: calc(0.66 * var(--spacing-unit));
+	--primary-nav--border-color: var(--primary);
+
+	/* Pagination */
+	--pagination--text: var(--primary);
+	--pagination--link-hover: var(--primary-hover);
+	--paginationFont: var(--Font-secondary);
+	--paginationSize: var(--FontSize-lg);
+	--pagination--Font-weight: normal;
+	--pagination--Font-weight-strong: 600;
+
+	/* Footer */
+	--footer--text: var(--primary);
+	--footer--link: var(--primary);
+	--footer--link-hover: var(--primary-hover);
+	--footerFont: var(--Font-primary);
+	--footerSize: var(--FontSize-sm);
+
+	/* Block: Pull quote */
+	--pullquoteFont: var(--Font-primary);
+	--pullquoteSize: var(--Heading--FontSize-h3);
+	--pullquote--Font-style: normal;
+	--pullquote--letter-spacing: var(--Heading--letter-spacing-h4);
+	--pullquote--line-height: var(--line-height-heading);
+	--pullquote--border-width: 3px;
+	--pullquote--border-color: var(--primary);
+	--pullquote--foreground: var(--primary);
+	--pullquote--background: var(--background);
+
+	--quoteFont: var(--Font-secondary);
+	--quoteSize: var(--FontSize-md);
+	--quoteSize-large: var(--FontSize-xl);
+	--quote--Font-style: normal;
+	--quote--Font-weight: 700;
+	--quote--Font-weight-strong: bolder;
+	--quote--Font-style-large: normal;
+	--quote--Font-style-cite: normal;
+	--quote--line-height: var(--line-height-body);
+	--quote--line-height-large: 1.35;
+
+	--separator--border-color: var(--border);
+	--separator--height: 1px;
+
+	/* Block: Table */
+	--table--stripes-border-color: var(--light-gray);
+	--table--stripes-background-color: var(--light-gray);
+	--table--has-background-text-color: var(--dark-gray);
+
+	/* Widgets */
+	--Widget--line-height-list: 1.9;
+	--Widget--line-height-title: 1.4;
+	--Widget--Font-weight-title: 700;
+	--Widget--spacing-menu: calc(0.66 * var(--spacing-unit));
+
+	/* Admin-bar height */
+	--admin-bar--height: 0px;
+}
+
+.admin-bar {
+	--admin-bar--height: 32px;
+
+	@media only screen and (max-width: 782px) {
+		--admin-bar--height: 46px;
+	}
+}
+
+@media only screen and (min-width: 652px) { // Not using the mixin because it's compiled after this file
+	:root {
+		--FontSize-xl: 2.5rem; // 40px / 16px
+		--FontSize-xxl: 6rem; // 96px / 16px
+		--FontSize-xxxl: 9rem; // 144px / 16px
+		--HeadingSize-h3: 2rem; // 32px / 16px
+		--HeadingSize-h2: 3rem; // 48px / 16px
+	}
+}

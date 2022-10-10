@@ -1,0 +1,48 @@
+// stylelint-disable custom-property-empty-line-before
+
+.breadcrumb- {
+  // scss-docs-start Breadcrumb--css-vars
+  --#{$prefix}Breadcrumb--OffsetHorizontal: #{$Breadcrumb--OffsetHorizontal};
+  --#{$prefix}Breadcrumb--OffsetVertical: #{$Breadcrumb--OffsetVertical};
+  --#{$prefix}Breadcrumb--margin-bottom: #{$Breadcrumb--margin-bottom};
+  @include rfs($BreadcrumbSize, --#{$prefix}BreadcrumbSize);
+  --#{$prefix}Breadcrumb--bg: #{$Breadcrumb--bg};
+  --#{$prefix}Breadcrumb--border-radius: #{$Breadcrumb--border-radius};
+  --#{$prefix}BreadcrumbDivider-color: #{$BreadcrumbDivider-color};
+  --#{$prefix}Breadcrumb--item--OffsetHorizontal: #{$Breadcrumb--item--OffsetHorizontal};
+  --#{$prefix}Breadcrumb--item-active-color: #{$Breadcrumb--active-color};
+  // scss-docs-end Breadcrumb--css-vars
+
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--#{$prefix}Breadcrumb--OffsetVertical) var(--#{$prefix}Breadcrumb--OffsetHorizontal);
+  margin-bottom: var(--#{$prefix}Breadcrumb--margin-bottom);
+  @include font-size(var(--#{$prefix}BreadcrumbSize));
+  list-style: none;
+  background-color: var(--#{$prefix}Breadcrumb--bg);
+  @include border-radius(var(--#{$prefix}Breadcrumb--border-radius));
+}
+
+.breadcrumb--item {
+  // The separator between Breadcrumb-s (by default, a forward-slash: "/")
+  + .breadcrumb--item {
+    padding-left: var(--#{$prefix}Breadcrumb--item--OffsetHorizontal);
+
+    &::before {
+      float: left; // Suppress inline spacings and underlining of the separator
+      padding-right: var(--#{$prefix}Breadcrumb--item--OffsetHorizontal);
+      color: var(--#{$prefix}BreadcrumbDivider-color);
+      content: var(--#{$prefix}BreadcrumbDivider, escape-svg($BreadcrumbDivider)) #{"/* rtl:"} var(--#{$prefix}BreadcrumbDivider, escape-svg($BreadcrumbDivider-flipped)) #{"*/"};
+    }
+  }
+
+  &.active {
+    color: var(--#{$prefix}Breadcrumb--item-active-color);
+  }
+}
+
+.breadcrumb--area {
+	text-align: center;
+	width: calc(100% - calc(2 * $Spacer));
+	font-weight: normal;
+}

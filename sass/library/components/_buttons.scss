@@ -1,0 +1,294 @@
+// Buttons
+//
+// For each button define text, background, and border color.
+
+// Colors
+$ButtonLink: Link($buttonColor);
+  $ButtonLink-disabled: Muted($ButtonLink);
+  $ButtonLink-hover: HoverShift($ButtonLink);
+  $ButtonText-hover: HoverShift($ButtonText);
+
+// Fonts
+
+
+// Borders
+$BorderWidth: $BorderWidth;
+$BorderWidth-focus: $BorderWidth-focus;
+
+
+  $ButtonBorder-hover: HoverShift(ButtonBorder);
+  $ButtonBorder-disabled: Disabled($ButtonBorder);
+
+// Spacing
+
+/* Padding - Sm */
+
+
+/* Shadow */
+$Button-BoxShadow: inset 0 3px 5px ColorDark($buttonColor) 0.125;
+$Button-BoxShadow-focus: inset 2px 2px 5px findColorInvert($shadowColor) 0.075,
+  inset -3px -3px 7px ColorDark($buttonColor);
+
+/* Inactive */
+$Button-block-spacing-y: 0.5rem;
+
+/* Radius */
+// Allows for customizing button radius independently from global border radius
+$ButtonRadius: $BorderRadius;
+$ButtonRadius-sm: $ButtonRadius * $sm;
+$ButtonRadius-lg: $ButtonRadius * $lg;
+$ButtonRadius-xl: $ButtonRadius * $lg;
+
+/* Transition */
+$ButtonTransition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, shadow 0.15s ease-in-out;
+
+/* Percentage Change */
+$ButtonBackground-hovershade-amount: 15%;
+$ButtonBackground-hovertint-amount: 15%;
+$ButtonBorder-hovershade-amount: 20%;
+$ButtonBorder-hovertint-amount: 10%;
+$ButtonBackground-activeshade-amount: 20%;
+$ButtonBackground-activetint-amount: 20%;
+$ButtonBorder-activeamount: 25%;
+$ButtonBorder-activetint-amount: 10%;
+
+
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+// scss-docs-start btn-variant-mixin
+@mixin button-variant(
+  $background,
+  $border,
+  $color: color-contrast($background),
+  $hover-background: if($color == $color-contrast-light, darken($background, $ButtonBackground-hovershade-amount), tint-color($background, $ButtonBackground-hovertint-amount)),
+  $hover-border: if($color == $color-contrast-light, darken($border, $ButtonBorder-hovershade-amount), tint-color($border, $ButtonBorder-hovertint-amount)),
+  $hover-color: color-contrast($hover-background),
+  $active-background: if($color == $color-contrast-light, darken($background, $ButtonBackground-activeshade-amount), tint-color($background, $ButtonBackground-activetint-amount)),
+  $active-border: if($color == $color-contrast-light, darken($border, $ButtonBorder-activeamount), tint-color($border, $ButtonBorder-activetint-amount)),
+  $active-color: color-contrast($active-background),
+  $disabled-background: $background,
+  $disabled-border: $border,
+  $disabled-color: color-contrast($disabled-background)
+) {
+  --#{$prefix}ButtonText: #{$color};
+  --#{$prefix}ButtonBackground: #{$background};
+  --#{$prefix}ButtonBorder: #{$border};
+  --#{$prefix}ButtonLink-hover: #{$hover-color};
+  --#{$prefix}ButtonBackground-hover: #{$hover-background};
+  --#{$prefix}ButtonBorder-hover: #{$hover-border};
+  --#{$prefix}Button-BoxShadow-focus-rgb: #{to-rgb(mix($color, $border, 15%))};
+  --#{$prefix}ButtonLink-active: #{$active-color};
+  --#{$prefix}ButtonBackground-active: #{$active-background};
+  --#{$prefix}ButtonBorder-active: #{$active-border};
+  --#{$prefix}ButtonShadow-active: #{$Button-BoxShadow};
+  --#{$prefix}ButtonLink-disabled: #{$disabled-color};
+  --#{$prefix}ButtonBackground-disabled: #{$disabled-background};
+  --#{$prefix}ButtonBorder-disabled: #{$disabled-border};
+}
+
+@mixin button-outline-variant(
+  $color,
+  $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  --#{$prefix}ButtonText: #{$color};
+  --#{$prefix}ButtonBorder: #{$color};
+  --#{$prefix}ButtonText-hover: #{$color-hover};
+  --#{$prefix}ButtonBackground-hover: #{$active-background};
+  --#{$prefix}ButtonBorder-hover: #{$active-border};
+  --#{$prefix}Button-BoxShadow-focus-rgb: #{to-rgb($color)};
+  --#{$prefix}ButtonLink-active: #{$active-color};
+  --#{$prefix}ButtonBackground-active: #{$active-background};
+  --#{$prefix}ButtonBorder-active: #{$active-border};
+  --#{$prefix}ButtonShadow-active: #{$Button-BoxShadow};
+  --#{$prefix}ButtonLink-disabled: #{$color};
+  --#{$prefix}ButtonBackground-disabled: transparent;
+  --#{$prefix}ButtonBorder-disabled: #{$color};
+  --#{$prefix}gradient: none;
+}
+
+.button {
+  --#{$prefix}Button-OffsetHorizontal: #{$Button-OffsetHorizontal};
+  --#{$prefix}Button-OffsetVertical: #{$Button-OffsetVertical};
+  --#{$prefix}ButtonFont: #{$ButtonFont};
+  @include rfs($ButtonSize, --#{$prefix}ButtonSize);
+  --#{$prefix}ButtonWeight: #{$ButtonWeight};
+  --#{$prefix}ButtonHeight: #{$ButtonHeight};
+  --#{$prefix}ButtonText: #{$ButtonText};
+  --#{$prefix}ButtonBackground: transparent;
+  --#{$prefix}BorderWidth: #{$BorderWidth};
+  --#{$prefix}ButtonBorder: #{$ButtonBorder};
+  --#{$prefix}ButtonRadius: #{$ButtonRadius};
+  --#{$prefix}ButtonBorder-hover: #{$ButtonBorder-hover};
+  --#{$prefix}Button-BoxShadow: #{$Button-BoxShadow};
+  --#{$prefix}DisabledOpacity: #{$DisabledOpacity};
+  --#{$prefix}Button-BoxShadow-focus: 0 0 0 #{$BorderWidth-focus} rgba(var(--#{$prefix}Button-Shadow-focus-rgb), .5);
+  // scss-docs-end Button-css-vars
+
+  padding: var(--#{$prefix}Button-OffsetVertical) var(--#{$prefix}Button-OffsetHorizontal);
+  font-family: var(--#{$prefix}ButtonFont);
+  @include font-size(var(--#{$prefix}ButtonSize));
+  font-weight: var(--#{$prefix}ButtonWeight);
+  line-height: var(--#{$prefix}ButtonHeight);
+  color: var(--#{$prefix}ButtonText);
+  text-decoration: if($LinkDecoration == none, null, none);
+  white-space: $Button-WhiteSpace;
+  border: var(--#{$prefix}BorderWidth) solid var(--#{$prefix}ButtonBorder);
+  @include border-radius(var(--#{$prefix}ButtonRadius));
+  @include gradient-background(var(--#{$prefix}ButtonBackground));
+  @include box-shadow(var(--#{$prefix}Button-BoxShadow));
+  @include Transition($ButtonTransition);
+
+  :not(.button-check) + &:hover,
+  &:first-child:hover {
+    color: var(--#{$prefix}ButtonText-hover);
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+    background-color: var(--#{$prefix}ButtonBackground-hover);
+    border-color: var(--#{$prefix}ButtonBorder-hover);
+  }
+
+  &:focus-visible {
+    color: var(--#{$prefix}ButtonText-hover);
+    @include gradient-background(var(--#{$prefix}ButtonBackground-hover));
+    border-color: var(--#{$prefix}ButtonBorder-hover);
+    outline: 0;
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: var(--#{$prefix}Button-BoxShadow), var(--#{$prefix}Button-BoxShadow-focus);
+    } @else {
+      box-shadow: var(--#{$prefix}Button-BoxShadow-focus);
+    }
+  }
+
+  .button-check:focus-visible + & {
+    border-color: var(--#{$prefix}ButtonBorder-hover);
+    outline: 0;
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: var(--#{$prefix}Button-BoxShadow), var(--#{$prefix}Button-BoxShadow-focus);
+    } @else {
+      box-shadow: var(--#{$prefix}Button-BoxShadow-focus);
+    }
+  }
+
+  .button-check:checked + &,
+  :not(.button-check) + &:active,
+  &:first-child:active,
+  &.active,
+  &.show {
+    color: var(--#{$prefix}ButtonLink);
+    background-color: var(--#{$prefix}ButtonBackground-active);
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    border-color: var(--#{$prefix}ButtonBorder);
+    @include box-shadow(var(--#{$prefix}ButtonShadow-active));
+
+    &:focus-visible {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      @if $enable-shadows {
+        box-shadow: var(--#{$prefix}ButtonShadow-active), var(--#{$prefix}Button-BoxShadow-focus);
+      } @else {
+        box-shadow: var(--#{$prefix}Button-BoxShadow-focus);
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled,
+  fieldset:disabled & {
+    color: var(--#{$prefix}ButtonText-disabled);
+    pointer-events: none;
+    background-color: var(--#{$prefix}ButtonBackground-disabled);
+    background-image: if($enable-gradients, none, null);
+    border-color: var(--#{$prefix}ButtonBorder-disabled);
+    opacity: var(--#{$prefix}DisabledOpacity);
+    @include box-shadow(none);
+  }
+}
+
+//
+// Alternate buttons
+//
+
+// scss-docs-start Button-variant-loops
+@each $color, $value in $theme-colors {
+  .button-#{$color} {
+    @if $color == "light" {
+      @include button-variant(
+        $value,
+        $value,
+        $hover-background: darken($value, $ButtonBackground-hovershade-amount),
+        $hover-border: darken($value, $Button-Border-hovershade-amount),
+        $active-background: darken($value, $ButtonBackground-activeshade-amount),
+        $active-border: darken($value, $Button-Border-activeshade-amount)
+      );
+    } @else if $color == "dark" {
+      @include button-variant(
+        $value,
+        $value,
+        $hover-background: tint-color($value, $ButtonBackground-hovertint-amount),
+        $hover-border: tint-color($value, $Button-Border-hovertint-amount),
+        $active-background: tint-color($value, $ButtonBackground-activetint-amount),
+        $active-border: tint-color($value, $Button-Border-activetint-amount)
+      );
+    } @else {
+      @include button-variant($value, $value);
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .button-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.button-link {
+  --#{$prefix}ButtonWeight: #{$ButtonWeight};
+  --#{$prefix}ButtonText: #{$ButtonText};
+  --#{$prefix}ButtonBackground: translucentBackground(#{$ButtonBackground});
+  --#{$prefix}ButtonBorder: translucentBorder(#{$ButtonBorder});
+  --#{$prefix}ButtonText-hover: #{$ButtonText-hover};
+  --#{$prefix}ButtonBorder-hover: #{$ButtonBorder-hover};
+  --#{$prefix}ButtonLink: #{$ButtonLink};
+  --#{$prefix}ButtonBorder: #{$ButtonBorder};
+  --#{$prefix}ButtonText-disabled: Disabled(#{$ButtonText});
+  --#{$prefix}ButtonBorder-disabled: translucentBorder(#{$ButtonBorder-disabled});
+  --#{$prefix}Button-BoxShadow: none;
+  --#{$prefix}Button-Shadow-focus-rgb: #{to-rgb(mix(color-contrast($primary), $primary, 15%))};
+
+  text-decoration: $LinkDecoration;
+  @if $enable-gradients {
+    background-image: none;
+  }
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: $LinkDecoration-hover;
+  }
+
+  &:focus-visible {
+    color: var(--#{$prefix}ButtonText);
+  }
+
+  &:hover {
+    color: var(--#{$prefix}ButtonText-hover);
+  }
+
+  // No need for an active state here
+}
+
+//
+// Button Sizes
+//

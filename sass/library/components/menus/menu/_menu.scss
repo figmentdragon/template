@@ -1,0 +1,39 @@
+[class$='navigation'] {
+  font-family: $accent-font;
+  font-size: 1em * 1.05;
+  font-weight: bold;
+
+  color: shade($secondary, $color-interval);
+  &-label {
+    display: inline-block;
+
+    margin-top: 0;
+    margin-left: 7px;
+
+    transition: 0.3s;
+  }
+  &-inside-wrapper {
+    position: fixed;
+    z-index: 99;
+    top: 100%;
+    top: 0;
+    right: -100%;
+
+    visibility: hidden;
+
+    width: calc(100% - calc(2 * $Spacer));
+    max-width: calc(100% - calc(2 * $Spacer));
+    height: 100vh;
+
+    transition: all 0.4s;
+  }
+  &-open .menu-inside-wrapper {
+    right: 0;
+  }
+}
+
+.is-open .menu-inside-wrapper {
+  right: 0;
+
+  visibility: visible;
+}

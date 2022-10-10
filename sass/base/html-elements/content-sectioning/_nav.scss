@@ -1,0 +1,112 @@
+// Nav - The <nav> HTML element represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents. Common examples of navigation sections are menus, Tables of contents, and indexes.
+
+nav {
+  display: inline-flex;
+  align-items: center;
+	font-weight: bold;
+	justify-content: space-between;
+
+  vertical-align: baseline;
+  justify-self: stretch;
+	div {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: ColorStrong($Text);
+  }
+  ul {
+    display: inline;
+    list-style: none;
+		padding: 0;
+		margin: 0;
+    list-style-type: none;
+    ul { float: left;
+      ul {
+        float: left;
+        position: relative;
+        top: 0;
+        left: -999rem;
+        ul {
+          left: -999rem;
+          top: 0;
+        }
+      }
+      li {
+        display: inline-block;
+				margin: 0 0.5rem;
+				position: relative;
+				text-align: left;
+				&:hover > ul,
+				&:focus > ul {
+          display: block;
+          left: auto;
+        }
+        &:hover > a,
+        &:focus > a { }
+				&:not(:last-child) {
+					margin-right: 24rem;
+				}
+				ul {
+					background: $Background;
+			    border: $BorderWidth solid Border($navColor);
+			    border-radius: $BorderRadius;
+			    box-shadow: $BoxShadow $ShadowColor;
+			    display: none;
+			    height: auto;
+			    left: -2px;
+			    padding: .5rem $BaseUnit;
+			    position: absolute;
+			    top: 1.7rem;
+			    white-space: nowrap;
+			    width: auto;
+			    z-index: 1;
+					&::before {
+				    /* fill gap above to make mousing over them easier */
+				    content: "";
+				    position: absolute;
+				    left: 0;
+				    right: 0;
+				    top: -0.5rem;
+				    height: 0.5rem;
+					}
+					li,
+					li a {
+						display: block;
+					}
+				}
+				a {
+					color: $LinkText;
+	        letter-spacing: -0.01rem;
+	        font-size: 1.4rem;
+	        font-weight: 600;
+
+        	button {
+	          cursor: pointer;
+	          border-radius: 0.8rem;
+	          font-size: inherit;
+	          padding: 0.75rem 1.2rem 0.85rem;
+        	}
+	        &:hover,
+	        &:focus { }
+				}
+      }
+    }
+    li:hover > ul,
+    li:focus > ul { left: auto; }
+  }
+  li {
+    position: relative;
+    display: inline-block;
+    margin-right: $BaseUnit;
+    margin-bottom: .25rem;
+		&:hover > a,
+		&.focus > a { }
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+  a {
+    display: block;
+    text-decoration: none;
+		@include on-event;
+  }
+}

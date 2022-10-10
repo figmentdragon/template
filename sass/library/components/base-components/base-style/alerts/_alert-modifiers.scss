@@ -1,0 +1,13 @@
+// Generate contextual modifier classes for colorizing the alert.
+
+@if $enable-themeing {
+  @each $state, $value in $theme-colors {
+    $AlertBackground: tint($value, $AlertBackgroundInterval);
+    $AlertBorder: shade($value, $AlertBorderInterval);
+    $alert: shade($value, $AlertInterval);
+
+    .alert--#{$state} {
+      @include Alert--variant($AlertBackground, $AlertBorder, $alert);
+    }
+  }
+}

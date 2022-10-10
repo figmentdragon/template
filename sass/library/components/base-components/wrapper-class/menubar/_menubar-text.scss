@@ -1,0 +1,16 @@
+// Menubar text
+//
+//
+
+.menubar-text {
+  padding-top: $menu-link--OffsetVertical;
+  padding-bottom: $menu-link--OffsetVertical;
+
+  color: $menubar--TextColor;
+
+  a,
+  a:hover,
+  a:focus {
+    color: $menubar--active--TextColor;
+  }
+}

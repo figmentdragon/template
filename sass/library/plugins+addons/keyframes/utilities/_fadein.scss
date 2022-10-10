@@ -1,0 +1,155 @@
+/**********
+* Fade In *
+**********/
+.fadeIn{
+	opacity:0;
+}
+.fadeIn.go {
+	Animation-name: fadeIn;
+}
+
+.growIn {
+	transform: scale(0.2);
+	opacity:0;
+}
+.growIn.go{
+	Animation-name: growIn;
+}
+
+.shake.go {
+	Animation-name: shake;
+}
+
+.shakeUp.go {
+	Animation-name: shakeUp;
+}
+
+.fadeInLeft{
+	opacity: 0;
+	transform: translateX(-400px);
+}
+.fadeInLeft.go {
+	Animation-name: fadeInLeft;
+}
+
+.fadeInRight{
+	opacity: 0;
+	transform: translateX(400px);
+}
+.fadeInRight.go {
+	Animation-name: fadeInRight;
+}
+
+.fadeInUp{
+    opacity: 0;
+    -webkit-transform: translateY(400px);
+    transform: translateY(400px);
+}
+.fadeInUp.go {
+    -webkit-Animation-name: fadeInUp;
+    Animation-name: fadeInUp;
+}
+
+.fadeInDown{
+    opacity: 0;
+    -webkit-transform: translateY(-400px);
+    transform: translateY(-400px);
+}
+.fadeInDown.go {
+    -webkit-Animation-name: fadeInDown;
+    Animation-name: fadeInDown;
+}
+
+.rotateIn.go {
+    -webkit-Animation-name: rotateIn;
+    Animation-name: rotateIn;
+}
+
+.rotateInUpLeft.go {
+    -webkit-Animation-name: rotateInUpLeft;
+    Animation-name: rotateInUpLeft;
+}
+
+.rotateInDownLeft.go {
+    -webkit-Animation-name: rotateInDownLeft;
+    Animation-name: rotateInDownLeft;
+}
+
+.rotateInUpRight.go {
+    -webkit-Animation-name: rotateInUpRight;
+    Animation-name: rotateInUpRight;
+}
+
+.rotateInDownRight.go {
+    -webkit-Animation-name: rotateInDownRight;
+    Animation-name: rotateInDownRight;
+}
+
+.rollIn.go {
+    -webkit-Animation-name: rollIn;
+    Animation-name: rollIn;
+}
+
+.wiggle.go {
+    -webkit-Animation-name: wiggle;
+    Animation-name: wiggle;
+    -webkit-animation-timing-function: ease-in;
+    animationTiming-function: ease-in;
+}
+
+.swing.go {
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-Animation-name: swing;
+    Animation-name: swing;
+}
+
+.tada.go {
+    -webkit-Animation-name: tada;
+    Animation-name: tada;
+}
+
+.wobble.go {
+    -webkit-Animation-name: wobble;
+    Animation-name: wobble;
+}
+
+.pulse.go {
+    -webkit-Animation-name: pulse;
+    Animation-name: pulse;
+}
+
+.lightSpeedInRight.go {
+    -webkit-Animation-name: lightSpeedInRight;
+    Animation-name: lightSpeedInRight;
+    -webkit-animation-timing-function: ease-out;
+    animationTiming-function: ease-out;
+}
+
+.lightSpeedInLeft.go {
+    -webkit-Animation-name: lightSpeedInLeft;
+    Animation-name: lightSpeedInLeft;
+    -webkit-animation-timing-function: ease-out;
+    animationTiming-function: ease-out;
+}
+
+.flip.go {
+    -webkit-backface-visibility: visible !important;
+    -webkit-Animation-name: flip;
+    backface-visibility: visible !important;
+    Animation-name: flip;
+}
+
+.flipInX.go {
+    -webkit-backface-visibility: visible !important;
+    -webkit-Animation-name: flipInX;
+    backface-visibility: visible !important;
+    Animation-name: flipInX;
+}
+
+.flipInY.go {
+    -webkit-backface-visibility: visible !important;
+    -webkit-Animation-name: flipInY;
+    backface-visibility: visible !important;
+    Animation-name: flipInY;
+}

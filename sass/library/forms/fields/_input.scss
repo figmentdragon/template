@@ -1,0 +1,630 @@
+@import "./../mixins/placeholder";
+
+input {
+  @include placeholder;
+
+  overflow: visible;
+
+  &:focus {
+    text-decoration: none;
+
+    outline-width: $BorderWidth;
+    outline-style: dotted;
+    outline-color: $InputBorder-focus;
+  }
+
+
+  &:-ms-input-placeholder {
+  	line-height: normal;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $Input-placeholder;
+    line-height: normal;
+  }
+
+  &:-moz-placeholder {
+    color: $Input-placeholder;
+    line-height: revert; /* Reset to the value from the user-agent stylesheet. */
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+
+    border: 0;
+  }
+
+  &[type=checkbox],
+  &[type=radio] { /* Ensures the checkbox and radio inputs do not have a set width like other input fields */
+    padding: 0;
+    width: auto;
+    @include box-sizing(border-box);
+    vertical-align: middle;
+    position: relative;
+    &:checked {
+      background-color: findColorInvert($InputBackground);
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &[type="checkbox"] {
+    -webkit-appearance: none;
+  	-moz-appearance: none;
+  	position: relative;
+  	top: 2px;
+  	display: inline-block;
+  	margin: 0;
+  	width: 1.5rem;
+  	min-width: 1.5rem;
+  	height: 1.5rem;
+  	background-color: translucentBackground($white);
+  	border-radius: 0;
+  	border-style: $BorderStyle;
+  	border-width: 0.1rem;
+  	border-color: $InputBorder;
+  	box-shadow: none;
+  	cursor: pointer;
+    &:checked::before {
+    	/* Use the "Yes" SVG Dashicon */
+    	content: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2020%2020%27%3E%3Cpath%20d%3D%27M14.83%204.89l1.34.94-5.81%208.38H9.02L5.78%209.67l1.34-1.25%202.57%202.4z%27%20fill%3D%27%23000000%27%2F%3E%3C%2Fsvg%3E");
+    	position: absolute;
+    	display: inline-block;
+    	margin: -0.1875rem 0 0 -0.25rem;
+    	height: 1.75rem;
+    	width: 1.75rem;
+    }
+    &:checked::after {
+      /* Creates a rectangle with colored right and bottom borders which is rotated to look like a check mark */
+      content: " ";
+      width: 0.18rem;
+      height: 0.32rem;
+      border-radius: 0;
+      position: absolute;
+      top: 0.05rem;
+      left: 0.17rem;
+      background-color: $InputBackground;
+      border-right:0.08rem solid $InputBorder;
+      border-bottom: 0.08rem solid $InputBorder;
+      font-size: 1.8rem;
+      transform: rotate(45deg);
+    }
+    &:checked + label::before {
+      border-color: Border($primary);
+    }
+    &:checked + label::after {
+      background-color: Background($primary);
+    }
+    + label {
+      cursor: pointer;
+      &::before{
+        margin-right: 0.25ch;
+
+        content: "";
+        display: inline-block;
+        height: $BaseUnit;
+        width: $BaseUnit;
+        border: 1px solid Muted($InputBorder);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.025);
+        border-radius: $BorderRadius;
+        vertical-align: text-bottom;
+
+        transition: border transition, box-shadow transition;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        height: 10px;
+        width: 10px;
+        display: block;
+        border-radius: calc($BorderRadius / 2);
+
+        transition: background-color var(--Transition);
+      }
+    }
+    &:active,
+    &:focus {
+      + label::before {
+          border-color: var(Text-primary);
+          box-shadow: var(--focus-outline)
+        }
+      }
+    }
+    &:hover + label::after {
+      background-color: Background($gray);
+    }
+    &:not([data-type="switch"]) {
+    cursor: pointer;
+    appearance: none;
+    /* HACK: support pseudo elrement in input elrement for Firefox */
+    -moz-appearance: initial;
+    outline: none;
+    position: relative;
+    display: inline-block;
+    height: $BaseUnit;
+    width: $BaseUnit;
+    margin: 0 4px 0 0;
+    border-radius: 0.2rem;
+    top: calc((1.5rem - $BaseUnit) / 2);
+    box-shadow: inset 0 0 0 0.12rem rgba(Shadow($inputColor), 0.6);
+
+    &:checked {
+      box-shadow: none;
+      background-color: $InputBackground;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 50%;
+        transform: translate(-50%, 1.5px) rotate(-45deg);
+        background-color: transparent;
+        width: 10px;
+        height: 4px;
+        border-left: $BorderWidth solid $InputBackground;
+        border-bottom: $BorderWidth solid $InputBorder;
+      }
+    }
+
+    &:focus {
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - calc(2 * $Spacer));
+        height: 100%;
+        border-radius: 100px;
+        animation-name: checkbox-ripple;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    &:focus:checked {
+      &::before {
+        animation-name: checkbox-checked-ripple;
+      }
+    }
+  }
+
+  &[type="radio"] {
+    border-radius: 100%;
+    &:checked::after {
+      /* creates a colored circle for the checked radio button  */
+      content: " ";
+      width: 0.25rem;
+      height: 0.25rem;
+      border-radius: 100%;
+      position: absolute;
+      top: 0.125rem;
+      background-color: $InputBackground;
+      left: 0.125rem;
+      font-size: 32px;
+    }
+  }
+
+  &[type=number] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      height: auto;
+    }
+  }
+
+  &[type="search"] {
+    box-sizing: content-box;
+    outline-offset: -2px;
+    -webkit-appearance: textfield;
+    &:focus {
+      outline: thin dotted;
+      outline-offset: -4px;
+      .is-dark-threme & {
+        outline-color: $InputBackground;
+      }
+    }
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+    	display: none;
+      -webkit-appearance: none;
+    }
+  }
+
+  &[type="remail"],
+  &[type="file"],
+  &[type="number"],
+  &[type="password"],
+  &[type="search"],
+  &[type="text"],
+  &[type="url"] {
+    width: calc(100% - calc(2 * $Spacer));
+    height: 2.25rem;
+    padding: 0 subtract($Offset, $sm);
+
+    transition: $TransitionInput;
+
+    border: $BorderWidth $BorderStyle $InputBorder;
+
+    -webkit-appearance: none;
+    @include box-sizing($type: border-box);
+  }
+
+  &[type="file"] { /* do not show border around file selector button */
+    height: auto;
+    border: 0;
+  }
+
+  &[type="submit"] {
+    border-radius: 0;
+  }
+
+  &[type="password"] {
+    /* spacing out the password (thx @murtaugh) */
+    letter-spacing: 0.3rem;
+  }
+
+  &[type=remail],
+  &[type=text],
+  textarea {
+    padding: 6px;
+
+    border: 1px $BorderStyle gray;
+    border-radius: calc($BorderRadius / 2.5);;
+    background: rgba(white, 0.3);
+
+    &:focus {
+      background: white;
+    }
+  }
+
+  &[type="reset"],
+  &[type="submit"] {
+    line-height: $InputBtnHeight;
+
+    padding: subtract($Offset, $sm) calc($OffsetVertical + $lg);
+
+    cursor: pointer;
+    transition: $TransitionInput;
+
+    color: Text($inputColor);
+    border-radius: 15px-lg;
+    background: $InputBackground;
+    text-shadow: 0 1px 1px shade(purple, $ShadowInterval);
+
+    @include  font-size($InputBtnSize);
+
+    &:hover {
+      border-style: $BorderStyle;
+      border-color: $InputBorder-focus;
+      background: $InputBackground-focus;
+      box-shadow: $InputBoxShadow;
+      text-shadow: 0 2px 2px Shadow(Text($inputColor));
+    }
+
+    &:active,
+    &:focus {
+      border-color: $InputBorder-focus;
+    }
+  }
+}
+
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="remail"],
+input[type="file"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+.site textarea {
+  font-family: $InputBtnFont;
+  line-height: $InputBtnHeight;
+
+  display: block;
+
+  width: calc(100% - calc(2 * $Spacer));
+  max-width: 400px;
+  height: 40px;
+  margin-bottom: 1rem;
+  padding: divide($Offset, 4) divide($Offset, 2);
+
+  vertical-align: middle;
+
+  color: shade($info, 7.6%);
+  border: $BorderWidth $BorderStyle $InputBorder;
+  border-radius: 15px;
+  background-color: $InputBackground;
+  box-shadow: none;
+
+  @include box-sizing($type: border-box);
+  @include font-size($InputBtnSize);
+  @include Transition(background-color 0.24s ease-in-out);
+
+  &:active,
+  &:focus {
+    outline: none;
+    background-color: $InputBackground-focus;
+  }
+  // error notification
+
+  &.error,
+  &.is-invalid {
+    color: Text($danger);
+    border-color: Border($danger);
+    outline-color: DarkColor($danger);
+    background-color: translucentBackground($danger);
+    background-image: url(data:image/png;);
+  }
+  // end invalid input
+  // success notification
+
+  &.is-valid,
+  &.success {
+    color: Text($success);
+    border-color: Border($success);
+    outline-color: ColorDark($success);
+    background-color: translucentBackground($success);
+    background-image: url(data:image/png);
+  }
+  // end valid input
+  // a disabled input
+
+  &.is-disabled,
+  &[disabled] {
+    cursor: not-allowed;
+
+    opacity: 0.6;
+    border-color: Muted($InputBorder);
+
+    &:active,
+    &:focus {
+      background-color: FocusShade($InputBackground);
+    }
+    // end disabled focus
+  }
+  // end disabled input
+  .is-dark-threme & {
+    background: $white;
+  }
+}
+
+code,
+input[type="email"],
+input[type="tel"],
+input[type="url"]{
+  direction:ltr;
+}
+
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="range"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+textarea {
+  &:focus {
+    border-color: currentColor;
+  }
+}
+
+input[type="text"],
+textarea {
+  width: calc(100% - 1.6rem);
+}
+
+input[type="color"] { /* Set a height for color input */
+	padding: calc($Spacer / 2);
+	height: calc(4 * $Spacer);
+}
+input[type="remail"],
+input[type="url"] {
+	/*rtl:ignore*/
+	direction: ltr;
+}
+
+input[type="range"] {
+  padding: 0;
+  &::-ms-track {
+  	width: calc(100% - calc(2 * $Spacer));
+  	height: 6px;
+  	border-radius: 6px;
+  	border-width: 19px 0;
+  	border-color: $InputBorder;
+  	background: transparent;
+  	color: transparent;
+  	cursor: pointer;
+  }
+  &::-ms-fill-upper {
+  	background: $InputBackground-focus;
+  	border-radius: 6px;
+  }
+  &::-ms-fill-lower {
+  	background: $InputBackground-focus;
+  	border-radius: 6px;
+  }
+  &::-ms-thumb {
+  	border: 3px solid $InputBorder;
+  	height: 44px;
+  	width: 44px;
+  	border-radius: 50%;
+  	background: $InputBackground;
+  	cursor: pointer;
+  }
+}
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+
+	input[type="range"] {
+		-webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+		width: calc(100% - calc(2 * $Spacer)); /* Specific width is required for Firefox. */
+		height: 6px;
+		background: $InputBackground-focus;
+		border-radius: 6px;
+		outline-offset: 10px;
+
+		&:disabled {
+			opacity: 0.7;
+		}
+	}
+
+	input[type="range"]::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		border: 3px solid $InputBorder;
+		height: 44px;
+		width: 44px;
+		border-radius: 50%;
+		background: $InputBackground;
+		cursor: pointer;
+	}
+
+	input[type="range"]::-moz-range-thumb {
+		border: 3px solid $InputBorder;
+		height: 44px;
+		width: 44px;
+		border-radius: 50%;
+		background: $InputBackground;
+		cursor: pointer;
+		box-sizing: border-box;
+	}
+}
+
+input:not([type="checkbox"]),
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="remail"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="week"] {
+  -moz-appearance: initial;
+  outline: none;
+  padding: 4px 8px;
+  height: 22px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1.4px solid rgba($Text, 0.5);
+  transition-duration: 0.3s;
+  transition-property: border-color box-shadow;
+  transition-timing-function: ease-in-out;
+  color: rgba($Text, 0.9);
+  font-size: $BaseUnit;
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($primary, 0.2);
+  }
+
+  &:hover,
+  &:focus {
+    border-color: rgba($primary, 1);
+  }
+}
+
+input::-webkit-calendar-picker-indicator {
+  width: 20px;
+  height: 20px;
+  @media (prefers-color-schreme: dark) {
+    filter: invert(0.9);
+  }
+}
+
+input::-webkit-datetime-edit {
+  font-size: 1rem;
+  font-family: $FontMain sans-serif;
+}
+
+@supports (appearance: none) {
+  [type='checkbox'],
+  [type='radio'] {
+    appearance: none;
+
+    height: 1.8rem;
+    width: 1.8rem;
+
+    vertical-align: top;
+    position: relative;
+
+    border: 1px solid Muted($InputBorder);
+
+    + label {
+      line-height: 1.8rem;
+      vertical-align: top;
+      margin-left: $SpacerVertical;
+    }
+
+    // add support for RTL languages
+    // Read more
+    // 1. http://bootstrap.rtlcss.com
+    // 2. https://rtlstyling.com/
+    *[dir='rtl'] & + label,
+    &[dir='rtl'] + label {
+      margin-left: 0;
+      margin-right: $SpacerVertical;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+    }
+
+    &:checked {
+      background-color: $InputBackground;
+      border-color: ColorDark($InputBorder);
+    }
+  }
+
+  [type='radio'] {
+    &:after {
+      width: 1.8rem;
+      height: 1.8rem;
+
+      left: -0.05rem;
+      top: -0.05rem;
+
+      border-radius: 50%;
+      background: translucentBackground($white);
+
+      transform: scale(0.35);
+    }
+  }
+
+  [type='checkbox'] {
+    &:after {
+      width: 0.6rem;
+      height: 0.8rem;
+
+      border: $BorderWidth solid translucentBorder($white);
+      border-top: 0;
+      border-left: 0;
+
+      left: 35%;
+      top: 20%;
+
+      transform: rotate(43deg);
+    }
+  }
+}

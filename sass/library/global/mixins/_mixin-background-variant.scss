@@ -1,0 +1,28 @@
+// Contextual backgrounds
+@mixin bg-variant($parent, $color) {
+  @each $parent, $color in $theme-colors {
+    .#{$parent} {
+      background-color: $color !important;
+    }
+    a #{$parent},
+    button.#{$parent} {
+      &:hover,
+      &:focus {
+        background-color: hover-shade($color) !important;
+      }
+    }
+  }
+}
+
+
+@mixin bg-gradient-variant($parent, $color) {
+  #{$parent} {
+    background: linear-gradient(87deg, $color 0, saturate($color, 10%) 100%) !important;
+  }
+}
+
+@mixin background-image($background-repeat,$background-size) {
+    background-repeat: $background-repeat;
+    background-position: top center;
+    background-size: $background-size;
+}

@@ -1,0 +1,68 @@
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+
+@mixin on-event($self: true) {
+  @if $self {
+    &,
+    &:active,
+    &:link {
+      font-weight: bold;
+      text-decoration: $LinkDecoration;
+      cursor: pointer;
+      outline: none !important;
+      @include TransitionLink;
+      @content;
+    }
+    &:hover {
+      text-decoration: $LinkDecoration-hover;
+      text-decoration-style: dotted;
+      text-decoration-skip-ink: none;
+      @content;
+    }
+    &:hover,
+    &:focus {
+      opacity: 1;
+      cursor: pointer;
+      outline: thin dotted;
+      @content;
+    }
+    &:focus {
+      border-bottom: $BorderWidth-focus $BorderStyle $BorderColor;
+      outline: thin dotted;
+      text-decoration: $LinkDecoration-focus;
+      font-weight: bolder;
+      @content;
+    }
+    &:visited {
+      text-decoration-line: $LinkDecoration-visited;
+      opacity: 0.75;
+      word-wrap: break-word;
+      font-weight: medium;
+      @content;
+      &:hover {
+        text-decoration: $LinkDecoration-hover;
+        text-decoration-style: dotted;
+        text-decoration-skip-ink: none;
+        @content;
+      }
+    }
+    &:disabled,
+    &.disabled {
+      text-decoration-line: $LinkDecoration-disabled;
+      opacity: 0.5;
+      outline: 0;
+      font-weight: thin;
+      text-decoration: none;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus,
+    &:visited,
+    &:disabled {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+/* -- =SIDEBAR-CONTENT-SIDEBAR --------------- */
+
+#primary {
+	float: right;
+	width: calc(100% - calc(2 * $Spacer));
+	height: calc(100vh - calc( 2 * $BaseUnit));
+}
+
+#content {
+	margin: 0 20%;
+}
+
+#main {
+	float: left;
+	overflow: hidden;
+	width: calc(100% - calc( 4 * $BaseUnit));
+	height: calc(100% - calc( 2 * $BaseUnit));
+}
+
+#masthead { /* Sidebar 1 */
+	margin: 0 0 0 0;
+	width: calc(100% - calc(2 * $Spacer));
+	height: calc(100% - calc($BaseUnit + calc( 2 * $Spacer)));
+	padding: $Offset;
+}
+
+#secondary { /* Sidebar 2 */
+	position: relative;
+	z-index: 1015;
+	margin: 0 0 0 0;
+	float: right;
+	width: 14vw;
+	height: 100%;
+}
+#colophon {
+	position: relative;
+	z-index: 1000;
+	clear: both;
+	margin: 0 0 0 0;
+	height: 1vh;
+	width: calc(100% - calc(2 * $Spacer));
+}
+
+#site-navigation {
+	position: relative;
+	z-index: 1300;
+	width: 25vw;
+	height: 100%;
+}

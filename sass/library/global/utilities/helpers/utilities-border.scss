@@ -1,0 +1,20 @@
+@each $name, $color in $colors {
+  @include bg-variant(".bg-#{$name}", $color);
+  .border-#{$name} {
+    border-color: $color !important;
+  }
+}
+
+@each $name, $color in $theme-colors {
+  @include bg-variant(".bg-#{$name}", $color);
+  .border-#{$name} {
+    border-color: BorderShade($color) !important;
+  }
+}
+
+@each $name, $color in $utilities-colors {
+  @include bg-variant(".bg-#{$name}", $color);
+  .border-#{$name} {
+    border-color: $color !important;
+  }
+}

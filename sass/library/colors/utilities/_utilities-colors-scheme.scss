@@ -1,0 +1,61 @@
+//
+// Border
+//
+
+@each $name, $value in $theme-colors {
+  .color-scheme-#{$name} {
+    color: TextShade($value);
+    border-color: BorderShade($value);
+    background-color: BackgroundTint($value);
+
+    a {
+      color: TextShade($value);
+      background-color: BackgroundTint(rgba($value, $BackgroundOpacity));
+      &:hover,
+      &:focus {
+        color: HoverShift($value);
+        border-color: HoverShift($value);
+        background-color: HoverShift($value);
+      }
+      &:disabled {
+        color: $ColorMuted;
+        border-color: tint($ColorMuted, $BorderInterval);
+        background-color: tint(rgba($ColorMuted, $BackgroundOpacity), $BackgroundInterval);
+        cursor: not-allowed;
+      }
+    }
+    button,
+    input,
+    menu,
+    nav, {
+      color: TextShade($value);
+      background-color: BackgroundTint(rgba($value, $BackgroundOpacity));
+      :hover,
+      :focus {
+        color: HoverShift($value);
+        border-color: HoverShift($value);
+        background-color: HoverShift($value);
+      }
+      :disabled {
+        color: tint($value, $valueInterval);
+        border-color: tint($value, $TextInterval);
+        background-color: tint($value, $valueInterval * 5);
+      }
+      :visited {
+        color: VisitedTint($value);
+        border-color: VisitedTint($value);
+        background-color: VisitedTint($value)
+      }
+    }
+    a,
+    button,
+    menu,
+    nav {
+      :visited {
+        color: VisitedTint($value);
+        border-color: VisitedTint($value);
+        background-color: VisitedTint($value)
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+// Mark
+
+// The <mark> HTML element represents text which is marked or highlighted for reference or notation purposes, due to the marked passage's relevance or importance in the enclosing context.
+
+$mark-padding: 0.2rem;
+$mark-bg: Background($yellow);
+
+.mark,
+mark {
+  text-decoration: none;
+  border-radius: 4px;
+  color: black;
+  background-color: $mark-bg;
+}

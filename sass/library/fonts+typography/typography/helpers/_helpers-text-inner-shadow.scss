@@ -1,0 +1,8 @@
+@import "./../../../patterns/gradients/gradients";
+
+.text-inner-shadow {
+  @include gradientElement($gradient, $deg:180deg, $color:$primary);
+  -webkit-background-clip: text;
+          background-clip: text;
+  text-shadow: inset 0 2px 3px transparent;
+}

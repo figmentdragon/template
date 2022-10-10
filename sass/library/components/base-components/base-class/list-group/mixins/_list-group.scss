@@ -1,0 +1,21 @@
+// List Groups
+
+@mixin ListGroup--item-variant($state, $color) {
+  .listgroup-item-#{$state} {
+    color: $color;
+    background-color: ColorLight($primary);
+
+    &.listgroup-item-action {
+      @include on-event {
+        color: $color;
+        background-color: darken(ColorLight($primary), 5%);
+      }
+
+      &.active {
+        color: white;
+        background-color: $color;
+        border-color: $color;
+      }
+    }
+  }
+}

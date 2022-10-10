@@ -1,0 +1,328 @@
+// # CONFIGURATION ------------------- * ------------------------------------ //
+
+@use "sass:math";
+@use "sass:color";
+
+// - #FUNCTIONS ---------------------------------- //
+// ->-> Used in conjunction with global variables to enable certain theme features.
+  $enable-reduced-motion             : true;
+  $enable-smooth-scroll              : true;
+  $enable-rfs                        : true;
+  $enable-validation-icons           : true;
+  $enable-deprecation-messages       : true;
+  $enable-important-utilities        : true;
+  $enable-hover-media-query          : true;
+  $enable-print-styles               : false;
+
+  $enable-debug                      : false;
+
+  // -- =DEFINITIONS
+  $xs  : 0.50;  // 8px
+  $sm  : 0.75;  // 12px
+  $md  : 0.875; //14px
+  $lg  : 1.15;  // 18.4px
+  $xl  : 1.25;  // 20px
+  $x2l : 1.75;  // 28px
+  $x3l : calc($x2l + $xs); // 2.25 36px
+
+  $min-contrast-ratio : 4.2%;
+  $prefix             : de-;
+
+// - #FUNCTIONS ---------------------------------- //
+// ->->-> All application-wide Functions.
+// ->-> Numeric
+  @import "functions/calc/addition";
+  @import "functions/calc/divide";
+  @import "functions/calc/subtract";
+
+  @import "functions/calc/strip-unit-number";
+  @import "functions/calc/to-rem";
+  @import "functions/calc/rem-calc";
+  @import "functions/calc/pow";
+
+// ->-> Components & Elements
+  @import "functions/list-remove";
+  @import "functions/list-sort";
+  @import "functions/varify";
+
+// ->-> Lists + Maps
+  @import "functions/maps/map-deep-get";
+  @import "functions/maps/map-deep-set";
+  @import "functions/maps/map-extend";
+  @import "functions/maps/map-get-multiple";
+  @import "functions/maps/map-loop";
+  @import "functions/maps/map-merge-multiple";
+  @import "functions/maps/map-negativify";
+
+// ->-> Directory Organization
+  @import "functions/url/font-url";
+  @import "functions/url/image-url";
+  @import "functions/url/wrapper-url";
+
+  @import "functions/misc/misc-escape-svg";
+  @import "functions/misc/misc-str-replace";
+
+// ->-> Structure
+//  @import "functions/grid/assert-ascending";
+//  @import "functions/grid/assert-at-zero";
+
+
+// - #VARIABLES ------------------------------ //
+  //@import "library/patterns/transition";
+
+// - #MIXINS ---------------------------------- //
+  @import "mixins/mixin-border-box";
+  @import "mixins/mixin-clearfix";
+  @import "mixins/mixin-nestedSubMenuPadding";
+
+  @import "mixins/mixin-deprecate";
+  @import "mixins/mixin-haslines";
+
+  @mixin size {
+    margin: $Spacer;
+    padding: $Offset;
+    width: calc( 100% - calc(2 * $Spacer));
+    height: calc( 100% - calc(2 * $Spacer));
+    @content;
+  }
+
+// - #STRUCTURE -------------------------------- //
+// -- =TOGGLE
+// ->-> SPACING
+  $enable-negative-margins    : true;
+	$enable-responsive-structure: true;
+
+// ->-> GRID
+  $enable-grid-classes        : true;
+  $enable-container-classes   : true;
+  $enable-cssgrid             : true;
+  $enable-flex                : true;
+  $include-column-box-sizing  : true; // toggle your columns grids on and off
+
+// ->-> RESPONSIVE
+  $widescreen-enabled         : true;
+  $fullhd-enabled             : true;
+
+// -- =DEFINITIONS
+// ->-> SPACING
+  $BaseUnit          : 1rem;
+  $SpacingMeasure    : unset; // Use ch units here. ie: 60ch = 60 character max-width
+  $admin-bar--Height : 0;
+
+  $Spacer                  : calc($BaseUnit / 4);
+  $SpacerBlock             : calc($BaseUnit / 8);
+  $Offset                  : calc($BaseUnit / 4);
+
+// ->-> GRID
+// ->->-> Columns&Rows
+  $grid-columns     : 25;
+  $grid-row-columns : 25;
+  $grid-gutter-width: calc($BaseUnit / 5);
+  $gap              : 0.125rem;
+
+// ->->-> Breakpoint
+  $mobile     : 30rem; //482px
+  $touch      : 47.820678024652rem; //768px
+  $Tablet     : 61.768375781843rem; //992px
+  $laptop     : 63.76090403287rem; //1024px
+  $desktop    : 80rem; //1280px
+  $widescreen : 85.056049715723rem; //366px
+  $ultrawide  : 119.55169506163rem; //1920px
+
+  $grid-breakpoint-x3l: calc($ultrawide - $gap) ;
+  $grid-breakpoint-x2l: calc($widescreen - $gap);
+  $grid-breakpoint-xl : calc($desktop - $gap);
+  $grid-breakpoint-lg : calc($laptop - $gap);
+  $grid-breakpoint-md : calc($Tablet - $gap);
+  $grid-breakpoint-sm : calc($touch - $gap);
+  $grid-breakpoint-xs : calc($mobile - $gap);
+  $grid-breakpoint-xxs: 0;
+
+// - #STYLING -------------------------------- //
+// -- =TOGGLE
+  $enable-full-palette : true;
+  $enable-themeing     : true;
+
+// -- =DEFINITIONS
+  $Interval             : 7.6%;
+  $TranslucentOpacity   : 0.35;
+  $BackgroundOpacity    : 0.5;
+  $BorderOpacity        : 0.6;
+  $DisabledOpacity      : 0.75;
+  $HoverBrightness      : brightness(0.6);
+  $ActiveBrightness     : brightness(0.85);
+
+  $ColorInterval       : $Interval;
+  $TextInterval        : calc($Interval * 2); //2
+  $BackgroundInterval  : calc($Interval * 3); //3
+  $BorderInterval      : calc($Interval * 4); //4
+  $ShadowInterval      : calc($Interval * 5); //5
+  $LinkInterval        : calc($Interval * 1.25);
+  $HoverInterval       : calc($Interval * 1.5); //1.5
+  $TitleInterval       : calc($Interval * 2.25);
+  $VisitedInterval     : calc($Interval * 2.5); //2.5
+  $MutedInterval       : calc($Interval * 3.5);
+  $TranslucentInterval : calc($Interval * 4.5);
+
+  $color-contrast-dark  : black;
+  $color-contrast-light : white;
+
+// -- =COLORS
+// ->-> Define the general, utility, and theme colors general colors
+  $blue       : #0000FF; //info
+  $indigo     : #4B0082; //footer
+  $purple     : #800080; //card
+  $pink       : #FFC0CB; //code
+  $red        : #FF0000; //danger
+  $orange     : #FFA500; //warning
+  $yellow     : #FFFF00;
+  $green      : #00FF00; //success
+  $teal       : #008080; //input
+  $cyan       : #00FFFF; //quote
+  $gray       : #93A5BE;
+  $darkgray   : #4E4E4E;
+
+// ->->-> utility colors
+  $white      : #E6EEF5;
+  $black      : #000000;
+  $success    : #00FF00; //green
+  $info       : #0000FF; //blue
+  $warning    : #FFA500; //orange
+  $danger     : #FF0000; //red
+
+// ->->-> theme colors
+  $primary    : #FFFF00;
+  $secondary  : #0000B2;
+  $accent     : #B2B200;
+  $tertiary   : #0000FF;
+
+// -- =FONTS
+// -> Font Family Short Hand
+  $FontPrimaryFamily   : sans-serif;
+  $codeFontFamily      : monospace;
+
+// -> Fonts
+  $FontPrimary         : 'Poiret One', sans-serif;
+  $FontSecondary       : 'Pompiere', sans-serif;
+  $FontAccent          : 'Glass Antiqua', sans-serif;
+  $FontTertiary        : 'Modern Antiqua', sans-serif;
+  $FontMain            : 'Arapey', sans-serif;
+
+// -- =TYPOGRAPHY
+// ->->-> $FontSize-root affects the value of `rem`, which is used for font sizes, paddings, and margins
+  $rootSize       : null;
+  $globalSize     : 100%;
+
+// ->->-> Define base line height, letter spacing, font weight, and font family to be used in Components and Elements
+  $FontInterval      : 1.125;
+    $TitleInterval   : 1.375;
+    $HeadingInterval : 0.95;
+
+// -> Line Height
+  $LineHeight               : 1.1;
+    $EntryHeight      : calc($LineHeight - 0.2);
+    $HeadingHeight    : calc($LineHeight + 0.25); // 22.4px
+    $TitleHeight      : calc($LineHeight + 0.5);
+
+// -> Font Weight
+  $FontWeight          : 400;
+    $mute--FontWeight  : thin;
+    $entry--FontWeight : medium;
+    $HeadingWeight     : bold;
+    $TitleWeight       : bolder;
+
+// -> Font Size
+  $FontSize      : 1;
+    $EntrySize   : calc(#{$FontSize + 0.125});
+    $HeadingSize : calc(#{$FontSize + 0.5});
+    $TitleSize   : calc($FontSize + 2);
+
+// -> Letter Spacing
+  $LetterSpacing    : 0.0235;
+    $EntrySpacing   : calc($LetterSpacing + 0.002);
+    $HeadingSpacing : 0.025;
+    $TitleSpacing   : calc(#{$LetterSpacing * .5});
+
+// - #COMPONENTS -------------------------------- //
+// -- =TOGGLE
+  $enable-caret          : true;
+  $enable-rounded        : true;
+  $enable-shadows        : true;
+  $enable-gradients      : true;
+  $enable-button-pointers: true;
+  $enable-transitions    : true;
+
+// -- =DEFINITIONS
+// ->-> LINKS
+  $LinkDecoration            : none;
+    $LinkDecoration-disabled : line-through;
+    $LinkDecoration-visited  : underline;
+    $LinkDecoration-focus    : underline bold;
+    $LinkDecoration-hover    : underline bold;
+
+// ->-> BORDERS
+  $BorderWidth        : medium; //1px
+    $BorderWidth-disabled   : thin;
+    $BorderWidth-focus: thick;
+  $BorderRadius       : $BaseUnit; // 7.25px
+  $BorderStyle        : solid;
+    $separator--Height: 0.0625;
+
+// ->-> BUTTONS
+  $ButtonBorderWidth            : medium;
+    $ButtonBorderWidth-focus    : thick;
+    $ButtonBorderWidth-hover    : thick;
+    $ButtonBorderWidth-disabled : thin;
+  $ButtonBorderStyle            : solid;
+  $ButtonBorderRadius           : calc(2 * $BaseUnit);
+
+// ->-> CARET
+  $CaretWidth: 0.3rem;
+
+// ->-> CARET
+  $MenuStyle                        : normal;
+  $menu--mobile--submenu--FontStyle: normal;
+  $MenuWeight                      : medium;
+  $menu--button--FontWeight        : null;
+  $MenuOffset                      : calc(0.66 * $Offset);
+
+  // ->-> Zindex
+  // ->-> ! Warning: They're used for a bird's eye view of components dependent on the z-axis and are designed to all work together.
+   $zindex-sitewrapper: 100;
+
+   $zindex-content: 600;
+   $zindex-main: 700;
+   $zindex-primary: 725;
+   $zindex-secondary: 750;
+   $zindex-tertiary: 750;
+   $zindex-component: 700;
+   $zindex-card-header: 715;
+
+   $zindex-colophon: 900;
+   $zindex-footer: calc($zindex-colophon - 5); //855
+
+   $zindex-header: 900;
+
+   $zindex-logo: calc($zindex-header + 15);
+   $zindex-masthead: calc($zindex-header + 5);
+   $zindex-sitebranding: calc($zindex-masthead + 15);
+   $zindex-description: calc($zindex-sitebranding + 10);
+   $zindex-sitename: calc($zindex-sitebranding + 15);
+
+   $zindex-pageheader: calc($zindex-header + 25);
+   $zindex-pagename: calc($zindex-pageheader + 10);
+   $zindex-excerpt: calc($zindex-pageheader + 20);
+
+   $zindex-menu: 1000;
+   $zindex-main-nav: 1050;
+   $zindex-dropdown: 1100;
+   $zindex-sticky: 1200;
+   $zindex-fixed: 1300;
+   $zindex-OffCanvas--backdrop: 1400;
+   $zindex-offcanvas: 1450;
+   $zindex-close: 1500;
+   $zindex-Modal--backdrop: 1600;
+   $zindex-modal: 1650;
+   $zindex-popover: 1700;
+   $zindex-tooltip: 1800;
+   $zindex-toast: 1900;

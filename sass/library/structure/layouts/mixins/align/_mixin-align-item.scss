@@ -1,0 +1,6 @@
+@mixin align-items($align) {
+-webkit-align-items: $align;
+   -moz-align-items: $align;
+  -ms-align-items: $align;
+    align-items: $align;
+}

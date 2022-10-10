@@ -1,0 +1,18 @@
+// scss-docs-start color-functions
+// Tint a color: mix a color with white
+@function tint-color($color, $weight) {
+  @return mix(white, $color, $weight);
+}
+
+@function translucentBackground($color) { @return rgba($color, $TranslucentOpacity); }
+
+@function Disabled($color) { @return rgba($color, $DisabledOpacity); }
+
+@function VisitedTint($target){
+  @if $target == "currentColor" and "property" == "bg" {
+    @return mix(gray, "currentColor", $VisitedInterval);
+  } @if $target == "currentColor" and "property" == "text" {
+    @return mix(gray, "currentColor", $VisitedInterval);
+  }
+  @return $target;
+}

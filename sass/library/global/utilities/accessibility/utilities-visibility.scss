@@ -1,0 +1,74 @@
+@import "./../../../../stylesheets/layouts/responsive/mixins/mixin-responsive-breakpoint";
+
+@each $display in $displays {
+  .is-#{$display} { display: #{$display} !important; }
+
+  @include media(mobile) {
+    .is-#{$display}-mobile { display: #{$display} !important; }
+    .is-hidden-mobile { display: none !important; }
+    .is-invisible-mobile { visibility: hidden !important; }
+  }
+
+  @include media(Tablet) {
+    .is-#{$display}-Tablet { display: #{$display} !important; }
+    .is-hidden-Tablet { display: none !important; }
+    .is-invisible-Tablet { visibility: hidden !important; }
+  }
+
+  @include media(Tablet-only) {
+    .is-#{$display}-Tablet-only { display: #{$display} !important; }
+    .is-hidden-Tablet-only { display: none !important; }
+    .is-invisible-Tablet-only { visibility: hidden !important; }
+  }
+
+  @include media(touch) {
+    .is-#{$display}-touch { display: #{$display} !important; }
+    .is-hidden-touch { display: none !important; }
+    .is-invisible-touch { visibility: hidden !important; }
+  }
+
+  @include media(desktop) {
+    .is-#{$display}-desktop { display: #{$display} !important; }
+    .is-hidden-desktop { display: none !important; }
+    .is-invisible-desktop { visibility: hidden !important; }
+  }
+
+  @include media(desktop-only) {
+    .is-#{$display}-desktop-only { display: #{$display} !important; }
+    .is-hidden-desktop-only { display: none !important; }
+    .is-invisible-desktop-only { visibility: hidden !important; }
+  }
+
+  @include media(widescreen) {
+    .is-#{$display}-widescreen { display: #{$display} !important; }
+    .is-hidden-widescreen { display: none !important; }
+    .is-invisible-widescreen { visibility: hidden !important; }
+  }
+
+  @include media(widescreen-only) {
+    .is-#{$display}-widescreen-only { display: #{$display} !important; }
+    .is-hidden-widescreen-only { display: none !important; }
+    .is-invisible-widescreen-only { visibility: hidden !important; }
+  }
+
+  @include media(fullhd) {
+    .is-#{$display}-fullhd { display: #{$display} !important; }
+    .is-hidden-fullhd { display: none !important; }
+    .is-invisible-fullhd { visibility: hidden !important; }
+  }
+}
+
+.visible { visibility: visible !important;}
+.invisible { visibility: hidden !important;}
+.is-hidden { display: none !important;}
+
+.is-sr-only {
+  border: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  height: 0.01em !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 0.01em !important;
+}

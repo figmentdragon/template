@@ -1,0 +1,73 @@
+.sticky { /* This class is required to pass ThemeCheck. */
+  display: block;
+	&-post {
+		display: inline-block;
+		padding: .25rem;
+		position: absolute;
+		z-index: 1;
+	}
+}
+
+.post,
+.page {
+  vertical-align: top;
+  white-space: normal;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.updated:not(.published) { display: none; }
+
+.site-content,
+.page-content,
+.entry-content,
+.entry-summary {
+  margin: $Spacer auto $Spacer auto;
+}
+
+.page-links { /* Style the page numbers for multi-page posts (posts that have been split with <!--next-page -->. */
+	@include clearfix;
+  text-align: center;
+	margin: 0 0 $Spacer;
+	.prev,
+	.next {
+		&.page-numbers {
+			display: inline-block;
+		}
+	}
+	.page-numbers,
+	.post-page-numbers {
+		display: inline-block;
+		min-width: 44px;
+		min-height: 44px;
+    padding: $Offset;
+		margin-top: $Spacer;
+    margin-right: calc(0.66 * $SpacerVertical);
+		margin-left: calc(0.66 * $SpacerVertical);
+    transform: perspective(1px) translateZ(0);
+    overflow: hidden;
+		&:first-child {
+			margin-left: 0;
+		}
+		&.current { }
+		&:after {
+      position: absolute;
+      height: 100%;
+      width: calc(100% - calc(2 * $Spacer));
+      top: 0;
+      display: block;
+      z-index: -1;
+      left: 0;
+	    content: "";
+		}
+		@include on-event { &:after { } }
+	}
+  .caption,
+  .caption {
+    padding: 10px 15px;
+    &:after {
+      content: none;
+    }
+    @include on-event;
+  }
+}

@@ -1,0 +1,4 @@
+@mixin gradient-global($gradient) {
+  background-image: $gradient;
+  background-size: cover;
+}

@@ -1,0 +1,11 @@
+// Pingbacks & Trackbacks
+.pingback,
+.trackback {
+  .comment-body {
+    margin-top: $SpacerHorizontal;
+		margin-bottom: $SpacerHorizontal;
+    padding: 10px 0;
+    a { @include on-event; }
+    .url { font-family: $code--TextFont; }
+  }
+}

@@ -1,0 +1,13 @@
+.Tooltip--top {
+  padding: $Tooltip--ArrowHeight) 0;
+
+  .Tooltip--arrow {
+    bottom: 0;
+
+    &::before {
+      top: -1px;
+      border-width: $Tooltip--ArrowHeight) calc($Tooltip--ArrowWidth) * .5) 0; // stylelint-disable-line function-disallowed-list
+      border-top--TextColor: $tooltipBackgroundColor);
+    }
+  }
+}

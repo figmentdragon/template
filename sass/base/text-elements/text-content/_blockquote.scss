@@ -1,0 +1,213 @@
+// The <blockquote> HTML element indicates that the enclosed text is an extended quotation. Usually, this is rendered visually by indentation (see Notes for how to change it). A URL for the source of the quotation may be given using the cite attribute, while a text representation of the source can be given using the cite element.
+
+blockquote {
+	border-left       : 3px $BorderStyle #000000;
+  position          : relative;
+	display           : block;
+	line-height       : $LineHeight;
+	max-width         : $responsive--SideBar;
+	text-align        : center;
+	font-family       : $QuoteFont;
+  font-weight       : bold;
+  font-style        : italic;
+
+  overflow          : hidden;
+	quotes            : none;
+
+  hyphens           : "\201C""\201D""\2018""\2019";
+
+  border-left-width : 0.875rem;
+  border-left-style : $BorderStyle;
+  border-left-color : $QuoteBorder;
+  background-color  : Background($QuoteBackground);
+
+  //@include font-size($QuoteSize);
+  &:before,
+  &:after {
+    content         : "";
+  }
+	&:before {
+	  content:open-quote;
+	  font-size:4em;
+	  line-height:.1em;
+	  margin-right:.25em;
+	  vertical-align:-.4em
+	}
+  &::before {
+    position    : absolute;
+    z-index     : 9;
+    top         : 10px;
+    left        : 50%;
+
+    font-family : "Playfair Display";
+    font-size   : 72px;
+    line-height : 0;
+    font-weight : 600;
+    font-style  : normal;
+
+    display     : block;
+
+    margin-left : -1rem;
+    padding     : 0;
+
+    content     : "â€œ";
+
+    text-align  : center;
+  }
+  &::after {
+    position         : absolute;
+    top              : -.75rem;
+    left             : 50%;
+
+    width            : 60px;
+    height           : 20px;
+    margin-left      : -30px;
+
+    content          : "";
+    background-color : "" ;
+  }
+
+  &.left,
+  &.alignleft {
+    margin : 0.7rem 2.8rem 0.7rem 0;
+  }
+  &.right,
+  &.alignright {
+    margin : 0.7rem 0 0.7rem 2.8rem;
+  }
+  &.center,
+  &.aligncenter {
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  &.title {
+    font-size: $FontSize * 1.75;
+    font-weight: 400;
+    margin-bottom: 0;
+    p {
+      padding: $quote--p-OffsetHorizontal 0;
+      //@include font-size($QuoteSize-p);
+    }
+  }
+  p {
+		display:inline;
+    &:first-child {
+      margin-top     : 0;
+    }
+    &:last-child {
+      padding-bottom : 0;
+    }
+  }
+	> p {
+		margin: 0 0 $Spacer;
+	}
+  small {
+    font-size: $FontSize * 0.875;
+    line-height: 1.7em;
+
+    display: block;
+  }
+	.small,
+	small,
+	footer {
+		display: block;
+		font-size: 80%;
+		line-height: $LineHeight;
+		&:before {
+			content: "\2014 \00A0"
+		}
+	}
+  footer,
+  cite {
+    font-size: $quote--footerSize;
+    line-height : $quote--footer--LineHeight;
+		display: block;
+		padding: 1.5rem 0;
+    color : $quote--footer--TextColor;
+    &:before {
+      content               : "\2014 \0020";
+      color                 : #333333;
+    }
+    &:after {
+      content               : " ";
+      color                 : #333333;
+    }
+    a {
+			@include on-event;
+		}
+  }
+	ol,
+	p,
+	ul {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	&.pull-right {
+		padding-right: 15px;
+		padding-left: 0;
+		text-align: right;
+		border-right: 5px solid #b9adb6;
+		border-left: 0;
+		.small,
+		small,
+		footer {
+			&:before {
+				content: "";
+			}
+			&:after {
+				content: "\00A0 \2014";
+			}
+		}
+	}
+}
+
+blockquote p {
+	color         : #000000;
+	font-size     : $QuoteSize-p;
+	font-weight   : 600;
+	line-height   : 1.4;
+  margin-bottom : $quote--SpacerVertical;
+  padding       : divide($OffsetHorizontal, 2) $OffsetVertical;
+}
+
+blockquote.instagram-media,
+iframe.instagram-media {
+	margin                    : auto !important;
+}
+
+.blockquote-footer {
+  font-family               : $FontAccent;
+  font-size                 : $quote--footerSize;
+  line-height               : $LineHeight;
+
+  display                   : block;
+
+  color                     : $quote--footer--TextColor;
+
+  &                         ::before {
+    content                 : "\2014 \00A0"; // em dash, nbsp
+  }
+}
+
+// Opposite alignment of blockquote
+.blockquote-reverse {
+  font-family               : $QuoteFont;
+
+  padding-right             : $OffsetVertical;
+  padding-left              : 0;
+
+  text-align                : right;
+
+  border-right              : 0.25 $BorderStyle $QuoteBorder;
+  border-left               : 0;
+}
+
+.blockquote-reverse .blockquote-footer {
+  &::before {
+    content                 : "";
+  }
+  &::after {
+    content                 : "\00A0 \2014"; // nbsp, em dash
+  }
+}

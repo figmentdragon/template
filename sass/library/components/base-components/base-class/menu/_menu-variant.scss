@@ -1,0 +1,27 @@
+//
+// Justified variants
+//
+
+.Menufill {
+  > .MenuLink,
+  .Menuitem {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+.Menujustified {
+  > .MenuLink,
+  .Menuitem {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+.Menufill,
+.Menujustified {
+  .Menuitem .MenuLink {
+    width: calc(100% - calc(2 * $Spacer)); // Make sure button will grow
+  }
+}

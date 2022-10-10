@@ -1,0 +1,23 @@
+format {
+
+  &-image {}
+
+  &-gallery {}
+
+  &-chat {}
+
+  &-link {}
+
+  &-quote {}
+
+  &-status {}
+
+  &-video {}
+}
+
+/* Just put ".format-aside" before any of the above classes to create special formatting for Aside posts */
+
+.format-aside .entry-content {
+	border-left: calc(4 * $BorderWidth) solid #000;
+	padding-left: calc( 4 * $Offset);
+}

@@ -1,0 +1,445 @@
+// #TYPOGRAPHY ---------------------- * ------------------------------------ //
+
+// #DEFINITIONS ------------------------------ //
+// ->-> INTERVALS
+  $FontInterval     : 0.125 !default;
+    $HeadingInterval: 0.25 !default;
+
+// ->-> LINE HEIGHT
+  $LineHeight      : 1.1 !default;
+    $EntryHeight   : calc($LineHeight - 0.2) !default;
+    $HeadingHeight : calc($LineHeight + 0.5) !default;
+    $TitleHeight   : calc($LineHeight + 0.25) !default;
+
+// ->-> FONT WEIGHT
+  $FontWeight           : 400 !default;
+    $HeadingWeight    : bold !default;
+    $TitleWeight      : bolder !default;
+
+// ->-> FONT SIZE
+  $FontSize      : 1 !default;
+    $EntrySize   : calc($FontSize + 0.125) !default;
+    $HeadingSize : #{calc($FontSize + calc($HeadingInterval * 2))} !default;
+    $TitleSize   : #{calc($FontSize + calc($HeadingInterval * 3))} !default;
+
+// ->-> LETTER SPACING
+  $LetterSpacing        : 0.0235 !default;
+
+
+// #FUNCTIONS ------------------------------ //
+  @import "typography/functions/functions-text-convert-typographic-units";
+
+
+// - #VARIABLES ------------------------------ //
+// -- =Font Weight
+  $thin--FontWeight   : calc($FontWeight - 300);
+  $lighter--FontWeight: calc($FontWeight - 200);
+  $FontWeight         : 400;
+  $medium--FontWeight : calc($FontWeight + 100);
+  $bold-FontWeight   : calc($FontWeight + 300);
+  $bolder--FontWeight : calc($FontWeight + 400);
+
+// -- =LETTER SPACING
+  $EntrySpacing: calc(($LetterSpacing + 0.002) * 1rem);
+  $HeadingSpacing: calc(($LetterSpacing + 0.0117) * 1rem);
+  $TitleSpacing: #{calc($LetterSpacing * (.5 * 1rem ))};
+
+// -- =FontSize
+// ->-> Body
+  $FontSize-xs: calc($FontSize - .25); // 12px
+  $FontSize-sm: calc($FontSize - .12); // 14px
+  $FontSize-lg: calc($FontSize + $FontInterval); // 18.4px
+  $FontSize-xl: calc($FontSize + calc($FontInterval * 2)); // 20px
+
+// ->-> Heading
+  $FontSize-h6: $HeadingSize; // 24px
+  $FontSize-h5: calc($HeadingSize + $HeadingInterval); // 28px
+  $FontSize-h4: calc($HeadingSize + calc($HeadingInterval * 2)); // 36px
+  $FontSize-h3: $TitleSize; // 40px
+  $FontSize-h2: calc($TitleSize + $HeadingInterval); // 44px
+  $FontSize-h1: calc($TitleSize + calc($HeadingInterval * 2)); // 48px
+
+// -- =TEXT TRANSFORM
+  $HeadingTransform : capitalize;
+  $TitleTransform   : uppercase;
+
+// -- =FONT STYLE
+  $HeadingStyle : normal;
+
+  $SiteSize: $FontSize-h1;
+
+  $PageSize: $FontSize-h2;
+
+  $PostSize: $FontSize-h3;
+  $PostSpacing: $HeadingSpacing;
+  $PostHeight: $TitleHeight;
+
+  $HeadingTransform: capitalize;
+
+  $HeaderSpacing: $HeadingSpacing;
+  $HeaderSize: $FontSize-h3;
+  $HeaderWeight: $bold-FontWeight;
+  $HeaderTransformation: uppercase;
+
+
+  $DisplayStyle:  normal !default;
+  $DisplayWeight: 300 !default;
+  $DisplayHeight: $HeadingHeight !default;
+
+  $MenuSize                : $FontSize-xl;
+  $MenuSize--submenu       : $FontSize-lg;
+  $MenuSize-mobile         : $FontSize;
+  $MenuSize-mobile-submenu : $FontSize-sm;
+  $MenuSize-button         : $FontSize-xl;
+
+
+// #MIXINS ------------------------------ //
+@mixin font-size($FontSize: 1) {
+  $pixels: calc((#{$FontSize} * 16) * 1px);
+  $rems: calc(#{$FontSize} * 1rem);
+  font-size: $rems;
+  font-size: $pixels;
+}
+
+  @import "typography/mixins/mixin-text-body";
+  @import "typography/mixins/mixin-text-emphasis";
+  @import "typography/mixins/mixin-text-fa";
+  @import "typography/mixins/mixin-text-fade-text";
+  @import "typography/mixins/mixin-text-fluid-type";
+  @import "typography/mixins/mixin-text-heading";
+  @import "typography/mixins/mixin-text-hide";
+  @import "typography/mixins/mixin-text-margin";
+  @import "typography/mixins/mixin-text-reset";
+  @import "typography/mixins/mixin-text-truncate";
+
+/* - #HELPERS -------------------------------- */
+  @import "typography/helpers/helpers-text-drop-cap";
+  @import "typography/helpers/helpers-text-inner-shadow";
+  @import "typography/helpers/helpers-text-truncation";
+  @import "typography/helpers/helpers-text-type";
+
+
+// #MAPS ------------------------------ //
+  @import "typography/maps+lists/map-font-families";
+  @import "typography/maps+lists/map-font-sizes";
+  @import "typography/maps+lists/map-display-font-sizes";
+
+
+/* - #COMPONENTS ----------------------------- */
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+  color: $Text;
+  font-family: sans-serif;
+  @include font-size($FontSize);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.site-title {
+  color: $SiteTitle;
+  line-height: $TitleHeight;
+  letter-spacing: $TitleSpacing;
+  font-variant: small-caps;
+  @include font-family($primary--BrandFont);
+}
+
+.page-title { /* Page titles */
+  @include font-family('Poiret One');
+  color: $PageTitle;
+  letter-spacing: $HeadingSpacing;
+}
+
+.entry-title,
+.post-title { /* Post titles */
+  line-height: $HeadingHeight;
+  text-transform: $HeadingTransform;
+  color: $PostTitle;
+  letter-spacing: $EntrySpacing;
+  @include font-size(calc($FontSize + 0.125));
+  @include font-family($FontSecondary);
+}
+
+.entry-title,
+.page-title,
+.post-title,
+.description,
+.subheader   {
+  font-weight: $HeadingWeight;
+  text-transform: $HeadingTransform;
+}
+
+.page-title {
+  text-transform: $TitleTransform;
+}
+
+.site-description,
+.subheader { /* This is the tagline */
+  color: $HeadingTitle;
+  @include font-family($secondary--BrandFont);
+  //-webkit-text-stroke: 1px $text--StrokeColor;
+}
+
+/* - #UTILITIES ------------------------------ */
+  @import "typography/utilities/utilities-text";
+
+// Type display classes
+  @each $display, $FontSize in $DisplaySizes {
+  .display-#{$display} {
+    @include font-size($FontSize);
+    font-family: $DisplayFont;
+    font-style: $DisplayStyle;
+    font-weight: $DisplayWeight;
+    line-height: $DisplayHeight;
+    }
+  }
+
+// #VENDORS ------------------------------ //
+
+
+//
+// Headings
+//
+
+.lead {
+  @include font-size($lead-FontSize);
+  font-weight: $lead-FontWeight;
+}
+
+
+
+//
+// Emphasis
+//
+.small {
+  @extend small;
+}
+
+.mark {
+  @extend mark;
+}
+
+//
+// Lists
+//
+
+.list-unstyled {
+  @include list-unstyled();
+}
+
+// Inline turns list items into inline-block
+.list-inline {
+  @include list-unstyled();
+}
+.list-inline-item {
+  display: inline-block;
+
+  &:not(:last-child) {
+    margin-right: $list-inline--Offset;
+  }
+}
+
+
+//
+// Misc
+//
+
+// Builds on `abbr`
+.initialism {
+  @include font-size($initialism-FontSize);
+  text-transform: uppercase;
+}
+
+// Blockquotes
+.blockquote {
+  margin-bottom: $blockquote-SpacerVertical;
+  @include font-size($blockquote-FontSize);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.blockquote-footer {
+  margin-top: -$blockquote-SpacerVertical;
+  margin-bottom: $blockquote-SpacerVertical;
+  @include font-size($blockquote-footer-FontSize);
+  color: $blockquote-footer-color;
+
+  &::before {
+    content: "\2014\00A0"; // em dash, nbsp
+  }
+}
+
+.site-title {
+  &-holder {
+    display: flex;
+    align-content: center;
+  }
+
+  &-inner-shadow {
+    background-clip: text;
+    text-shadow: inset 0 2px 3px $ShadowColor;
+    @include gradientElement($gradient, $deg: 180deg, $color:$primary);
+  }
+
+  &-slideshow {
+    display: flex;
+    align-content: center;
+
+    .title {
+      margin: calc($BaseUnit / 2.75) 0 calc($BaseUnit / 2.75) calc($BaseUnit * .75);
+      padding: 0 $Offset;
+      border-left: $BorderWidth-focus $BorderStyle rgba($BorderColor, .12);
+      align-self: center;
+    }
+  }
+
+  > a {
+    text-decoration-color: $LinkText;
+  }
+
+  a {
+    @include on-event {
+      &:link, &:visited {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.heading,
+.heading-section,
+.heading-title,
+.headline {
+  line-height: $HeadingHeight;
+  font-size: $HeadingSize;
+  margin: $Spacer $Spacer $HeadingMargin-bottom;
+  text-transform: $HeadingTransform;
+  letter-spacing: $HeadingSpacing;
+  font-weight: $HeadingWeight;
+  color: $HeadingTitle;
+  text-rendering: optimizeLegibility;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  > a {
+    text-decoration: none;
+    color: currentColor;
+    outline: none;
+    @include on-event;
+  }
+}
+//Headings
+.heading {
+  &:first-child {
+    margin-top: 0;
+  }
+
+  > a {
+    @include on-event;
+  }
+}
+
+.heading-title {
+  $FontSize: $FontSize-h3;
+  $FontWeight: bold;
+  $TextTransform: uppercase;
+  font-size: $FontSize;
+  font-weight: $FontWeight;
+  letter-spacing: $LetterSpacing;
+  text-transform: $TextTransform;
+}
+
+.heading-section {
+  font-size: $HeadingSize;
+  font-weight: $HeadingWeight;
+  letter-spacing: $HeadingSpacing;
+  text-transform: $HeadingTransform;
+
+  img {
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 1.5rem;
+  }
+
+  &.text-center {
+    img {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}
+
+.headline {
+  margin: 0 0 1.5rem;
+  padding: 0;
+
+  &-small {
+    font-size: $FontSize * 2;
+    line-height: 1.2;
+    margin: 0 0 2px;
+    padding: 0 0 2px;
+    letter-spacing: 0;
+  }
+}
+
+.archive .headline,
+.blog .headline,
+.category .headline {
+  margin: 0 0 1.5rem -12px;
+  padding: 0 0 0 12px;
+  border-left: calc(3 * $BorderWidth) $BorderStyle $translucent-Border;
+}
+
+.title {
+  color: $HeadingTitle;
+  font-size: 0.9em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  padding: 0;
+}
+
+.excerpt,
+.lead {
+  font-family: $FontAccent;
+  line-height: $LineHeight;
+  @include font-size($FontSize-h5);
+  font-weight: $HeadingWeight;
+  color: $HeadingTitle;
+  -webkit-text-stroke: $BorderWidth Border($tertiary);
+
+  + .button-wrapper {
+    margin-top: calc($SpacerHorizontal * 3);
+  }
+
+  p {
+    &.lead,
+    .lead {
+      @include font-size($FontSize);
+      font-weight: $FontWeight;
+      margin: $SpacerHorizontal 0;
+    }
+  }
+}
+
+.normal {
+  font-weight: normal;
+}
+
+.quiet {
+  color: #999999;
+}
+
+.gallery-caption {
+  @include font-size($FontSize-xs);
+	line-height: calc($LineHeight - 0.2);
+	@include font-family( $HeadingFont );
+}

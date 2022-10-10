@@ -1,0 +1,15 @@
+// Address - The <address> HTML element indicates that the enclosed HTML provides contact information for a person or people, or for an organization.
+
+$address--TextFont: fantasy;
+$address--FontWeight: medium;
+$address--FontStyle: italic;
+$address-Height: inherit;
+$AddressText: Text($accent);
+
+address {
+  font-family: $address--TextFont;
+  color: $AddressText;
+  font-weight: $address--FontWeight;
+  font-style: $address--FontStyle;
+  line-height: $address-Height;
+}

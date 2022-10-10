@@ -1,0 +1,12 @@
+cite {
+  font-family: "Georgia", serif;
+  font-weight: bold;
+  font-style: italic;
+  @include font-size(calc($sm * $FontSize));
+  color: ColorLight($Text);
+  line-height: 1.2;
+  em,
+  i {
+    font-weight: bolder;
+  }
+}

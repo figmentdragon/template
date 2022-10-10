@@ -1,0 +1,180 @@
+[class$='menu-container'] { /* wraps the entire navigation menu */
+	position: absolute;
+	display: block;
+	width: calc(100% - calc(2 * $Spacer));
+	margin-top: 0;
+	margin-bottom: 0;
+	float: right;
+	align-self: center;
+	@if $enable-toggle {
+		&.toggled ul {
+			display: block;
+		}
+	}
+	ul { /* The menu is an unordered list */
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		@if $enable-toggle {
+			.toggled-on {
+				display: block;
+			}
+		}
+		&[class$='menu'] {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			margin: -0.8rem 0 0 -1.6rem;
+			a { /* The individual list item links */
+				display: block;
+				text-decoration: none;
+			}
+			.icon {
+		  	display: block;
+		  	height: 0.7rem;
+		  	position: absolute;
+		  	pointer-events: none;
+				width: 1.3rem;
+				&::before,
+				&::after {
+					content: "";
+		    	display: block;
+					position: absolute;
+					bottom: calc(50% - 0.1rem);
+					left: 0;
+				}
+				&::before {
+					height: 0.9rem;
+					width: 0.2rem;
+				}
+				&::after {
+					height: 0.2rem;
+					width: 0.9rem;
+				}
+			}
+			li {
+				float: left;
+				position: relative;
+				&.current-menu-item {
+		      > a,
+		      > .link-icon-wrapper > a {
+						@include on-event;
+					}
+				}
+			}
+			> li {
+				margin: 0.8rem 0 0 1.6rem;
+		    &.menu-item-has-children > a {
+					padding-right: $MenuOffset * 2;
+				}
+				.icon {
+					right: -0.5rem;
+					top: calc(50% - 0.4rem);
+				}
+			}
+			a {
+				display: block;
+		  	word-break: normal;
+		  	word-wrap: normal;
+		    &.current_page_ancestor { }
+		    @include on-event;
+		  }
+		}
+
+		ul { /* Submenu drop-down "box" */
+      display: none;
+			float: left;
+			position: absolute;
+			top: 1.2rem;
+			right: 0;
+			bottom: 100%;
+			left: -999rem;
+			z-index: $zindex-dropdown;
+			margin-left: 0.875rem;
+			padding: 14px;
+			width: 200px;
+			a { /* Menu links inside the drop-down "box" */
+	      padding: 0 1.5rem;
+	      width: 200px;
+	      > .icon {
+	        display: none;
+	      }
+	      &:hover { /* Hover styles for menu items */ }
+	    }
+	    &.current_page_item > a,
+	    &.current-menu-item > a { }
+	    &:hover > a { }
+	    li { /* List items inside the drop-down box */
+				&:hover,
+				&.focus {
+					> ul {
+						display: block;
+						left: auto;
+					}
+					> a { }
+				}
+	    }
+			ul { /* 3rd level drop-down "box" */
+				top: 0;
+				right: 100%;
+        bottom: 0;
+				left: -999rem;
+			}
+
+			:hover > a,
+			.focus > a {
+			}
+
+			a:hover,
+			a.focus {
+			}
+		}
+
+		li:hover > ul,
+		li.focus > ul {
+			left: auto;
+		}
+	}
+	li { /* Makes the menu "list" items horizontal */
+		position: relative;
+		float: left;
+  	margin: 0.5rem 0;
+		&:hover > a,
+		&.focus > a { /* Hover styles for menu items */ }
+	}
+  a { /* The individual list item links */
+		display: block;
+		text-decoration: none;
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a,
+	.current-menu-ancestor > a {
+		/* Hover styles for menu items */
+    color: rgba(255, 255, 255, 1);
+  	border-left-color: rgba(255, 255, 255, 1);
+  	text-decoration: none;
+	}
+}
+
+@media screen and (min-width: 37.5rem) {
+
+	.menu-toggle {
+		display: none;
+	}
+
+	[class$='navigation'] ul {
+		display: flex;
+	}
+}
+
+[class$='navigation'] li [class$='navigation'] ul {
+  &.toggled-on {
+
+  }
+  .toggled-on {
+
+  }
+}

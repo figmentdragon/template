@@ -1,0 +1,16 @@
+fieldset {
+  border: $BorderWidth $BorderStyle $InputBorder;
+  border-radius: 5px;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+  min-width: 0;
+  &[disabled] {
+    .checkbox label,
+    .form-control,
+    .radio label,
+    input[type=checkbox],
+    input[type=radio] {
+      cursor: not-allowed;
+    }
+  }
+}

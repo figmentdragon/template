@@ -1,0 +1,17 @@
+/* Map: blue */
+$blues: () !default;
+$blues: map-merge(
+	(
+		'blue-100': $blue-100,
+		'blue': $blue,
+		'blue-300': $blue-300,
+		'blue-400': $blue-400,
+		'blue-500': $blue-500,
+		'blue-600': $blue-600,
+		'blue-700': $blue-700,
+		'blue-800': $blue-800,
+		'blue': $blue,
+		'blue': $blue
+	),
+	$blues
+);

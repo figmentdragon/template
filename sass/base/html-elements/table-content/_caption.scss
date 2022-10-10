@@ -1,0 +1,10 @@
+caption {
+  font-weight: bold;
+
+  text-align: center;
+
+  color: Muted($Text);
+  border-width: 0 $BorderWidth $BorderWidth $BorderWidth;
+  border-style: $BorderStyle;
+  border-color: inherit;
+}

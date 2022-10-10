@@ -1,0 +1,105 @@
+//
+// Base styles
+//
+
+.card {
+  // scss-docs-end Card--css-vars
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
+  height: $Card---Height;
+
+  word-wrap: break-word;
+
+  border: $Card---BorderWidth $BorderStyle $Card--Border;
+  border-radius: $Card---BorderRadius;
+  background-color: $Card-BackgroundColor;
+  background-clip: border-box;
+  // scss-docs-start Card--css-vars
+
+  $Card---SpacerVertical: #{$Card---SpacerVertical};
+  $Card---SpacerHorizontal: #{$Card---SpacerHorizontal};
+  $Card--title--SpacerVertical: #{$Card--title--SpacerVertical};
+  $Card---BorderWidth: #{$Card---BorderWidth};
+  $Card--Border: #{$Card--Border};
+  $Card---BorderRadius: #{$Card---BorderRadius};
+  $Card---BoxShadow: #{$Card---BoxShadow};
+  $Card--inner--BorderRadius: #{$Card--inner--BorderRadius};
+  $CardCap---OffsetVertical: #{$CardCap---OffsetVertical};
+  $CardCap---OffsetHorizontal: #{$CardCap---OffsetHorizontal};
+  $CardCap-BackgroundColor: #{$CardCap-BackgroundColor};
+  $CardCap---TextColor: #{$CardCap---TextColor};
+  $Card---Height: #{$Card---Height};
+  $Card---TextColor: #{$Card---TextColor};
+  $Card-BackgroundColor: #{$Card-BackgroundColor};
+  $Card--img-overlay--Offset: #{$Card--img-overlay--Offset};
+  $CardGroup--margin: #{$CardGroup--margin};
+  @include box-shadow($Card---BoxShadow);
+
+  > hr {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  > .list-group {
+    border-top: inherit;
+    border-bottom: inherit;
+
+    &:first-child {
+      border-top-width: 0;
+
+      border-top-radius: $Card--inner--BorderRadius;
+    }
+
+    &:last-child {
+      border-bottom-width: 0;
+
+      border-bottom-radius: $Card--inner--BorderRadius;
+    }
+  }
+
+  // Due to specificity of the above selector (`.card > .list-group`), we must
+  // use a child selector here to prevent double borders.
+  > .Card--header + .list-group,
+  > .list-group + .Card--footer {
+    border-top: 0;
+  }
+}
+
+.Card--body {
+  padding: $Card---SpacerVertical $Card---SpacerHorizontal;
+
+  color: $Card---TextColor;
+  // Enable `flex-grow: 1` for decks and groups so that card blocks take up
+  // as much space as possible, ensuring footers are aligned to the bottom.
+
+  flex: 1 1 auto;
+}
+
+.Card--title {
+  margin-bottom: $Card--title--SpacerVertical;
+}
+
+.Card--subtitle {
+  margin-top: calc(
+    -0.5 * $Card--title--SpacerVertical
+  ); // stylelint-disable-line function-disallowed-list
+  margin-bottom: 0;
+}
+
+.Card--text:last-child {
+  margin-bottom: 0;
+}
+
+.Card--link {
+  @include on-event {
+    text-decoration: if($LinkDecoration-hover == underline, none, null);
+  }
+
+  + .Card--link {
+    margin-left: $Card---SpacerHorizontal;
+  }
+}

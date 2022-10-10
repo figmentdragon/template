@@ -1,0 +1,19 @@
+//
+// Form text
+//
+$form--text-margin-top: 0.25rem;
+$form--textSize: $FontSize;
+$form--text-font-style: sans-serif;
+$form--text-font-weight: $FontWeight + 100;
+$form--text: mix(black, $FormLink, $ColorInterval);
+
+.form-text {
+  font-weight: $form--text-font-weight;
+  font-style: $form--text-font-style;
+
+  margin-top: $form--text-margin-top;
+
+  color: gray;
+
+  //@include font-size($form--textSize);
+}

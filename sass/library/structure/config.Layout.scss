@@ -1,0 +1,41 @@
+/* # LAYOUT ------------------------- * ------------------------------------- */
+
+@use "sass:math";
+@use "sass:color";
+
+// - #FEATURES ---------------------------------- //
+// ->-> Used in conjunction with global variables to enable certain theme features.
+// - #DEFINITIONS ---------------------------- //
+// - #FUNCTIONS ------------------------------ //
+// - #VARIABLES ------------------------------ //
+// - #MAPS ----------------------------------- //
+  @import "layouts/maps+lists/map-position-value";
+
+// - #MIXINS --------------------------------- //
+  @import "layouts/mixins/align/mixin-align-content";
+  @import "layouts/mixins/align/mixin-align-item";
+  @import "layouts/mixins/align/mixin-align-self";
+  @import "layouts/mixins/align/mixin-justify-content";
+
+  @import "layouts/mixins/mixin-center-block";
+  @import "layouts/mixins/mixin-clearfix";
+  @import "layouts/mixins/mixin-float";
+
+/* - #UTILITIES ------------------------------ */
+  @import "layouts/utilities/utilities-alignment";
+  @import "layouts/utilities/utilities-position";
+
+/* - #COMPONENTS ----------------------------- */
+/* - #SHEETS --------------------------------- */
+//  @import "layouts/content-sidebar-sidebar";
+//  @import "layouts/content-sidebar";
+//  @import "layouts/no-sidebar";
+//  @import "layouts/sidebar-content-sidebar";
+//  @import "layouts/sidebar-content";
+//  @import "layouts/sidebar-sidebar-content";
+
+/* - #MEDIA QUERIES -------------------------- */
+/* - #HELPERS -------------------------------- */
+  @import "layouts/helpers/layout";
+
+// - #VENDORS -------------------------------- //

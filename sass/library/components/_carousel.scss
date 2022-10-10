@@ -1,0 +1,268 @@
+// Notes on the classes:
+//
+// 1. .carousel.pointer-event should ideally be pan-y (to allow for users to scroll vertically)
+//    even when their scroll action started on a carousel, but for compatibility (with Firefox)
+//    we're preventing all actions instead
+// 2. The .carousel-item-start and .carousel-item-end is used to indicate where
+//    the active slide is heading.
+// 3. .active.carousel-item is the current slide.
+// 4. .active.carousel-item-start and .active.carousel-item-end is the current
+//    slide in its in-transition state. Only one of these occurs at a time.
+// 5. .carousel-item-next.carousel-item-start and .carousel-item-prev.carousel-item-end
+//    is the upcoming slide in transition.
+
+// Carousel
+
+// scss-docs-start carousel-variables
+$CarouselControlText:             $white !default;
+$CarouselControl--width:             15% !default;
+$CarouselControlOpacity:           .5 !default;
+$CarouselControl--HoverOpacity:     .9 !default;
+$CarouselControlTransition:        opacity .15s ease !default;
+
+$CarouselIndicator-width:           30px !default;
+$CarouselIndicator-height:          3px !default;
+$CarouselIndicator-hit-area-height: 10px !default;
+$CarouselIndicator--Spacer:          3px !default;
+$CarouselIndicatorOpacity:         .5 !default;
+$CarouselIndicator-Background-active:       $white !default;
+$CarouselIndicator-activeOpacity:  1 !default;
+$CarouselIndicatorTransition:      opacity .6s ease !default;
+
+$CarouselCaption-width:             70% !default;
+$CarouselCaptionText:             $white !default;
+$CarouselCaption--OffsetVertical:         1.25rem !default;
+$CarouselCaption-Spacer:            1.25rem !default;
+
+$CarouselControl--IconWidth:        2rem !default;
+
+$CarouselControl--IconBackground-prev:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$CarouselControlText}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>") !default;
+$CarouselControl--IconBackground-next:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$CarouselControlText}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>") !default;
+
+$CarouselTransition-duration:       .6s !default;
+$CarouselTransition:                transform $CarouselTransition-duration ease-in-out !default; // Define transform transition first if using multiple transitions (e.g., `transform 2s ease, opacity .5s ease-out`)
+// scss-docs-end carousel-variables
+
+// scss-docs-start carousel-dark-variables
+$Carousel-dark-indicator-Background-active:  $black !default;
+$Carousel-dark-CaptionText:        $black !default;
+$Carousel-dark-control-icon-filter:  invert(1) grayscale(100) !default;
+// scss-docs-end carousel-dark-variables
+
+
+.carousel {
+  position: relative;
+}
+
+.carousel.pointer-event {
+  touch-action: pan-y;
+}
+
+.carousel-inner {
+  position: relative;
+  width: calc(100% - calc(2 * $Spacer));
+  overflow: hidden;
+  @include clearfix();
+}
+
+.carousel-item {
+  position: relative;
+  display: none;
+  float: left;
+  width: calc(100% - calc(2 * $Spacer));
+  margin-right: -100%;
+  backface-visibility: hidden;
+  @include Transition($CarouselTransition);
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+  display: block;
+}
+
+/* rtl:begin:ignore */
+.carousel-item-next:not(.carousel-item-start),
+.active.carousel-item-end {
+  transform: translateX(100%);
+}
+
+.carousel-item-prev:not(.carousel-item-end),
+.active.carousel-item-start {
+  transform: translateX(-100%);
+}
+
+/* rtl:end:ignore */
+
+
+//
+// Alternate transitions
+//
+
+.carousel-fade {
+  .carousel-item {
+    opacity: 0;
+    transition-property: opacity;
+    transform: none;
+  }
+
+  .carousel-item.active,
+  .carousel-item-next.carousel-item-start,
+  .carousel-item-prev.carousel-item-end {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .active.carousel-item-start,
+  .active.carousel-item-end {
+    z-index: 0;
+    opacity: 0;
+    @include Transition(opacity 0s $CarouselTransition-duration);
+  }
+}
+
+
+//
+// Left/right controls for nav
+//
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  // Use flex for alignment (1-3)
+  display: flex; // 1. allow flex styles
+  align-items: center; // 2. vertically center contents
+  justify-content: center; // 3. horizontally center contents
+  width: $CarouselControl--width;
+  padding: 0;
+  color: $CarouselControlText;
+  text-align: center;
+  background: none;
+  border: 0;
+  opacity: $CarouselControlOpacity;
+  @include Transition($CarouselControlTransition);
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    color: $CarouselControlText;
+    text-decoration: none;
+    outline: 0;
+    opacity: $CarouselControl--HoverOpacity;
+  }
+}
+.carousel-control-prev {
+  left: 0;
+  background-image: if($enable-gradients, linear-gradient(90deg, rgba($black, .25), rgba($black, .001)), null);
+}
+.carousel-control-next {
+  right: 0;
+  background-image: if($enable-gradients, linear-gradient(270deg, rgba($black, .25), rgba($black, .001)), null);
+}
+
+// -Icons for within
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: inline-block;
+  width: $CarouselControl--IconWidth;
+  height: $CarouselControl--IconWidth;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+}
+
+/* rtl:options: {
+  "autoRename": true,
+  "stringMap":[ {
+    "name"    : "prev-next",
+    "search"  : "prev",
+    "replace" : "next"
+  } ]
+} */
+.carousel-control-prev-icon {
+  background-image: escape-svg($CarouselControl--IconBackground-prev);
+}
+.carousel-control-next-icon {
+  background-image: escape-svg($CarouselControl--IconBackground-next);
+}
+
+// Optional indicator pips/controls
+//
+// Add a container (such as a list) with the following class and add an item (ideally a focusable control,
+// like a button) with data-bs-target for each slide your carousel holds.
+
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  // Use the .carousel-control's width as margin so we don't overlay those
+  margin-right: $CarouselControl--width;
+  margin-bottom: 1rem;
+  margin-left: $CarouselControl--width;
+  list-style: none;
+
+  [data-bs-target] {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: $CarouselIndicator-width;
+    height: $CarouselIndicator-height;
+    padding: 0;
+    margin-right: $CarouselIndicator--Spacer;
+    margin-left: $CarouselIndicator--Spacer;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: $CarouselIndicator-Background-active;
+    background-clip: padding-box;
+    border: 0;
+    // Use transparent borders to increase the hit area by 10px on top and bottom.
+    border-top: $CarouselIndicator-hit-area-height solid transparent;
+    border-bottom: $CarouselIndicator-hit-area-height solid transparent;
+    opacity: $CarouselIndicatorOpacity;
+    @include Transition($CarouselIndicatorTransition);
+  }
+
+  .active {
+    opacity: $CarouselIndicator-activeOpacity;
+  }
+}
+
+
+// Optional captions
+//
+//
+
+.carousel-caption {
+  position: absolute;
+  right: (100% - $CarouselCaption-width) * .5;
+  bottom: $CarouselCaption-Spacer;
+  left: (100% - $CarouselCaption-width) * .5;
+  padding-top: $CarouselCaption--OffsetVertical;
+  padding-bottom: $CarouselCaption--OffsetVertical;
+  color: $CarouselCaptionText;
+  text-align: center;
+}
+
+// Dark mode carousel
+
+.carousel-dark {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: $Carousel-dark-control-icon-filter;
+  }
+
+  .carousel-indicators [data-bs-target] {
+    background-color: $Carousel-dark-indicator-Background-active;
+  }
+
+  .carousel-caption {
+    color: $Carousel-dark-CaptionText;
+  }
+}

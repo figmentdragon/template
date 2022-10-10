@@ -1,0 +1,20 @@
+// ----
+// Sass (v3.3.14)
+// Compass (v1.0.0.rc.1)
+// ----
+
+@function pow($x, $y) {
+	$ret: 1;
+
+	@if $y > 0 {
+		@for $i from 1 through $y {
+			$ret: $ret * $x;
+		}
+	} @else {
+		@for $i from $y to 0 {
+			$ret: $ret / $x;
+		}
+	}
+
+	@return $ret;
+}

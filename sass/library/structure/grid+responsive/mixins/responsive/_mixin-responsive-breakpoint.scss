@@ -1,0 +1,63 @@
+// Responsive breakpoints mixin
+@mixin media( $res ) {
+
+	@if mobile-only == $res {
+		@media only screen and (max-width: #{$Tablet - 1}) {
+			@content;
+		}
+	}
+
+	@if mobile == $res {
+		@media only screen and (min-width: $mobile) {
+			@content;
+		}
+	}
+
+	@if Tablet-only == $res {
+		@media only screen and (max-width: #{$laptop - 1}) {
+			@content;
+		}
+	}
+
+	@if Tablet == $res {
+		@media only screen and (min-width: #{$Tablet}) {
+			@content;
+		}
+	}
+
+	@if laptop-only == $res {
+		@media only screen and (max-width: #{$desktop - 1}) {
+			@content;
+		}
+	}
+
+	@if laptop == $res {
+		@media only screen and (min-width: #{$laptop}) {
+			@content;
+		}
+	}
+
+	@if desktop-only == $res {
+		@media only screen and (max-width: #{$widescreen - 1}) {
+			@content;
+		}
+	}
+
+	@if desktop == $res {
+		@media only screen and (min-width: #{$desktop}) {
+			@content;
+		}
+	}
+
+	@if wide-only == $res {
+		@media only screen and (max-width: #{$ultrawide - 1}) {
+			@content;
+		}
+	}
+
+	@if wide == $res {
+		@media only screen and (min-width: #{$widescreen}) {
+			@content;
+		}
+	}
+}

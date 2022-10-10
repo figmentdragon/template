@@ -1,0 +1,213 @@
+select {
+  $prefix: input;
+  $concept: form;
+  $Background: Background($info);
+
+  font-size: $FontSize;
+  line-height: $LineHeight;
+  position: relative;
+  display: inline-block;
+
+  width: auto;
+  max-width: calc(100% - calc(2 * $Spacer));
+  height: 40px;
+  margin-bottom: $SpacerHorizontal;
+  padding: 0 0 0 divide($Offset, 2) !important;
+
+  transition: all 0.25s ease-in-out;
+
+  text-transform: none;
+  word-wrap: normal;
+  appearance: none;
+  color: $InputText;
+  border: $BorderWidth $BorderStyle $BorderWidth $InputBorder;
+  @include border-radius($InputRadius);
+  background-color: rgba($Background, 0.04);
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, rgba($Background, 0.12), rgba($Background, 0.12));
+  background-repeat: no-repeat;
+  background-position:
+    calc(100% - 1rem) 50%,
+    calc(100% - 11px) 50%,
+    calc(100% - 2rem) 6px;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  box-shadow: none;
+  text-shadow: 0 0 0 rgba($BorderColor, 0.4);
+
+  @include box-sizing(border-box);
+
+  &.active,
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 3px 1px $InputShadow;
+  }
+  &:focus {
+    border: $BorderWidth $BorderStyle $InputBorder;
+    border-radius: $InputRadius;
+    color: $InputText;
+    font-size: $InputBtnSize;
+    appearance: none;
+    padding: $InputSpacer calc(3 * $InputSpacer) $InputSpacer $InputSpacer;
+    background: $white url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%2328303d'><polygon points='0,0 10,0 5,5'/></svg>") no-repeat; // stylelint-disable-line function-url-quotes
+    background-position: right $InputSpacer top 60%;
+    text-decoration: none;
+    outline-offset: 2px;
+    outline-width: $BorderWidth;
+    outline-style: dotted;
+    outline-color: $InputBorder-focus;
+  }
+  &:disabled { opacity: 1; }
+  &:not([multiple]) { /* Add arrow to drop-down */
+    background-image: linear-gradient(45deg, transparent 49%, $Text 51%),
+      linear-gradient(135deg, $Text 51%, transparent 49%);
+    background-position: calc(100% - 15px), calc(100% - 10px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 25px;
+  }
+  &:not([size]):not([multiple]) {
+    appearance: none;
+    background: Background($white) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.85rem center/8px 10px;
+    padding-right: 0.625rem + 0.625rem;
+    padding-right: $BaseUnit + $BaseUnit;
+  }
+
+  .optList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    margin : 0;
+    padding: 0;
+
+    @include box-sizing($type : border-box);
+
+    min-width : 100%;
+
+    max-height: 10rem; /* 100px */
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: .2em $BorderStyle #000;
+    border-top-width : calc($BorderWidth / 2);
+    border-radius: 0 0 calc($InputRadius * 2) calc($InputRadius * 2);
+
+    box-shadow: 0 .2em .4em rgba($InputShadow,.4);
+    background: #f0f0f0;
+    &.hidden {
+      max-height: 0;
+      visibility: hidden;
+    }
+  }
+  .value {
+    display: inline-block;
+    width: calc(100% - calc(2 * $Spacer));
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+  }
+  &:after {
+    content: "U+25BC";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    @include box-sizing($type: border-box);
+    height: 100%;
+    width: 2rem;
+    padding-top: $OffsetHorizontal;
+    border-left  : $BorderWidth $BorderStyle $BorderColor;
+    border-radius: 0 $InputRadius $InputRadius 0;
+
+    background-color : findInvertColor($InputBackground);
+    color :$InputText;
+    text-align : center;
+  }
+  .option {
+    padding: $OffsetHorizontal $OffsetVertical;
+  }
+  .highlight {
+    background: findInvertColor(ColorDark($formColor));
+    color: $ColorHighlight;
+  }
+  .is-dark-theme & {
+    background: var(--globalText-white-90) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%2328303d'><polygon points='0,0 10,0 5,5'/></svg>") no-repeat; // stylelint-disable-line function-url-quotes
+		background-position: right var(--form--spacing-unit) top 60%;
+	}
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+*[dir='rtl'] select:not([size]):not([multiple]),
+select[dir='rtl']:not([size]):not([multiple]) {
+  background-position: left 0.85rem top 50%;
+  padding-right: (0.625rem * 0.75);
+  padding-right: ($BaseUnit * 0.75);
+  padding-left: 0.625rem + 0.625rem;
+  padding-left: $BaseUnit + $BaseUnit;
+}
+
+
+.widget select,
+.no-widget .select {
+  /* This CSS selector basically says:
+     - either we have set the body class to "widget" and thus we hide the actual <select> element
+     - or we have not changed the body class, therefore the body class is still "no-widget",
+       so the elements whose class is "select" must be hidden */
+  position : absolute;
+  left     : -5000em;
+  height   : 0;
+  overflow : hidden;
+}
+
+// Alternative using Radio Buttons
+.styledSelect {
+  display: inline-block;
+  padding: 0;
+  li {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+  }
+  label {
+    margin: 0;
+    line-height: 2;
+    padding: 0 0 0 4px;
+  }
+  &:not(:focus-within) input {
+    &:not(:checked) + label {
+      height: 0;
+      outline: none;
+      overflow: hidden;
+    }
+    &:checked + label {
+      border: .2em $BorderStyle #000;
+      border-radius: .4em;
+      box-shadow: 0 .1em .2em rgba(0,0,0,.45);
+    }
+    &:checked + label::after {
+      content : "▼";
+      background: black;
+      float: right;
+      color: white;
+      padding: 0 4px;
+      margin: 0 -4px 0 4px;
+    }
+  }
+  &:focus-within {
+    border: .2em $BorderStyle #000;
+    border-radius: .4em;
+    box-shadow: 0 .1em .2em rgba(0,0,0,.45);
+    input:checked + label {
+      background-color: #333;
+      color: Text($white);
+      width: calc(100% - calc(2 * $Spacer));
+    }
+  }
+}

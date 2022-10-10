@@ -1,0 +1,33 @@
+//
+// Background variations
+//
+
+.Card--valid {
+  @include Card--variant($success, $success);
+}
+.Card--info {
+  @include Card--variant($info, $info);
+}
+.Card--invalid {
+  @include Card--variant($danger, $danger);
+}
+.Card--warning {
+  @include Card--variant($warning, $warning);
+}
+
+// Remove all backgrounds
+.Card--warning-outline {
+  @include Card--outline-variant($warning);
+}
+.Card--secondary-outline {
+  @include Card--outline-variant($secondary);
+}
+.Card--info-outline {
+  @include Card--outline-variant($info);
+}
+.Card--valid-outline {
+  @include Card--outline-variant($success);
+}
+.Card--invalid-outline {
+  @include Card--outline-variant($danger);
+}

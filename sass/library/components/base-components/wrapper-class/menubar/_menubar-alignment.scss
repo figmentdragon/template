@@ -1,0 +1,55 @@
+// Menubar alignment options
+//
+// Display the menubar across the entirety of the page or fixed it to the top or
+// bottom of the page.
+
+// A static, full width modifier with no rounded corners.
+.menubar-full {
+  z-index: 900;
+}
+
+// Fix the top/bottom menubars when screen real estate supports it
+.menubar-fixed-top,
+.menubar-fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 910;
+}
+
+.menubar-top,
+.menubar-fixed-top {
+	position: fixed;
+	width:100%;
+	height: auto;
+	top: 0px;
+}
+
+.menubar-bottom,
+.menubar-fixed-bottom {
+  position:fixed;
+  width:100%;
+  height:80%;
+  bottom: 0px;
+}
+
+.menubar-sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 920;
+  width: calc(100% - calc(2 * $Spacer));
+}
+
+.menubar-divider {
+  float: left;
+  width: 1px;
+  padding-top: .425rem;
+  padding-bottom: .425rem;
+  margin-right: $SpacerHorizontal;
+  margin-left:  $SpacerHorizontal;
+  overflow: hidden;
+
+  &::before {
+    content: "\00a0";
+  }
+}

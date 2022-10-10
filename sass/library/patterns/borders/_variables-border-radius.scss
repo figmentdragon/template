@@ -1,0 +1,10 @@
+//
+// Border-radius
+//
+$BorderRadius-sm: calc($BorderRadius * $sm);
+$md--BorderRadius: calc($BorderRadius * $md);
+$BorderRadius-lg: calc($BorderRadius * $lg);
+$BorderRadius-xl: calc($BorderRadius * $xl);
+$pill--BorderRadius: 33rem;
+$rounded-pill: 50rem;
+$circle--BorderRadius: 50%;

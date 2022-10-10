@@ -1,0 +1,126 @@
+/* # GRID ---------------------------- * ------------------------------------ *\
+ *  The grid, layouts, paddings and breaking-points that give shape.
+\* ------------------------------------ * ----------------------------------- */
+
+  $enable-grid-classes           : true !default;
+  $enable-container-classes      : true !default;
+  $enable-cssgrid                : true !default;
+  $enable-flex                   : true !default;
+  $include-column-box-sizing     : true !default;
+
+// #DEFINITIONS ------------------------------ //
+// ->-> set the number of columns & rows and specify the width of the gutters.
+  $grid-columns      : 25 !default;
+  $grid-row-columns  : 25 !default;
+  $grid-gutter-width : calc($BaseUnit / 5 ) !default; // 3.2px
+  $gap               : 0.125rem !default;
+  $columns-margin    : $grid-gutter-width; //3.2px
+  $gutter            : $grid-gutter-width;
+
+// #VARIABLES -------------------------------- //
+  $breakpoint-xs  : 30rem !default; // 482px
+  $breakpoint-sm  : 47.820678024652rem !default; // 768px
+  $breakpoint-md  : 61.768375781843rem !default; //992px
+  $breakpoint-lg  : 63.76090403287rem !default; //1024px
+  $breakpoint-xl  : 80rem !default; //1280px
+  $breakpoint-x2l : 85.056049715723rem !default; //1366px
+  $breakpoint-x3l : 119.55169506163rem !default; //1920px
+
+// ->->-> Breakpoint
+  $grid-breakpoint-x3l: calc($breakpoint-x3l - calc( $gap / 2))  !default;
+  $grid-breakpoint-x2l: calc($breakpoint-x2l - calc( $gap / 2)) !default;
+  $grid-breakpoint-xl : calc($breakpoint-xl - calc( $gap / 2)) !default;
+  $grid-breakpoint-lg : calc($breakpoint-lg - calc( $gap / 2)) !default;
+  $grid-breakpoint-md : calc($breakpoint-md - calc( $gap / 2)) !default;
+  $grid-breakpoint-sm : calc($breakpoint-sm - calc( $gap / 2)) !default;
+  $grid-breakpoint-xs : calc($breakpoint-xs - calc( $gap / 2)) !default;
+  $grid-breakpoint-xxs: 0 !default;
+
+// - #FUNCTIONS ------------------------------ //
+  @import "library/structure/grid+responsive/functions/breakpoint";
+
+// - #MIXINS --------------------------------- //
+  @import "library/structure/grid+responsive/mixins/cols/mixin-col-auto";
+  @import "library/structure/grid+responsive/mixins/cols/mixin-col-offset";
+  @import "library/structure/grid+responsive/mixins/cols/mixin-col-ready";
+  @import "library/structure/grid+responsive/mixins/cols/mixin-col";
+  @import "library/structure/grid+responsive/mixins/cols/mixin-column-width";
+
+  @import "library/structure/grid+responsive/mixins/mixin-box-sizing";
+  @import "library/structure/grid+responsive/mixins/mixin-clearfix";
+
+// - #HELPERS -------------------------------- //
+// - #MAPS ----------------------------------- //
+  $gutter: $grid-gutter-width;
+  $gutters: (
+    0: 0,
+    1: $gutter * .15,
+    2: $gutter * .75,
+    3: $gutter * 1.50,
+    4: $gutter * 2.25,
+    5: $gutter * 3.00,
+  );
+
+  @import "library/structure/grid+responsive/maps+lists/list-columns";
+  @import "library/structure/grid+responsive/maps+lists/map-breakpoint-grid";
+  @import "library/structure/grid+responsive/maps+lists/map-column-width";
+
+  $name:        nth($grid-breakpoints, 1);
+  $breakpoints : $grid-breakpoints;
+  $size        : nth($grid-breakpoints, 1);
+  $declaration : nth($breakpoints, 2);
+  $key         : nth($breakpoints, 1);
+  $value       : nth($breakpoints, 2);
+
+
+// - #MEDIA QUERIES ---------------------------- //
+@media only screen and (min-width: $breakpoint-x3l) {
+  section {
+    max-width: calc($grid-breakpoint-x3l - $gap);
+  }
+}
+@media only screen and (min-width: $breakpoint-x2l) and (max-width: #{$grid-breakpoint-x3l}){
+  section {
+    width: calc($grid-breakpoint-x2l - $gap);
+  }
+}
+@media only screen and (min-width: $breakpoint-xl) and (max-width: #{$grid-breakpoint-x2l}) {
+  section {
+    max-width: calc($grid-breakpoint-x2l - $gap);
+  }
+}
+@media only screen and (min-width: $breakpoint-lg) and (max-width: #{$grid-breakpoint-xl}) {
+  section {
+    max-width: calc($grid-breakpoint-xl - $gap);
+  }
+}
+@media only screen and (min-width: $breakpoint-md) and (max-width: #{$grid-breakpoint-lg}) {
+  section {
+    max-width: calc($grid-breakpoint-lg - $gap);
+  }
+}
+@media only screen and (min-width: $breakpoint-sm) and (max-width: #{$grid-breakpoint-md}) {
+  section {
+  	max-width: calc($grid-breakpoint-md - $gap);
+  }
+}
+@media only screen and (min-width: $breakpoint-xs) and (max-width: #{$grid-breakpoint-sm}) {
+  section {
+  	max-width: calc($grid-breakpoint-sm - $gap);
+  }
+}
+@media only screen and (max-width: #{$grid-breakpoint-xs}) {
+  section {
+  	max-width: calc($grid-breakpoint-xs - $gap);
+  }
+}
+/* - #HELPERS -------------------------------- */
+/* - #COMPONENTS ----------------------------- */
+  @import "library/structure/grid+responsive/components/container";
+  @import "library/structure/grid+responsive/components/columns";
+  @import "library/structure/grid+responsive/components/rows";
+  @import "library/structure/grid+responsive/components/grid";
+
+/* - #UTILITIES ------------------------------ */
+// - #VENDORS ---------------------------------- //
+//  @import "library/structure/grid+responsive/./../source/vendors/responsive/rfs";

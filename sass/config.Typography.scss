@@ -1,0 +1,350 @@
+/* #TYPOGRAPHY ---------------------- * ------------------------------------ */
+
+// #DEFINITIONS ------------------------------ //
+// ->-> INTERVALS
+  $FontInterval     : 0.125 !default;
+    $HeadingInterval: 0.25 !default;
+
+// ->-> LINE HEIGHT
+  $LineHeight      : 1.1 !default;
+    $EntryHeight   : calc($LineHeight - 0.2) !default;
+    $HeadingHeight : calc($LineHeight + 0.5) !default;
+    $TitleHeight   : calc($LineHeight + 0.25) !default;
+
+// ->-> FONT WEIGHT
+  $FontWeight      : 400;
+    $MuteWeight    : thin;
+    $EntryWeight   : medium;
+    $HeadingWeight : bold;
+    $TitleWeight   : bolder;
+
+// ->-> FONT SIZE
+  $EntrySize   : #{calc($FontSize + $FontInterval)};
+  $HeadingSize : #{calc($FontSize + $HeadingInterval)};
+  $TitleSize   : #{calc($FontSize + 1.5)};
+
+// ->-> LETTER SPACING
+  $LetterSpacing   : 0.0235;
+    $EntrySpacing  : calc($LetterSpacing + 0.125);
+    $HeadingSpacing: calc($LetterSpacing + 0.25);
+    $TitleSpacing  : calc($LetterSpacing + .5);
+
+ $HeadingMargin-bottom : calc(0.5 * $Spacer);
+
+// #FUNCTIONS ------------------------------ //
+  @import "library/fonts+typography/typography/functions/functions-text-convert-typographic-units";
+
+
+// - #VARIABLES ------------------------------ //
+// -- =Font Weight
+  $thin--FontWeight   : calc($FontWeight - 300);
+  $lighter--FontWeight: calc($FontWeight - 200);
+  $FontWeight         : 400;
+  $medium--FontWeight : calc($FontWeight + 100);
+  $bold-FontWeight   : calc($FontWeight + 300);
+  $bolder--FontWeight : calc($FontWeight + 400);
+
+// -- =LETTER SPACING
+
+
+// -- =FontSize
+// ->-> Body
+  $FontSize-xs: calc($FontSize - calc($FontInterval * 2)); // 12px
+  $FontSize-sm: calc($FontSize - $FontInterval); // 14px
+  $FontSize-lg: calc($FontSize + $FontInterval); // 18.4px
+  $FontSize-xl: calc($FontSize + calc($FontInterval * 2)); // 20px
+
+// ->-> Heading
+  $FontSize-h6: $HeadingSize; // 24px
+  $FontSize-h5: calc($HeadingSize + $HeadingInterval); // 28px
+  $FontSize-h4: calc($FontSize-h5 + $HeadingInterval); // 36px
+  $FontSize-h3: $TitleSize; // 40px
+  $FontSize-h2: calc($TitleSize + $HeadingInterval); // 44px
+  $FontSize-h1: calc($TitleSize + calc($HeadingInterval * 2)); // 48px
+
+// -- =TEXT TRANSFORM
+  $HeadingTransform : capitalize;
+  $TitleTransform   : uppercase;
+
+// -- =FONT STYLE
+  $HeadingStyle : normal;
+
+
+  $SiteSize: $FontSize-h1;
+
+  $PageSize: $FontSize-h2;
+
+  $PostSize: $FontSize-h3;
+  $PostSpacing: $HeadingSpacing;
+  $PostHeight: $TitleHeight;
+
+  $HeadingTransform: capitalize;
+
+  $HeaderSpacing: $HeadingSpacing;
+  $HeaderSize: $FontSize-h3;
+  $HeaderWeight: $HeadingWeight;
+  $HeaderTransformation: uppercase;
+
+
+  $DisplayStyle:  normal !default;
+  $DisplayWeight: 300 !default;
+  $DisplayHeight: $HeadingHeight !default;
+
+  $MenuSize                : $FontSize-lg;
+  $MenuSize-submenu        : $FontSize;
+  $MenuSize-mobile         : $FontSize;
+  $MenuSize-mobile-submenu : $FontSize-xs;
+  $MenuSize-button         : $FontSize;
+
+  $FooterSize: calc($FontSize * $md);
+
+// #MIXINS ------------------------------ //
+@mixin font-size($FontSize: 1) {
+  $pixels: calc((#{$FontSize} * 16) * 1px);
+  $rems: calc(#{$FontSize} * 1rem);
+  font-size: $rems;
+  font-size: $pixels;
+}
+
+@mixin letter-spacing($LetterSpacing) {
+  letter-spacing: calc($LetterSpacing * 1rem);
+}
+
+@mixin post-section-dash {
+	&:before {
+		background: $Background;
+		content: "\020";
+		display: block;
+		height: 2px;
+		margin: calc(0.5 * $Spacer) 0;
+		width: 1em;
+	}
+
+	&.has-text-align-center:before {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&.has-text-align-right:before {
+		margin-left: auto;
+	}
+}
+
+  @import "library/fonts+typography/typography/mixins/mixin-text-body";
+  @import "library/fonts+typography/typography/mixins/mixin-text-emphasis";
+  @import "library/fonts+typography/typography/mixins/mixin-text-fa";
+  @import "library/fonts+typography/typography/mixins/mixin-text-fade-text";
+  @import "library/fonts+typography/typography/mixins/mixin-text-fluid-type";
+  @import "library/fonts+typography/typography/mixins/mixin-text-heading";
+  @import "library/fonts+typography/typography/mixins/mixin-text-hide";
+  @import "library/fonts+typography/typography/mixins/mixin-text-margin";
+  @import "library/fonts+typography/typography/mixins/mixin-text-reset";
+  @import "library/fonts+typography/typography/mixins/mixin-text-truncate";
+
+  @import "library/fonts+typography/typography/mixins/mixins-lists/mixin-list-group";
+  @import "library/fonts+typography/typography/mixins/mixins-lists/mixin-list-padding";
+  @import "library/fonts+typography/typography/mixins/mixins-lists/mixin-list-unstyled";
+
+/* - #HELPERS -------------------------------- */
+  @import "library/fonts+typography/typography/helpers/helpers-text-drop-cap";
+  @import "library/fonts+typography/typography/helpers/helpers-text-inner-shadow";
+  @import "library/fonts+typography/typography/helpers/helpers-text-truncation";
+  @import "library/fonts+typography/typography/helpers/helpers-text-type";
+
+// #MAPS ------------------------------ //
+  @import "library/fonts+typography/typography/maps+lists/map-font-families";
+  @import "library/fonts+typography/typography/maps+lists/map-font-sizes";
+//  @import "library/fonts+typography/typography/maps+lists/map-display-font-sizes";
+
+
+/* - #COMPONENTS ----------------------------- */
+
+.site-title {
+  line-height: $TitleHeight;
+  @include letter-spacing($TitleSpacing);
+  font-variant: small-caps;
+  font-weight: $TitleWeight;
+  @include font-size($FontSize-h3);
+}
+
+.page-title { /* Page titles */
+  @include font-family('Poiret One');
+  color: $PageTitle;
+  letter-spacing: $HeadingSpacing;
+}
+
+.entry-title,
+.post-title { /* Post titles */
+  line-height: $HeadingHeight;
+  text-transform: $HeadingTransform;
+  color: $PostTitle;
+  letter-spacing: $EntrySpacing;
+  @include font-size(calc($FontSize + 0.125));
+  @include font-family($FontSecondary);
+}
+
+.entry-title,
+.page-title,
+.post-title,
+.site-description,
+.subheader {
+  font-weight: $HeadingWeight;
+  text-transform: $HeadingTransform;
+}
+
+.site-description,
+.subheader { /* This is the tagline */
+  color: $HeadingTitle;
+  @include font-family($secondary--BrandFont);
+  -webkit-text-stroke: 1px $text--StrokeColor;
+}
+
+/* - #UTILITIES ------------------------------ */
+  @import "library/fonts+typography/typography/utilities/utilities-text";
+
+// #VENDORS ------------------------------ //
+
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+  color: $Text;
+  font-family: sans-serif;
+  @include font-size($FontSize);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-feature-settings : "lnum";
+	font-variant-numeric : lining-nums;
+
+  margin-bottom : $HeadingMargin-bottom;
+  word-wrap : break-word;
+  @include clearfix;
+  text-rendering : optimizeLegibility;
+  a { @include on-event { } }
+  &:hover, &:focus {
+    > a[href^='#'][id]:empty {
+      opacity: 1;
+    }
+  }
+  + p, + details {
+    margin-top: .5rem;
+  }
+
+  > a[href^='#'][id]:empty {
+    position: absolute;
+    left: -.65rem;
+    opacity: 0;
+    text-decoration: none;
+    font-weight: 400;
+    line-height: $LineHeight;
+  }
+  &:target,
+  &:hover,
+  &:focus {
+    opacity: 1;
+    box-shadow: none;
+    color: HoverShift(Title($HeadingTitle));
+  }
+  &:target:focus { // stylelint-disable-line selector-max-specificity
+    outline: none;
+  }
+  &::before {
+    content: '\a0';
+  }
+}
+
+h1 {
+  font-weight : bolder;
+  align-self : flex-start;
+  margin : 0 auto 0;
+  padding : $Offset;
+}
+
+h1:not(.site-title),
+h2 {
+	@include post-section-dash; }
+
+h2 {
+  @include font-size( $PageSize );
+
+  margin: $SpacerHorizontal 0 calc($SpacerHorizontal * 0.5);
+}
+
+h3 { @include font-size( $PostSize ); }
+
+h1,
+h2,
+h3 { /* Fix line height when title wraps */
+  line-height : $TitleHeight;
+  letter-spacing : $TitleSpacing;
+}
+
+h4 {
+	@include font-size($FontSize-h4);
+	&.site-description {
+		@extend .site-description;
+	}
+}
+
+h5 { @include font-size( $FontSize-h5 ); }
+
+h6 { @include font-size( $HeadingSize ); }
+
+h2,
+h3,
+h4 {
+  font-weight : bold;
+  text-transform : $HeadingTransform;
+}
+
+h4,
+h5,
+h6 {
+  letter-spacing: $HeadingSpacing;
+  line-height: $HeadingHeight;
+}
+
+h5,
+h6 {
+  margin-right : $SpacerVertical;
+  margin-left : $SpacerVertical;
+  font-weight : thin;
+  text-transform : $HeadingTransform;
+}
+
+/* Prevent long strings from overflowing container */
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+
+/* Reduce header size on mobile */
+@media only screen and (max-width: 720px) {
+  h1 { font-size: $FontSize-h3; }
+  h2 { font-size: $FontSize-h4; }
+  h3 { font-size: $FontSize-h5; }
+  h4 { font-size: $HeadingSize; }
+}
+
+// These declarations are kept separate from and placed after
+// the previous tag-based declarations so that the classes beat the tags in
+// the CSS cascade, and thus <h1 class="h2"> will be styled like an h2.
+.h1 { @extend h1; }
+.h2 { @extend h2; }
+.h3 { @extend h3; }
+.h4 { @extend h4; }
+.h5 { @extend h5; }
+.h6 { @extend h6; }
+
+.gallery-caption {
+  @include font-size($FontSize-xs);
+	line-height: calc($LineHeight - 0.2);
+	@include font-family( $HeadingFont );
+}

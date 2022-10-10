@@ -1,0 +1,111 @@
+/* Form Elements */
+
+
+// The <datalist> HTML element contains a set of option elements that represent the permissible or recommended options available to choose from within other controls.
+datalist { display: none !important; }
+
+
+
+// The <meter> HTML element represents either a scalar value within a known range or a fractional value.
+meter {
+  display: inline-block;
+  vertical-align: baseline;
+  width: calc(100% - calc(2 * $Spacer));
+  max-width: calc(100% - calc(2 * $Spacer));
+}
+
+// The <option> HTML element is used to define an item contained in a select, an optgroup, or a datalist element. As such, <option> can represent menu items in popups and other lists of items in an HTML document.
+option { content: ''; }
+
+
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: $InputBtnHeight;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.0333em;
+  opacity: 1;
+  border: $BorderWidth $BorderStyle $InputBorder;
+  background-color: translucentBackground($InputBackground);
+  box-shadow: 0 1px 0 rgba($InputShadow, .8);
+  @include font-size($InputBtnSize);
+  @include font-family($InputBtnFont);
+  @include border-radius(calc($lg * $BorderRadius));
+  -webkit-appearance: button;
+  @include on-event {
+    &:focus,
+    &:hover {
+      border-color: $InputBorder-focus;
+      box-shadow: $InputShadow-focus;
+      text-decoration: underline;
+    }
+
+    &:active {
+      border-color: $InputBorder;
+      box-shadow: $InputBoxShadow;
+    }
+  }
+  &:focus-visible {
+    border-color: ColorLight($InputBorder);
+  }
+  &:focus:enabled,
+  &:hover:enabled {
+    background-color: $InputBackground-focus;
+    outline: 0;
+  }
+  &::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+
+  /* Improves usability and consistency of cursor style between image-type 'input' and others */
+  &::-moz-focusring {
+    line-height: 1.2;
+    padding: 1.12em 1.5em 1rem;
+    outline: $BorderWidth dotted $InputBorder;
+    text-shadow: 0 1px 0 rgba($InputShadow, .8);
+  }
+  @if $enable-button-pointers {
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+}
+
+[type='checkbox'],
+[type='radio'] {
+  padding: 0;
+  @include box-sizing($type: border-box);
+}
+
+[type='search'] {
+  outline-offset: -2px;
+  -webkit-appearance: textfield;
+  @include box-sizing($type: border-box);
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+[type='number'] {
+  padding-right: 0.5rem;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    height: auto;
+  }
+}
+
+[list]:not([type='date']):not([type='datetime-local']):not([type='month']):not([type='week']):not([type='time'])::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+[aria-busy='true'] {
+    cursor: progress;
+}
+[aria-disabled='true'],
+[disabled] { cursor: not-allowed; }

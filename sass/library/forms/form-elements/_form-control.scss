@@ -1,0 +1,363 @@
+//
+// General form controls (plus a few specific high-level interventions)
+//
+$FormControl-margin-bottom: 0.5rem ;
+$FormControl-Offset-top: 0.6rem ;
+$FormControl-Offset-bottom: 0.4rem ;
+
+.form-control {
+  font-family: $FormFont;
+  line-height: $FormHeight;
+  font-weight: $FormWeight;
+
+  display: block;
+
+  width: calc(100% - calc(2 * $Spacer));
+  height: $FormHeight;
+  min-height: auto;
+  padding: $Form-OffsetHorizontal $Form-OffsetHorizontal;
+
+  color: $FormText;
+  border: $FormBorder-width $BorderStyle Border($formColor);
+  background-color: Background($formColor);
+  // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214.
+  background-clip: padding-box;
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+
+  appearance: none; // Fix appearance for date inputs in Safari
+  //@include font-size($FormSize);
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  @include border-radius($FormRadius, 0);
+  @include box-shadow($FormShadow-box);
+  @include Transition($FormTransition);
+  @include Transition($Transition);
+  // Make inputs at least the height of their button counterpart (base line-height + padding + border).
+  // Only apply the height to textual inputs and some selects.
+  &:not(textarea),
+  &:not(select[size]),
+  &:not(select[multiple]) {
+    height: $FormHeight;
+  }
+
+  // Unstyle the caret on `<select>`s in IE10+.
+  &::-ms-expand {
+    border: 0;
+    background-color: transparent;
+  }
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  &[type="file"] {
+    &::-webkit-file-upload-button {
+      background-color: transparent;
+    }
+  }
+  &:hover {
+    &:not(:disabled):not([readonly])::-webkit-file-upload-button {
+      background-color: transparent;
+    }
+  }
+  // Customize the `:focus` state to imitate native WebKit styles.
+  &:focus {
+    color: $FormLink-focus;
+    border-color: $FormBorder-focus;
+    outline: 0;
+    background-color: $FormBackground-focus;
+
+    @include Transition($FormTransition);
+    @if $enable-shadows {
+      @include box-shadow($FormShadow-box, $FormShadow-focus);
+    } @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      box-shadow: $FormShadow-focus;
+    }
+  }
+  &.form-control-sm {
+    font-size: 0.775rem;
+    line-height: 1.5;
+  }
+  &.form-control-lg {
+    line-height: 2.15;
+
+    border-radius: 0.25rem;
+  }
+  // Add some height to date inputs on iOS
+  // https://github.com/twbs/bootstrap/issues/23307
+  // TODO: we can remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=198959 is resolved
+  &::-webkit-date-and-time-value {
+    // Multiply line-height by 1rem if it has no unit
+    height: if(unit($FormHeight) == "", $FormHeight * 1rem, $FormHeight);
+  }
+
+  // Placeholder
+  &::placeholder {
+    color: $gray;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+
+  // Disabled and read-only inputs
+  //
+  // HTML5 says that controls under a fieldset > legend:first-child won't be
+  // disabled if the fieldset is disabled. Due to implementation difficulty, we
+  // don't honor that edge case; we style them as disabled anyway.
+  &:disabled,
+  &[readonly] {
+    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+    opacity: 1;
+    border-color: $FormLink-disabled;
+    background-color: $FormBackground-inactive;
+  }
+
+  // File input buttons theming
+  &::file-selector-button {
+    margin: (-$Form-OffsetHorizontal) (-$Form-OffsetHorizontal);
+    padding: $Form-OffsetHorizontal $Form-OffsetHorizontal;
+
+    pointer-events: none;
+
+    color: $form--file-ButtonText;
+    border-width: 0;
+    border-style: $BorderStyle;
+    border-color: inherit;
+    border-radius: 0; // stylelint-disable-line property-disallowed-list
+
+    border-inline-end-width: $FormBorder-width;
+    @include gradientThemeColor($gradient:radial, $deg:180degs, $startcolor:$primary, $endcolor:$accent);
+    @include Transition($TransitionButton);
+    margin-inline-end: $Form-OffsetHorizontal;
+  }
+
+  &:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: $form--file-button-hover-bg;
+  }
+
+  &::-webkit-file-upload-button {
+    margin: (-$Form-OffsetHorizontal) (-$Form-OffsetHorizontal);
+    padding: $Form-OffsetHorizontal $Form-OffsetHorizontal;
+
+    pointer-events: none;
+
+    color: $form--file-ButtonText;
+    border-width: 0;
+    border-style: $BorderStyle;
+    border-color: inherit;
+    border-radius: 0; // stylelint-disable-line property-disallowed-list
+
+    border-inline-end-width: $FormBorder-width;
+    @include gradientThemeColor($gradient:radial, $deg:180degs, $startcolor:$primary, $endcolor:$accent);
+    @include Transition($TransitionButton);
+    margin-inline-end: $Form-OffsetHorizontal;
+  }
+
+  &:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+    background-color: $form--file-button-hover-bg;
+  }
+  &:disabled {
+    cursor: cursor-disabled;
+  }
+}
+
+
+// Readonly controls as plain text
+//
+// Apply class to a readonly input to make it appear like regular plain
+// text (without any border, background color, focus indicator)
+
+.form-control-plaintext {
+  line-height: $FormHeight;
+
+  display: block;
+
+  width: calc(100% - calc(2 * $Spacer));
+  margin-bottom: 0; // match inputs if this class comes on inputs with default margins
+  padding: $Form-OffsetHorizontal 0;
+
+  color: $Input-plaintext;
+  border: $BorderStyle transparent;
+  border-width: $FormBorder-width 0;
+  background-color: transparent;
+
+  &.form-control-sm,
+  &.form-control-lg {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Form control sizing
+//
+// Build on `.form-control` with modifier classes to decrease or increase the
+// height and font-size of form controls.
+//
+// Repeated in `_input_group.scss` to avoid Sass extend issues.
+
+.form-control-sm {
+  min-height: calc($FormHeight / $sm);
+  padding: subtract($Offset, $sm) subtract($Offset, $sm);
+
+  //@include font-size($FormSize-sm);
+  @include border-radius(calc($sm * $BorderRadius));
+
+  &::file-selector-button {
+    margin: (-subtract($Offset, $sm)) (-subtract($Offset, $sm));
+    padding: subtract($Offset, $sm) subtract($Offset, $sm);
+
+    margin-inline-end: subtract($Offset, $sm);
+  }
+
+  &::-webkit-file-upload-button {
+    margin: (-subtract($Offset, $sm)) (-subtract($Offset, $sm));
+    padding: subtract($Offset, $sm) subtract($Offset, $sm);
+
+    margin-inline-end: subtract($Offset, $sm);
+  }
+}
+
+.form-control-lg {
+  min-height: calc($FormHeight + $lg);
+  padding: add($Offset, $lg) add($Offset, $lg);
+
+  //@include font-size($h6Size);
+  @include border-radius(calc($lg * $BorderRadius));
+
+  &::file-selector-button {
+    margin: (-add($Offset, $lg)) (-add($Offset, $lg));
+    padding: add($Offset, $lg) add($Offset, $lg);
+
+    margin-inline-end: add($Offset, $lg);
+  }
+
+  &::-webkit-file-upload-button {
+    margin: (-add($Offset, $lg)) (-add($Offset, $lg));
+    padding: add($Offset, $lg) add($Offset, $lg);
+
+    margin-inline-end: add($Offset, $lg);
+  }
+}
+
+// Make sure textareas don't shrink too much when resized
+// https://github.com/twbs/bootstrap/pull/29124
+// stylelint-disable selector-no-qualifying-type
+textarea {
+  &.form-control {
+    min-height: $FormHeight;
+  }
+
+  &.form-control-sm {
+    min-height: calc($FormHeight / $sm);
+  }
+
+  &.form-control-lg {
+    min-height: add($FormHeight, $lg);
+  }
+}
+// stylelint-enable selector-no-qualifying-type
+
+.form-control-color {
+  width: $FormText-width;
+  height: auto; // Override fixed browser height
+  padding: $Offset;
+
+  &:not(:disabled):not([readonly]) {
+    cursor: pointer;
+  }
+
+  &::-moz-color-swatch {
+    height: if(unit($FormHeight) == "", $FormHeight * 1rem, $FormHeight);
+
+    @include border-radius($FormRadius);
+  }
+
+  &::-webkit-color-swatch {
+    height: if(unit($FormHeight) == "", $FormHeight * 1rem, $FormHeight);
+
+    @include border-radius($FormRadius);
+  }
+}
+
+
+// Make file inputs better match text inputs by forcing them to new lines.
+.form-control-file,
+.form-control-range {
+  display: block;
+}
+
+//
+// Labels
+//
+
+// For use with horizontal and inline forms, when you need the label text to
+// align with the form controls.
+.form-control-label {
+  margin-bottom: 0; // Override the `<label>` default
+  padding: $Offset $Offset;
+}
+
+
+// Todo: clear this up
+
+// Special styles for iOS temporal inputs
+//
+// In Mobile Safari, setting `display: block` on temporal inputs causes the
+// text within the input to become vertically misaligned. As a workaround, we
+// set a pixel line-height that matches the given height of the input, but only
+// for Safari. See https://bugs.webkit.org/show_bug.cgi?id=139848
+//
+// Note that as of 8.3, iOS doesn't support `datetime` or `week`.
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  input[type="month"] {
+    &.form-control {
+      line-height: $LineHeight;
+    }
+
+    &.input-sm,
+    .input-group-sm &.form-control {
+      line-height: subtract($LineHeight, $sm);
+    }
+
+    &.input-lg,
+    .input-group-lg &.form-control {
+      line-height: $LineHeight;
+    }
+  }
+}
+
+
+// Static form control text
+//
+// Apply class to an element to make any string of text align with labels in a
+// horizontal form layout.
+
+.form-control-static {
+  min-height: $FormHeight;
+  // Remove default margin from `p`
+  margin-bottom: 0;
+  // Size it appropriately next to real form controls
+  padding-top: $Form-OffsetHorizontal;
+  padding-bottom: $Form-OffsetHorizontal;
+
+  &.form-control-sm,
+  &.form-control-lg {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+
+
+// The `.inputgroup-* form-control` variations are sadly duplicated to avoid the
+// issue documented in https://github.com/twbs/bootstrap/issues/15074.
+
+
+// Form groups
+//
+// Designed to help with the organization and spacing of vertical forms. For
+// horizontal forms, use the predefined grid classes.
+
+.inputgroup {
+  margin-bottom: $label--spacing--MarginBottom;
+}

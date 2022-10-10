@@ -1,0 +1,10 @@
+// Heading Sizes
+$FontSizes: () !default;
+$FontSizes: map-merge((
+	1: $h1Size,
+	2: $h2Size,
+	3: $FontSize-h3,
+	4: $FontSize-h4,
+	5: $FontSize-h5,
+	6: $h6Size
+), $FontSizes) !default;

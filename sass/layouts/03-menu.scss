@@ -1,0 +1,734 @@
+/* - #MENU -------------------------- * ------------------------------------ *\
+* #TOC
+* # INTRO PARAGRAPH
+* -> Briefly define The Role & any Style Rules
+* -> Briefly explain any Notation that would exceed 160characters, such as recent changes, upcoming deprecations and backwards compatibility
+* -> Provide a list of any Component Dependencies that sheet should be included with to avoid breaking
+\* ------------------------------------------------------------------------- */
+
+// - #IMPORTS+SUPPORTS ----------------------- //
+// -> All supporting stylesheets, themesheets or other internal dependencies
+
+// - #FEATURES ------------------------------- //
+// -> Toggles on/off any project specific component features
+
+// - #DEFINTIONS ----------------------------- //
+// -- =SPACING
+	$MenuOffset              : calc(0.66 * $Offset);
+	$MenuSpacer              : calc(0.66 * $Spacer);
+
+// -- =COLOR
+	$MenuText                : ColorDark(Text($navColor));
+	$MenuLink                : Link($navColor);
+	$MenuBorder              : Border($navColor);
+	$MenuBackground					 : translucentBackground($navColor);
+
+// -- =TYPOGRAPHY
+	$MenuFont                : $FontAccent;
+	$MenuSize                : $FontSize-lg;
+	$MenuStyle               : normal;
+	$MenuWeight              : medium;
+	$MenuHeight              : $HeadingHeight;
+	$MenuSpacing						 : 1.3;
+
+/* - #VENDORS ------------------------------- */
+
+// - #FUNCTIONS ------------------------------ //
+// - #VARIABLES ------------------------------ //
+	$MenuSpacer-horizontal	 : calc(0.66 * $MenuSpacer);
+	$MenuSpacer-vertical		 : calc(0.33 * $MenuSpacer);
+	$MenuOffset-horizontal	 : calc(0.33 * $MenuOffset);
+	$MenuOffset-vertical		 : calc(0.16 * $MenuOffset);
+
+// -- =COLOR
+	$MenuLink-hover          : HoverShift($MenuLink);
+	$MenuLink-focus          : ColorDark($MenuLink);
+	$MenuLink-disabled       : Disabled($MenuLink);
+
+// -- =TYPOGRAPHY
+	$MenuFont-mobile         : $FontTertiary;
+// ->-> Size
+	$MenuSize-submenu        : $FontSize;
+	$MenuSize-mobile         : $FontSize;
+	$MenuSize-mobile-submenu : $FontSize-xs;
+	$MenuSize-button         : $FontSize;
+
+// ->-> Weight
+	$MenuWeight-hover				 : bold;
+	$MenuWeight-button       : $ButtonWeight;
+// ->-> Style
+	$MenuStyle-mobile-submenu: normal;
+
+
+// - #MAPS ----------------------------------- //
+// - #MIXINS --------------------------------- //
+/* - #BASE STYLINGS -------------------------- */
+
+/* - #HELPERS -------------------------------- */
+/// -> Typically Mixins @included in a Class Element to be included in-line at the HTML level
+
+
+/* - #COMPONENTS ----------------------------- */
+/// -> 2 - 3 Base Stylings combined to form a drop-in ready Element
+// Mobile menu toggles
+#menu-icon {
+	display: none;
+	justify-content: space-between;
+	position: absolute;
+	right: 0;
+	padding-top: $MenuOffset;
+	padding-bottom: calc(0.25 * $MenuOffset);
+
+	@include media(mobile-only) { display: flex; }
+
+	// Override specificity from default button styles.
+	#primary-mobile-menu {
+		display: flex;
+		margin-left: auto;
+		padding: calc($MenuOffset - (0.25 * $MenuOffset)) calc(0.5 * $MenuOffset);
+		@include font-size($MenuSize-button);
+		font-weight: $MenuWeight-button;
+		background-color: transparent;
+		border: none;
+		color: $MenuLink;
+
+		.dropdown-icon {
+			display: flex;
+			align-items: center;
+
+			.svg-icon {
+				margin-left: calc(0.25 * $MenuSpacer);
+			}
+
+			// Menu icon is off-center vertically to prevent blurry pixels.
+			&.open .svg-icon {
+				position: relative;
+				top: -1px;
+			}
+
+			&.close {
+				display: none;
+			}
+		}
+
+		&[aria-expanded*="true"] {
+
+			.dropdown-icon {
+
+				&.open {
+					display: none;
+				}
+
+				&.close {
+					display: flex;
+
+					.has-logo.has-title-and-tagline & {
+						animation-name: themename-close-button-transition;
+						animation-duration: 0.3s;
+					}
+				}
+			}
+		}
+	}
+
+	// When the menu is open, hide the close button and show the hide button.
+	.primary-navigation-open & {
+		width: calc(100% - calc(2 * $Spacer));
+		z-index: 500;
+		background-color: $MenuBackground;
+
+		#primary-mobile-menu {
+			position: static;
+		}
+	}
+}
+
+.menu-icon {
+  cursor: pointer;
+  width: calc($BaseUnit * 3.75);
+  background-color: findColorInvert(translucentBackground($white));
+  span {
+    display: block;
+    position: relative;
+    height: calc($BaseUnit / 4);
+    margin-top: $Spacer;
+    &:before,
+    &:after {
+      position: absolute;
+      content: "";
+      background-color: translucentBackground($black);
+      display: block;
+    }
+    &:before {
+      height: calc($BaseUnit / 4);
+      width: calc($BaseUnit / 4);
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &:first-child,
+    &:last-child,
+    &:nth-child(2),
+    &:nth-child(3) {
+      transition: width 0.2s ease;
+    }
+    &:first-child,
+    &:last-child {
+      width: 50px;
+    }
+    &:nth-child(2) {
+      width: 35px;
+    }
+    &:nth-child(3) {
+      width: calc(2 * $BaseUnit);
+    }
+    &:after {
+      height: calc($BaseUnit / 4);
+      width: calc(100% - calc(2 * $Spacer));
+      left: 0.625rem;
+    }
+  }
+
+  &:hover span:first-child {
+    width: calc($BaseUnit * 2.5);
+  }
+  &:hover span:nth-child(2) {
+    width: calc($BaseUnit * 3.125);
+  }
+  &:hover span:nth-child(3) {
+    width: calc($BaseUnit * 2.8125);
+  }
+  &:hover span:last-child {
+    width: calc($BaseUnit * 2.5);
+  }
+}
+
+.primary-navigation {
+	@include font-family($MenuFont);
+  letter-spacing: $MenuSpacing;
+  @include font-size($MenuSize);
+  line-height: calc($BaseUnit * 1.5);
+
+
+	// Mobile menu closed
+	> .primary-menu-container {
+		position: fixed;
+		visibility: hidden;
+		opacity: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		// Height of the menu-button-container using font size, line height, and total padding, plus 5px so the focus of the first item is visible.
+		padding-top: calc($ButtonHeight * $MenuSize-button) + 42px + 5px;
+		padding-left: $MenuOffset;
+		padding-right: $MenuOffset-vertical;
+		padding-bottom: $MenuOffset-horizontal;
+		background-color: $MenuBackground;
+		transform: translateY($MenuSpacer-vertical);
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition: all .15s ease-in-out;
+		}
+
+		@include media(mobile-only) {
+			height: 100vh;
+			z-index: 1100;
+			overflow-x: hidden;
+			overflow-y: auto;
+			border: 2px solid transparent;
+
+			.has-logo.has-title-and-tagline & {
+				position: fixed;
+				transform: translateY(0) translateX(100%);
+			}
+
+			.admin-bar .has-logo.has-title-and-tagline & {
+				top: $admin-bar--height;
+			}
+
+			.admin-bar & {
+				height: calc(100% - calc(2 * $Spacer));
+			}
+
+			&:focus {
+				border: 2px solid HoverShift($MenuBorder);
+			}
+		}
+	}
+
+	// Mobile menu open
+	.primary-navigation-open & {
+
+		@include media(mobile-only) {
+			width: calc(100% - calc(2 * $Spacer));
+			position: fixed;
+			z-index: 2; // To be greater than the cover block and embeds.
+		}
+
+		> .primary-menu-container {
+			position: absolute;
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.primary-navigation-open .has-logo.has-title-and-tagline & {
+		@include media(mobile-only) {
+
+			> .primary-menu-container {
+				transform: translateX(0) translateY(0);
+			}
+		}
+	}
+
+	@include media(mobile) {
+		position: relative;
+		margin-left: auto;
+
+		// Hide Mobile menu on desktop
+		> .primary-menu-container {
+			visibility: visible;
+			opacity: 1;
+			position: relative;
+			padding: 0;
+			background-color: transparent;
+			overflow: initial;
+			transform: none;
+		}
+
+		// Hide mobile menu toggle
+		#toggle-menu {
+			display: none;
+		}
+
+		// Hide sub-submenus
+		> .primary-menu-container ul > li .sub-menu-toggle[aria-expanded="false"] ~ ul {
+			display: none;
+		}
+
+		// Dont adjust position when logged-in
+		.admin-bar & {
+			top: initial;
+
+			> .primary-menu-container {
+				top: initial;
+			}
+		}
+	}
+
+	// Menu list wrapper
+	> div > .menu-wrapper {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		max-width: none;
+		padding-left: 0;
+		position: relative;
+
+		@include media(mobile-only) {
+			padding-bottom: 100px;
+
+			ul {
+				padding-left: 0;
+			}
+		}
+
+		li {
+			display: block;
+			position: relative;
+			width: calc(100% - calc(2 * $Spacer));
+
+			@include media(mobile) {
+				margin: 0;
+				width: inherit;
+
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+
+		// Sub-menu buttons
+		.sub-menu-toggle {
+			display: flex;
+			height: calc(2 * $MenuOffset + 1.15em + 1px);
+			width: 44px;
+			padding: 0;
+			justify-content: center;
+			align-items: center;
+			background: transparent;
+			color: currentColor;
+			border: none;
+
+			&:focus {
+				outline: $BorderWidth solid HoverShift($MenuBorder);
+			}
+
+			@include media(mobile-only) {
+				display: none;
+			}
+
+			.icon-plus,
+			.icon-minus {
+				height: calc(100% - calc(2 * $Spacer));
+				display: flex;
+				align-items: center;
+
+				svg {
+					margin-top: -1px;
+				}
+			}
+
+			.icon-minus {
+				display: none;
+			}
+
+			// When the sub-menu is open, display the minus icon
+			&[aria-expanded="true"] {
+
+				.icon-minus {
+					display: flex;
+				}
+
+				.icon-plus {
+					display: none;
+				}
+			}
+		}
+
+		// Sub-menus Flyout
+		> li > .sub-menu {
+
+			position: relative;
+
+			@include media(mobile) {
+				@media (prefers-reduced-motion: no-preference) {
+					transition: all 0.5s ease;
+				}
+			}
+
+			@include media(mobile) {
+				left: 0;
+				margin: 0;
+				min-width: max-content;
+				position: absolute;
+				top: 100%;
+				padding-top: 3px;
+				z-index: 88888;
+
+				&:before,
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					width: 0;
+					top: -10px;
+					left: $MenuSpacer-vertical;
+					border-style: solid;
+					border-color: $translucent--NavBorder;
+					border-width: 0 7px 10px 7px;
+				}
+
+				&:after {
+					top: -9px;
+					border-color: $translucent--NavBorder;
+				}
+
+				li {
+					background: $MenuBackground;
+				}
+
+				&.submenu-reposition-left {
+
+					/* rtl:ignore */
+					left: 0;
+
+					/* rtl:ignore */
+					right: auto;
+
+					&:before,
+					&:after {
+
+						/* rtl:ignore */
+						left: $MenuSpacer-vertical;
+
+						/* rtl:ignore */
+						right: auto;
+					}
+				}
+
+				&.submenu-reposition-right {
+
+					/* rtl:ignore */
+					right: 0;
+
+					/* rtl:ignore */
+					left: auto;
+
+					&:before,
+					&:after {
+
+						/* rtl:ignore */
+						left: auto;
+
+						/* rtl:ignore */
+						right: $MenuSpacer-vertical;
+					}
+				}
+			}
+		}
+	}
+
+	// Top-level Item Link Colors
+	.primary-menu > .menu-item:hover > a {
+		color: $MenuLink-hover;
+	}
+
+	.primary-menu-container {
+		@include media(mobile) {
+			// Better align with the site title when the menu wraps.
+			margin-right: calc(0px - $MenuOffset);
+			margin-left: calc(0px - $MenuOffset);
+
+			// Top-level Menu Item
+			> ul > .menu-item {
+				display: flex;
+
+				> a {
+					padding-left: $MenuOffset;
+					padding-right: $MenuOffset;
+
+					+ .sub-menu-toggle {
+						margin-left: calc(5px - $MenuOffset);
+					}
+				}
+			}
+		}
+	}
+
+	// Menu Item Link
+	a {
+		display: block;
+		font-family: $MenuFont-mobile;
+		@include font-size($MenuSize-mobile);
+		font-weight: $MenuWeight;
+		padding: $MenuOffset 0;
+		text-decoration: none;
+
+		@include media(mobile) {
+			display: block;
+			font-family: $MenuFont;
+			@include font-size($MenuSize);
+			font-weight: $MenuWeight;
+		}
+
+		+ svg {
+			fill: $MenuText;
+		}
+
+		&:hover,
+		&:link,
+		&:visited {
+			color: $MenuLink-hover;
+		}
+
+		&:hover {
+			text-decoration: underline;
+			text-decoration-style: dotted;
+		}
+
+		&:focus {
+			position: relative;
+			z-index: 99999; // Ensure focus styles appear above absolute positioned elements
+			outline-offset: 0;
+			text-decoration-thickness: 2px;
+		}
+	}
+
+	.current-menu-item > a:first-child,
+	.current_page_item > a:first-child {
+		text-decoration: underline;
+		text-decoration-style: solid;
+
+		&:hover {
+			text-decoration: underline;
+			text-decoration-style: dotted;
+		}
+	}
+
+	// Sub-menu depth indicators + text styles
+	.sub-menu {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		margin-left: $MenuOffset;
+		border: $BorderWidth solid $MenuBorder;
+		a {
+		    @include font-size($MenuSize);
+		}
+		li {
+		  padding-left: 20px;
+		  padding-right: 20px;
+			&:first-child {
+		  	padding-top: 10px;
+			}
+			&:last-child {
+		  	padding-bottom: 10px;
+			}
+		}
+
+		.sub-menu {
+			border: none;
+		}
+
+		// Sub-menu items om wide screens.
+		@include media(mobile) {
+
+			// For nested sub-menus, dont duplicate the padding
+			> .menu-item > .sub-menu {
+				padding: 0;
+			}
+		}
+
+		.menu-item {
+
+			@include media(mobile-only) {
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+			}
+
+			> a {
+				padding: calc(1.25 * $MenuOffset) $MenuOffset;
+				display: block;
+				@include font-size($MenuSize-mobile-submenu);
+				font-style: $MenuStyle-mobile-submenu;
+
+				@include media(mobile) {
+					@include font-size($MenuSize-submenu);
+					font-style: $MenuStyle;
+				}
+			}
+		}
+	}
+
+	// Show top-level sub-menu indicators above mobile-breakpoint-only
+	.menu-item-has-children {
+
+		> .svg-icon {
+			display: none;
+		}
+
+		@include media(mobile) {
+
+			> .svg-icon {
+				display: inline-block;
+				height: calc(100% - calc(2 * $Spacer));
+			}
+
+			.sub-menu .svg-icon {
+				display: none;
+			}
+		}
+
+	}
+
+	.menu-item-description {
+		display: block;
+		clear: both;
+		@include font-size($FontSize-xs);
+		text-transform: none;
+		line-height: 1.7;
+
+		> span {
+			display: inline-block;
+		}
+	}
+}
+
+// Keep the menu pinned to the top when the menu is open.
+@include media(mobile-only) {
+
+	.lock-scrolling .site {
+		position: fixed;
+		max-width: calc(100% - calc(2 * $Spacer));
+		width: calc(100% - calc(2 * $Spacer));
+	}
+}
+
+// Close button Animation for when a custom logo is present.
+@keyframes themename-close-button-transition {
+
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.hide-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 998;
+  background-color: translucentBackground($black);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.main-menu {
+	position: absolute;
+	top: $admin-bar--height;
+	right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+  ul,
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .menu-list > li > a {
+    padding-top: $OffsetNested;
+    padding-bottom: $OffsetNested;
+    display: block;
+  }
+  .active a { color: $MenuLink; }
+  li { position: relative; }
+  .sub-menu li {
+    padding-left: $BaseUnit;
+    padding-right: $BaseUnit;
+    &:first-child {
+      padding-top: $OffsetHorizontalNested;
+    }
+    &:last-child {
+      padding-bottom: $OffsetHorizontalNested;
+    }
+  }
+  .sub-menu a {
+    @include font-size($MenuSize-submenu);
+  }
+}
+
+/* - #SHEETS --------------------------------- */
+/// -> Base Style is drop-in ready functional Element
+/// -> Should include the State & Size Variants, along with Pseudo Selectors
+/// -> Generic Styling is included
+
+
+/* - #UTILITIES ------------------------------ */
+/// -> One line attributes written as Class Elements to be added in-line at the HTML level
+
+/* - #MEDIA QUERIES -------------------------- */
+/// -> The media size at which point the Component changes any attribute

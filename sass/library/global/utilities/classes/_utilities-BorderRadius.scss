@@ -1,0 +1,36 @@
+.rounded-sm {  border-radius: $BorderRadius * $sm !important; }
+.rounded-lg {  border-radius: $BorderRadius * $lg !important; }
+.rounded-circle {  border-radius: 50% !important; }
+.rounded-0 {  border-radius: 0 !important; }
+
+.rounded-right {
+  border-top-right-radius: $BorderRadius !important;
+  border-bottom-right-radius: $BorderRadius !important;
+}
+.rounded-left {
+  border-top-left-radius: $BorderRadius !important;
+  border-bottom-left-radius: $BorderRadius !important;
+}
+
+.radius-full,
+.rounded {
+  border-radius: $BorderRadius !important;
+	border-radius: calc($BorderRadius / 2.5);;
+}
+.radius-top,
+.rounded-top {
+  border-top-left-radius: $BorderRadius !important;
+  border-top-right-radius: $BorderRadius !important;
+	border-radius: calc($BorderRadius / 2.5); 3px 0px 0px;
+}
+.radius-bottom,
+.rounded-bottom {
+  border-bottom-right-radius: $BorderRadius !important;
+  border-bottom-left-radius: $BorderRadius !important;
+	border-radius: 0px 0px 3px 3px;
+}
+.radius-half,
+.rounded-pill {
+  border-radius: 50rem !important;
+	border-radius: 50%
+}

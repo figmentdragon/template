@@ -1,0 +1,71 @@
+// FIGURE - The <figure> HTML element represents self-contained content, potentially with an optional caption, which is specified using the figcaption element. The figure, its caption, and its contents are referenced as a single unit.
+
+$Figure: $info;
+$FigureCaptionSize: 90%;
+$FigureHeight: 1.375;
+$FigureText: Text($Figure);
+$FigureCaptionText: Mute($FigureText);
+$FigureBorder-width: $BorderWidth;
+
+figure {
+  display: inline-block;
+  text-align: center;
+  width: calc(100% - calc(2 * $Spacer));
+  margin: $Spacer;
+  padding: $Offset;
+
+  border: $FigureBorder-width $BorderStyle Border($Figure);
+  img {
+    margin: 0 auto;
+    max-width: calc(100% - calc(2 * $Spacer));
+  }
+  figcaption {
+    color: $FigureCaptionText;
+    font-size: $FigureCaptionSize;
+
+    margin-top: 0.5rem;
+
+    text-align: center;
+  }
+}
+
+/* Media captions */
+figcaption,
+.wp-caption,
+.wp-caption-text,
+.wp-block-embed figcaption {
+	color: ColorLight($FigureText);
+	@include font-size($FigureCaptionSize);
+	line-height: $FigureHeight;
+	margin-top: calc(0.5 * $SpacerHorizontal);
+	margin-bottom: $SpacerHorizontal;
+	text-align: center;
+
+	.alignleft &,
+	.alignright & {
+		margin-bottom: 0;
+	}
+}
+
+figcaption a,
+.wp-caption-text a {
+  color: inherit;
+}
+
+figure,
+figcaption {
+  display: block;
+}
+
+.figure {
+  // Ensures the caption's text aligns with the image.
+  display: inline-block;
+  &-img {
+    margin-bottom: $Spacer * .5;
+    line-height: 1;
+  }
+  &-caption {
+    @include font-size($FigureCaptionSize);
+    color: $FigureCaptionText;
+  }
+}

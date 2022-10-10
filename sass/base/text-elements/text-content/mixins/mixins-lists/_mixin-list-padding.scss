@@ -1,0 +1,9 @@
+@mixin list-padding($padding: $Offsety * 2) {
+	ul {
+		padding-left: $padding;
+
+		& > li > ul {
+			padding-left: $padding;
+		}
+	}
+}

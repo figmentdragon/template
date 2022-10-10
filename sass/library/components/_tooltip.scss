@@ -1,0 +1,143 @@
+// Tooltips
+
+$TooltipSize              : $FontSize-sm !default;
+$Tooltip--max-width       : 200px !default;
+$TooltipText              : $white !default;
+$TooltipBackground        : $black !default;
+$Tooltip--BorderRadius    : $BorderRadius !default;
+$TooltipOpacity           : .9 !default;
+$Tooltip--OffsetVertical  : $Spacer * .25 !default;
+$Tooltip--OffsetHorizontal: $Spacer * .5 !default;
+$Tooltip--Spacer          : null !default;
+$Tooltip--ArrowWidth      : .8rem !default;
+$Tooltip--ArrowHeight     : .4rem !default;
+$Tooltip--ArrowColor      : null !default;
+
+$FormFeedback--Tooltip--OffsetVertical  : $Tooltip--OffsetVertical !default;
+$FormFeedback--Tooltip--OffsetHorizontal: $Tooltip--OffsetHorizontal !default;
+$FormFeedback--TooltipSize              : $TooltipSize !default;
+$FormFeedback--Tooltip--LineHeight      : null !default;
+$FormFeedback--tooltipOpacity           : $TooltipOpacity !default;
+$FormFeedback--Tooltip--BorderRadius    : $Tooltip--BorderRadius !default;
+
+
+// Base class
+.tooltip {
+  // scss-docs-start Tooltip--css-vars
+  --#{$prefix}Tooltip--zindex: #{$zindex-tooltip};
+  --#{$prefix}Tooltip--max-width: #{$Tooltip--max-width};
+  --#{$prefix}Tooltip--OffsetHorizontal: #{$Tooltip--OffsetHorizontal};
+  --#{$prefix}Tooltip--OffsetVertical: #{$Tooltip--OffsetVertical};
+  --#{$prefix}Tooltip--Spacer: #{$Tooltip--Spacer};
+  @include rfs($TooltipSize, --#{$prefix}TooltipSize);
+  --#{$prefix}TooltipText: #{$TooltipText};
+  --#{$prefix}TooltipBackground: #{$TooltipBackground};
+  --#{$prefix}Tooltip--BorderRadius: #{$Tooltip--BorderRadius};
+  --#{$prefix}tooltipOpacity: #{$TooltipOpacity};
+  --#{$prefix}Tooltip--arrow-width: #{$Tooltip--ArrowWidth};
+  --#{$prefix}Tooltip--arrow-height: #{$Tooltip--ArrowHeight};
+  // scss-docs-end Tooltip--css-vars
+
+  z-index: var(--#{$prefix}Tooltip--zindex);
+  display: block;
+  padding: var(--#{$prefix}Tooltip--arrow-height);
+  margin: var(--#{$prefix}Tooltip--Spacer);
+  @include deprecate("`$Tooltip--Spacer`", "v5", "v5.x", true);
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  @include reset-text();
+  @include font-size(var(--#{$prefix}TooltipSize));
+  // Allow breaking very long words so they don't overflow the tooltip's bounds
+  word-wrap: break-word;
+  opacity: 0;
+
+  &.show { opacity: var(--#{$prefix}TooltipOpacity); }
+
+  .Tooltip--arrow {
+    display: block;
+    width: var(--#{$prefix}Tooltip--arrow-width);
+    height: var(--#{$prefix}Tooltip--arrow-height);
+
+    &::before {
+      position: absolute;
+      content: "";
+      border-color: transparent;
+      border-style: solid;
+    }
+  }
+}
+
+.bs-Tooltip--top .Tooltip--arrow {
+  bottom: 0;
+
+  &::before {
+    top: -1px;
+    border-width: var(--#{$prefix}Tooltip--arrow-height) calc(var(--#{$prefix}Tooltip--arrow-width) * .5) 0; // stylelint-disable-line function-disallowed-list
+    border-top-color: var(--#{$prefix}TooltipBackground);
+  }
+}
+
+/* rtl:begin:ignore */
+.bs-Tooltip--end .Tooltip--arrow {
+  left: 0;
+  width: var(--#{$prefix}Tooltip--arrow-height);
+  height: var(--#{$prefix}Tooltip--arrow-width);
+
+  &::before {
+    right: -1px;
+    border-width: calc(var(--#{$prefix}Tooltip--arrow-width) * .5) var(--#{$prefix}Tooltip--arrow-height) calc(var(--#{$prefix}Tooltip--arrow-width) * .5) 0; // stylelint-disable-line function-disallowed-list
+    border-right-color: var(--#{$prefix}TooltipBackground);
+  }
+}
+
+/* rtl:end:ignore */
+
+.bs-Tooltip--bottom .Tooltip--arrow {
+  top: 0;
+
+  &::before {
+    bottom: -1px;
+    border-width: 0 calc(var(--#{$prefix}Tooltip--arrow-width) * .5) var(--#{$prefix}Tooltip--arrow-height); // stylelint-disable-line function-disallowed-list
+    border-bottom-color: var(--#{$prefix}TooltipBackground);
+  }
+}
+
+/* rtl:begin:ignore */
+.bs-Tooltip--start .Tooltip--arrow {
+  right: 0;
+  width: var(--#{$prefix}Tooltip--arrow-height);
+  height: var(--#{$prefix}Tooltip--arrow-width);
+
+  &::before {
+    left: -1px;
+    border-width: calc(var(--#{$prefix}Tooltip--arrow-width) * .5) 0 calc(var(--#{$prefix}Tooltip--arrow-width) * .5) var(--#{$prefix}Tooltip--arrow-height); // stylelint-disable-line function-disallowed-list
+    border-left-color: var(--#{$prefix}TooltipBackground);
+  }
+}
+
+/* rtl:end:ignore */
+
+.bs-Tooltip--auto {
+  &[data-popper-placement^="top"] {
+    @extend .bs-Tooltip--top;
+  }
+  &[data-popper-placement^="right"] {
+    @extend .bs-Tooltip--end;
+  }
+  &[data-popper-placement^="bottom"] {
+    @extend .bs-Tooltip--bottom;
+  }
+  &[data-popper-placement^="left"] {
+    @extend .bs-Tooltip--start;
+  }
+}
+
+// Wrapper for the tooltip content
+.Tooltip--inner {
+  max-width: var(--#{$prefix}Tooltip--max-width);
+  padding: var(--#{$prefix}Tooltip--OffsetVertical) var(--#{$prefix}Tooltip--OffsetHorizontal);
+  color: var(--#{$prefix}TooltipText);
+  text-align: center;
+  background-color: var(--#{$prefix}TooltipBackground);
+  @include border-radius(var(--#{$prefix}Tooltip--BorderRadius));
+}

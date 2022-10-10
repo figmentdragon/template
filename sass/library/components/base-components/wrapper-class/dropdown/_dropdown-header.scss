@@ -1,0 +1,10 @@
+// Dropdown section headers
+.dropdown-header {
+	display: block;
+	padding: $Dropdown--header-padding;
+	margin-bottom: 0; // for use with heading elements
+	//@include font-size(1rem * $sm);
+	line-height: 1.2;
+	color: $Dropdown--header--TextColor;
+	white-space: nowrap; // as with > li > a
+}

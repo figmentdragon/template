@@ -1,0 +1,27 @@
+// Navbar brand
+//
+// Used for brand, project, or site names.
+
+$MenuBar--brand-font-size:            $lg-font-size !default;
+// Compute the NavBar--brand OffsetVertical so the NavBar--brand will have the same height as NavBar--text and nav-link
+$nav-link-height:                   $base-font-size * $LineHeight + $nav-link--OffsetVertical * 2 !default;
+$MenuBar--brand-height:               $MenuBar--brand-font-size * $LineHeight !default;
+$MenuBar--brand--OffsetVertical:            ($nav-link-height - $MenuBar--brand-height) * .5 !default;
+$MenuBar--brand--Spacer-end:           1rem !default;
+
+
+.NavBar--brand {
+  padding-top: $MenuBar--brand--OffsetVertical;
+  padding-bottom: $MenuBar--brand--OffsetVertical;
+  margin-right: $MenuBar--brand--Spacer-end;
+  @include font-size($MenuBar--brand-font-size);
+  color: var(--#{$prefix}NavBar--brand-color);
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    color: var(--#{$prefix}NavBar--brand-hover-color);
+    text-decoration: if($hover-decoration == underline, none, null);
+  }
+}

@@ -1,0 +1,54 @@
+.table {
+  $TableText: #{$Table--TextColor};
+  $TableBackgroundColor: #{$TableBackgroundColor};
+  $Table-Border: #{$Table-Border};
+  $Table-accentBackgroundColor: #{$Table-accentBackgroundColor};
+  $TableStriped--TextColor: #{$TableStriped--TextColor};
+  $TableStripedBackgroundColor: #{$TableStripedBackgroundColor};
+  $Table--active--TextColor: #{$Table--active--TextColor};
+  $Table--activeBackgroundColor: #{$Table--activeBackgroundColor};
+  $Table--hover--LinkColor: #{$Table--hover--LinkColor};
+  $Table--hoverBackgroundColor: #{$Table--hoverBackgroundColor};
+
+  width: calc(100% - calc(2 * $Spacer));
+  margin-bottom: $Spacer;
+
+  vertical-align: $Table-cell-vertical-align;
+
+  color: $TableText;
+  border-color: $Table-Border;
+
+
+
+  // Target th & td
+  // We need the child combinator to prevent styles leaking to nested Tables which doesn't have a `.table` class.
+  // We use the universal selectors here to simplify the selector (else we would need 6 different selectors).
+  // Another advantage is that this generates less code and makes the selector less specific making it easier to override.
+  // stylelint-disable-next-line selector-max-universal
+  > :not(caption) > * > * {
+    padding: $Table-cell--OffsetVertical $Table-cell--OffsetHorizontal;
+
+    border-bottom-width: $Table--BorderWidth;
+    background-color: $TableBackgroundColor;
+    box-shadow: inset 0 0 0 9999px $Table-accentBackgroundColor;
+  }
+
+  > tbody {
+    vertical-align: inherit;
+  }
+
+  > thead {
+    vertical-align: bottom;
+  }
+}
+
+.table-group-divider {
+  border-top: calc(2 * $Table--BorderWidth) $BorderStyle $Table-group-separator--TextColor; // stylelint-disable-line function-disallowed-list
+}
+//
+// Change placement of captions with a class
+//
+
+.caption-top {
+  caption-side: top;
+}

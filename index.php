@@ -9,49 +9,37 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package themename
+ * @package WordPress
+ * @subpackage ThemeName
+ * @since ThemeName 1.0
  */
 
-get_header();
-?>
+get_header(); ?>
 
-	<main id="primary" class="site-main">
-
-		<?php
-		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
-
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
+<?php if ( is_home() && ! is_front_page() && ! empty( single_post_title( '', false ) ) ) : ?>
+	<header class="page-header alignwide">
+		<h1 class="page-title"><?php single_post_title(); ?></h1>
+	</header><!-- .page-header -->
+<?php endif; ?>
 
 <?php
-get_sidebar();
+if ( have_posts() ) {
+
+	// Load posts loop.
+	while ( have_posts() ) {
+		the_post();
+
+		get_template_part( 'template-parts/content/content', get_theme_mod( 'display_excerpt_or_full_post', 'excerpt' ) );
+	}
+
+	// Previous/next page navigation.
+	themename_the_posts_navigation();
+
+} else {
+
+	// If no content, include the "No posts found" template.
+	get_template_part( 'template-parts/content/content-none' );
+
+}
+
 get_footer();

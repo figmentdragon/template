@@ -1,0 +1,25 @@
+/* Cloud Widgets */
+.wp_widget_tag_cloud,
+.widget_tag_cloud {
+  div {
+    line-height: 1.5;
+    padding: 0.231em 0;
+  }
+  .tagcloud {
+		@include font-family( $HeadingFont );
+		font-weight: 700;
+	}
+}
+.widget_tag_cloud a {
+  &:after {  }
+  &:before {  }
+}
+
+.tagcloud a {
+  display: inline-block;
+  font-size: $BaseUnit !important;
+  font-weight: 600;
+  margin: 5px 5px 0;
+  border-bottom-style: $BorderStyle;
+  border-bottom-width: 2px;
+}

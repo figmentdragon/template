@@ -1,0 +1,55 @@
+/* Author description */
+$entry-author-bioSize: $FontSize-h4;
+$entry-author-bio--FontFamily: 'Raleway';
+
+@import "post/02-author-bio";
+
+.author-bio {
+  font-family: $FontAccent;
+	font-size: $HeadingSize;
+	max-width: $responsive--width--AlignDefault;
+  @extend %responsive--width--AlignDefault;
+
+	@include postContentMaxWidth();
+
+	@include media(Tablet) {
+		margin: calc(3 * $Spacer) $Spacer;
+	}
+
+	@include media(desktop) {
+		margin: calc(3 * $Spacer) $Spacer;
+	}
+
+	.site-main > article > & {
+		margin-top: calc(2 * $SpacerHorizontal);
+	}
+
+	// Avatars are optional and can be turned off.
+	&.show-avatars {
+		.avatar { }
+		.author-bio-content { }
+	}
+
+	.author-bio-content {
+		.author-title {
+			@include post-section-dash;
+			font-family: $entry-author-bio--FontFamily;
+			font-size: $entry-author-bioSize;
+		}
+
+		.author-description {
+			color: ColorLight($primary);
+			font-size: $FontSize;
+			line-height: $body--LineHeight;
+			p{ &:last-child { } }
+			a { }
+			.author-link {
+				display: inline-block;
+				&:hover {
+					color: $LinkText;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,35 @@
+// To use in `<p>`, `<ul>`, `<ol>`, `<pre>`, `<Table>`, `<blockquote>`, etc.
+//
+// Outputs `margin-bottom` and `margin-top`.
+//
+// @param {string} $unit ["px"] - Unit to output(Define $BaseUnit)
+// @param {number} $base-value [18px] - Optional call with a different base font size when using em (Define $FontSize)
+// @param {number} $LineHeight [1.2] - Base line height
+// @example scss
+// p, ul, ol, pre, Table, blockquote {
+// 	@include margins();
+// }
+// @example css
+// p, ul, ol, pre, Table, blockquote {
+//    margin-bottom: 22px;
+//    margin-top: 22px;
+// }
+
+@mixin text-margins($unit: "px", $base-value: 16px, $LineHeight:1.2) {
+    $margin: round(strip-units($base-value) * $LineHeight);
+
+    @if ($unit == "px" or $unit == "pxrem") {
+        margin-bottom: $margin * 1px;
+        margin-top: $margin * 1px;
+    }
+
+    @if ($unit == "rem" or $unit == "pxrem") {
+        margin-bottom: px2rem($margin);
+        margin-top: px2rem($margin);
+    }
+
+    @if ($unit == "em") {
+        margin-bottom: decimal-ceil(px2em($margin, strip-units($base-value)), 5);
+        margin-top: decimal-ceil(px2em($margin, strip-units($base-value)), 5);
+    }
+}

@@ -1,0 +1,97 @@
+// Alerts
+//
+// Define alert colors, border radius, and padding.
+
+// scss-docs-start Alert--variables
+$Alert--OffsetVertical:               $Spacer !default;
+$Alert--OffsetHorizontal:               $Spacer !default;
+$Alert--SpacerHorizontal:           1rem !default;
+$AlertBorderRadius:           $BorderRadius !default;
+$AlertWeight-link:        $bold-FontWeight !default;
+$AlertBorderWidth:            $BorderWidth !default;
+$AlertBackground-scale:                -80% !default;
+$AlertBorderScale:            -70% !default;
+$AlertTextScale:             40% !default;
+$Alert--OffsetVertical-dismissable:   $Alert--OffsetHorizontal * 3 !default;
+
+@mixin AlertVariant($background, $border, $color) {
+  --#{$prefix}AlertText: Text(#{$color});
+  --#{$prefix}AlertBackground: Background(#{$background});
+  --#{$prefix}AlertBorderColor: Border(#{$border});
+
+  @if $enable-gradients {
+    background-image: var(--#{$prefix}gradient);
+  }
+
+  .alert-link {
+    color: Link($color);
+  }
+}
+
+
+//
+// Base styles
+//
+
+.alert {
+  // scss-docs-start Alert--css-vars
+  --#{$prefix}AlertBackground: transparent;
+  --#{$prefix}Alert--OffsetHorizontal: #{$Alert--OffsetHorizontal};
+  --#{$prefix}Alert--OffsetVertical: #{$Alert--OffsetVertical};
+  --#{$prefix}Alert--SpacerHorizontal: #{$Alert--SpacerHorizontal};
+  --#{$prefix}AlertText: inherit;
+  --#{$prefix}AlertBorderColor: transparent;
+  --#{$prefix}AlertBorder: #{$AlertBorderWidth} solid var(--#{$prefix}AlertBorderColor);
+  --#{$prefix}AlertBorderRadius: #{$AlertBorderRadius};
+  // scss-docs-end Alert--css-vars
+
+  position: relative;
+  padding: var(--#{$prefix}Alert--OffsetVertical) var(--#{$prefix}Alert--OffsetHorizontal);
+  margin-bottom: var(--#{$prefix}Alert--SpacerHorizontal);
+  color: var(--#{$prefix}AlertText);
+  background-color: var(--#{$prefix}AlertBackground);
+  border: var(--#{$prefix}AlertBorder);
+  @include border-radius(var(--#{$prefix}AlertBorderRadius));
+}
+
+// Headings for larger alerts
+.alert--heading {
+  // Specified to prevent conflicts of changing $HeaderText
+  color: inherit;
+}
+
+// Provide class for links that match alerts
+.alertLink {
+  font-weight: $AlertWeight-link;
+}
+
+
+// Dismissible alerts
+//
+// Expand the right padding and account for the close button's positioning.
+.alert--dismissible {
+  padding-right: $Alert--OffsetVertical-dismissable;
+
+  // Adjust close link position
+  .button-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: $stretched-link-z-index + 1;
+    padding: $Alert--OffsetVertical * 1.25 $Alert--OffsetHorizontal;
+  }
+}
+
+// Generate contextual modifier classes for colorizing the alert.
+@each $state, $value in $theme-colors {
+  $AlertBackground: Background($value);
+  $AlertBorder: Border($value);
+  $AlertText: Text($value);
+
+  @if (contrast-ratio($AlertBackground, $AlertText) < $min-contrast-ratio) {
+    $AlertText: mix($value, color-contrast($AlertBackground), abs($AlertTextScale));
+  }
+  .alert-#{$state} {
+    @include AlertVariant($AlertBackground, $AlertBorder, $AlertText);
+  }
+}

@@ -1,0 +1,14 @@
+.Tooltip--auto {
+  &[data-popper-placement^='top'] {
+    @extend .Tooltip--top;
+  }
+  &[data-popper-placement^='right'] {
+    @extend .Tooltip--end;
+  }
+  &[data-popper-placement^='bottom'] {
+    @extend .Tooltip--bottom;
+  }
+  &[data-popper-placement^='left'] {
+    @extend .Tooltip--start;
+  }
+}

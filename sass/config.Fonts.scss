@@ -1,0 +1,303 @@
+/* #FONTS ---------------------------- * ------------------------------------ *\
+ * -> All @font-face declarations, if any.
+\* ----------------------------------- * ------------------------------------ */
+
+// - #FONTFACE -------------------------------- //
+@font-face {
+  font-family: 'Arapey';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arapey'), url('https://fonts.cdnfonts.com/s/15742/Arapey-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Arapey';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Arapey'), url('https://fonts.cdnfonts.com/s/15742/Arapey-Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Cupola';
+  font-style: normal;
+  font-weight: 400;
+  font-variant: small-caps;
+  src: local('Cupola'), url("https://fonts.cdnfonts.com/s/17820/CupolaSmallCaps.woff") format('woff');
+}
+@font-face {
+  font-family: 'Donau-Neue';
+  src: local( 'Donau-Neue') url( 'library/fonts+typography/fonts/donau/donau_neue_uppercase-webfont.woff2' ) format('woff2'),
+  url( 'library/fonts+typography/fonts/donau/donau.woff' ) format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: uppercase;
+}
+
+@font-face {
+  font-family: 'Euphorigenic';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Euphorigenic'), url('https://fonts.cdnfonts.com/s/8860/euphorigenic.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Life Savers';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Life Savers'), url('https://fonts.cdnfonts.com/s/15855/LifeSavers-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Life Savers';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Life Savers'), url('https://fonts.cdnfonts.com/s/15855/LifeSavers-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Life Savers';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Life Savers'), url('https://fonts.cdnfonts.com/s/15855/LifeSavers-ExtraBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Poiret One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Poiret One'), url('https://fonts.cdnfonts.com/s/15312/PoiretOne-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Pompiere';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pompiere'), url("https://fonts.cdnfonts.com/s/12351/Pompiere-Regular.woff") format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 250;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-Thin.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 250;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-ThinItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 275;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-ExtraLight.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 275;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-ExtraLightItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-LightItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-MediumItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-SemiBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-SemiBoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-BoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-ExtraBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 800;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-ExtraBoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-Black.woff') format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Raleway'), url('https://fonts.cdnfonts.com/s/18954/Raleway-BlackItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Modern Antiqua';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Modern Antiqua'), url("https://fonts.cdnfonts.com/s/12248/ModernAntiqua-Regular.woff") format('woff');
+}
+@font-face {
+  font-family: 'Glass Antiqua';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Glass Antiqua'), url("https://fonts.cdnfonts.com/s/15865/GlassAntiqua-Regular.woff") format('woff');
+}
+
+// - #DEFINITIONS -------------------------------- //
+/* -- FontStacks*/
+  $FontSansSerif: system-ui, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  $FontSerif: Georgia, Cambria, "Times New Roman", Times, serif;
+  $FontMonospace: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+  $FontCursive: cursive;
+  $FontFantasy: fantasy;
+
+/* -- Font Family Short Hand */
+  $FontPrimaryFamily   : sans-serif;
+  $CodeFont    : monospace;
+  $PreFont: Consolas, monospace;
+
+/* -- Fonts */
+  $FontPrimary   : 'Poiret One', cursive;
+  $FontSecondary : 'Pompiere', cursive;
+  $FontAccent    : 'Glass Antiqua', cursive;
+  $FontTertiary  : 'Modern Antiqua', cursive;
+  $FontMain      : 'Arapey', serif;
+
+  // Brand Fonts
+  $primary--BrandFont  : 'Cupola', sans-serif;
+  $secondary--BrandFont: 'Donau-Neue';
+  $accent--BrandFont   : 'Life Savers', cursive;
+  $tertiary--BrandFont : 'Raleway', sans-serif;
+
+// - #VARIABLES -------------------------------- //
+  $TitleFont        : $primary--BrandFont;
+  $SiteDescriptionFont: $secondary--BrandFont;
+  $PageFont         : $FontPrimary;
+  $PostFont         : $FontSecondary;
+  $MetaFont         : $FontAccent;
+
+  $HeaderFont       : $FontPrimary;
+  $HeadingFont      : $FontPrimary;
+  $EntryContentFont : $FontSecondary;
+  $AuthorBioFont    : $HeadingFont;
+
+  $FooterFont       : $accent--BrandFont;
+  $LinkFont         : $FontTertiary;
+  $MenuFont         : $FontTertiary;
+  $MenuFont-mobile  : $FontAccent;
+
+// - #FUNCTIONS -------------------------------- //
+
+// - #MIXINS -------------------------------- //
+/* Ensure all font family declarations come with non-latin fallbacks */
+@mixin font-family( $TextFont ) {
+	font-family: $TextFont;
+}
+
+/* Build our non-latin font styles */
+//%non-latin-fonts {
+//	@each $lang, $font-fallback in $font-fallbacks {
+//		&:lang(#{$lang}) {
+//			font-family: unquote( $font-fallback );
+//		}
+//	}
+//}
+
+/* - #HELPERS -------------------------------- */
+
+// - #MAPS -------------------------------- //
+
+/* - #COMPONENTS ----------------------------- */
+.site-branding > .site-title,
+h1.site-title,
+.site-title {
+  font-family: $primary--BrandFont;
+}
+
+h2.page-title,
+.page-title{
+  font-family: $FontPrimary;
+}
+
+h3.post-title,
+h3.entry-title,
+.entry-title,
+.post-title {
+  font-family: $FontSecondary;
+}
+
+h4.site-description,
+.site-description {
+  font-family: $secondary--BrandFont;
+}
+
+body,
+p,
+body p {
+  font-family: $FontMain;
+}
+
+caption,
+figcaption,
+ul li,
+li {
+  font-family: $FontAccent;
+}
+
+/* - #UTILITIES ------------------------------ */
+
+// - #VENDORS -------------------------------- //

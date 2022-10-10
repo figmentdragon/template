@@ -1,0 +1,84 @@
+/* 1.1.0 RESPONSIVE ----------------- * ------------------------------------- *\
+ * -> The responsive-variables that give the site its shape.
+\* ---------------------------------- * ------------------------------------- */
+
+// - #IMPORTS, FORWARDS, & USE --------------- //
+
+// - #FEATURES ------------------------------- //
+
+  $widescreen-enabled            : true !default;
+  $fullhd-enabled                : true !default;
+  // toggle your columns grids on and off
+  $show-column-grid-backgrounds  : true !default; // toggle your vertical grids on and off
+  $show-baseline-grid-backgrounds: true !default; // toggle all your grids on and off
+  $show-grid-backgrounds         : true !default;
+
+// - #DEFINITIONS ---------------------------- //
+  $Width--default   : 60rem; //960px
+  $Width--max       : 77.5rem; //1240px;
+  $Content--Width-max: 73.75rem; //1180px;
+
+  $responsive--Spacer           : calc(#{$Spacer} / #{$Offset});
+  $responsive--SpacerHorizontal : calc(#{$Spacer} / #{$OffsetNested});
+  $responsive--SpacerVertical   : calc(2.5 * #{$responsive--Spacer});
+  $responsive--WidthDefault     : calc(100% - calc( 2 * #{$responsive--SpacerVertical}));
+  $responsive--WidthWide        : calc(100% - #{$responsive--SpacerHorizontal});
+  $responsive--WidthFull        : 100%;
+
+  $responsive--SiteMain       : 100%;
+  $responsive--SideHeader     : 25%;
+  $responsive--SideBar        : calc(100% - 75% - calc(2 * #{$Spacer}));
+
+  $responsive--TabletContent  : #{calc(8 * ( 100% / $grid-columns) - calc($Offset * .5))};
+  $responsive--DesktopContent : #{calc(6 * ( 100vw / $grid-columns) - calc($Offset * .875))};
+
+// - #FUNCTIONS ------------------------------ //
+// - #VARIABLES ------------------------------ //
+// Define the theme's breakingpoints and media inquries
+  $mobile     : $breakpoint-xs !default; // 482px
+  $touch      : $breakpoint-sm !default; // 768px
+  $Tablet     : $breakpoint-md !default; //992px
+  $laptop     : $breakpoint-lg !default; //1024px
+  $desktop    : $breakpoint-xl !default; //1280px
+  $widescreen : $breakpoint-x2l !default; //1366px
+  $ultrawide  : $breakpoint-x3l !default; //1920px
+
+  // Device Alternatives - For Smooth Transitions
+  $mobile-width    : 35.367376455732rem; // 568px
+  $mobile-portrait : 41.532258864411rem; // 667px
+  $Tablet-width    : 48.754177510259rem; // 783px
+  $diagonalscreen  : 103.36240302204rem; //1660px
+
+  $largescreen     : 71.731017036979rem;
+  $fullhd          : 83.686186543142rem;
+
+// - #MAPS ----------------------------------- //
+  @import "maps+lists/map-media-breakpoint";
+  @import "maps+lists/map-breakpoint-device";
+
+// - #MIXINS --------------------------------- //
+  @import "mixins/responsive/mixin-responsive-breakpoint";
+  @import "mixins/responsive/mixin-resp-size";
+
+@mixin add-variables( $view: frontend ) {
+	@if frontend == $view {
+		:root {
+			@content;
+		}
+	}
+	@if editor == $view {
+		:root,
+		body {
+			@content;
+		}
+	}
+}
+
+/* - #UTILITIES ------------------------------ */
+/* - #COMPONENTS ----------------------------- */
+/* - #SHEETS --------------------------------- */
+  @import "./../breakpoints";
+
+/* - #MEDIA QUERIES -------------------------- */
+/* - #HELPERS -------------------------------- */
+/* - #VENDORS -------------------------------- */

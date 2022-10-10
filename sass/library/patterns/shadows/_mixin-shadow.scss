@@ -1,0 +1,6 @@
+@mixin shadow($shadowColor: $box-shadow) {
+  background-color: $gray;
+  border: none;
+  box-shadow: $box-shadow;
+  transition: background-color .15s ease-in-out, border .15s ease-in-out, box-shadow .15s ease-in-out, color .15s ease-in-out;
+}

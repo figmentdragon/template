@@ -1,0 +1,128 @@
+// The dropdown menu
+.dropdown-menu {
+  $theme-Dropdown--min-width: $Dropdown--MinWidth;
+  $theme-Dropdown--OffsetHorizontal: $Dropdown--OffsetHorizontal;
+  $theme-Dropdown--OffsetVertical: $Dropdown--OffsetVertical;
+  $theme-Dropdown--Spacer: $Dropdown--Spacer;
+  @include rfs($dropdownSize);
+  $theme-Dropdown--TextColor: $Dropdown--TextColor; // stylelint-disable-line custom-property-empty-line-before
+  $theme-dropdownBackgroundColor: $dropdownBackgroundColor;
+  $theme-Dropdown-Border: $Dropdown-Border;
+  $theme-Dropdown--BorderRadius: $Dropdown--BorderRadius;
+  $theme-Dropdown--BorderWidth: $Dropdown--BorderWidth;
+  $theme-Dropdown--inner--BorderRadius: $Dropdown--inner--BorderRadius;
+  $theme-Dropdown--dividerBackgroundColor: $Dropdown--dividerBackgroundColor;
+  $theme-Dropdown--divider-margin-y: $Dropdown--divider-margin-y;
+  $theme-Dropdown--BoxShadow: $Dropdown--BoxShadow;
+  $theme-Dropdown--link--TextColor: $Dropdown--link--TextColor;
+  $theme-Dropdown--link--hover--LinkColor: $Dropdown--link--hover--LinkColor;
+  $theme-Dropdown--link--hoverBackgroundColor: $Dropdown--link--hoverBackgroundColor;
+  $theme-Dropdown--LinkColor: $Dropdown--LinkColor;
+  $theme-Dropdown--link--activeBackgroundColor: $Dropdown--link--activeBackgroundColor;
+  $theme-Dropdown--link-disabled--TextColor: $Dropdown--link-disabled--TextColor;
+  $theme-Dropdown--item--OffsetHorizontal: $Dropdown--item--OffsetHorizontal;
+  $theme-Dropdown--item--OffsetVertical: $Dropdown--item--OffsetVertical;
+  $theme-Dropdown--header--TextColor: $Dropdown--header--TextColor;
+  $theme-Dropdown--header--OffsetHorizontal: $Dropdown--header--OffsetHorizontal;
+  $theme-Dropdown--header--OffsetVertical: $Dropdown--header--OffsetVertical;
+  // scss-docs-end Dropdown--css-vars
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1050;
+  display: none; // none by default, but block on "open" of the menu
+  min-width: $theme-Dropdown--min-width;
+  padding: $theme-Dropdown--OffsetVertical $theme-Dropdown--OffsetHorizontal;
+  margin: 0; // Override default margin of u
+  //@include font-size($dropdownSize);
+  color: $theme-Dropdown--TextColor;
+  text-align: left; // Ensures proper alignment if   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer
+  list-style: none;
+  background-color: $theme-dropdownBackgroundColor;
+  background-clip: padding-box;
+  border: $theme-Dropdown--BorderWidth $BorderStyle $theme-Dropdown-Border;
+  border-radius: $theme-Dropdown--BorderRadius;
+  @include box-shadow($theme-Dropdown--BoxShadow);
+
+  &[data-bs-popper] {
+    top: 100%;
+    left: 0;
+    margin-top: $Dropdown--Spacer;
+  }
+}
+
+// Links, buttons, and more within the dropdown menu
+//
+// `<button>`-specific styles are denoted with `// For <button>s`
+.dropdown-item {
+  display: block;
+  width: calc(100% - calc(2 * $Spacer)); // For `<button>`s
+  padding: $Dropdown--item--OffsetVertical $Dropdown--item--OffsetHorizontal;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.2;
+  color: $Dropdown--link--TextColor;
+  text-align: inherit; // For `<button>`s
+  white-space: nowrap; // prevent links from randomly breaking onto new lines
+  background-color: transparent; // For `<button>`s
+  border: 0; // For `<button>`s
+
+  // Prevent dropdown overflow if there's no padding
+  // See https://github.com/twbs/bootstrap/pull/27703
+  @if $Dropdown--OffsetVertical == 0 {
+    &:first-child {
+      border-top-radius: $Dropdown--inner--BorderRadius;
+    }
+    &:last-child {
+      border-bottom-radius: $Dropdown--inner--BorderRadius;
+    }
+  }
+  @include on-event {
+    color: $Dropdown--link--hover--LinkColor;
+    text-decoration: none;
+    background-color: $Dropdown--link--hoverBackgroundColor;
+    @include gradientBackgroundColor($Dropdown--link--hoverBackgroundColor);
+  }
+
+  // Active state
+  &.active {
+    @include gradientBackgroundColor($Dropdown--link--activeBackgroundColor);
+    @include on-event {
+      color: $Dropdown--LinkColor;
+      text-decoration: none;
+      background-color: $Dropdown--link--activeBackgroundColor;
+      outline: 0;
+    }
+  }
+  &.disabled {
+    color: $Dropdown--link-disabled--TextColor;
+    pointer-events: none;
+    background-color: transparent;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    @include on-event {
+      color: $Dropdown--link-disabled--TextColor;
+    }
+    @include on-event {
+      text-decoration: none;
+      cursor: $cursor-disabled;
+      background-color: transparent;
+      background-image: none; // Remove CSS gradient
+      @include reset-filter();
+    }
+  }
+
+  // Open state for the dropdown
+  .open {
+    // Show the menu
+    > .dropdown-menu {
+      display: block;
+    }
+
+    // Remove the outline when :focus is triggered
+    > a {
+      outline: 0;
+    }
+  }
+}

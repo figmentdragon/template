@@ -1,0 +1,41 @@
+/**
+ * Hamburger menu
+ */
+
+.menuBurger {
+  position: fixed;
+  z-index: $zindex-close;
+  top: $BaseUnit;
+  right: $BaseUnit;
+  color: black;
+  @include all--ButtonTransition;
+}
+
+.menuBurger_line {
+  display: none;
+
+  width: 2.1875rem;
+  height: 3px;
+  margin: 8px auto;
+  @include all--ButtonTransition;
+
+  background-color: translucentBackground($gray);
+  color: black;
+  @include resp-max($grid-breakpoint-md) {
+    display: block;
+  }
+
+  .menuBurger.open & {
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(1) {
+      transform: translateY(11px) rotate(45deg);
+    }
+
+    &:nth-child(3) {
+      transform: translateY(-11px) rotate(-45deg);
+    }
+  }
+}

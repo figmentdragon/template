@@ -1,0 +1,27 @@
+// Pagination
+
+@mixin Pagination--size($OffsetVertical, $OffsetHorizontal, $FontSize, $border-radius) {
+  --#{$prefix}Pagination--OffsetHorizontal: #{$OffsetHorizontal};
+  --#{$prefix}Pagination--OffsetVertical: #{$OffsetVertical};
+  @include rfs($FontSize, --#{$prefix}PaginationSize);
+  --#{$prefix}Pagination--border-radius: #{$border-radius};
+  
+  .page-link {
+    padding: $padding-vertical $padding-horizontal;
+    font-size: $FontSize;
+    line-height: $line-height;
+  }
+
+  .page-item {
+    &:first-child {
+      .page-link {
+        @include border-left-radius($border-radius);
+      }
+    }
+    &:last-child {
+      .page-link {
+        @include border-right-radius($border-radius);
+      }
+    }
+  }
+}

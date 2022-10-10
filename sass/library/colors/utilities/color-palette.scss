@@ -1,0 +1,114 @@
+// stylelint-disable declaration-block-single-line-max-declarations
+
+.bd-blue-100 { color: color-contrast($blue-100); background-color: $blue-100; }
+.bd-blue { color: color-contrast($blue); background-color: $blue; }
+.bd-blue-300 { color: color-contrast($blue-300); background-color: $blue-300; }
+.bd-blue-400 { color: color-contrast($blue-400); background-color: $blue-400; }
+.bd-blue-500 { color: color-contrast($blue-500); background-color: $blue-500; }
+.bd-blue-600 { color: color-contrast($blue-600); background-color: $blue-600; }
+.bd-blue-700 { color: color-contrast($blue-700); background-color: $blue-700; }
+.bd-blue-800 { color: color-contrast($blue-800); background-color: $blue-800; }
+.bd-blue { color: color-contrast($blue); background-color: $blue; }
+
+.bd-indigo-100 { color: color-contrast($indigo-100); background-color: $indigo-100; }
+.bd-indigo { color: color-contrast($indigo); background-color: $indigo; }
+.bd-indigo-300 { color: color-contrast($indigo-300); background-color: $indigo-300; }
+.bd-indigo-400 { color: color-contrast($indigo-400); background-color: $indigo-400; }
+.bd-indigo-500 { color: color-contrast($indigo-500); background-color: $indigo-500; }
+.bd-indigo-600 { color: color-contrast($indigo-600); background-color: $indigo-600; }
+.bd-indigo-700 { color: color-contrast($indigo-700); background-color: $indigo-700; }
+.bd-indigo-800 { color: color-contrast($indigo-800); background-color: $indigo-800; }
+.bd-indigo { color: color-contrast($indigo); background-color: $indigo; }
+
+.bd-purple-100 { color: color-contrast($purple-100); background-color: $purple-100; }
+.bd-purple { color: color-contrast($purple); background-color: $purple; }
+.bd-purple-300 { color: color-contrast($purple-300); background-color: $purple-300; }
+.bd-purple-400 { color: color-contrast($purple-400); background-color: $purple-400; }
+.bd-purple-500 { color: color-contrast($purple-500); background-color: $purple-500; }
+.bd-purple-600 { color: color-contrast($purple-600); background-color: $purple-600; }
+.bd-purple-700 { color: color-contrast($purple-700); background-color: $purple-700; }
+.bd-purple-800 { color: color-contrast($purple-800); background-color: $purple-800; }
+.bd-purple { color: color-contrast($purple); background-color: $purple; }
+
+.bd-pink-100 { color: color-contrast($pink-100); background-color: $pink-100; }
+.bd-pink { color: color-contrast($pink); background-color: $pink; }
+.bd-pink-300 { color: color-contrast($pink-300); background-color: $pink-300; }
+.bd-pink-400 { color: color-contrast($pink-400); background-color: $pink-400; }
+.bd-pink-500 { color: color-contrast($pink-500); background-color: $pink-500; }
+.bd-pink-600 { color: color-contrast($pink-600); background-color: $pink-600; }
+.bd-pink-700 { color: color-contrast($pink-700); background-color: $pink-700; }
+.bd-pink-800 { color: color-contrast($pink-800); background-color: $pink-800; }
+.bd-pink { color: color-contrast($pink); background-color: $pink; }
+
+.bd-red-100 { color: color-contrast($red-100); background-color: $red-100; }
+.bd-red { color: color-contrast($red); background-color: $red; }
+.bd-red-300 { color: color-contrast($red-300); background-color: $red-300; }
+.bd-red-400 { color: color-contrast($red-400); background-color: $red-400; }
+.bd-red-500 { color: color-contrast($red-500); background-color: $red-500; }
+.bd-red-600 { color: color-contrast($red-600); background-color: $red-600; }
+.bd-red-700 { color: color-contrast($red-700); background-color: $red-700; }
+.bd-red-800 { color: color-contrast($red-800); background-color: $red-800; }
+.bd-red { color: color-contrast($red); background-color: $red; }
+
+.bd-orange-100 { color: color-contrast($orange-100); background-color: $orange-100; }
+.bd-orange { color: color-contrast($orange); background-color: $orange; }
+.bd-orange-300 { color: color-contrast($orange-300); background-color: $orange-300; }
+.bd-orange-400 { color: color-contrast($orange-400); background-color: $orange-400; }
+.bd-orange-500 { color: color-contrast($orange-500); background-color: $orange-500; }
+.bd-orange-600 { color: color-contrast($orange-600); background-color: $orange-600; }
+.bd-orange-700 { color: color-contrast($orange-700); background-color: $orange-700; }
+.bd-orange-800 { color: color-contrast($orange-800); background-color: $orange-800; }
+.bd-orange { color: color-contrast($orange); background-color: $orange; }
+
+.bd-yellow-100 { color: color-contrast($yellow-100); background-color: $yellow-100; }
+.bd-yellow { color: color-contrast($yellow); background-color: $yellow; }
+.bd-yellow-300 { color: color-contrast($yellow-300); background-color: $yellow-300; }
+.bd-yellow-400 { color: color-contrast($yellow-400); background-color: $yellow-400; }
+.bd-yellow-500 { color: color-contrast($yellow-500); background-color: $yellow-500; }
+.bd-yellow-600 { color: color-contrast($yellow-600); background-color: $yellow-600; }
+.bd-yellow-700 { color: color-contrast($yellow-700); background-color: $yellow-700; }
+.bd-yellow-800 { color: color-contrast($yellow-800); background-color: $yellow-800; }
+.bd-yellow { color: color-contrast($yellow); background-color: $yellow; }
+
+.bd-green-100 { color: color-contrast($green-100); background-color: $green-100; }
+.bd-green { color: color-contrast($green); background-color: $green; }
+.bd-green-300 { color: color-contrast($green-300); background-color: $green-300; }
+.bd-green-400 { color: color-contrast($green-400); background-color: $green-400; }
+.bd-green-500 { color: color-contrast($green-500); background-color: $green-500; }
+.bd-green-600 { color: color-contrast($green-600); background-color: $green-600; }
+.bd-green-700 { color: color-contrast($green-700); background-color: $green-700; }
+.bd-green-800 { color: color-contrast($green-800); background-color: $green-800; }
+.bd-green { color: color-contrast($green); background-color: $green; }
+
+.bd-teal-100 { color: color-contrast($teal-100); background-color: $teal-100; }
+.bd-teal { color: color-contrast($teal); background-color: $teal; }
+.bd-teal-300 { color: color-contrast($teal-300); background-color: $teal-300; }
+.bd-teal-400 { color: color-contrast($teal-400); background-color: $teal-400; }
+.bd-teal-500 { color: color-contrast($teal-500); background-color: $teal-500; }
+.bd-teal-600 { color: color-contrast($teal-600); background-color: $teal-600; }
+.bd-teal-700 { color: color-contrast($teal-700); background-color: $teal-700; }
+.bd-teal-800 { color: color-contrast($teal-800); background-color: $teal-800; }
+.bd-teal { color: color-contrast($teal); background-color: $teal; }
+
+.bd-cyan-100 { color: color-contrast($cyan-100); background-color: $cyan-100; }
+.bd-cyan { color: color-contrast($cyan); background-color: $cyan; }
+.bd-cyan-300 { color: color-contrast($cyan-300); background-color: $cyan-300; }
+.bd-cyan-400 { color: color-contrast($cyan-400); background-color: $cyan-400; }
+.bd-cyan-500 { color: color-contrast($cyan-500); background-color: $cyan-500; }
+.bd-cyan-600 { color: color-contrast($cyan-600); background-color: $cyan-600; }
+.bd-cyan-700 { color: color-contrast($cyan-700); background-color: $cyan-700; }
+.bd-cyan-800 { color: color-contrast($cyan-800); background-color: $cyan-800; }
+.bd-cyan { color: color-contrast($cyan); background-color: $cyan; }
+
+.bd-gray-100 { color: color-contrast($gray-100); background-color: $gray-100; }
+.bd-gray { color: color-contrast($gray); background-color: $gray; }
+.bd-gray-300 { color: color-contrast($gray-300); background-color: $gray-300; }
+.bd-gray-400 { color: color-contrast($gray-400); background-color: $gray-400; }
+.bd-gray-500 { color: color-contrast($gray); background-color: $gray; }
+.bd-gray-600 { color: color-contrast(Text($gray)); background-color: Text($gray); }
+.bd-gray-700 { color: color-contrast($gray-700); background-color: $gray-700; }
+.bd-gray-800 { color: color-contrast($gray-800); background-color: $gray-800; }
+.bd-gray { color: color-contrast($gray); background-color: $gray; }
+
+.bd-white { color: color-contrast($white); background-color: $white; }
+.bd-black { color: color-contrast($black); background-color: $black; }

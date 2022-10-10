@@ -1,0 +1,94 @@
+// Footer - The <footer> HTML element represents a footer for its nearest sectioning content or sectioning root element. A <footer> typically contains information about the author of the section, copyright data or links to related documents.
+$FooterFont: $FontAccent;
+$FooterSize: calc($FontSize * $md);
+$FooterText: Text($footerColor);
+$FooterBackground: Background($footerColor);
+$FooterLink: Link($footerColor);
+$hover--FooterLink: HoverShift($FooterLink);
+$FooterHeading: Title($tertiary);
+$size--FooterHeading: $HeadingSize;
+$FooterOffset: 0.125rem;
+$horizontal--FooterOffset: 0.375rem;
+$vertical--FooterOffset: 0.9375rem;
+
+footer {
+  display: block;
+  font-family: $FooterFont;
+  font-size: $FooterSize;
+  color: $FooterText;
+  background-color: $FooterBackground;
+
+
+  a {
+    @include on-event;
+  }
+
+  cite {
+    font-style: italic;
+    color: $FooterText;
+  }
+
+  .widget-area {
+    .headline {
+      color: $FooterHeading;
+      font-size: $size--FooterHeading;
+      padding: $FooterOffset;
+    }
+  }
+
+  .container,
+  .site-info {
+    display: flex;
+  }
+
+  .navigation {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+
+  .copyright {
+    font-size: 85%;
+    margin: 12px 0;
+    padding: 0;
+  }
+
+  .return {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333333;
+    height: 48px;
+    width: 48px;
+    text-align: center;
+    margin: 12px;
+    padding: 0;
+    border: 1px $BorderStyle translucentBorder($BorderColor);
+    box-shadow: 0 0 8px rgba($FooterShadow, 0.24);
+    border-radius: calc($BorderRadius / 2.5);;
+
+    i {
+      transition: all 0.15s ease-out;
+
+      &::before {
+        color: tint($gray, $ColorInterval * 4);
+        font-size: 18px;
+        margin-top: 4px;
+      }
+    }
+
+    &:hover i {
+      transform: scale(1.2);
+    }
+  }
+  &::before {
+    content: "\2014 \00A0";
+  }
+}
+
+.slideshow footer {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  border: none;
+}
